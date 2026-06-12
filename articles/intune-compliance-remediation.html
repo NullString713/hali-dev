@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Intune Compliance Remediation Notes | Hali Dev</title>
+
+  <meta
+    name="description"
+    content="Practical notes on Intune device compliance, endpoint remediation, BitLocker, TPM readiness, and PowerShell-driven endpoint operations."
+  />
+
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>Intune Compliance Remediation Notes</h1>
+
+      <p class="summary">
+        Practical notes on using Intune, device compliance policies, endpoint signals,
+        and PowerShell remediation to improve Windows endpoint posture.
+      </p>
+
+      <div class="actions">
+        <a href="../articles.html" class="button primary">Back to Notes</a>
+        <a href="../index.html" class="button">Home</a>
+      </div>
+    </section>
+
+    <section class="about article">
+      <h2>Overview</h2>
+      <p>
+        Endpoint compliance is most useful when it drives action. A compliance policy can identify
+        devices that are missing encryption, failing security requirements, or drifting from the expected
+        baseline, but the real value comes from turning those signals into repeatable remediation.
+      </p>
+
+      <p>
+        In a Microsoft 365 environment, Intune can be used to enforce device compliance, report on
+        endpoint health, and support Conditional Access decisions. When paired with PowerShell,
+        compliance findings can also become a starting point for targeted cleanup, reporting, and
+        operational follow-up.
+      </p>
+
+      <h2>Common Compliance Signals</h2>
+      <p>
+        Useful compliance signals often include BitLocker status, TPM readiness, Secure Boot state,
+        operating system version, Defender status, device ownership, enrollment state, and whether
+        the device is checking in successfully.
+      </p>
+
+      <p>
+        These signals are especially helpful when they are reviewed together. A device may appear
+        non-compliant for a simple policy reason, but the root cause may be enrollment drift, hardware
+        configuration, stale inventory, or a missing remediation step.
+      </p>
+
+      <h2>Remediation Approach</h2>
+      <p>
+        A practical remediation process usually starts with identifying the failure pattern, grouping
+        affected devices, testing a fix against a small pilot set, and then expanding the remediation
+        in controlled waves.
+      </p>
+
+      <p>
+        PowerShell can help standardize this process by collecting device state, validating prerequisites,
+        applying approved configuration changes, prompting users when needed, and generating reports
+        for follow-up.
+      </p>
+
+      <h2>Operational Lessons</h2>
+      <p>
+        Compliance work should be treated as an operational loop, not a one-time policy deployment.
+        The strongest results come from combining clear policy design, accurate reporting, controlled
+        rollout rings, documented exceptions, and repeatable remediation logic.
+      </p>
+
+      <p>
+        Good endpoint engineering is not just about making devices pass a policy. It is about improving
+        reliability, reducing manual effort, and giving support teams a clear path from detection to resolution.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
