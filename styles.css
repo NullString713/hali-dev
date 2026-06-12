@@ -173,3 +173,7 @@ h1 {
 .site-nav .brand:hover {
   color: var(--accent);
 }
+.text-muted {
+  color: var(--muted);
+  font-weight: 800;
+}
