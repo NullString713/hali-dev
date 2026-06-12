@@ -118,3 +118,24 @@ h1 {
     grid-template-columns: 1fr;
   }
 }
+.article {
+  max-width: 980px;
+}
+
+.article h2 {
+  margin-top: 36px;
+}
+
+.article p {
+  font-size: 1.02rem;
+}
+
+.text-link {
+  color: var(--accent);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+}
