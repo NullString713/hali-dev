@@ -177,3 +177,6 @@ h1 {
   color: var(--muted);
   font-weight: 800;
 }
+.about + .about {
+  margin-top: 28px;
+}
