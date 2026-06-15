@@ -180,3 +180,12 @@ h1 {
 .about + .about {
   margin-top: 28px;
 }
+.article {
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero + .about {
+  margin-top: 28px;
+}
