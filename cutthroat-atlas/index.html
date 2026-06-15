@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cutthroat Atlas | Hali Dev</title>
+  <meta name="description" content="A prototype historical stream atlas for native trout watersheds in the American West." />
+
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="./atlas.css" />
+</head>
+<body>
+  <main class="atlas-shell">
+    <header class="atlas-topbar">
+      <a class="brand" href="/">Hali Dev</a>
+      <nav class="atlas-nav" aria-label="Site navigation">
+        <a href="/projects">Projects</a>
+        <a href="/articles">Notes</a>
+        <a href="/cutthroat-atlas/" aria-current="page">Cutthroat Atlas</a>
+      </nav>
+    </header>
+
+    <section class="intro-panel" aria-labelledby="atlas-title">
+      <p class="eyebrow">Prototype</p>
+      <h1 id="atlas-title">Cutthroat Atlas</h1>
+      <p>
+        A historical stream map for native trout watersheds in the American West.
+        Use the slider to compare historic native trout, current likely species, and recovery status.
+      </p>
+    </section>
+
+    <section class="map-stage" aria-label="Interactive trout stream map">
+      <div id="map"></div>
+
+      <aside class="legend-card" aria-label="Map legend">
+        <h2>Legend</h2>
+        <div id="legend-list"></div>
+      </aside>
+
+      <aside class="stream-card" id="stream-card" aria-live="polite">
+        <p class="eyebrow">Selected water</p>
+        <h2>Choose a stream</h2>
+        <p>Click one of the highlighted blue lines to view the prototype species card.</p>
+      </aside>
+
+      <div class="mode-control" aria-label="Map layer selector">
+        <div class="mode-labels">
+          <span>Historic Native</span>
+          <span>Current Likely</span>
+          <span>Recovery Status</span>
+        </div>
+        <input id="mode-slider" type="range" min="0" max="2" value="0" step="1" aria-label="Change map layer" />
+        <p id="mode-description">Showing the species most likely associated with each stream historically.</p>
+      </div>
+    </section>
+
+    <section class="atlas-notes">
+      <h2>Prototype notes</h2>
+      <p>
+        This first version uses simplified placeholder stream geometry and intentionally generalized species notes.
+        Exact locations for sensitive native or recovery populations should stay generalized to protect fragile waters.
+      </p>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="./atlas.js"></script>
+</body>
+</html>
