@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Microsoft Graph PowerShell Automation Notes | Hali Dev</title>
+
+  <meta
+    name="description"
+    content="Practical notes on Microsoft Graph PowerShell automation, reporting, permissions, Microsoft 365 administration, and operational guardrails."
+  />
+
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+
+<body>
+  <main class="page">
+    <nav class="site-nav">
+      <a href="/" class="brand">Hali Dev</a>
+
+      <div class="nav-links">
+        <a href="/projects">Projects</a>
+        <a href="/articles">Notes</a>
+        <a href="https://github.com/NullString713">GitHub</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <h1>Microsoft Graph PowerShell Automation Notes</h1>
+
+      <p class="summary">
+        Practical notes on using Microsoft Graph PowerShell for Microsoft 365 reporting,
+        identity operations, license review, and repeatable administrative automation.
+      </p>
+
+      <div class="actions">
+        <a href="../articles.html" class="button primary">Back to Notes</a>
+        <a href="../index.html" class="button">Home</a>
+      </div>
+    </section>
+
+    <section class="about article">
+      <h2>Overview</h2>
+      <p>
+        Microsoft Graph PowerShell provides a flexible way to query and automate across Microsoft 365,
+        Entra ID, users, groups, licenses, devices, sign-in activity, and other cloud identity data.
+      </p>
+
+      <p>
+        For IT operations teams, Graph PowerShell is useful because it can turn repeated manual admin
+        tasks into scripts, reports, scheduled checks, and repeatable remediation workflows.
+      </p>
+
+      <h2>Why Graph PowerShell Matters</h2>
+      <p>
+        Many Microsoft 365 administrative questions require data from more than one place. A simple
+        user review may need identity attributes, assigned licenses, group membership, manager data,
+        sign-in activity, account status, and device information.
+      </p>
+
+      <p>
+        Graph PowerShell makes it possible to collect that information in one repeatable process instead
+        of manually clicking through multiple admin portals.
+      </p>
+
+      <h2>Common Admin Use Cases</h2>
+      <p>
+        Useful Graph PowerShell workflows often include user inventory reports, license reviews, inactive
+        account checks, group membership audits, manager or department validation, device compliance
+        reporting, and onboarding or offboarding verification.
+      </p>
+
+      <p>
+        These reports become more valuable when they are exported consistently, reviewed by the right
+        teams, and used to drive cleanup instead of only being treated as one-time snapshots.
+      </p>
+
+      <h2>Permissions and Scope</h2>
+      <p>
+        Graph automation should use the least amount of access needed for the task. Some scripts only
+        need read permissions for reporting, while others may require write permissions for remediation
+        or lifecycle actions.
+      </p>
+
+      <p>
+        It is important to understand whether a script is using delegated permissions, application
+        permissions, interactive authentication, certificate-based authentication, or managed identity
+        in an automation platform.
+      </p>
+
+      <h2>Reporting Patterns</h2>
+      <p>
+        Good reporting scripts should produce output that is easy to review and easy to reuse. Common
+        patterns include exporting CSV files, normalizing license names, including object IDs for follow-up,
+        and adding timestamps so reports can be compared over time.
+      </p>
+
+      <p>
+        Reports should also make exceptions visible. Missing attributes, disabled accounts, stale sign-ins,
+        unlicensed users, conflicting group membership, or unexpected license assignments should be easy
+        to identify without manually filtering through raw data every time.
+      </p>
+
+      <h2>Operational Guardrails</h2>
+      <p>
+        Automation should be predictable, logged, and safe to test. For scripts that make changes, it is
+        useful to support dry-run behavior, pilot groups, clear prompts, scoped input files, and detailed
+        output showing what changed and what was skipped.
+      </p>
+
+      <p>
+        The goal is not just to automate more. The goal is to make Microsoft 365 administration more
+        consistent, easier to audit, and easier for other IT team members to understand.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
