@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Identity Lifecycle Automation Notes | Hali Dev</title>
+
+  <meta
+    name="description"
+    content="Practical notes on identity lifecycle automation, onboarding, offboarding, group-based licensing, Conditional Access support, and Microsoft 365 operations."
+  />
+
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+
+<body>
+  <main class="page">
+    <nav class="site-nav">
+      <a href="/" class="brand">Hali Dev</a>
+
+      <div class="nav-links">
+        <a href="/projects">Projects</a>
+        <a href="/articles">Notes</a>
+        <a href="https://github.com/NullString713">GitHub</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <h1>Identity Lifecycle Automation Notes</h1>
+
+      <p class="summary">
+        Practical notes on onboarding, offboarding, group-based licensing,
+        Conditional Access support, access cleanup, and repeatable identity operations.
+      </p>
+
+      <div class="actions">
+        <a href="../articles.html" class="button primary">Back to Notes</a>
+        <a href="../index.html" class="button">Home</a>
+      </div>
+    </section>
+
+    <section class="about article">
+      <h2>Overview</h2>
+      <p>
+        Identity lifecycle work is one of the most important parts of enterprise IT operations.
+        Every employee, contractor, shared account, service account, and role change creates an
+        access decision that needs to be handled consistently.
+      </p>
+
+      <p>
+        In a Microsoft 365 environment, identity lifecycle automation usually connects HR-driven
+        data, Entra ID attributes, groups, licensing, application access, Conditional Access scope,
+        and offboarding controls into a repeatable process.
+      </p>
+
+      <h2>Common Lifecycle Problems</h2>
+      <p>
+        Manual lifecycle work often breaks down around inconsistent user attributes, duplicate or
+        reused identities, stale group membership, missed license assignments, delayed access removal,
+        and unclear ownership for application access.
+      </p>
+
+      <p>
+        These issues are usually not caused by one bad tool. They come from small gaps between HR data,
+        identity platforms, SaaS applications, support processes, and documentation.
+      </p>
+
+      <h2>Group-Based Licensing</h2>
+      <p>
+        Group-based licensing can make Microsoft 365 licensing more predictable when the groups are
+        tied to clear business logic. Common patterns include licensing by role, location, department,
+        worker type, or application need.
+      </p>
+
+      <p>
+        The important part is keeping the logic understandable. A licensing group should have a clear
+        purpose, a known owner, and a review process so it does not become another hidden manual step.
+      </p>
+
+      <h2>Rehire and Identity Matching</h2>
+      <p>
+        Rehires and duplicate identities are a common source of lifecycle problems. Matching users only
+        by display name or email pattern can create collisions, especially in larger environments.
+      </p>
+
+      <p>
+        A stronger lifecycle process uses stable identifiers where possible, such as employee IDs or
+        another authoritative HR-driven value, to reduce ambiguity and prevent accidental account
+        duplication or incorrect access mapping.
+      </p>
+
+      <h2>Offboarding and Access Removal</h2>
+      <p>
+        Offboarding should remove access quickly, consistently, and in a way that can be verified later.
+        Useful controls often include account disablement, session revocation, license cleanup, group
+        removal, mailbox or data handling, device actions, and application deprovisioning.
+      </p>
+
+      <p>
+        The goal is not just to disable the account. The goal is to make the access removal process
+        repeatable, auditable, and easy for support teams to understand.
+      </p>
+
+      <h2>Automation Lessons</h2>
+      <p>
+        Strong lifecycle automation starts with clear inputs and predictable outcomes. Automation should
+        validate data, handle exceptions, log what changed, and make it easy to identify when something
+        needs human review.
+      </p>
+
+      <p>
+        The best lifecycle workflows reduce manual effort without hiding the process. Good automation
+        should make identity operations easier to troubleshoot, easier to audit, and safer to repeat.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
