@@ -313,7 +313,7 @@ input[type="range"] {
   filter: grayscale(85%) saturate(40%) brightness(70%) contrast(90%);
 }
 
-/* dark atlas */
+/* dark atlas 
 #map {
   background: #111827;
-}
+}*/
