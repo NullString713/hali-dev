@@ -84,9 +84,11 @@ function loadHydroFiles() {
             .map(feature => {
               const sourceName = feature.properties?.name || '';
 
-              const match = featuredWaters.find(water =>
-                sourceName.toLowerCase().includes(water.match)
-              );
+             const matches = featuredWaters
+            .filter(water => sourceName.toLowerCase().includes(water.match))
+            .sort((a, b) => (b.priority || 0) - (a.priority || 0));
+
+const match = matches[0];
 
               if (!match) return null;
 
