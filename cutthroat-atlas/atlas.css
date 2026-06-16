@@ -162,8 +162,8 @@ h1 {
 }
 
 .stream-card {
-  left: 1rem;
-  bottom: 6.7rem;
+    left: 1rem;
+  bottom: 8.5rem;
   width: min(390px, calc(100% - 2rem));
   padding: 1rem;
 }
@@ -190,9 +190,9 @@ h1 {
 .stream-card dd { margin: 0; }
 
 .mode-control {
-  left: 50%;
+   left: 50%;
   bottom: 1rem;
-  width: min(680px, calc(100% - 2rem));
+  width: min(640px, calc(100% - 2rem));
   padding: 1rem;
   transform: translateX(-50%);
 }
@@ -230,7 +230,16 @@ input[type="range"] {
 }
 
 .atlas-notes h2 { color: var(--text); }
+@media (min-width: 761px) and (max-width: 1050px) {
+  .stream-card {
+    bottom: 9.5rem;
+    width: min(360px, calc(100% - 2rem));
+  }
 
+  .mode-control {
+    width: min(600px, calc(100% - 2rem));
+  }
+}
 @media (max-width: 760px) {
   body {
     overflow-x: hidden;
