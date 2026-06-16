@@ -310,7 +310,7 @@ input[type="range"] {
 }
 /* Muted background map so stream systems stand out */
 .leaflet-tile-pane {
-  filter: grayscale(85%) saturate(40%) brightness(70%) contrast(90%);
+  filter: grayscale(100%) saturate(20 %) brightness(92%) contrast(90%);
 }
 
 /* dark atlas 
