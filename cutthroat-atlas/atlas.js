@@ -29,15 +29,18 @@ const modes = [
 
 const streams = [
   {
-    name: 'Cache la Poudre Headwaters',
+    name: 'Cache la Poudre',
     basin: 'South Platte / Cache la Poudre',
     state: 'Colorado',
     historic: 'greenback',
     current: 'introduced',
     recovery: 'recoveryHigh',
     confidence: 'Prototype / generalized',
-    note: 'Representative Front Range headwater stream. Real version should generalize sensitive native population details.',
-    coords: [[40.70, -105.88], [40.67, -105.70], [40.63, -105.50], [40.59, -105.32]]
+    note: 'Prototype Front Range stream. Real version should use USGS hydrography and cite public CPW, USFS, USFWS, academic, and conservation sources where available.'    coords: [
+        [40.707, -105.918],[40.706, -105.850], [40.704, -105.790], [40.701, -105.735],[40.699, -105.690], [40.697, -105.640],[40.694, -105.590],[40.690, -105.545],[40.684, -105.500],
+        [40.678, -105.455],[40.672, -105.410],[40.664, -105.365],[40.654, -105.320],[40.642, -105.275],[40.626, -105.230],[40.612, -105.185],[40.600, -105.140],[40.590, -105.095],
+        [40.584, -105.050],[40.581, -105.000],[40.580, -104.940],[40.578, -104.875],[40.570, -104.810],[40.560, -104.745]
+      ]
   },
   {
     name: 'Upper Arkansas Tributary',
