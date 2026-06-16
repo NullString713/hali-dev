@@ -36,6 +36,8 @@ const featuredWaters = [
     current: 'introduced',
     recovery: 'recoveryHigh',
     confidence: 'Prototype / public OSM geometry',
+    geometrySource: 'OpenStreetMap / Overpass export',
+    troutSource: 'Prototype metadata pending source review',
     note: 'The Cache la Poudre drainage sits within commonly cited historic greenback cutthroat range. This prototype uses public OpenStreetMap waterway geometry and draft trout metadata pending source validation.'
   }
 ];
@@ -185,6 +187,8 @@ function renderStreamCard(stream) {
       <dt>Basin</dt><dd>${escapeHtml(stream.basin)}</dd>
       <dt>State</dt><dd>${escapeHtml(stream.state)}</dd>
       <dt>Confidence</dt><dd>${escapeHtml(stream.confidence)}</dd>
+      <dt>Geometry source</dt><dd>${escapeHtml(stream.geometrySource || 'Unknown')}</dd>
+      <dt>Trout source</dt><dd>${escapeHtml(stream.troutSource || 'Unknown')}</dd>
     </dl>
   `;
 }
