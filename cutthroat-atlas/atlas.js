@@ -1,5 +1,5 @@
 const speciesColors = {
-  greenback: { label: 'Greenback Cutthroat', color: '#45b36b' },
+  greenback: { label: 'Greenback Cutthroat', color: '#16a34a' },
   coloradoRiver: { label: 'Colorado River Cutthroat', color: '#d8563a' },
   rioGrande: { label: 'Rio Grande Cutthroat', color: '#8f5fd7' },
   yellowfin: { label: 'Yellowfin Cutthroat', color: '#f1c84b' },
