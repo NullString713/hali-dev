@@ -140,7 +140,7 @@ const streamLayer = L.geoJSON(streamsToGeoJson(), {
       renderStreamCard(selectedStream);
       layer.bringToFront();
     });
-    layer.on('mouseover', () => layer.setStyle({ weight: 5, opacity: 0.9 }));
+    layer.on('mouseover', () => layer.setStyle({ weight: 4, opacity: 0.65 }));
     layer.on('mouseout', () => streamLayer.resetStyle(layer));
   }
 }).addTo(map);
@@ -175,8 +175,8 @@ function styleStream(feature) {
   const speciesKey = feature.properties[mode];
   return {
     color: speciesColors[speciesKey]?.color || speciesColors.unknown.color,
-    weight: 3,
-    opacity: 0.6,
+    weight: 2,
+    opacity: 0.25,
     lineCap: 'round',
     lineJoin: 'round'
   };
