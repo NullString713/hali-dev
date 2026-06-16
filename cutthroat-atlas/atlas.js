@@ -26,7 +26,19 @@ const modes = [
     description: 'Showing generalized conservation and recovery status.'
   }
 ];
-
+const featuredWaters = [
+  {
+    match: 'poudre',
+    name: 'Cache la Poudre River System',
+    basin: 'South Platte / Cache la Poudre',
+    state: 'Colorado',
+    historic: 'greenback',
+    current: 'introduced',
+    recovery: 'recoveryHigh',
+    confidence: 'Prototype / public OSM geometry',
+    note: 'The Cache la Poudre drainage sits within commonly cited historic greenback cutthroat range. This prototype uses public OpenStreetMap waterway geometry and draft trout metadata pending source validation.'
+  }
+];
 let featuredStreamLayer;
 let selectedStream = null;
 let currentModeIndex = 0;
@@ -59,29 +71,29 @@ fetch('./data/poudre_watershed.geojson')
       interactive: false
     }).addTo(map);
 
-    // Featured clickable Poudre layer using real GeoJSON geometry
-    const featuredPoudre = {
-      type: 'FeatureCollection',
-      features: data.features
-        .filter(feature => {
-          const name = feature.properties?.name || '';
-          return name.toLowerCase().includes('poudre');
-        })
-        .map(feature => ({
-          ...feature,
-          properties: {
-            ...feature.properties,
-            name: feature.properties?.name || 'Cache la Poudre River',
-            basin: 'South Platte / Cache la Poudre',
-            state: 'Colorado',
-            historic: 'greenback',
-            current: 'introduced',
-            recovery: 'recoveryHigh',
-            confidence: 'Prototype / public OSM geometry',
-            note: 'Real mapped waterway geometry from public OpenStreetMap data. Trout metadata is prototype-level and needs source validation.'
-          }
-        }))
-    };
+ const featuredPoudre = {
+  type: 'FeatureCollection',
+  features: data.features
+    .map(feature => {
+      const sourceName = feature.properties?.name || '';
+
+      const match = featuredWaters.find(water =>
+        sourceName.toLowerCase().includes(water.match)
+      );
+
+      if (!match) return null;
+
+      return {
+        ...feature,
+        properties: {
+          ...feature.properties,
+          ...match,
+          sourceName
+        }
+      };
+    })
+    .filter(Boolean)
+};
 
   featuredStreamLayer = L.geoJSON(featuredPoudre, {
   style: styleStream,
@@ -169,6 +181,7 @@ function renderStreamCard(stream) {
     <dl>
       <dt>Layer</dt><dd>${modeLabel(mode)}</dd>
       <dt>Shown as</dt><dd>${activeLabel}</dd>
+      <dt>Mapped name</dt><dd>${escapeHtml(stream.sourceName || stream.name)}</dd>
       <dt>Basin</dt><dd>${escapeHtml(stream.basin)}</dd>
       <dt>State</dt><dd>${escapeHtml(stream.state)}</dd>
       <dt>Confidence</dt><dd>${escapeHtml(stream.confidence)}</dd>
