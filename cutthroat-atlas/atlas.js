@@ -106,9 +106,10 @@ const map = L.map('map', {
   scrollWheelZoom: true
 }).setView([39.25, -106.1], 7);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 13,
-  attribution: '&copy; OpenStreetMap contributors'
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+  maxZoom: 18,
+  attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+  subdomains: 'abcd'
 }).addTo(map);
 
 const streamLayer = L.geoJSON(streamsToGeoJson(), {
@@ -154,8 +155,8 @@ function styleStream(feature) {
   const speciesKey = feature.properties[mode];
   return {
     color: speciesColors[speciesKey]?.color || speciesColors.unknown.color,
-    weight: 7,
-    opacity: 1,
+    weight: 5,
+    opacity: 0.95,
     lineCap: 'round',
     lineJoin: 'round'
   };
