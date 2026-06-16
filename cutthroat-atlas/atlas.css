@@ -308,3 +308,12 @@ input[type="range"] {
     padding: 0.75rem;
   }
 }
+/* Muted background map so stream systems stand out */
+.leaflet-tile-pane {
+  filter: grayscale(85%) saturate(40%) brightness(70%) contrast(90%);
+}
+
+/* dark atlas */
+#map {
+  background: #111827;
+}
