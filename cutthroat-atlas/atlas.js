@@ -56,7 +56,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png
 
 // Real watershed stream layer from exported Overpass GeoJSON.
 // This draws all waterways faintly as background context.
-fetch('./data/poudre_watershed.geojson')
+fetch('./data/cache-la-poudre-natural-streams.geojson')
   .then(response => response.json())
   .then(data => {
     // Real watershed background layer
