@@ -26,48 +26,8 @@ const modes = [
     description: 'Showing generalized conservation and recovery status.'
   }
 ];
+let featuredWaters = [];
 
-const featuredWaters = [
-  {
-    match: 'poudre',
-    name: 'Cache la Poudre River System',
-    basin: 'South Platte / Cache la Poudre',
-    state: 'Colorado',
-    historic: 'greenback',
-    current: 'introduced',
-    recovery: 'recoveryHigh',
-    confidence: 'Prototype / public OSM geometry',
-    geometrySource: 'OpenStreetMap / Overpass export',
-    troutSource: 'Prototype metadata pending source review',
-    note: 'The Cache la Poudre drainage sits within commonly cited historic greenback cutthroat range. This prototype uses public OpenStreetMap waterway geometry and draft trout metadata pending source validation.'
-    },
-    {
-    match: 'george creek',
-    name: 'George Creek',
-    basin: 'South Platte / Cache la Poudre / Sheep Creek',
-    state: 'Colorado',
-    historic: 'greenback',
-    current: 'unknown',
-    recovery: 'recoveryHigh',
-    confidence: 'Public recovery-history source review needed',
-    geometrySource: 'OpenStreetMap / Overpass export',
-    troutSource: 'Historic recovery references / prototype review',
-    note: 'George Creek and nearby Cornelius Creek are associated with greenback cutthroat recovery history in the Poudre drainage. This area may involve natural or constructed fish barriers, non-native trout exclusion work, and sensitive restoration context.'
-    },
-    {
-    match: 'cornelius creek',
-    name: 'Cornelius Creek',
-    basin: 'South Platte / Cache la Poudre / Sheep Creek',
-    state: 'Colorado',
-    historic: 'greenback',
-    current: 'unknown',
-    recovery: 'recoveryHigh',
-    confidence: 'Prototype / public recovery-history review needed',
-    geometrySource: 'OpenStreetMap / Overpass export',
-    troutSource: 'Prototype metadata pending source review',
-    note: 'Cornelius Creek is associated with greenback cutthroat recovery history near George Creek and Sheep Creek. Current species status should be verified with public agency or conservation sources before being treated as confirmed.'
-    }
-];
 const hydroFiles = [
   {
     path: './data/cache-la-poudre-natural-streams.geojson',
@@ -90,65 +50,77 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png
   subdomains: 'abcd'
 }).addTo(map);
 
-hydroFiles.forEach(file => {
-  fetch(file.path)
-    .then(response => response.json())
-    .then(data => {
-      // Background stream network
-      L.geoJSON(data, {
-        style: {
-          color: '#3b9fc6',
-          weight: 1.6,
-          opacity: 0.65,
-          lineCap: 'round',
-          lineJoin: 'round'
-        },
-        interactive: false
-      }).addTo(map);
+fetch('./data/waters/index.json')
+  .then(response => response.json())
+  .then(data => {
+    featuredWaters = data;
+    loadHydroFiles();
+  })
+  .catch(error => {
+    console.error('Could not load featured waters:', error);
+  });
 
-      // Featured clickable trout layer
-      const featuredStreams = {
-        type: 'FeatureCollection',
-        features: data.features
-          .map(feature => {
-            const sourceName = feature.properties?.name || '';
+function loadHydroFiles() {
+  hydroFiles.forEach(file => {
+    fetch(file.path)
+      .then(response => response.json())
+      .then(data => {
+        // Background stream network
+        L.geoJSON(data, {
+          style: {
+            color: '#3b9fc6',
+            weight: 1.6,
+            opacity: 0.65,
+            lineCap: 'round',
+            lineJoin: 'round'
+          },
+          interactive: false
+        }).addTo(map);
 
-            const match = featuredWaters.find(water =>
-              sourceName.toLowerCase().includes(water.match)
-            );
+        // Featured clickable trout layer
+        const featuredStreams = {
+          type: 'FeatureCollection',
+          features: data.features
+            .map(feature => {
+              const sourceName = feature.properties?.name || '';
 
-            if (!match) return null;
+              const match = featuredWaters.find(water =>
+                sourceName.toLowerCase().includes(water.match)
+              );
 
-            return {
-              ...feature,
-              properties: {
-                ...feature.properties,
-                ...match,
-                sourceName
-              }
-            };
-          })
-          .filter(Boolean)
-      };
+              if (!match) return null;
 
-      featuredStreamLayer = L.geoJSON(featuredStreams, {
-        style: styleStream,
-        onEachFeature: (feature, layer) => {
-          layer.on('click', () => {
-            selectedStream = feature.properties;
-            renderStreamCard(selectedStream);
-            layer.bringToFront();
-          });
+              return {
+                ...feature,
+                properties: {
+                  ...feature.properties,
+                  ...match,
+                  sourceName
+                }
+              };
+            })
+            .filter(Boolean)
+        };
 
-          layer.on('mouseover', () => layer.setStyle({ weight: 5, opacity: 0.95 }));
-          layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
-        }
-      }).addTo(map);
-    })
-    .catch(error => {
-      console.error(`Could not load ${file.label}:`, error);
-    });
-});
+        featuredStreamLayer = L.geoJSON(featuredStreams, {
+          style: styleStream,
+          onEachFeature: (feature, layer) => {
+            layer.on('click', () => {
+              selectedStream = feature.properties;
+              renderStreamCard(selectedStream);
+              layer.bringToFront();
+            });
+
+            layer.on('mouseover', () => layer.setStyle({ weight: 5, opacity: 0.95 }));
+            layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
+          }
+        }).addTo(map);
+      })
+      .catch(error => {
+        console.error(`Could not load ${file.label}:`, error);
+      });
+  });
+}
 
 renderLegend();
 renderMode();
