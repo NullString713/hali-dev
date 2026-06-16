@@ -112,6 +112,26 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png
   subdomains: 'abcd'
 }).addTo(map);
 
+// Real watershed stream layer from exported Overpass GeoJSON.
+// This draws all waterways faintly as background context.
+fetch('./data/poudre_watershed.geojson')
+  .then(response => response.json())
+  .then(data => {
+    L.geoJSON(data, {
+      style: {
+        color: '#5fa8c7',
+        weight: 1.2,
+        opacity: 0.45,
+        lineCap: 'round',
+        lineJoin: 'round'
+      },
+      interactive: false
+    }).addTo(map);
+  })
+  .catch(error => {
+    console.error('Could not load watershed GeoJSON:', error);
+  });
+
 const streamLayer = L.geoJSON(streamsToGeoJson(), {
   style: styleStream,
   onEachFeature: (feature, layer) => {
