@@ -171,19 +171,6 @@ fetch('./data/poudre_watershed.geojson')
     console.error('Could not load watershed GeoJSON:', error);
   });
 
-// const streamLayer = L.geoJSON(streamsToGeoJson(), {
-//   style: styleStream,
-//   onEachFeature: (feature, layer) => {
-//     layer.on('click', () => {
-//       selectedStream = feature.properties;
-//       renderStreamCard(selectedStream);
-//       layer.bringToFront();
-//     });
-//     layer.on('mouseover', () => layer.setStyle({ weight: 4, opacity: 0.65 }));
-//     layer.on('mouseout', () => streamLayer.resetStyle(layer));
-//   }
-// }).addTo(map);
-
 renderLegend();
 renderMode();
 
@@ -198,20 +185,6 @@ slider.addEventListener('input', (event) => {
 
   if (selectedStream) renderStreamCard(selectedStream);
 });
-
-function streamsToGeoJson() {
-  return {
-    type: 'FeatureCollection',
-    features: streams.map(stream => ({
-      type: 'Feature',
-      properties: stream,
-      geometry: {
-        type: 'LineString',
-        coordinates: stream.coords.map(([lat, lng]) => [lng, lat])
-      }
-    }))
-  };
-}
 
 function styleStream(feature) {
   const mode = modes[currentModeIndex].key;
