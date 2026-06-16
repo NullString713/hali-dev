@@ -1,6 +1,7 @@
 [
   {
     "match": "poudre",
+    "priority": 1,
     "name": "Cache la Poudre River System",
     "basin": "South Platte / Cache la Poudre",
     "state": "Colorado",
@@ -14,6 +15,7 @@
   },
   {
     "match": "george creek",
+    "priority": 10,
     "name": "George Creek",
     "basin": "South Platte / Cache la Poudre / Sheep Creek",
     "state": "Colorado",
@@ -27,6 +29,7 @@
   },
   {
     "match": "cornelius creek",
+    "priority": 10,
     "name": "Cornelius Creek",
     "basin": "South Platte / Cache la Poudre / Sheep Creek",
     "state": "Colorado",
