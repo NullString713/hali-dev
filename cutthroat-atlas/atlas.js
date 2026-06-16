@@ -104,19 +104,26 @@ const match = matches[0];
             .filter(Boolean)
         };
 
-        featuredStreamLayer = L.geoJSON(featuredStreams, {
-          style: styleStream,
-          onEachFeature: (feature, layer) => {
-            layer.on('click', () => {
-              selectedStream = feature.properties;
-              renderStreamCard(selectedStream);
-              layer.bringToFront();
-            });
+       featuredStreamLayer = L.geoJSON(featuredStreams, {
+  style: styleStream,
+  onEachFeature: (feature, layer) => {
+    layer.on('click', () => {
+      selectedStream = feature.properties;
+      renderStreamCard(selectedStream);
+      layer.bringToFront();
+    });
 
-            layer.on('mouseover', () => layer.setStyle({ weight: 5, opacity: 0.95 }));
-            layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
-          }
-        }).addTo(map);
+    layer.on('mouseover', () => layer.setStyle({ weight: 5, opacity: 0.95 }));
+    layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
+
+    layer.bindTooltip(feature.properties.name, {
+      permanent: false,
+      direction: 'top',
+      sticky: true,
+      className: 'stream-tooltip'
+    });
+  }
+}).addTo(map);
       })
       .catch(error => {
         console.error(`Could not load ${file.label}:`, error);
