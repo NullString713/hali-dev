@@ -40,7 +40,20 @@ const featuredWaters = [
     geometrySource: 'OpenStreetMap / Overpass export',
     troutSource: 'Prototype metadata pending source review',
     note: 'The Cache la Poudre drainage sits within commonly cited historic greenback cutthroat range. This prototype uses public OpenStreetMap waterway geometry and draft trout metadata pending source validation.'
-  }
+  },
+  {
+  match: 'george creek',
+  name: 'George Creek',
+  basin: 'South Platte / Cache la Poudre / Sheep Creek',
+  state: 'Colorado',
+  historic: 'greenback',
+  current: 'unknown',
+  recovery: 'recoveryHigh',
+  confidence: 'Public recovery-history source review needed',
+  geometrySource: 'OpenStreetMap / Overpass export',
+  troutSource: 'Historic recovery references / prototype review',
+  note: 'George Creek and nearby Cornelius Creek are associated with greenback cutthroat recovery history in the Poudre drainage. This area may involve natural or constructed fish barriers, non-native trout exclusion work, and sensitive restoration context.'
+}
 ];
 const hydroFiles = [
   {
