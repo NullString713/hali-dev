@@ -40,5 +40,19 @@
     "geometrySource": "OpenStreetMap / Overpass export",
     "troutSource": "Prototype metadata pending source review",
     "note": "Cornelius Creek is associated with greenback cutthroat recovery history near George Creek and Sheep Creek. Current species status should be verified with public agency or conservation sources before being treated as confirmed."
-  }
+  },
+  {
+  "match": "sheep creek",
+  "priority": 10,
+  "name": "Sheep Creek",
+  "basin": "South Platte / Cache la Poudre / Sheep Creek",
+  "state": "Colorado",
+  "historic": "greenback",
+  "current": "unknown",
+  "recovery": "recoveryHigh",
+  "confidence": "Prototype / geometry continuity needs review",
+  "geometrySource": "OpenStreetMap / Overpass export; public map comparison",
+  "troutSource": "Prototype metadata pending source review",
+  "note": "Sheep Creek appears in public map references near George Creek and Cornelius Creek, but available OpenStreetMap geometry may be incomplete or discontinuous in this area. This record is included as recovery-area context pending geometry and source review."
+}
 ]
