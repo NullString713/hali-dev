@@ -175,7 +175,7 @@ h1 {
 
 .stream-card dl {
   display: grid;
-  grid-template-columns: 115px 1fr;
+  grid-template-columns: 125px 1fr;
   gap: 0.45rem 0.75rem;
   margin: 0.75rem 0 0;
   color: var(--muted);
@@ -311,10 +311,10 @@ input[type="range"] {
   }
 
   .stream-card dl {
-    grid-template-columns: 95px 1fr;
-    gap: 0.45rem 0.6rem;
-    font-size: 0.88rem;
-  }
+  grid-template-columns: 105px 1fr;
+  gap: 0.45rem 0.6rem;
+  font-size: 0.88rem;
+}
 
   .mode-control {
     order: 4;
