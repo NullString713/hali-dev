@@ -117,15 +117,54 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png
 fetch('./data/poudre_watershed.geojson')
   .then(response => response.json())
   .then(data => {
+    // Real watershed background layer
     L.geoJSON(data, {
       style: {
-      color: '#3b9fc6',
-      weight: 1.6,
-      opacity: 0.65,
-      lineCap: 'round',
-      lineJoin: 'round'
-    },
+        color: '#3b9fc6',
+        weight: 1.6,
+        opacity: 0.65,
+        lineCap: 'round',
+        lineJoin: 'round'
+      },
       interactive: false
+    }).addTo(map);
+
+    // Featured clickable Poudre layer using real GeoJSON geometry
+    const featuredPoudre = {
+      type: 'FeatureCollection',
+      features: data.features
+        .filter(feature => {
+          const name = feature.properties?.name || '';
+          return name.toLowerCase().includes('poudre');
+        })
+        .map(feature => ({
+          ...feature,
+          properties: {
+            ...feature.properties,
+            name: feature.properties?.name || 'Cache la Poudre River',
+            basin: 'South Platte / Cache la Poudre',
+            state: 'Colorado',
+            historic: 'greenback',
+            current: 'introduced',
+            recovery: 'recoveryHigh',
+            confidence: 'Prototype / public OSM geometry',
+            note: 'Real mapped waterway geometry from public OpenStreetMap data. Trout metadata is prototype-level and needs source validation.'
+          }
+        }))
+    };
+
+    L.geoJSON(featuredPoudre, {
+      style: styleStream,
+      onEachFeature: (feature, layer) => {
+        layer.on('click', () => {
+          selectedStream = feature.properties;
+          renderStreamCard(selectedStream);
+          layer.bringToFront();
+        });
+
+        layer.on('mouseover', () => layer.setStyle({ weight: 5, opacity: 0.95 }));
+        layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
+      }
     }).addTo(map);
   })
   .catch(error => {
