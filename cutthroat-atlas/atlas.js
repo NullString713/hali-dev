@@ -97,7 +97,7 @@ const streams = [
     coords: [[39.15, -106.55], [39.10, -106.48], [39.06, -106.42]]
   }
 ];
-
+let featuredStreamLayer;
 let selectedStream = null;
 let currentModeIndex = 0;
 
@@ -153,25 +153,7 @@ fetch('./data/poudre_watershed.geojson')
         }))
     };
 
-    L.geoJSON(featuredPoudre, {
-      style: styleStream,
-      onEachFeature: (feature, layer) => {
-        layer.on('click', () => {
-          selectedStream = feature.properties;
-          renderStreamCard(selectedStream);
-          layer.bringToFront();
-        });
-
-        layer.on('mouseover', () => layer.setStyle({ weight: 5, opacity: 0.95 }));
-        layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
-      }
-    }).addTo(map);
-  })
-  .catch(error => {
-    console.error('Could not load watershed GeoJSON:', error);
-  });
-
-const streamLayer = L.geoJSON(streamsToGeoJson(), {
+  featuredStreamLayer = L.geoJSON(featuredPoudre, {
   style: styleStream,
   onEachFeature: (feature, layer) => {
     layer.on('click', () => {
@@ -179,10 +161,28 @@ const streamLayer = L.geoJSON(streamsToGeoJson(), {
       renderStreamCard(selectedStream);
       layer.bringToFront();
     });
-    layer.on('mouseover', () => layer.setStyle({ weight: 4, opacity: 0.65 }));
-    layer.on('mouseout', () => streamLayer.resetStyle(layer));
+
+    layer.on('mouseover', () => layer.setStyle({ weight: 5, opacity: 0.95 }));
+    layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
   }
 }).addTo(map);
+  })
+  .catch(error => {
+    console.error('Could not load watershed GeoJSON:', error);
+  });
+
+// const streamLayer = L.geoJSON(streamsToGeoJson(), {
+//   style: styleStream,
+//   onEachFeature: (feature, layer) => {
+//     layer.on('click', () => {
+//       selectedStream = feature.properties;
+//       renderStreamCard(selectedStream);
+//       layer.bringToFront();
+//     });
+//     layer.on('mouseover', () => layer.setStyle({ weight: 4, opacity: 0.65 }));
+//     layer.on('mouseout', () => streamLayer.resetStyle(layer));
+//   }
+// }).addTo(map);
 
 renderLegend();
 renderMode();
@@ -191,7 +191,11 @@ const slider = document.getElementById('mode-slider');
 slider.addEventListener('input', (event) => {
   currentModeIndex = Number(event.target.value);
   renderMode();
-  streamLayer.setStyle(styleStream);
+
+  if (featuredStreamLayer) {
+    featuredStreamLayer.setStyle(styleStream);
+  }
+
   if (selectedStream) renderStreamCard(selectedStream);
 });
 
