@@ -152,8 +152,8 @@ function styleStream(feature) {
   const speciesKey = feature.properties[mode];
   return {
     color: speciesColors[speciesKey]?.color || speciesColors.unknown.color,
-    weight: 5,
-    opacity: 0.95,
+    weight: 7,
+    opacity: 1,
     lineCap: 'round',
     lineJoin: 'round'
   };
