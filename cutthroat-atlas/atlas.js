@@ -119,12 +119,12 @@ fetch('./data/poudre_watershed.geojson')
   .then(data => {
     L.geoJSON(data, {
       style: {
-        color: '#7bb8d1',
-        weight: 0.9,
-        opacity: 0.35,
-        lineCap: 'round',
-        lineJoin: 'round'
-      },
+      color: '#3b9fc6',
+      weight: 1.6,
+      opacity: 0.65,
+      lineCap: 'round',
+      lineJoin: 'round'
+    },
       interactive: false
     }).addTo(map);
   })
