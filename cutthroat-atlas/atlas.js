@@ -26,6 +26,7 @@ const modes = [
     description: 'Showing generalized conservation and recovery status.'
   }
 ];
+
 const featuredWaters = [
   {
     match: 'poudre',
@@ -39,6 +40,13 @@ const featuredWaters = [
     geometrySource: 'OpenStreetMap / Overpass export',
     troutSource: 'Prototype metadata pending source review',
     note: 'The Cache la Poudre drainage sits within commonly cited historic greenback cutthroat range. This prototype uses public OpenStreetMap waterway geometry and draft trout metadata pending source validation.'
+  }
+];
+const hydroFiles = [
+  {
+    path: './data/cache-la-poudre-natural-streams.geojson',
+    type: 'streams',
+    label: 'Cache la Poudre natural streams'
   }
 ];
 let featuredStreamLayer;
@@ -56,64 +64,65 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png
   subdomains: 'abcd'
 }).addTo(map);
 
-// Real watershed stream layer from exported Overpass GeoJSON.
-// This draws all waterways faintly as background context.
-fetch('./data/cache-la-poudre-natural-streams.geojson')
-  .then(response => response.json())
-  .then(data => {
-    // Real watershed background layer
-    L.geoJSON(data, {
-      style: {
-        color: '#3b9fc6',
-        weight: 1.6,
-        opacity: 0.65,
-        lineCap: 'round',
-        lineJoin: 'round'
-      },
-      interactive: false
-    }).addTo(map);
+hydroFiles.forEach(file => {
+  fetch(file.path)
+    .then(response => response.json())
+    .then(data => {
+      // Background stream network
+      L.geoJSON(data, {
+        style: {
+          color: '#3b9fc6',
+          weight: 1.6,
+          opacity: 0.65,
+          lineCap: 'round',
+          lineJoin: 'round'
+        },
+        interactive: false
+      }).addTo(map);
 
- const featuredPoudre = {
-  type: 'FeatureCollection',
-  features: data.features
-    .map(feature => {
-      const sourceName = feature.properties?.name || '';
+      // Featured clickable trout layer
+      const featuredStreams = {
+        type: 'FeatureCollection',
+        features: data.features
+          .map(feature => {
+            const sourceName = feature.properties?.name || '';
 
-      const match = featuredWaters.find(water =>
-        sourceName.toLowerCase().includes(water.match)
-      );
+            const match = featuredWaters.find(water =>
+              sourceName.toLowerCase().includes(water.match)
+            );
 
-      if (!match) return null;
+            if (!match) return null;
 
-      return {
-        ...feature,
-        properties: {
-          ...feature.properties,
-          ...match,
-          sourceName
-        }
+            return {
+              ...feature,
+              properties: {
+                ...feature.properties,
+                ...match,
+                sourceName
+              }
+            };
+          })
+          .filter(Boolean)
       };
+
+      featuredStreamLayer = L.geoJSON(featuredStreams, {
+        style: styleStream,
+        onEachFeature: (feature, layer) => {
+          layer.on('click', () => {
+            selectedStream = feature.properties;
+            renderStreamCard(selectedStream);
+            layer.bringToFront();
+          });
+
+          layer.on('mouseover', () => layer.setStyle({ weight: 5, opacity: 0.95 }));
+          layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
+        }
+      }).addTo(map);
     })
-    .filter(Boolean)
-};
-
-  featuredStreamLayer = L.geoJSON(featuredPoudre, {
-  style: styleStream,
-  onEachFeature: (feature, layer) => {
-    layer.on('click', () => {
-      selectedStream = feature.properties;
-      renderStreamCard(selectedStream);
-      layer.bringToFront();
+    .catch(error => {
+      console.error(`Could not load ${file.label}:`, error);
     });
-
-    layer.on('mouseover', () => layer.setStyle({ weight: 5, opacity: 0.95 }));
-    layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
-  }
-}).addTo(map);
-  })
-  .catch(error => {
-    console.error('Could not load watershed GeoJSON:', error);
-  });
+});
 
 renderLegend();
 renderMode();
@@ -135,8 +144,8 @@ function styleStream(feature) {
   const speciesKey = feature.properties[mode];
   return {
     color: speciesColors[speciesKey]?.color || speciesColors.unknown.color,
-    weight: 2,
-    opacity: 0.25,
+    weight: 4,
+    opacity: 0.95,
     lineCap: 'round',
     lineJoin: 'round'
   };
