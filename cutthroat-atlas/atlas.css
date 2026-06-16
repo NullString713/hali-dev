@@ -310,6 +310,6 @@ input[type="range"] {
 }
 /* Muted background map so stream systems stand out */
 .leaflet-tile-pane {
-  filter: grayscale(45%) saturate(75%) brightness(95%) contrast(95%);
+   filter: grayscale(45%) saturate(75%) brightness(90%) contrast(100%);
 }
 
