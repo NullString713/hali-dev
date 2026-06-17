@@ -31,8 +31,23 @@ let featuredWaters = [];
 const hydroFiles = [
   {
     path: './data/cache-la-poudre-natural-streams.geojson',
-    type: 'streams',
-    label: 'Cache la Poudre natural streams'
+    type: 'osm',
+    label: 'Cache la Poudre natural streams',
+    style: {
+      color: '#3b9fc6',
+      weight: 1.6,
+      opacity: 0.55
+    }
+  },
+  {
+    path: './data/poudre-headwaters-recovery-streams.geojson',
+    type: 'osm-recovery',
+    label: 'Poudre headwaters recovery streams',
+    style: {
+      color: '#69d2e7',
+      weight: 2,
+      opacity: 0.7
+    }
   }
 ];
 let featuredStreamLayer;
@@ -66,16 +81,16 @@ function loadHydroFiles() {
       .then(response => response.json())
       .then(data => {
         // Background stream network
-        L.geoJSON(data, {
-          style: {
-            color: '#3b9fc6',
-            weight: 1.6,
-            opacity: 0.65,
-            lineCap: 'round',
-            lineJoin: 'round'
-          },
-          interactive: false
-        }).addTo(map);
+     L.geoJSON(data, {
+        style: {
+          color: file.style?.color || '#3b9fc6',
+          weight: file.style?.weight || 1.6,
+          opacity: file.style?.opacity || 0.65,
+          lineCap: 'round',
+          lineJoin: 'round'
+        },
+        interactive: false
+      }).addTo(map);
 
         // Featured clickable trout layer
         const featuredStreams = {
