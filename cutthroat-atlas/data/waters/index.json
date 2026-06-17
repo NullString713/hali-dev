@@ -1,0 +1,63 @@
+[
+  {
+    "match": "poudre",
+    "priority": 1,
+    "name": "Cache la Poudre River System",
+    "basin": "South Platte / Cache la Poudre",
+    "state": "Colorado",
+    "historic": "greenback",
+    "current": "introduced",
+    "recovery": "recoveryHigh",
+    "confidence": "Prototype / public OSM geometry",
+    "geometrySource": "OpenStreetMap / Overpass export",
+    "troutSource": "Prototype metadata pending source review",
+    "note": "The Cache la Poudre drainage sits within commonly cited historic greenback cutthroat range. This prototype uses public OpenStreetMap waterway geometry and draft trout metadata pending source validation."
+  },
+  {
+    "match": "george creek",
+    "priority": 10,
+    "name": "George Creek",
+    "basin": "South Platte / Cache la Poudre / Sheep Creek",
+    "state": "Colorado",
+    "historic": "greenback",
+    "current": "unknown",
+    "recovery": "recoveryHigh",
+    "confidence": "Prototype / public recovery-history review needed",
+    "geometrySource": "OpenStreetMap / Overpass export",
+    "troutSource": "Prototype metadata pending source review",
+    "note": "George Creek and nearby Cornelius Creek are associated with greenback cutthroat recovery history in the Poudre drainage. This area may involve natural or constructed fish barriers, non-native trout exclusion work, and sensitive restoration context."
+  },
+  {
+    "match": "cornelius creek",
+    "priority": 10,
+    "name": "Cornelius Creek",
+    "basin": "South Platte / Cache la Poudre / Sheep Creek",
+    "state": "Colorado",
+    "historic": "greenback",
+    "current": "unknown",
+    "recovery": "recoveryHigh",
+    "confidence": "Prototype / public recovery-history review needed",
+    "geometrySource": "OpenStreetMap / Overpass export",
+    "troutSource": "Prototype metadata pending source review",
+    "note": "Cornelius Creek is associated with greenback cutthroat recovery history near George Creek and Sheep Creek. Current species status should be verified with public agency or conservation sources before being treated as confirmed."
+  },
+  {
+  "match": "sheep creek",
+  "priority": 10,
+  "bounds": {
+  "south": 40.68,
+  "west": -105.86,
+  "north": 40.80,
+  "east": -105.60},
+  "name": "Sheep Creek",
+  "basin": "South Platte / Cache la Poudre / Sheep Creek",
+  "state": "Colorado",
+  "historic": "greenback",
+  "current": "unknown",
+  "recovery": "recoveryHigh",
+  "confidence": "Prototype / intended geometry missing from current OSM export",
+  "geometrySource": "Public map comparison; OSM geometry incomplete or unavailable",
+  "troutSource": "Prototype metadata pending source review",
+  "note": "Sheep Creek appears in public map references near George Creek and Cornelius Creek, but the intended stream geometry is not currently present in the project GeoJSON. This record is retained as recovery-area context pending USGS NHD or other public hydrography review."
+}
+]
