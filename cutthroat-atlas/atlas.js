@@ -30,13 +30,23 @@ let featuredWaters = [];
 let loadedHydroFileCount = 0;
 const hydroFiles = [
   {
-    path: './data/cache-la-poudre-natural-streams.geojson',
+    path: './data/geojson/osm/cache-la-poudre-natural-streams.geojson',
     type: 'osm',
     label: 'Cache la Poudre natural streams',
     style: {
       color: '#3b9fc6',
       weight: 1.6,
       opacity: 0.55
+    }
+  },
+  {
+    path: './data/geojson/nhd/poudre-headwaters-flowlines.geojson',
+    type: 'nhd',
+    label: 'USGS NHD Poudre headwaters flowlines',
+    style: {
+      color: '#8b9cff',
+      weight: 2.2,
+      opacity: 0.8
     }
   }
 ];
