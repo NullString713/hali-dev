@@ -44,6 +44,11 @@
   {
   "match": "sheep creek",
   "priority": 10,
+  "bounds": {
+  "south": 40.68,
+  "west": -105.86,
+  "north": 40.80,
+  "east": -105.60},
   "name": "Sheep Creek",
   "basin": "South Platte / Cache la Poudre / Sheep Creek",
   "state": "Colorado",
