@@ -38,16 +38,6 @@ const hydroFiles = [
       weight: 1.6,
       opacity: 0.55
     }
-  },
-  {
-    path: './data/poudre-headwaters-recovery-streams.geojson',
-    type: 'osm-recovery',
-    label: 'Poudre headwaters recovery streams',
-    style: {
-      color: '#69d2e7',
-      weight: 2,
-      opacity: 0.7
-    }
   }
 ];
 let featuredStreamLayer;
