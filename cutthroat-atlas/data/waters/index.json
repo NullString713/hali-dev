@@ -55,9 +55,9 @@
   "historic": "greenback",
   "current": "unknown",
   "recovery": "recoveryHigh",
-  "confidence": "Prototype / geometry continuity needs review",
-  "geometrySource": "OpenStreetMap / Overpass export; public map comparison",
+  "confidence": "Prototype / intended geometry missing from current OSM export",
+  "geometrySource": "Public map comparison; OSM geometry incomplete or unavailable",
   "troutSource": "Prototype metadata pending source review",
-  "note": "Sheep Creek appears in public map references near George Creek and Cornelius Creek, but available OpenStreetMap geometry may be incomplete or discontinuous in this area. This record is included as recovery-area context pending geometry and source review."
+  "note": "Sheep Creek appears in public map references near George Creek and Cornelius Creek, but the intended stream geometry is not currently present in the project GeoJSON. This record is retained as recovery-area context pending USGS NHD or other public hydrography review."
 }
 ]
