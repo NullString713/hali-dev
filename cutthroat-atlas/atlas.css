@@ -355,6 +355,17 @@ input[type="range"] {
 path.leaflet-interactive:focus {
   outline: none;
 }
+.data-load-status {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  background: rgba(9, 22, 19, 0.55);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
 /* Muted background map so stream systems stand out */
 .leaflet-tile-pane {
    filter: grayscale(45%) saturate(75%) brightness(90%) contrast(100%);
