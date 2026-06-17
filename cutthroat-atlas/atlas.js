@@ -84,9 +84,12 @@ function loadHydroFiles() {
             .map(feature => {
               const sourceName = feature.properties?.name || '';
 
-             const matches = featuredWaters
-            .filter(water => sourceName.toLowerCase().includes(water.match))
-            .sort((a, b) => (b.priority || 0) - (a.priority || 0));
+              const matches = featuredWaters
+              .filter(water =>
+                sourceName.toLowerCase().includes(water.match) &&
+                featureMatchesBounds(feature, water.bounds)
+              )
+              .sort((a, b) => (b.priority || 0) - (a.priority || 0));
 
 const match = matches[0];
 
@@ -215,6 +218,26 @@ function modeLabel(mode) {
   return 'Recovery status';
 }
 
+function featureMatchesBounds(feature, bounds) {
+  if (!bounds) return true;
+
+  const coordinates = flattenCoordinates(feature.geometry.coordinates);
+
+  return coordinates.some(([lng, lat]) =>
+    lat >= bounds.south &&
+    lat <= bounds.north &&
+    lng >= bounds.west &&
+    lng <= bounds.east
+  );
+}
+
+function flattenCoordinates(coordinates) {
+  if (typeof coordinates[0] === 'number') {
+    return [coordinates];
+  }
+
+  return coordinates.flatMap(flattenCoordinates);
+}
 function escapeHtml(value) {
   return String(value)
     .replaceAll('&', '&amp;')
