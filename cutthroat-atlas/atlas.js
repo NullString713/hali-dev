@@ -27,7 +27,7 @@ const modes = [
   }
 ];
 let featuredWaters = [];
-
+let loadedHydroFileCount = 0;
 const hydroFiles = [
   {
     path: './data/cache-la-poudre-natural-streams.geojson',
@@ -91,6 +91,8 @@ function loadHydroFiles() {
         },
         interactive: false
       }).addTo(map);
+        loadedHydroFileCount += 1;
+        updateDataLoadStatus();
 
         // Featured clickable trout layer
         const featuredStreams = {
@@ -151,6 +153,7 @@ const match = matches[0];
 
 renderLegend();
 renderMode();
+updateDataLoadStatus();
 
 const slider = document.getElementById('mode-slider');
 slider.addEventListener('input', (event) => {
@@ -253,6 +256,14 @@ function flattenCoordinates(coordinates) {
 
   return coordinates.flatMap(flattenCoordinates);
 }
+
+function updateDataLoadStatus() {
+  const status = document.getElementById('data-load-status');
+  if (!status) return;
+
+  status.textContent = `Loaded ${loadedHydroFileCount} of ${hydroFiles.length} hydro layers`;
+}
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll('&', '&amp;')
