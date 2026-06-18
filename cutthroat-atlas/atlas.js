@@ -39,16 +39,16 @@ const hydroFiles = [
       opacity: 0.55
     }
   },
-  {
+    {
     path: './data/geojson/nhd/poudre-headwaters-flowlines.geojson',
     type: 'nhd',
     label: 'USGS NHD Poudre headwaters flowlines',
     style: {
       color: '#8b9cff',
-      weight: 2.2,
-      opacity: 0.8
+      weight: 1.4,
+      opacity: 0.45
     }
-  }
+}
 ];
 let featuredStreamLayer;
 let selectedStream = null;
@@ -99,8 +99,11 @@ function loadHydroFiles() {
           type: 'FeatureCollection',
           features: data.features
             .map(feature => {
-              const sourceName = feature.properties?.name || '';
-
+              const sourceName =
+                feature.properties?.name ||
+                feature.properties?.gnis_name ||
+                feature.properties?.GNIS_NAME ||
+                '';
               const matches = featuredWaters
               .filter(water =>
                 sourceName.toLowerCase().includes(water.match) &&
