@@ -55,11 +55,15 @@ let selectedStream = null;
 let currentModeIndex = 0;
 
 const hydroLayerGroups = {};
+const featuredLayerGroup = L.layerGroup();
 
 const map = L.map('map', {
   zoomControl: true,
   scrollWheelZoom: true
 }).setView([39.25, -106.1], 7);
+
+featuredLayerGroup.addTo(map);
+hydroLayerGroups.featured = featuredLayerGroup;
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
   maxZoom: 18,
@@ -155,20 +159,12 @@ const match = matches[0];
       className: 'stream-tooltip'
     });
   }
-}).addTo(map);
+}).addTo(featuredLayerGroup);
       })
       .catch(error => {
         console.error(`Could not load ${file.label}:`, error);
       });
   });
-}
-
-hydroLayerGroups.featured = featuredStreamLayer;
-
-const featuredToggle = document.querySelector('[data-layer-toggle="featured"]');
-
-if (featuredToggle && !featuredToggle.checked) {
-  map.removeLayer(featuredStreamLayer);
 }
 
 renderLegend();
