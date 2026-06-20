@@ -137,13 +137,13 @@ const match = matches[0];
         };
 
        featuredStreamLayer = L.geoJSON(featuredStreams, {
-  style: styleStream,
-  onEachFeature: (feature, layer) => {
-    layer.on('click', () => {
-      selectedStream = feature.properties;
-      renderStreamCard(selectedStream);
-      layer.bringToFront();
-    });
+          style: styleStream,
+          onEachFeature: (feature, layer) => {
+            layer.on('click', () => {
+              selectedStream = feature.properties;
+              renderStreamCard(selectedStream);
+              layer.bringToFront();
+            });
 
     layer.on('mouseover', () => layer.setStyle({ weight: 5, opacity: 0.95 }));
     layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
@@ -161,6 +161,14 @@ const match = matches[0];
         console.error(`Could not load ${file.label}:`, error);
       });
   });
+}
+
+hydroLayerGroups.featured = featuredStreamLayer;
+
+const featuredToggle = document.querySelector('[data-layer-toggle="featured"]');
+
+if (featuredToggle && !featuredToggle.checked) {
+  map.removeLayer(featuredStreamLayer);
 }
 
 renderLegend();
