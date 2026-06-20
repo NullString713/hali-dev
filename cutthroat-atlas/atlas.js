@@ -95,6 +95,11 @@ function loadHydroFiles() {
     }).addTo(map);
 
 hydroLayerGroups[file.type] = hydroLayer;
+        const toggle = document.querySelector(`[data-layer-toggle="${file.type}"]`);
+
+          if (toggle && !toggle.checked) {
+            map.removeLayer(hydroLayer);
+          }
         loadedHydroFileCount += 1;
         updateDataLoadStatus();
 
@@ -172,6 +177,21 @@ slider.addEventListener('input', (event) => {
   }
 
   if (selectedStream) renderStreamCard(selectedStream);
+});
+
+document.querySelectorAll('[data-layer-toggle]').forEach(toggle => {
+  toggle.addEventListener('change', event => {
+    const layerType = event.target.dataset.layerToggle;
+    const layer = hydroLayerGroups[layerType];
+
+    if (!layer) return;
+
+    if (event.target.checked) {
+      layer.addTo(map);
+    } else {
+      map.removeLayer(layer);
+    }
+  });
 });
 
 function styleStream(feature) {
