@@ -50,6 +50,14 @@ const hydroFiles = [
     }
 }
 ];
+const interpretedFiles = [
+  {
+    path: './data/geojson/interpreted/poudre-recovery-context.geojson',
+    type: 'featured',
+    label: 'Poudre recovery context'
+  }
+];
+
 let featuredStreamLayer;
 let selectedStream = null;
 let currentModeIndex = 0;
