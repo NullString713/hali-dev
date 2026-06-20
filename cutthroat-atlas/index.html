@@ -35,24 +35,18 @@
 
     <section class="map-stage" aria-label="Interactive trout stream map">
       <div id="map"></div>
-
+      
+      <div class="layer-toggle-card" aria-label="Map layer controls">
+        <p class="eyebrow">Layers</p>
+        <label><input type="checkbox" data-layer-toggle="osm" checked>OSM streams</label>
+        <label><input type="checkbox" data-layer-toggle="nhd" checked>USGS NHD reference</label>
+      </div>
+      
       <aside class="legend-card" aria-label="Map legend">
         <h2>Legend</h2>
         <div id="legend-list"></div>
       </aside>
-      <div class="layer-toggle-card" aria-label="Map layer controls">
-        <p class="eyebrow">Layers</p>
       
-        <label>
-          <input type="checkbox" data-layer-toggle="osm" checked>
-          OSM streams
-        </label>
-      
-        <label>
-          <input type="checkbox" data-layer-toggle="nhd" checked>
-          USGS NHD reference
-        </label>
-      </div>
       <aside class="stream-card" id="stream-card" aria-live="polite">
         <p class="eyebrow">Selected water</p>
         <h2>Choose a stream</h2>
