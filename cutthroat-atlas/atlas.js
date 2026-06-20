@@ -115,60 +115,6 @@ hydroLayerGroups[file.type] = hydroLayer;
           }
         loadedHydroFileCount += 1;
         updateDataLoadStatus();
-
-        // Featured clickable trout layer
-        const featuredStreams = {
-          type: 'FeatureCollection',
-          features: data.features
-            .map(feature => {
-              const sourceName =
-                feature.properties?.name ||
-                feature.properties?.gnis_name ||
-                feature.properties?.GNIS_NAME ||
-                '';
-              const matches = featuredWaters
-              .filter(water =>
-                sourceName.toLowerCase().includes(water.match) &&
-                featureMatchesBounds(feature, water.bounds)
-              )
-              .sort((a, b) => (b.priority || 0) - (a.priority || 0));
-
-const match = matches[0];
-
-              if (!match) return null;
-
-              return {
-                ...feature,
-                properties: {
-                  ...feature.properties,
-                  ...match,
-                  sourceName
-                }
-              };
-            })
-            .filter(Boolean)
-        };
-
-       featuredStreamLayer = L.geoJSON(featuredStreams, {
-          style: styleStream,
-          onEachFeature: (feature, layer) => {
-            layer.on('click', () => {
-              selectedStream = feature.properties;
-              renderStreamCard(selectedStream);
-              layer.bringToFront();
-            });
-
-    layer.on('mouseover', () => layer.setStyle({ weight: 5, opacity: 0.95 }));
-    layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
-
-    layer.bindTooltip(feature.properties.name, {
-      permanent: false,
-      direction: 'top',
-      sticky: true,
-      className: 'stream-tooltip'
-    });
-  }
-}).addTo(featuredLayerGroup);
       })
       .catch(error => {
         console.error(`Could not load ${file.label}:`, error);
