@@ -292,7 +292,7 @@ function updateDataLoadStatus() {
   const status = document.getElementById('data-load-status');
   if (!status) return;
 
-  status.textContent = `Loaded ${loadedHydroFileCount} of ${hydroFiles.length} hydro layers`;
+  status.textContent = `Loaded ${loadedHydroFileCount} of ${hydroFiles.length} reference layers`;
 }
 
 function escapeHtml(value) {
