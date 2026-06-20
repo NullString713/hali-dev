@@ -54,6 +54,8 @@ let featuredStreamLayer;
 let selectedStream = null;
 let currentModeIndex = 0;
 
+const hydroLayerGroups = {};
+
 const map = L.map('map', {
   zoomControl: true,
   scrollWheelZoom: true
@@ -81,16 +83,18 @@ function loadHydroFiles() {
       .then(response => response.json())
       .then(data => {
         // Background stream network
-     L.geoJSON(data, {
-        style: {
-          color: file.style?.color || '#3b9fc6',
-          weight: file.style?.weight || 1.6,
-          opacity: file.style?.opacity || 0.65,
-          lineCap: 'round',
-          lineJoin: 'round'
-        },
-        interactive: false
-      }).addTo(map);
+   const hydroLayer = L.geoJSON(data, {
+      style: {
+        color: file.style?.color || '#3b9fc6',
+        weight: file.style?.weight || 1.6,
+        opacity: file.style?.opacity || 0.65,
+        lineCap: 'round',
+        lineJoin: 'round'
+      },
+      interactive: false
+    }).addTo(map);
+
+hydroLayerGroups[file.type] = hydroLayer;
         loadedHydroFileCount += 1;
         updateDataLoadStatus();
 
