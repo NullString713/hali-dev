@@ -84,6 +84,7 @@ fetch('./data/waters/index.json')
   .then(data => {
     featuredWaters = data;
     loadHydroFiles();
+    loadInterpretedFiles();
   })
   .catch(error => {
     console.error('Could not load featured waters:', error);
@@ -174,7 +175,37 @@ const match = matches[0];
       });
   });
 }
+function loadInterpretedFiles() {
+  interpretedFiles.forEach(file => {
+    fetch(file.path)
+      .then(response => response.json())
+      .then(data => {
+        const interpretedLayer = L.geoJSON(data, {
+          style: styleStream,
+          onEachFeature: (feature, layer) => {
+            layer.on('click', () => {
+              selectedStream = feature.properties;
+              renderStreamCard(selectedStream);
+              layer.bringToFront();
+            });
 
+            layer.on('mouseover', () => layer.setStyle({ weight: 5, opacity: 0.95 }));
+            layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
+
+            layer.bindTooltip(feature.properties.name || file.label, {
+              permanent: false,
+              direction: 'top',
+              sticky: true,
+              className: 'stream-tooltip'
+            });
+          }
+        }).addTo(featuredLayerGroup);
+      })
+      .catch(error => {
+        console.error(`Could not load ${file.label}:`, error);
+      });
+  });
+}
 renderLegend();
 renderMode();
 updateDataLoadStatus();
