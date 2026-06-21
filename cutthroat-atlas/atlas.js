@@ -81,8 +81,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png
 
 fetch('./data/waters/index.json')
   .then(response => response.json())
-  .then(data => {
-    featuredWaters = data;
+  .then(data => {featuredWaters = data;
     loadHydroFiles();
   })
   .catch(error => {
@@ -174,6 +173,7 @@ featuredStreamLayer = L.geoJSON(featuredStreams, {
     });
   }
 }).addTo(featuredLayerGroup);
+      })
       .catch(error => {
         console.error(`Could not load ${file.label}:`, error);
       });
