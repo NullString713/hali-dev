@@ -68,7 +68,7 @@ const featuredLayerGroup = L.layerGroup();
 const map = L.map('map', {
   zoomControl: true,
   scrollWheelZoom: true
-}).setView([39.25, -106.1], 7);
+}).setView([40.72, -105.72], 10);
 
 featuredLayerGroup.addTo(map);
 hydroLayerGroups.featured = featuredLayerGroup;
