@@ -409,6 +409,21 @@ path.leaflet-interactive:focus {
   flex: 0 0 auto;
   accent-color: var(--accent);
 }
+@media (max-width: 760px) {
+  .layer-toggle-card {
+    position: relative;
+    z-index: 500;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: 100%;
+    max-width: none;
+    transform: none;
+    order: 2;
+    padding: 1rem;
+  }
+}
 /* Muted background map so stream systems stand out */
 .leaflet-tile-pane {
    filter: grayscale(45%) saturate(75%) brightness(90%) contrast(100%);
