@@ -1,7 +1,7 @@
 [
   {
     "id": "cache-la-poudre-river-system",
-    "name": "Cache la Poudre River System",
+    "name": "Cache la Poudre watershed record",
     "match": "poudre",
     "priority": 10,
     "basin": "South Platte / Cache la Poudre",
@@ -13,7 +13,7 @@
     "geometryStatus": "matched-nhd-review-needed",
     "geometrySource": "USGS NHD named flowline export; filtered in QGIS",
     "troutSource": "Prototype metadata pending source review",
-    "note": "Cache la Poudre system record used for prototype display. Broad system-level geometry may include multiple named Poudre flowlines and should be refined into more specific reach records over time."
+    "note": "Broad fallback record for named Poudre flowlines in the prototype. More specific mainstem, fork, and tributary records should take priority when available."
   },
   {
     "id": "north-fork-cache-la-poudre-river",
