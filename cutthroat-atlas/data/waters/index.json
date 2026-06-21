@@ -3,7 +3,7 @@
     "id": "cache-la-poudre-river-system",
     "name": "Cache la Poudre River System",
     "match": "poudre",
-    "priority": 100,
+    "priority": 10,
     "basin": "South Platte / Cache la Poudre",
     "state": "Colorado",
     "historic": "greenback",
