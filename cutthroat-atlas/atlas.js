@@ -42,7 +42,7 @@ const hydroFiles = [
     {
     path: './data/geojson/nhd/poudre-named-flowlines.geojson',
     type: 'nhd',
-    label: 'USGS NHD named flowlines',
+    label: 'USGS NHD named flowlines — Cache la Poudre',
     style: {
       color: '#8b9cff',
       weight: 1.4,
