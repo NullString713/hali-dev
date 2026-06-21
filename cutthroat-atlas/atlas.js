@@ -289,7 +289,7 @@ function renderStreamCard(stream) {
   const activeLabel = speciesColors[activeKey]?.label || 'Unknown';
   const card = document.getElementById('stream-card');
 
-  card.innerHTML = `
+   card.innerHTML = `
     <p class="eyebrow">Selected water</p>
     <h2>${escapeHtml(stream.name)}</h2>
     <p>${escapeHtml(stream.note)}</p>
@@ -300,6 +300,7 @@ function renderStreamCard(stream) {
       <dt>Basin</dt><dd>${escapeHtml(stream.basin)}</dd>
       <dt>State</dt><dd>${escapeHtml(stream.state)}</dd>
       <dt>Confidence</dt><dd>${escapeHtml(stream.confidence)}</dd>
+      <dt>Geometry status</dt><dd>${escapeHtml(stream.geometryStatus || 'Prototype / review needed')}</dd>
       <dt>Geometry source</dt><dd>${escapeHtml(stream.geometrySource || 'Unknown')}</dd>
       <dt>Trout source</dt><dd>${escapeHtml(stream.troutSource || 'Unknown')}</dd>
     </dl>
