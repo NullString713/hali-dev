@@ -84,7 +84,6 @@ fetch('./data/waters/index.json')
   .then(data => {
     featuredWaters = data;
     loadHydroFiles();
-    loadInterpretedFiles();
   })
   .catch(error => {
     console.error('Could not load featured waters:', error);
@@ -116,6 +115,65 @@ hydroLayerGroups[file.type] = hydroLayer;
         loadedHydroFileCount += 1;
         updateDataLoadStatus();
       })
+      if (file.type !== 'nhd') return;
+
+// Featured clickable trout layer from cleaned NHD named flowlines
+const featuredStreams = {
+  type: 'FeatureCollection',
+  features: data.features
+    .map(feature => {
+      const sourceName =
+        feature.properties?.name ||
+        feature.properties?.GNIS_Name ||
+        feature.properties?.gnis_name ||
+        feature.properties?.GNIS_NAME ||
+        '';
+
+      const matches = featuredWaters
+        .filter(water =>
+          sourceName.toLowerCase().includes(water.match) &&
+          featureMatchesBounds(feature, water.bounds)
+        )
+        .sort((a, b) => (b.priority || 0) - (a.priority || 0));
+
+      const match = matches[0];
+
+      if (!match) return null;
+
+      return {
+        ...feature,
+        properties: {
+          ...feature.properties,
+          ...match,
+          sourceName,
+          sourceLayer: file.type,
+          sourceLabel: file.label
+        }
+      };
+    })
+    .filter(Boolean)
+};
+
+featuredStreamLayer = L.geoJSON(featuredStreams, {
+  style: styleStream,
+  onEachFeature: (feature, layer) => {
+    layer.on('click', () => {
+      selectedStream = feature.properties;
+      renderStreamCard(selectedStream);
+      layer.bringToFront();
+    });
+
+    layer.on('mouseover', () => layer.setStyle({ weight: 5, opacity: 0.95 }));
+    layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
+
+    layer.bindTooltip(feature.properties.name || feature.properties.sourceName, {
+      permanent: false,
+      direction: 'top',
+      sticky: true,
+      className: 'stream-tooltip'
+    });
+  }
+}).addTo(featuredLayerGroup);
       .catch(error => {
         console.error(`Could not load ${file.label}:`, error);
       });
