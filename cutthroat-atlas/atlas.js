@@ -40,7 +40,7 @@ const hydroFiles = [
     }
   },
     {
-    path: './data/geojson/nhd/poudre-headwaters-flowlines.geojson',
+    path: './data/geojson/nhd/poudre-named-flowlines.geojson',
     type: 'nhd',
     label: 'USGS NHD named flowlines',
     style: {
