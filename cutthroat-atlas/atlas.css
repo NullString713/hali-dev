@@ -417,6 +417,12 @@ path.leaflet-interactive:focus {
   font-weight: 700;
   white-space: nowrap;
 }
+.layer-help {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
 
 .layer-toggle-card input[type="checkbox"] {
   margin: 0;
