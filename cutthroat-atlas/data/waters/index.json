@@ -1,9 +1,9 @@
 [
   {
-    "id": "cache-la-poudre-river-system",
-    "name": "Cache la Poudre watershed record",
-    "match": "poudre",
-    "priority": 10,
+    "id": "cache-la-poudre-river-mainstem",
+    "name": "Cache la Poudre River",
+    "match": "cache la poudre river",
+    "priority": 82,
     "basin": "South Platte / Cache la Poudre",
     "state": "Colorado",
     "historic": "greenback",
@@ -13,7 +13,7 @@
     "geometryStatus": "matched-nhd-review-needed",
     "geometrySource": "USGS NHD named flowline export; filtered in QGIS",
     "troutSource": "Prototype metadata pending source review",
-    "note": "Broad fallback record for named Poudre flowlines in the prototype. More specific mainstem, fork, and tributary records should take priority when available."
+    "note": "Mainstem Cache la Poudre River record for prototype display. More specific fork, headwater, and tributary records should be reviewed separately as the atlas expands."
   },
   {
     "id": "north-fork-cache-la-poudre-river",
