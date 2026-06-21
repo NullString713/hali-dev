@@ -136,6 +136,8 @@ h1 {
   top: 1rem;
   right: 1rem;
   width: min(290px, calc(100% - 2rem));
+  max-height: calc(100% - 2rem);
+  overflow-y: auto;
   padding: 1rem;
 }
 
