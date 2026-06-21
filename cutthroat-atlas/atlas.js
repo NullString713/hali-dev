@@ -44,10 +44,10 @@ const hydroFiles = [
     type: 'nhd',
     label: 'USGS NHD named flowlines — Cache la Poudre',
     style: {
-      color: '#8b9cff',
-      weight: 1.4,
-      opacity: 0.45
-    }
+    color: '#8b9cff',
+    weight: 1.2,
+    opacity: 0.32
+  }
 }
 ];
 const interpretedFiles = [
