@@ -364,6 +364,20 @@ input[type="range"] {
 path.leaflet-interactive:focus {
   outline: none;
 }
+.method-callout {
+  max-width: 760px;
+  margin-top: 1rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  color: var(--muted);
+  background: rgba(9, 22, 19, 0.55);
+  line-height: 1.45;
+}
+
+.method-callout strong {
+  color: var(--text);
+}
 .data-load-status {
   display: inline-block;
   margin-top: 0.75rem;
