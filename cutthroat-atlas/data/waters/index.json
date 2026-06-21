@@ -143,12 +143,6 @@
     "geometryStatus": "matched-nhd",
     "geometrySource": "USGS NHD named flowline export; filtered in QGIS",
     "troutSource": "Prototype metadata pending source review",
-    "bounds": {
-      "south": 40.68,
-      "west": -105.86,
-      "north": 40.80,
-      "east": -105.60
-    },
     "note": "George Creek is included as a featured recovery-context stream in the Cache la Poudre / Sheep Creek area. Species and recovery metadata are prototype-level pending source review."
   },
   {
@@ -165,12 +159,6 @@
     "geometryStatus": "matched-nhd",
     "geometrySource": "USGS NHD named flowline export; filtered in QGIS",
     "troutSource": "Prototype metadata pending source review",
-    "bounds": {
-      "south": 40.68,
-      "west": -105.86,
-      "north": 40.80,
-      "east": -105.60
-    },
     "note": "Cornelius Creek is included as a featured recovery-context stream in the Cache la Poudre / Sheep Creek area. Species and recovery metadata are prototype-level pending source review."
   },
   {
