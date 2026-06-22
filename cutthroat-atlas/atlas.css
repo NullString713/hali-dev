@@ -422,17 +422,20 @@ path.leaflet-interactive:focus {
 .method-callout strong {
   color: var(--text);
 }
-.data-load-status {
+
+.data-load-status,
+.data-badge {
   display: inline-block;
-  margin-top: 0.75rem;
-  padding: 0.45rem 0.7rem;
+  margin: 0.85rem 0 0;
+  padding: 0.45rem 0.8rem;
   border: 1px solid var(--line);
   border-radius: 999px;
-  color: var(--muted);
-  background: rgba(9, 22, 19, 0.55);
-  font-size: 0.82rem;
-  font-weight: 700;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 0.85rem;
+  font-weight: 800;
 }
+
 .layer-toggle-card {
   position: absolute;
   z-index: 550;
