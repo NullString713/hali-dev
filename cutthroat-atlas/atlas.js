@@ -145,14 +145,20 @@ async function loadHydroFiles() {
 
             if (!match) return null;
 
-            // NHD wins. OSM only fills records not matched by NHD.
-            if (file.type === 'osm' && matchedFeaturedWaterIds.has(match.id)) {
-              return null;
-            }
+            const useOsmSupplement = match.useOsmSupplement === true;
 
-            if (file.type === 'nhd') {
-              matchedFeaturedWaterIds.add(match.id);
-            }
+              // NHD loads first. OSM can supplement curated records when allowed.
+              if (
+                file.type === 'osm' &&
+                matchedFeaturedWaterIds.has(match.id) &&
+                !useOsmSupplement
+              ) {
+                return null;
+              }
+              
+              if (file.type === 'nhd') {
+                matchedFeaturedWaterIds.add(match.id);
+              }
 
             return {
               ...feature,
