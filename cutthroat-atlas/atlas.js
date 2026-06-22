@@ -206,7 +206,7 @@ async function loadHydroFiles() {
       loadedHydroFileCount += 1;
       updateDataLoadStatus();
 
-      if (!['nhd', 'osm'].includes(file.type)) continue;
+      if (!['nhd', 'osm'].includes(sourceType)) continue;
 
       // Featured clickable trout layer
       const featuredStreams = {
@@ -235,14 +235,14 @@ async function loadHydroFiles() {
 
               // NHD loads first. OSM can supplement curated records when allowed.
               if (
-                file.type === 'osm' &&
+                sourceType === 'osm' &&
                 matchedFeaturedWaterIds.has(match.id) &&
                 !useOsmSupplement
               ) {
                 return null;
               }
               
-              if (file.type === 'nhd') {
+              if (sourceType === 'nhd') {
                 matchedFeaturedWaterIds.add(match.id);
               }
 
@@ -252,7 +252,7 @@ async function loadHydroFiles() {
                 ...feature.properties,
                 ...match,
                 sourceName,
-                sourceLayer: file.type,
+                sourceLayer: sourceType,
                 sourceLabel: file.label
               }
             };
