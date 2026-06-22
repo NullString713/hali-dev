@@ -30,7 +30,7 @@ let featuredWaters = [];
 let loadedHydroFileCount = 0;
 
 const hydroFiles = [
-  {
+    {
     path: './data/geojson/nhd/cache-la-poudre-named-flowlines.geojson',
     type: 'nhd-cache-la-poudre',
     sourceType: 'nhd',
@@ -64,15 +64,16 @@ const hydroFiles = [
     }
   },
   {
-    path: './data/geojson/nhd/south-platte-headwaters-named-flowlines.geojson',
-    type: 'nhd-south-platte-headwaters',
+    path: './data/geojson/nhd/south-platte-headwaters-south-named-flowlines.geojson',
+    type: 'nhd-south-platte-headwaters-south',
     sourceType: 'nhd',
-    label: 'USGS NHD named flowlines — South Platte headwaters',
+    label: 'USGS NHD named flowlines — South Platte headwaters south',
     style: {
       color: '#8b9cff',
       weight: 1.2,
       opacity: 0.32
     }
+  }
   },
   {
     path: './data/geojson/osm/cache-la-poudre-natural-streams.geojson',
