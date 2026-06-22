@@ -31,8 +31,9 @@ let loadedHydroFileCount = 0;
 
 const hydroFiles = [
   {
-    path: './data/geojson/nhd/poudre-named-flowlines.geojson',
-    type: 'nhd',
+    path: './data/geojson/nhd/cache-la-poudre-named-flowlines.geojson',
+    type: 'nhd-cache-la-poudre',
+    sourceType: 'nhd',
     label: 'USGS NHD named flowlines — Cache la Poudre',
     style: {
       color: '#8b9cff',
@@ -41,9 +42,87 @@ const hydroFiles = [
     }
   },
   {
+    path: './data/geojson/nhd/big-thompson-named-flowlines.geojson',
+    type: 'nhd-big-thompson',
+    sourceType: 'nhd',
+    label: 'USGS NHD named flowlines — Big Thompson',
+    style: {
+      color: '#8b9cff',
+      weight: 1.2,
+      opacity: 0.32
+    }
+  },
+  {
+    path: './data/geojson/nhd/south-platte-named-flowlines.geojson',
+    type: 'nhd-south-platte',
+    sourceType: 'nhd',
+    label: 'USGS NHD named flowlines — South Platte',
+    style: {
+      color: '#8b9cff',
+      weight: 1.2,
+      opacity: 0.32
+    }
+  },
+  {
+    path: './data/geojson/nhd/south-platte-headwaters-named-flowlines.geojson',
+    type: 'nhd-south-platte-headwaters',
+    sourceType: 'nhd',
+    label: 'USGS NHD named flowlines — South Platte headwaters',
+    style: {
+      color: '#8b9cff',
+      weight: 1.2,
+      opacity: 0.32
+    }
+  },
+  {
     path: './data/geojson/osm/cache-la-poudre-natural-streams.geojson',
-    type: 'osm',
-    label: 'Cache la Poudre natural streams',
+    type: 'osm-cache-la-poudre',
+    sourceType: 'osm',
+    label: 'OpenStreetMap natural streams — Cache la Poudre',
+    style: {
+      color: '#3b9fc6',
+      weight: 1.6,
+      opacity: 0.55
+    }
+  },
+  {
+    path: './data/geojson/osm/big-thompson-natural-streams.geojson',
+    type: 'osm-big-thompson',
+    sourceType: 'osm',
+    label: 'OpenStreetMap natural streams — Big Thompson',
+    style: {
+      color: '#3b9fc6',
+      weight: 1.6,
+      opacity: 0.55
+    }
+  },
+  {
+    path: './data/geojson/osm/south-platte-natural-streams.geojson',
+    type: 'osm-south-platte',
+    sourceType: 'osm',
+    label: 'OpenStreetMap natural streams — South Platte',
+    style: {
+      color: '#3b9fc6',
+      weight: 1.6,
+      opacity: 0.55
+    }
+  },
+  {
+    path: './data/geojson/osm/south-platte-headwaters-natural-streams.geojson',
+    type: 'osm-south-platte-headwaters',
+    sourceType: 'osm',
+    label: 'OpenStreetMap natural streams — South Platte headwaters',
+    style: {
+      color: '#3b9fc6',
+      weight: 1.6,
+      opacity: 0.55
+    }
+  },
+  {
+    path: './data/geojson/osm/south-platte-headwaters-south-natural-streams.geojson',
+    type: 'osm-south-platte-headwaters-south',
+    sourceType: 'osm',
+    label: 'OpenStreetMap natural streams — South Platte headwaters south',
     style: {
       color: '#3b9fc6',
       weight: 1.6,
