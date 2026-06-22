@@ -155,6 +155,25 @@ const map = L.map('map', {
   scrollWheelZoom: true
 }).setView([40.72, -105.72], 10);
 
+const watershedViews = {
+  poudre: [
+    [40.42, -106.20],
+    [41.08, -105.10]
+  ],
+  bigThompson: [
+    [40.22, -105.85],
+    [40.70, -104.95]
+  ],
+  southPlatte: [
+    [39.45, -105.90],
+    [40.30, -104.55]
+  ],
+  headwaters: [
+    [38.55, -106.20],
+    [39.55, -104.75]
+  ]
+};
+
 hydroLayerGroups.nhd.addTo(map);
 hydroLayerGroups.osm.addTo(map);
 featuredLayerGroup.addTo(map);
@@ -444,6 +463,19 @@ function updateDataLoadStatus() {
 
   status.textContent = `Loaded ${loadedHydroFileCount} of ${hydroFiles.length} reference layers`;
 }
+
+document.querySelectorAll('[data-view-jump]').forEach(button => {
+  button.addEventListener('click', event => {
+    const viewKey = event.currentTarget.dataset.viewJump;
+    const bounds = watershedViews[viewKey];
+
+    if (!bounds) return;
+
+    map.fitBounds(bounds, {
+      padding: [40, 40]
+    });
+  });
+});
 
 function escapeHtml(value) {
   return String(value)
