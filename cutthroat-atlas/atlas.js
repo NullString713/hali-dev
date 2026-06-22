@@ -73,7 +73,6 @@ const hydroFiles = [
       weight: 1.2,
       opacity: 0.32
     }
-  }
   },
   {
     path: './data/geojson/osm/cache-la-poudre-natural-streams.geojson',
