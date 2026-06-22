@@ -1,30 +1,75 @@
 const speciesColors = {
-  greenback: { label: 'Greenback CT', color: '#16a34a' },
-  coloradoRiver: { label: 'Colorado River CT', color: '#d8563a' },
-  rioGrande: { label: 'Rio Grande CT', color: '#8f5fd7' },
-  yellowfin: { label: 'Yellowfin CT', color: '#f1c84b' },
-  bonneville: { label: 'Bonneville CT', color: '#d79c45' },
-  lahontan: { label: 'Lahontan CT', color: '#5d8fe8' },
-  yellowstone: { label: 'Yellowstone CT', color: '#c8f81b' },
-  westslope: { label: 'Westslope CT', color: '#f41f26' },
-  paiute: { label: 'Paiute CT', color: '#ebb128' },
-  coastal: { label: 'Coastal CT', color: '#0a0400' },
+  greenback: { label: 'Greenback CT', color: '#22c55e' },
+  coloradoRiver: { label: 'Colorado River CT', color: '#e85d3f' },
+  rioGrande: { label: 'Rio Grande CT', color: '#a855f7' },
+  yellowfin: { label: 'Yellowfin CT', color: '#facc15' },
+  bonneville: { label: 'Bonneville CT', color: '#d97706' },
+  lahontan: { label: 'Lahontan CT', color: '#60a5fa' },
+  yellowstone: { label: 'Yellowstone CT', color: '#a3e635' },
+  westslope: { label: 'Westslope CT', color: '#fb7185' },
+  paiute: { label: 'Paiute CT', color: '#fb923c' },
+  coastal: { label: 'Coastal CT', color: '#06b6d4' },
 
-  gila: { label: 'Gila Trout', color: '#a0eb28' },
-  apache: { label: 'Apache Trout', color: '#fee316' },
-  bull: { label: 'Bull Trout', color: '#74e92b' },
+  gila: { label: 'Gila Trout', color: '#84cc16' },
+  apache: { label: 'Apache Trout', color: '#fde047' },
+  bull: { label: 'Bull Trout', color: '#14b8a6' },
 
-  brown: { label: 'Brown Trout', color: '#9a5909' },
-  rainbow: { label: 'Rainbow Trout', color: '#ec27ab' },
-  brook: { label: 'Brook Trout', color: '#f82a1b' },
-  introduced: { label: 'Introduced Trout', color: '#ec27ab' },
+  brown: { label: 'Brown Trout', color: '#a16207' },
+  rainbow: { label: 'Rainbow Trout', color: '#ec4899' },
+  brook: { label: 'Brook Trout', color: '#ef4444' },
+  introduced: { label: 'Introduced Trout / Mixed', color: '#94a3b8' },
 
-  unknown: { label: 'Unknown / Generalized', color: '#6fb7d8' },
+  unknown: { label: 'Unknown / Generalized', color: '#38bdf8' },
 
-  recoveryHigh: { label: 'Recovery / Sensitive', color: '#f08f3e' },
-  recoveryStable: { label: 'Stable / Managed', color: '#66c2a5' },
-  recoveryWatch: { label: 'Watch / Review Needed', color: '#f6c85f' },
-  recoveryLow: { label: 'Extirpated / Uncertain', color: '#b7b7b7' }
+  recoveryHigh: { label: 'Recovery / Sensitive', color: '#f97316' },
+  recoveryStable: { label: 'Stable / Managed', color: '#10b981' },
+  recoveryWatch: { label: 'Watch / Review Needed', color: '#eab308' },
+  recoveryLow: { label: 'Extirpated / Uncertain', color: '#a3a3a3' }
+};
+
+const legendByMode = {
+  historic: [
+    'greenback',
+    'coloradoRiver',
+    'rioGrande',
+    'yellowfin',
+    'bonneville',
+    'lahontan',
+    'yellowstone',
+    'westslope',
+    'paiute',
+    'coastal',
+    'gila',
+    'apache',
+    'bull',
+    'unknown'
+  ],
+  current: [
+    'greenback',
+    'coloradoRiver',
+    'rioGrande',
+    'yellowfin',
+    'bonneville',
+    'lahontan',
+    'yellowstone',
+    'westslope',
+    'paiute',
+    'coastal',
+    'gila',
+    'apache',
+    'bull',
+    'brown',
+    'rainbow',
+    'brook',
+    'introduced',
+    'unknown'
+  ],
+  recovery: [
+    'recoveryHigh',
+    'recoveryStable',
+    'recoveryWatch',
+    'recoveryLow'
+  ]
 };
 
 const modes = [
@@ -381,29 +426,10 @@ function styleStream(feature) {
 }
 
 function renderLegend() {
-  const legendItems = [
-    'greenback',
-    'coloradoRiver',
-    'rioGrande',
-    'yellowfin',
-    'bonneville',
-    'lahontan',
-    'yellowstone',
-    'westslope',
-    'paiute',
-    'coastal',
-    'gila',
-    'apache',
-    'bull',
-    'introduced',
-    'unknown',
-    'recoveryHigh',
-    'recoveryStable',
-    'recoveryWatch',
-    'recoveryLow'
-  ];
-
+  const mode = modes[currentModeIndex].key;
+  const legendItems = legendByMode[mode] || legendByMode.current;
   const list = document.getElementById('legend-list');
+
   if (!list) return;
 
   list.innerHTML = legendItems
@@ -510,6 +536,7 @@ if (slider) {
   slider.addEventListener('input', event => {
     currentModeIndex = Number(event.target.value);
     renderMode();
+    renderLegend();
 
     featuredStreamLayers.forEach(layer => layer.setStyle(styleStream));
 
