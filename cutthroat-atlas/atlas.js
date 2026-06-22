@@ -315,7 +315,7 @@ function renderStreamCard(stream) {
       <dt>Basin</dt><dd>${escapeHtml(stream.basin)}</dd>
       <dt>State</dt><dd>${escapeHtml(stream.state)}</dd>
       <dt>Confidence</dt><dd>${escapeHtml(stream.confidence)}</dd>
-      <dt>Geometry status</dt><dd>${escapeHtml(stream.geometryStatus || 'Prototype / review needed')}</dd>
+      <dt>Geometry status</dt><dd>${escapeHtml(stream.sourceLayer === 'osm'? 'osm-fallback-review-needed': stream.geometryStatus || 'Prototype / review needed')}</dd>
       <dt>Geometry source</dt><dd>${escapeHtml(stream.sourceLabel || stream.geometrySource || 'Unknown')}</dd>
       <dt>Trout source</dt><dd>${escapeHtml(stream.troutSource || 'Unknown')}</dd>
     </dl>
