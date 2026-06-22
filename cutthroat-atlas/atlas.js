@@ -1,14 +1,29 @@
 const speciesColors = {
-  greenback: { label: 'Greenback Cutthroat', color: '#16a34a' },
-  coloradoRiver: { label: 'Colorado River Cutthroat', color: '#d8563a' },
-  rioGrande: { label: 'Rio Grande Cutthroat', color: '#8f5fd7' },
-  yellowfin: { label: 'Yellowfin Cutthroat', color: '#f1c84b' },
-  bonneville: { label: 'Bonneville Cutthroat', color: '#d79c45' },
-  lahontan: { label: 'Lahontan Cutthroat', color: '#5d8fe8' },
-  introduced: { label: 'Introduced Trout / Mixed', color: '#9aa4a6' },
+  greenback: { label: 'Greenback CT', color: '#16a34a' },
+  coloradoRiver: { label: 'Colorado River CT', color: '#d8563a' },
+  rioGrande: { label: 'Rio Grande CT', color: '#8f5fd7' },
+  yellowfin: { label: 'Yellowfin CT', color: '#f1c84b' },
+  bonneville: { label: 'Bonneville CT', color: '#d79c45' },
+  lahontan: { label: 'Lahontan CT', color: '#5d8fe8' },
+  yellowstone: { label: 'Yellowstone CT', color: '#c8f81b' },
+  westslope: { label: 'Westslope CT', color: '#f41f26' },
+  paiute: { label: 'Paiute CT', color: '#ebb128' },
+  coastal: { label: 'Coastal CT', color: '#0a0400' },
+
+  gila: { label: 'Gila Trout', color: '#a0eb28' },
+  apache: { label: 'Apache Trout', color: '#fee316' },
+  bull: { label: 'Bull Trout', color: '#74e92b' },
+
+  brown: { label: 'Brown Trout', color: '#9a5909' },
+  rainbow: { label: 'Rainbow Trout', color: '#ec27ab' },
+  brook: { label: 'Brook Trout', color: '#f82a1b' },
+  introduced: { label: 'Introduced Trout', color: '#ec27ab' },
+
   unknown: { label: 'Unknown / Generalized', color: '#6fb7d8' },
+
   recoveryHigh: { label: 'Recovery / Sensitive', color: '#f08f3e' },
   recoveryStable: { label: 'Stable / Managed', color: '#66c2a5' },
+  recoveryWatch: { label: 'Watch / Review Needed', color: '#f6c85f' },
   recoveryLow: { label: 'Extirpated / Uncertain', color: '#b7b7b7' }
 };
 
@@ -26,11 +41,12 @@ const modes = [
     description: 'Showing generalized conservation and recovery status.'
   }
 ];
-let featuredWaters = [];
-let loadedHydroFileCount = 0;
+
+const DEFAULT_SCOPE = 'poudre';
 
 const hydroFiles = [
-    {
+  {
+    scope: 'poudre',
     path: './data/geojson/nhd/cache-la-poudre-named-flowlines.geojson',
     type: 'nhd-cache-la-poudre',
     sourceType: 'nhd',
@@ -42,6 +58,7 @@ const hydroFiles = [
     }
   },
   {
+    scope: 'bigThompson',
     path: './data/geojson/nhd/big-thompson-named-flowlines.geojson',
     type: 'nhd-big-thompson',
     sourceType: 'nhd',
@@ -53,6 +70,7 @@ const hydroFiles = [
     }
   },
   {
+    scope: 'southPlatte',
     path: './data/geojson/nhd/south-platte-named-flowlines.geojson',
     type: 'nhd-south-platte',
     sourceType: 'nhd',
@@ -64,6 +82,7 @@ const hydroFiles = [
     }
   },
   {
+    scope: 'headwaters',
     path: './data/geojson/nhd/south-platte-headwaters-south-named-flowlines.geojson',
     type: 'nhd-south-platte-headwaters-south',
     sourceType: 'nhd',
@@ -74,7 +93,9 @@ const hydroFiles = [
       opacity: 0.32
     }
   },
+
   {
+    scope: 'poudre',
     path: './data/geojson/osm/cache-la-poudre-natural-streams.geojson',
     type: 'osm-cache-la-poudre',
     sourceType: 'osm',
@@ -86,6 +107,7 @@ const hydroFiles = [
     }
   },
   {
+    scope: 'bigThompson',
     path: './data/geojson/osm/big-thompson-natural-streams.geojson',
     type: 'osm-big-thompson',
     sourceType: 'osm',
@@ -97,6 +119,7 @@ const hydroFiles = [
     }
   },
   {
+    scope: 'southPlatte',
     path: './data/geojson/osm/south-platte-natural-streams.geojson',
     type: 'osm-south-platte',
     sourceType: 'osm',
@@ -108,6 +131,7 @@ const hydroFiles = [
     }
   },
   {
+    scope: 'headwaters',
     path: './data/geojson/osm/south-platte-headwaters-natural-streams.geojson',
     type: 'osm-south-platte-headwaters',
     sourceType: 'osm',
@@ -119,6 +143,7 @@ const hydroFiles = [
     }
   },
   {
+    scope: 'headwaters',
     path: './data/geojson/osm/south-platte-headwaters-south-natural-streams.geojson',
     type: 'osm-south-platte-headwaters-south',
     sourceType: 'osm',
@@ -130,30 +155,6 @@ const hydroFiles = [
     }
   }
 ];
-
-const interpretedFiles = [
-  {
-    path: './data/geojson/interpreted/poudre-recovery-context.geojson',
-    type: 'featured',
-    label: 'Poudre recovery context'
-  }
-];
-
-let featuredStreamLayer;
-let selectedStream = null;
-let currentModeIndex = 0;
-
-const hydroLayerGroups = {
-  nhd: L.layerGroup(),
-  osm: L.layerGroup()
-};
-const featuredLayerGroup = L.layerGroup();
-const matchedFeaturedWaterIds = new Set();
-
-const map = L.map('map', {
-  zoomControl: true,
-  scrollWheelZoom: true
-}).setView([40.72, -105.72], 10);
 
 const watershedViews = {
   poudre: [
@@ -174,9 +175,30 @@ const watershedViews = {
   ]
 };
 
+let featuredWaters = [];
+let selectedStream = null;
+let currentModeIndex = 0;
+
+const loadedHydroFiles = new Set();
+const matchedFeaturedWaterIds = new Set();
+const featuredStreamLayers = [];
+
+const hydroLayerGroups = {
+  nhd: L.layerGroup(),
+  osm: L.layerGroup()
+};
+
+const featuredLayerGroup = L.layerGroup();
+
+const map = L.map('map', {
+  zoomControl: true,
+  scrollWheelZoom: true
+}).setView([40.72, -105.72], 10);
+
 hydroLayerGroups.nhd.addTo(map);
 hydroLayerGroups.osm.addTo(map);
 featuredLayerGroup.addTo(map);
+
 hydroLayerGroups.featured = featuredLayerGroup;
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
@@ -185,190 +207,170 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png
   subdomains: 'abcd'
 }).addTo(map);
 
+renderLegend();
+renderMode();
+updateDataLoadStatus();
+
 fetch('./data/waters/index.json')
-  .then(response => response.json())
-  .then(data => {featuredWaters = data;
-    loadHydroFiles();
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText} for data/waters/index.json`);
+    }
+
+    return response.json();
+  })
+  .then(async data => {
+    featuredWaters = data;
+    await loadHydroFilesForScope(DEFAULT_SCOPE);
   })
   .catch(error => {
     console.error('Could not load featured waters:', error);
   });
 
-async function loadHydroFiles() {
-  for (const file of hydroFiles) {
-    try {
-      const response = await fetch(file.path);
-      const data = await response.json();
+async function loadHydroFilesForScope(scope) {
+  const filesForScope = hydroFiles
+    .filter(file => file.scope === scope)
+    .sort((a, b) => sourceSortOrder(a.sourceType) - sourceSortOrder(b.sourceType));
 
-      // Background reference stream network
-      const sourceType = file.sourceType || file.type;
+  for (const file of filesForScope) {
+    if (loadedHydroFiles.has(file.path)) continue;
 
-      const hydroLayer = L.geoJSON(data, {
-        style: {
-          color: file.style?.color || '#3b9fc6',
-          weight: file.style?.weight || 1.6,
-          opacity: file.style?.opacity || 0.65,
-          lineCap: 'round',
-          lineJoin: 'round'
-        },
-        interactive: false
-      });
-      
-      hydroLayer.addTo(hydroLayerGroups[sourceType]);
-      
-      const toggle = document.querySelector(`[data-layer-toggle="${sourceType}"]`);
-      
-      if (toggle && !toggle.checked) {
-        map.removeLayer(hydroLayerGroups[sourceType]);
-      }
-
-      loadedHydroFileCount += 1;
-      updateDataLoadStatus();
-
-      if (!['nhd', 'osm'].includes(sourceType)) continue;
-
-      // Featured clickable trout layer
-      const featuredStreams = {
-        type: 'FeatureCollection',
-        features: data.features
-          .map(feature => {
-            const sourceName =
-              feature.properties?.name ||
-              feature.properties?.GNIS_Name ||
-              feature.properties?.gnis_name ||
-              feature.properties?.GNIS_NAME ||
-              '';
-
-            const matches = featuredWaters
-              .filter(water =>
-                sourceName.toLowerCase().includes(water.match) &&
-                featureMatchesBounds(feature, water.bounds)
-              )
-              .sort((a, b) => (b.priority || 0) - (a.priority || 0));
-
-            const match = matches[0];
-
-            if (!match) return null;
-
-            const useOsmSupplement = match.useOsmSupplement === true;
-
-              // NHD loads first. OSM can supplement curated records when allowed.
-              if (
-                sourceType === 'osm' &&
-                matchedFeaturedWaterIds.has(match.id) &&
-                !useOsmSupplement
-              ) {
-                return null;
-              }
-              
-              if (sourceType === 'nhd') {
-                matchedFeaturedWaterIds.add(match.id);
-              }
-
-            return {
-              ...feature,
-              properties: {
-                ...feature.properties,
-                ...match,
-                sourceName,
-                sourceLayer: sourceType,
-                sourceLabel: file.label
-              }
-            };
-          })
-          .filter(Boolean)
-      };
-
-      featuredStreamLayer = L.geoJSON(featuredStreams, {
-        style: styleStream,
-        onEachFeature: (feature, layer) => {
-          layer.on('click', () => {
-            selectedStream = feature.properties;
-            renderStreamCard(selectedStream);
-            layer.bringToFront();
-          });
-
-          layer.on('mouseover', () => layer.setStyle({ weight: 5, opacity: 0.95 }));
-          layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
-
-          layer.bindTooltip(feature.properties.name || feature.properties.sourceName, {
-            permanent: false,
-            direction: 'top',
-            sticky: true,
-            className: 'stream-tooltip'
-          });
-        }
-      }).addTo(featuredLayerGroup);
-    } catch (error) {
-      console.error(`Could not load ${file.label}:`, error);
-    }
+    await loadHydroFile(file);
+    loadedHydroFiles.add(file.path);
+    updateDataLoadStatus();
   }
 }
-function loadInterpretedFiles() {
-  interpretedFiles.forEach(file => {
-    fetch(file.path)
-      .then(response => response.json())
-      .then(data => {
-        const interpretedLayer = L.geoJSON(data, {
-          style: styleStream,
-          onEachFeature: (feature, layer) => {
-            layer.on('click', () => {
-              selectedStream = feature.properties;
-              renderStreamCard(selectedStream);
-              layer.bringToFront();
-            });
 
-            layer.on('mouseover', () => layer.setStyle({ weight: 5, opacity: 0.95 }));
-            layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
+async function loadHydroFile(file) {
+  try {
+    const response = await fetch(file.path);
 
-            layer.bindTooltip(feature.properties.name || file.label, {
-              permanent: false,
-              direction: 'top',
-              sticky: true,
-              className: 'stream-tooltip'
-            });
-          }
-        }).addTo(featuredLayerGroup);
-      })
-      .catch(error => {
-        console.error(`Could not load ${file.label}:`, error);
-      });
-  });
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText} for ${file.path}`);
+    }
+
+    const contentType = response.headers.get('content-type') || '';
+
+    if (!contentType.includes('json')) {
+      const text = await response.text();
+      throw new Error(`Expected JSON for ${file.path}, got: ${text.slice(0, 80)}`);
+    }
+
+    const data = await response.json();
+    const sourceType = file.sourceType || file.type;
+
+    addReferenceLayer(data, file, sourceType);
+
+    if (!['nhd', 'osm'].includes(sourceType)) return;
+
+    addFeaturedLayer(data, file, sourceType);
+  } catch (error) {
+    console.error(`Could not load ${file.label}:`, error);
+  }
 }
-renderLegend();
-renderMode();
-updateDataLoadStatus();
 
-const slider = document.getElementById('mode-slider');
-slider.addEventListener('input', (event) => {
-  currentModeIndex = Number(event.target.value);
-  renderMode();
+function addReferenceLayer(data, file, sourceType) {
+  const hydroLayer = L.geoJSON(data, {
+    style: {
+      color: file.style?.color || '#3b9fc6',
+      weight: file.style?.weight || 1.6,
+      opacity: file.style?.opacity || 0.65,
+      lineCap: 'round',
+      lineJoin: 'round'
+    },
+    interactive: false
+  });
 
-  if (featuredStreamLayer) {
-    featuredStreamLayer.setStyle(styleStream);
+  hydroLayer.addTo(hydroLayerGroups[sourceType]);
+}
+
+function addFeaturedLayer(data, file, sourceType) {
+  const featuredStreams = {
+    type: 'FeatureCollection',
+    features: data.features
+      .map(feature => buildFeaturedFeature(feature, file, sourceType))
+      .filter(Boolean)
+  };
+
+  if (featuredStreams.features.length === 0) return;
+
+  const layer = L.geoJSON(featuredStreams, {
+    style: styleStream,
+    onEachFeature: bindFeaturedStreamEvents
+  }).addTo(featuredLayerGroup);
+
+  featuredStreamLayers.push(layer);
+}
+
+function buildFeaturedFeature(feature, file, sourceType) {
+  const sourceName =
+    feature.properties?.name ||
+    feature.properties?.GNIS_Name ||
+    feature.properties?.gnis_name ||
+    feature.properties?.GNIS_NAME ||
+    '';
+
+  if (!sourceName) return null;
+
+  const matches = featuredWaters
+    .filter(water =>
+      sourceName.toLowerCase().includes(String(water.match || '').toLowerCase()) &&
+      featureMatchesBounds(feature, water.bounds)
+    )
+    .sort((a, b) => (b.priority || 0) - (a.priority || 0));
+
+  const match = matches[0];
+
+  if (!match) return null;
+
+  const useOsmSupplement = match.useOsmSupplement === true;
+
+  if (
+    sourceType === 'osm' &&
+    matchedFeaturedWaterIds.has(match.id) &&
+    !useOsmSupplement
+  ) {
+    return null;
   }
 
-  if (selectedStream) renderStreamCard(selectedStream);
-});
+  if (sourceType === 'nhd') {
+    matchedFeaturedWaterIds.add(match.id);
+  }
 
-document.querySelectorAll('[data-layer-toggle]').forEach(toggle => {
-  toggle.addEventListener('change', event => {
-    const layerType = event.target.dataset.layerToggle;
-    const layer = hydroLayerGroups[layerType];
-
-    if (!layer) return;
-
-    if (event.target.checked) {
-      layer.addTo(map);
-    } else {
-      map.removeLayer(layer);
+  return {
+    ...feature,
+    properties: {
+      ...feature.properties,
+      ...match,
+      sourceName,
+      sourceLayer: sourceType,
+      sourceLabel: file.label
     }
+  };
+}
+
+function bindFeaturedStreamEvents(feature, layer) {
+  layer.on('click', () => {
+    selectedStream = feature.properties;
+    renderStreamCard(selectedStream);
+    layer.bringToFront();
   });
-});
+
+  layer.on('mouseover', () => layer.setStyle({ weight: 5, opacity: 0.95 }));
+  layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
+
+  layer.bindTooltip(feature.properties.name || feature.properties.sourceName, {
+    permanent: false,
+    direction: 'top',
+    sticky: true,
+    className: 'stream-tooltip'
+  });
+}
 
 function styleStream(feature) {
   const mode = modes[currentModeIndex].key;
   const speciesKey = feature.properties[mode];
+
   return {
     color: speciesColors[speciesKey]?.color || speciesColors.unknown.color,
     weight: 4,
@@ -386,24 +388,43 @@ function renderLegend() {
     'yellowfin',
     'bonneville',
     'lahontan',
+    'yellowstone',
+    'westslope',
+    'paiute',
+    'coastal',
+    'gila',
+    'apache',
+    'bull',
     'introduced',
     'unknown',
     'recoveryHigh',
     'recoveryStable',
+    'recoveryWatch',
     'recoveryLow'
   ];
 
   const list = document.getElementById('legend-list');
-  list.innerHTML = legendItems.map(key => `
-    <div class="legend-row">
-      <span class="swatch" style="background: ${speciesColors[key].color}"></span>
-      <span>${speciesColors[key].label}</span>
-    </div>
-  `).join('');
+  if (!list) return;
+
+  list.innerHTML = legendItems
+    .map(key => {
+      const item = speciesColors[key] || speciesColors.unknown;
+
+      return `
+        <div class="legend-row">
+          <span class="swatch" style="background: ${item.color}"></span>
+          <span>${item.label}</span>
+        </div>
+      `;
+    })
+    .join('');
 }
 
 function renderMode() {
-  document.getElementById('mode-description').textContent = modes[currentModeIndex].description;
+  const description = document.getElementById('mode-description');
+  if (!description) return;
+
+  description.textContent = modes[currentModeIndex].description;
 }
 
 function renderStreamCard(stream) {
@@ -412,22 +433,32 @@ function renderStreamCard(stream) {
   const activeLabel = speciesColors[activeKey]?.label || 'Unknown';
   const card = document.getElementById('stream-card');
 
-   card.innerHTML = `
+  if (!card) return;
+
+  card.innerHTML = `
     <p class="eyebrow">Selected water</p>
     <h2>${escapeHtml(stream.name)}</h2>
-    <p>${escapeHtml(stream.note)}</p>
+    <p>${escapeHtml(stream.note || '')}</p>
     <dl>
-      <dt>Layer</dt><dd>${modeLabel(mode)}</dd>
-      <dt>Shown as</dt><dd>${activeLabel}</dd>
+      <dt>Layer</dt><dd>${escapeHtml(modeLabel(mode))}</dd>
+      <dt>Shown as</dt><dd>${escapeHtml(activeLabel)}</dd>
       <dt>Mapped name</dt><dd>${escapeHtml(stream.sourceName || stream.name)}</dd>
-      <dt>Basin</dt><dd>${escapeHtml(stream.basin)}</dd>
-      <dt>State</dt><dd>${escapeHtml(stream.state)}</dd>
-      <dt>Confidence</dt><dd>${escapeHtml(stream.confidence)}</dd>
-      <dt>Geometry status</dt><dd>${escapeHtml(stream.sourceLayer === 'osm'? 'osm-fallback-review-needed': stream.geometryStatus || 'Prototype / review needed')}</dd>
+      <dt>Basin</dt><dd>${escapeHtml(stream.basin || 'Unknown')}</dd>
+      <dt>State</dt><dd>${escapeHtml(stream.state || 'Unknown')}</dd>
+      <dt>Confidence</dt><dd>${escapeHtml(stream.confidence || 'Prototype / needs review')}</dd>
+      <dt>Geometry status</dt><dd>${escapeHtml(geometryStatusLabel(stream))}</dd>
       <dt>Geometry source</dt><dd>${escapeHtml(stream.sourceLabel || stream.geometrySource || 'Unknown')}</dd>
       <dt>Trout source</dt><dd>${escapeHtml(stream.troutSource || 'Unknown')}</dd>
     </dl>
   `;
+}
+
+function geometryStatusLabel(stream) {
+  if (stream.sourceLayer === 'osm') {
+    return 'osm-supplement-review-needed';
+  }
+
+  return stream.geometryStatus || 'Prototype / review needed';
 }
 
 function modeLabel(mode) {
@@ -438,6 +469,7 @@ function modeLabel(mode) {
 
 function featureMatchesBounds(feature, bounds) {
   if (!bounds) return true;
+  if (!feature.geometry?.coordinates) return false;
 
   const coordinates = flattenCoordinates(feature.geometry.coordinates);
 
@@ -450,6 +482,8 @@ function featureMatchesBounds(feature, bounds) {
 }
 
 function flattenCoordinates(coordinates) {
+  if (!Array.isArray(coordinates)) return [];
+
   if (typeof coordinates[0] === 'number') {
     return [coordinates];
   }
@@ -461,13 +495,51 @@ function updateDataLoadStatus() {
   const status = document.getElementById('data-load-status');
   if (!status) return;
 
-  status.textContent = `Loaded ${loadedHydroFileCount} of ${hydroFiles.length} reference layers`;
+  status.textContent = `Loaded ${loadedHydroFiles.size} of ${hydroFiles.length} reference layers`;
 }
 
+function sourceSortOrder(sourceType) {
+  if (sourceType === 'nhd') return 1;
+  if (sourceType === 'osm') return 2;
+  return 3;
+}
+
+const slider = document.getElementById('mode-slider');
+
+if (slider) {
+  slider.addEventListener('input', event => {
+    currentModeIndex = Number(event.target.value);
+    renderMode();
+
+    featuredStreamLayers.forEach(layer => layer.setStyle(styleStream));
+
+    if (selectedStream) {
+      renderStreamCard(selectedStream);
+    }
+  });
+}
+
+document.querySelectorAll('[data-layer-toggle]').forEach(toggle => {
+  toggle.addEventListener('change', event => {
+    const layerType = event.target.dataset.layerToggle;
+    const layer = hydroLayerGroups[layerType];
+
+    if (!layer) return;
+
+    if (event.target.checked) {
+      layer.addTo(map);
+    } else {
+      map.removeLayer(layer);
+    }
+  });
+});
+
 document.querySelectorAll('[data-view-jump]').forEach(button => {
-  button.addEventListener('click', event => {
+  button.addEventListener('click', async event => {
     const viewKey = event.currentTarget.dataset.viewJump;
     const bounds = watershedViews[viewKey];
+
+    await loadHydroFilesForScope(viewKey);
 
     if (!bounds) return;
 
