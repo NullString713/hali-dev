@@ -10,9 +10,12 @@
   --shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html, body {
+html,
+body {
   margin: 0;
   min-height: 100%;
   color: var(--text);
@@ -23,13 +26,24 @@ html, body {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-a { color: inherit; text-decoration: none; }
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
 
 .atlas-shell {
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto auto 1fr auto;
 }
+
+/* Top nav */
 
 .atlas-topbar {
   position: relative;
@@ -38,7 +52,7 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1rem clamp(1rem, 3vw, 2rem);
+  padding: 0.85rem clamp(1rem, 3vw, 2rem);
   border-bottom: 1px solid var(--line);
   background: rgba(8, 17, 15, 0.82);
   backdrop-filter: blur(14px);
@@ -58,7 +72,11 @@ a { color: inherit; text-decoration: none; }
 }
 
 .atlas-nav a:hover,
-.atlas-nav a[aria-current="page"] { color: var(--text); }
+.atlas-nav a[aria-current="page"] {
+  color: var(--text);
+}
+
+/* Intro */
 
 .intro-panel {
   max-width: 980px;
@@ -76,13 +94,12 @@ a { color: inherit; text-decoration: none; }
   text-transform: uppercase;
 }
 
-h1, h2, p { margin-top: 0; }
-
-h1 {
+.intro-panel h1 {
   margin: 0 auto 0.55rem;
   font-size: clamp(2.75rem, 6vw, 5.25rem);
   line-height: 0.9;
   letter-spacing: -0.07em;
+  text-align: center;
 }
 
 .intro-panel .summary {
@@ -91,24 +108,40 @@ h1 {
   color: var(--muted);
   font-size: clamp(0.98rem, 1.6vw, 1.15rem);
   line-height: 1.4;
+  text-align: center;
 }
+
+.data-load-status,
+.data-badge {
+  display: inline-block;
+  margin: 0.7rem 0 0;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+/* Map shell */
 
 .map-stage {
   position: relative;
   height: calc(100vh - 205px);
-  min-height: 560px;
+  min-height: 620px;
   margin: 0 clamp(1rem, 3vw, 2rem) 1.5rem;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 28px;
-  box-shadow: var(--shadow);
   background: #10221d;
+  box-shadow: var(--shadow);
 }
 
 #map {
   width: 100%;
   height: 100%;
-  min-height: 560px;
+  min-height: 620px;
   filter: saturate(0.85) contrast(1.05);
 }
 
@@ -117,11 +150,21 @@ h1 {
   font-family: inherit;
 }
 
+.leaflet-tile-pane {
+  filter: grayscale(45%) saturate(75%) brightness(90%) contrast(100%);
+}
+
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
   color: var(--text);
   background: var(--panel-solid);
 }
+
+path.leaflet-interactive:focus {
+  outline: none;
+}
+
+/* Shared map cards */
 
 .legend-card,
 .stream-card,
@@ -136,13 +179,16 @@ h1 {
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
 }
+
+/* View jump card */
+
 .view-toggle-card {
   top: 1rem;
   left: 50%;
-  width: min(560px, calc(100% - 2rem));
+  width: min(560px, calc(100% - 42rem));
   padding: 0.85rem 1rem;
   transform: translateX(-50%);
-  z-index: 540;
+  z-index: 560;
 }
 
 .view-buttons {
@@ -157,22 +203,65 @@ h1 {
   background: rgba(255, 255, 255, 0.06);
   color: var(--text);
   cursor: pointer;
-  font-weight: 800;
   font-size: 0.78rem;
+  font-weight: 800;
   padding: 0.45rem 0.7rem;
 }
 
-.view-buttons button:hover {
+.view-buttons button:hover,
+.view-buttons button:focus-visible {
   border-color: var(--accent);
+  outline: none;
 }
+
+/* Layer toggle card */
+
+.layer-toggle-card {
+  top: 1rem;
+  left: 1.25rem;
+  width: 260px;
+  padding: 1rem;
+  z-index: 550;
+}
+
+.layer-toggle-card .eyebrow {
+  margin-bottom: 0.55rem;
+}
+
+.layer-toggle-card label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.layer-toggle-card input[type="checkbox"] {
+  margin: 0;
+  flex: 0 0 auto;
+  accent-color: var(--accent);
+}
+
+.layer-help {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+/* Legend */
 
 .legend-card {
   top: 1rem;
   right: 1rem;
-  width: min(290px, calc(100% - 2rem));
+  width: 290px;
   max-height: calc(100% - 2rem);
   overflow-y: auto;
   padding: 1rem;
+  z-index: 550;
 }
 
 .legend-card h2,
@@ -194,18 +283,20 @@ h1 {
   width: 14px;
   height: 14px;
   flex: 0 0 auto;
-  border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
 }
+
+/* Selected stream card */
 
 .stream-card {
   left: 1.25rem;
-  top: 17.5rem;
-  bottom: auto;
+  top: 12.25rem;
   width: min(430px, calc(100% - 2.5rem));
-  max-height: calc(100% - 19rem);
+  max-height: calc(100% - 18rem);
   overflow-y: auto;
   padding: 1rem;
+  z-index: 545;
 }
 
 .stream-card p {
@@ -227,7 +318,11 @@ h1 {
   font-weight: 700;
 }
 
-.stream-card dd { margin: 0; }
+.stream-card dd {
+  margin: 0;
+}
+
+/* Mode slider */
 
 .mode-control {
   left: 50%;
@@ -235,7 +330,7 @@ h1 {
   width: min(640px, calc(100% - 2rem));
   padding: 1rem;
   transform: translateX(-50%);
-  z-index: 520;
+  z-index: 570;
 }
 
 .mode-labels {
@@ -246,9 +341,9 @@ h1 {
   color: var(--text);
   font-size: 0.78rem;
   font-weight: 800;
+  letter-spacing: 0.08em;
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
 }
 
 input[type="range"] {
@@ -263,14 +358,34 @@ input[type="range"] {
   text-align: center;
 }
 
+/* Tooltips */
+
+.stream-tooltip {
+  padding: 0.25rem 0.45rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: #f2efe7;
+  background: rgba(9, 22, 19, 0.9);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* Notes */
+
 .atlas-notes {
-  padding: 0 clamp(1rem, 4vw, 3rem) 3rem;
   max-width: 900px;
+  padding: 0 clamp(1rem, 4vw, 3rem) 3rem;
   color: var(--muted);
   line-height: 1.55;
 }
 
-.atlas-notes h2 { color: var(--text); }
+.atlas-notes h2 {
+  color: var(--text);
+}
+
+/* Tablet / mobile stacked layout */
 
 @media (max-width: 1050px) {
   body {
@@ -283,25 +398,25 @@ input[type="range"] {
   }
 
   .intro-panel {
-    padding: 1.5rem 1rem 1rem;
+    padding: 1rem 0.9rem 0.75rem;
   }
 
-  h1 {
-    font-size: clamp(2.4rem, 13vw, 3.4rem);
+  .intro-panel h1 {
+    font-size: clamp(2.6rem, 13vw, 3.8rem);
     line-height: 0.92;
   }
 
-  .intro-panel p:not(.eyebrow) {
-    font-size: 1rem;
-    line-height: 1.45;
+  .intro-panel .summary {
+    font-size: 0.98rem;
+    line-height: 1.4;
   }
 
   .map-stage {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    min-height: 0;
     height: auto;
+    min-height: 0;
     margin: 0 0.75rem 1.5rem;
     padding: 0.75rem;
     overflow: visible;
@@ -314,174 +429,14 @@ input[type="range"] {
     min-height: 340px;
     border-radius: 16px;
     overflow: hidden;
+    flex: 0 0 auto;
   }
 
-   .legend-card,
-.stream-card,
-.mode-control,
-.layer-toggle-card,
-.view-toggle-card {
-  position: relative;
-  z-index: 500;
-  top: auto;
-  right: auto;
-  bottom: auto;
-  left: auto;
-  width: 100%;
-  max-width: none;
-  transform: none;
-}
-  .view-toggle-card {
-  order: 2;
-  padding: 1rem;
-}
-
-.layer-toggle-card {
-  order: 3;
-}
-
-.legend-card {
-  order: 4;
-}
-
-.stream-card {
-  order: 5;
-}
-
-.mode-control {
-  order: 6;
-}
-    .layer-toggle-card {
-      order: 2;
-      padding: 1rem;
-    }
-    .legend-card {
-      order: 3;
-      max-height: none;
-      overflow: visible;
-      padding: 1rem;
-    }
-
-    .stream-card {
-      order: 4;
-      padding: 1rem;
-    }
-
-    .stream-card dl {
-      grid-template-columns: 105px 1fr;
-      gap: 0.45rem 0.6rem;
-      font-size: 0.88rem;
-    }
-
-    .mode-control {
-      order: 5;
-      padding: 1rem;
-    }
-
-    .mode-labels {
-      gap: 0.35rem;
-      font-size: 0.65rem;
-      letter-spacing: 0.06em;
-    }
-  
-    #mode-description {
-      font-size: 0.85rem;
-      line-height: 1.35;
-    }
-  
-    .leaflet-control-zoom {
-      margin-top: 0.75rem !important;
-      margin-left: 0.75rem !important;
-    }
-  
-    .atlas-notes {
-      padding: 0 1rem 2rem;
-    }
-}
-.stream-tooltip {
-  padding: 0.25rem 0.45rem;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 999px;
-  color: #f2efe7;
-  background: rgba(9, 22, 19, 0.9);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.03em;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-}
-path.leaflet-interactive:focus {
-  outline: none;
-}
-.method-callout {
-  max-width: 760px;
-  margin-top: 1rem;
-  padding: 0.85rem 1rem;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  color: var(--muted);
-  background: rgba(9, 22, 19, 0.55);
-  line-height: 1.45;
-}
-
-.method-callout strong {
-  color: var(--text);
-}
-
-.data-load-status,
-.data-badge {
-  display: inline-block;
-  margin: 0.7rem 0 0;
-  padding: 0.45rem 0.8rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  color: var(--text);
-  background: rgba(255, 255, 255, 0.04);
-  font-size: 0.85rem;
-  font-weight: 800;
-}
-
-.layer-toggle-card {
-  position: absolute;
-  z-index: 550;
-  top: 5.25rem;
-  left: 1.25rem;
-  width: min(260px, calc(100% - 2.5rem));
-  padding: 1rem;
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  background: var(--panel);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(18px);
-}
-
-.layer-toggle-card .eyebrow {
-  margin-bottom: 0.55rem;
-}
-
-.layer-toggle-card label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0.4rem 0 0;
-  color: var(--muted);
-  font-size: 0.88rem;
-  font-weight: 700;
-  white-space: nowrap;
-}
-.layer-help {
-  margin: 0.75rem 0 0;
-  color: var(--muted);
-  font-size: 0.78rem;
-  line-height: 1.35;
-}
-
-.layer-toggle-card input[type="checkbox"] {
-  margin: 0;
-  flex: 0 0 auto;
-  accent-color: var(--accent);
-}
-@media (max-width: 1050px) {
-  .layer-toggle-card {
+  .view-toggle-card,
+  .layer-toggle-card,
+  .legend-card,
+  .stream-card,
+  .mode-control {
     position: relative;
     z-index: 500;
     top: auto;
@@ -490,108 +445,59 @@ path.leaflet-interactive:focus {
     left: auto;
     width: 100%;
     max-width: none;
+    max-height: none;
+    overflow: visible;
     transform: none;
+  }
+
+  .view-toggle-card {
     order: 2;
     padding: 1rem;
   }
-}
-/* --- Layout polish overrides --- */
-
-.intro-panel {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 1.1rem clamp(1rem, 4vw, 3rem) 0.85rem;
-  text-align: center;
-}
-
-.intro-panel .eyebrow {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.intro-panel h1 {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-.intro-panel .summary {
-  max-width: 760px;
-  margin: 0 auto;
-  text-align: center;
-  color: var(--muted);
-  font-size: clamp(0.98rem, 1.6vw, 1.15rem);
-  line-height: 1.4;
-}
-
-.map-stage {
-  height: calc(100vh - 205px);
-  min-height: 620px;
-  margin: 0 clamp(1rem, 3vw, 2rem) 1.5rem;
-}
-
-/* Desktop card layout */
-.view-toggle-card {
-  top: 1rem;
-  left: 50%;
-  width: min(560px, calc(100% - 34rem));
-  transform: translateX(-50%);
-  z-index: 560;
-}
-
-.layer-toggle-card {
-  top: 1rem;
-  left: 1.25rem;
-  width: 260px;
-  z-index: 550;
-}
-
-.legend-card {
-  top: 1rem;
-  right: 1rem;
-  width: 290px;
-  z-index: 550;
-}
-
-.stream-card {
-  left: 1.25rem;
-  top: 12.25rem;
-  width: min(430px, calc(100% - 2.5rem));
-  max-height: calc(100% - 18rem);
-  overflow-y: auto;
-  z-index: 545;
-}
-
-.mode-control {
-  left: 50%;
-  bottom: 1rem;
-  transform: translateX(-50%);
-  z-index: 570;
-}
-
-/* Medium screens: stack controls again before they collide */
-@media (max-width: 1250px) {
-  .view-toggle-card {
-    top: 1rem;
-    left: 1.25rem;
-    right: 1.25rem;
-    width: auto;
-    transform: none;
-  }
 
   .layer-toggle-card {
-    top: 6.75rem;
+    order: 3;
+    padding: 1rem;
   }
 
   .legend-card {
-    top: 6.75rem;
+    order: 4;
+    padding: 1rem;
   }
 
   .stream-card {
-    top: 18.75rem;
+    order: 5;
+    padding: 1rem;
   }
-}
-/* Muted background map so stream systems stand out */
-.leaflet-tile-pane {
-   filter: grayscale(45%) saturate(75%) brightness(90%) contrast(100%);
+
+  .mode-control {
+    order: 6;
+    padding: 1rem;
+  }
+
+  .stream-card dl {
+    grid-template-columns: 105px 1fr;
+    gap: 0.45rem 0.6rem;
+    font-size: 0.88rem;
+  }
+
+  .mode-labels {
+    gap: 0.35rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+  }
+
+  #mode-description {
+    font-size: 0.85rem;
+    line-height: 1.35;
+  }
+
+  .leaflet-control-zoom {
+    margin-top: 0.75rem !important;
+    margin-left: 0.75rem !important;
+  }
+
+  .atlas-notes {
+    padding: 0 1rem 2rem;
+  }
 }
