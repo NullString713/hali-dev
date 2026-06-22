@@ -286,6 +286,18 @@ async function loadHydroFilesForScope(scope) {
   }
 }
 
+async function loadVisibleScopes() {
+  const currentBounds = map.getBounds();
+
+  for (const [scope, boundsArray] of Object.entries(watershedViews)) {
+    const scopeBounds = L.latLngBounds(boundsArray);
+
+    if (currentBounds.intersects(scopeBounds)) {
+      await loadHydroFilesForScope(scope);
+    }
+  }
+}
+
 async function loadHydroFile(file) {
   try {
     const response = await fetch(file.path);
@@ -561,6 +573,10 @@ document.querySelectorAll('[data-layer-toggle]').forEach(toggle => {
   });
 });
 
+map.on('moveend zoomend', () => {
+  loadVisibleScopes();
+});
+
 document.querySelectorAll('[data-view-jump]').forEach(button => {
   button.addEventListener('click', async event => {
     const viewKey = event.currentTarget.dataset.viewJump;
@@ -573,6 +589,8 @@ document.querySelectorAll('[data-view-jump]').forEach(button => {
     map.fitBounds(bounds, {
       padding: [40, 40]
     });
+
+    await loadVisibleScopes();
   });
 });
 
