@@ -495,6 +495,102 @@ path.leaflet-interactive:focus {
     padding: 1rem;
   }
 }
+/* --- Layout polish overrides --- */
+
+.intro-panel {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1.1rem clamp(1rem, 4vw, 3rem) 0.85rem;
+  text-align: center;
+}
+
+.intro-panel .eyebrow {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.intro-panel h1 {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.intro-panel .summary {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--muted);
+  font-size: clamp(0.98rem, 1.6vw, 1.15rem);
+  line-height: 1.4;
+}
+
+.map-stage {
+  height: calc(100vh - 205px);
+  min-height: 620px;
+  margin: 0 clamp(1rem, 3vw, 2rem) 1.5rem;
+}
+
+/* Desktop card layout */
+.view-toggle-card {
+  top: 1rem;
+  left: 50%;
+  width: min(560px, calc(100% - 34rem));
+  transform: translateX(-50%);
+  z-index: 560;
+}
+
+.layer-toggle-card {
+  top: 1rem;
+  left: 1.25rem;
+  width: 260px;
+  z-index: 550;
+}
+
+.legend-card {
+  top: 1rem;
+  right: 1rem;
+  width: 290px;
+  z-index: 550;
+}
+
+.stream-card {
+  left: 1.25rem;
+  top: 12.25rem;
+  width: min(430px, calc(100% - 2.5rem));
+  max-height: calc(100% - 18rem);
+  overflow-y: auto;
+  z-index: 545;
+}
+
+.mode-control {
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  z-index: 570;
+}
+
+/* Medium screens: stack controls again before they collide */
+@media (max-width: 1250px) {
+  .view-toggle-card {
+    top: 1rem;
+    left: 1.25rem;
+    right: 1.25rem;
+    width: auto;
+    transform: none;
+  }
+
+  .layer-toggle-card {
+    top: 6.75rem;
+  }
+
+  .legend-card {
+    top: 6.75rem;
+  }
+
+  .stream-card {
+    top: 18.75rem;
+  }
+}
 /* Muted background map so stream systems stand out */
 .leaflet-tile-pane {
    filter: grayscale(45%) saturate(75%) brightness(90%) contrast(100%);
