@@ -122,7 +122,8 @@ h1 {
 .legend-card,
 .stream-card,
 .mode-control,
-.layer-toggle-card {
+.layer-toggle-card,
+.view-toggle-card {
   position: absolute;
   z-index: 500;
   border: 1px solid var(--line);
@@ -130,6 +131,35 @@ h1 {
   background: var(--panel);
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
+}
+.view-toggle-card {
+  top: 1rem;
+  left: 50%;
+  width: min(560px, calc(100% - 2rem));
+  padding: 0.85rem 1rem;
+  transform: translateX(-50%);
+  z-index: 540;
+}
+
+.view-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.view-buttons button {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 0.78rem;
+  padding: 0.45rem 0.7rem;
+}
+
+.view-buttons button:hover {
+  border-color: var(--accent);
 }
 
 .legend-card {
@@ -282,20 +312,41 @@ input[type="range"] {
     overflow: hidden;
   }
 
-    .legend-card,
-    .stream-card,
-    .mode-control,
-    .layer-toggle-card {
-    position: relative;
-    z-index: 500;
-    top: auto;
-    right: auto;
-    bottom: auto;
-    left: auto;
-    width: 100%;
-    max-width: none;
-    transform: none;
-  }
+   .legend-card,
+.stream-card,
+.mode-control,
+.layer-toggle-card,
+.view-toggle-card {
+  position: relative;
+  z-index: 500;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  width: 100%;
+  max-width: none;
+  transform: none;
+}
+  .view-toggle-card {
+  order: 2;
+  padding: 1rem;
+}
+
+.layer-toggle-card {
+  order: 3;
+}
+
+.legend-card {
+  order: 4;
+}
+
+.stream-card {
+  order: 5;
+}
+
+.mode-control {
+  order: 6;
+}
     .layer-toggle-card {
       order: 2;
       padding: 1rem;
