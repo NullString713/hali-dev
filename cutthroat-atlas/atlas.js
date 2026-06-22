@@ -91,110 +91,107 @@ fetch('./data/waters/index.json')
     console.error('Could not load featured waters:', error);
   });
 
-function loadHydroFiles() {
-  hydroFiles.forEach(file => {
-    fetch(file.path)
-      .then(response => response.json())
-      .then(data => {
-        // Background reference stream network
-        const hydroLayer = L.geoJSON(data, {
-          style: {
-            color: file.style?.color || '#3b9fc6',
-            weight: file.style?.weight || 1.6,
-            opacity: file.style?.opacity || 0.65,
-            lineCap: 'round',
-            lineJoin: 'round'
-          },
-          interactive: false
-        }).addTo(map);
+async function loadHydroFiles() {
+  for (const file of hydroFiles) {
+    try {
+      const response = await fetch(file.path);
+      const data = await response.json();
 
-        hydroLayerGroups[file.type] = hydroLayer;
+      // Background reference stream network
+      const hydroLayer = L.geoJSON(data, {
+        style: {
+          color: file.style?.color || '#3b9fc6',
+          weight: file.style?.weight || 1.6,
+          opacity: file.style?.opacity || 0.65,
+          lineCap: 'round',
+          lineJoin: 'round'
+        },
+        interactive: false
+      }).addTo(map);
 
-        const toggle = document.querySelector(`[data-layer-toggle="${file.type}"]`);
+      hydroLayerGroups[file.type] = hydroLayer;
 
-        if (toggle && !toggle.checked) {
-          map.removeLayer(hydroLayer);
+      const toggle = document.querySelector(`[data-layer-toggle="${file.type}"]`);
+
+      if (toggle && !toggle.checked) {
+        map.removeLayer(hydroLayer);
+      }
+
+      loadedHydroFileCount += 1;
+      updateDataLoadStatus();
+
+      if (!['nhd', 'osm'].includes(file.type)) continue;
+
+      // Featured clickable trout layer
+      const featuredStreams = {
+        type: 'FeatureCollection',
+        features: data.features
+          .map(feature => {
+            const sourceName =
+              feature.properties?.name ||
+              feature.properties?.GNIS_Name ||
+              feature.properties?.gnis_name ||
+              feature.properties?.GNIS_NAME ||
+              '';
+
+            const matches = featuredWaters
+              .filter(water =>
+                sourceName.toLowerCase().includes(water.match) &&
+                featureMatchesBounds(feature, water.bounds)
+              )
+              .sort((a, b) => (b.priority || 0) - (a.priority || 0));
+
+            const match = matches[0];
+
+            if (!match) return null;
+
+            // NHD wins. OSM only fills records not matched by NHD.
+            if (file.type === 'osm' && matchedFeaturedWaterIds.has(match.id)) {
+              return null;
+            }
+
+            if (file.type === 'nhd') {
+              matchedFeaturedWaterIds.add(match.id);
+            }
+
+            return {
+              ...feature,
+              properties: {
+                ...feature.properties,
+                ...match,
+                sourceName,
+                sourceLayer: file.type,
+                sourceLabel: file.label
+              }
+            };
+          })
+          .filter(Boolean)
+      };
+
+      featuredStreamLayer = L.geoJSON(featuredStreams, {
+        style: styleStream,
+        onEachFeature: (feature, layer) => {
+          layer.on('click', () => {
+            selectedStream = feature.properties;
+            renderStreamCard(selectedStream);
+            layer.bringToFront();
+          });
+
+          layer.on('mouseover', () => layer.setStyle({ weight: 5, opacity: 0.95 }));
+          layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
+
+          layer.bindTooltip(feature.properties.name || feature.properties.sourceName, {
+            permanent: false,
+            direction: 'top',
+            sticky: true,
+            className: 'stream-tooltip'
+          });
         }
-
-        loadedHydroFileCount += 1;
-        updateDataLoadStatus();
-
-        if (!['nhd', 'osm'].includes(file.type)) return;
-
-        // Featured clickable trout layer from cleaned NHD named flowlines
-        const featuredStreams = {
-          type: 'FeatureCollection',
-          features: data.features
-            .map(feature => {
-              const sourceName =
-                feature.properties?.name ||
-                feature.properties?.GNIS_Name ||
-                feature.properties?.gnis_name ||
-                feature.properties?.GNIS_NAME ||
-                '';
-
-              const matches = featuredWaters
-                .filter(water =>
-                  sourceName.toLowerCase().includes(water.match) &&
-                  featureMatchesBounds(feature, water.bounds)
-                )
-                .sort((a, b) => (b.priority || 0) - (a.priority || 0));
-
-              const match = matches[0];
-
-                if (!match) return null;
-                
-                // NHD wins by default.
-                // If this is an OSM feature and NHD already matched this water record,
-                // do not duplicate it in the featured layer.
-                if (file.type === 'osm' && matchedFeaturedWaterIds.has(match.id)) {
-                  return null;
-                }
-                
-                // If this is an NHD match, remember it so OSM will not duplicate it later.
-                if (file.type === 'nhd') {
-                  matchedFeaturedWaterIds.add(match.id);
-                }
-                
-                return {
-                ...feature,
-                properties: {
-                  ...feature.properties,
-                  ...match,
-                  sourceName,
-                  sourceLayer: file.type,
-                  sourceLabel: file.label
-                }
-              };
-            })
-            .filter(Boolean)
-        };
-
-        featuredStreamLayer = L.geoJSON(featuredStreams, {
-          style: styleStream,
-          onEachFeature: (feature, layer) => {
-            layer.on('click', () => {
-              selectedStream = feature.properties;
-              renderStreamCard(selectedStream);
-              layer.bringToFront();
-            });
-
-            layer.on('mouseover', () => layer.setStyle({ weight: 5, opacity: 0.95 }));
-            layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
-
-            layer.bindTooltip(feature.properties.name || feature.properties.sourceName, {
-              permanent: false,
-              direction: 'top',
-              sticky: true,
-              className: 'stream-tooltip'
-            });
-          }
-        }).addTo(featuredLayerGroup);
-      })
-      .catch(error => {
-        console.error(`Could not load ${file.label}:`, error);
-      });
-  });
+      }).addTo(featuredLayerGroup);
+    } catch (error) {
+      console.error(`Could not load ${file.label}:`, error);
+    }
+  }
 }
 function loadInterpretedFiles() {
   interpretedFiles.forEach(file => {
