@@ -143,7 +143,10 @@ let featuredStreamLayer;
 let selectedStream = null;
 let currentModeIndex = 0;
 
-const hydroLayerGroups = {};
+const hydroLayerGroups = {
+  nhd: L.layerGroup(),
+  osm: L.layerGroup()
+};
 const featuredLayerGroup = L.layerGroup();
 const matchedFeaturedWaterIds = new Set();
 
@@ -152,6 +155,8 @@ const map = L.map('map', {
   scrollWheelZoom: true
 }).setView([40.72, -105.72], 10);
 
+hydroLayerGroups.nhd.addTo(map);
+hydroLayerGroups.osm.addTo(map);
 featuredLayerGroup.addTo(map);
 hydroLayerGroups.featured = featuredLayerGroup;
 
@@ -177,6 +182,8 @@ async function loadHydroFiles() {
       const data = await response.json();
 
       // Background reference stream network
+      const sourceType = file.sourceType || file.type;
+
       const hydroLayer = L.geoJSON(data, {
         style: {
           color: file.style?.color || '#3b9fc6',
@@ -186,14 +193,14 @@ async function loadHydroFiles() {
           lineJoin: 'round'
         },
         interactive: false
-      }).addTo(map);
-
-      hydroLayerGroups[file.type] = hydroLayer;
-
-      const toggle = document.querySelector(`[data-layer-toggle="${file.type}"]`);
-
+      });
+      
+      hydroLayer.addTo(hydroLayerGroups[sourceType]);
+      
+      const toggle = document.querySelector(`[data-layer-toggle="${sourceType}"]`);
+      
       if (toggle && !toggle.checked) {
-        map.removeLayer(hydroLayer);
+        map.removeLayer(hydroLayerGroups[sourceType]);
       }
 
       loadedHydroFileCount += 1;
