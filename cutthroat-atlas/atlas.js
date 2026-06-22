@@ -28,7 +28,18 @@ const modes = [
 ];
 let featuredWaters = [];
 let loadedHydroFileCount = 0;
+
 const hydroFiles = [
+  {
+    path: './data/geojson/nhd/poudre-named-flowlines.geojson',
+    type: 'nhd',
+    label: 'USGS NHD named flowlines — Cache la Poudre',
+    style: {
+      color: '#8b9cff',
+      weight: 1.2,
+      opacity: 0.32
+    }
+  },
   {
     path: './data/geojson/osm/cache-la-poudre-natural-streams.geojson',
     type: 'osm',
@@ -38,18 +49,9 @@ const hydroFiles = [
       weight: 1.6,
       opacity: 0.55
     }
-  },
-    {
-    path: './data/geojson/nhd/poudre-named-flowlines.geojson',
-    type: 'nhd',
-    label: 'USGS NHD named flowlines — Cache la Poudre',
-    style: {
-    color: '#8b9cff',
-    weight: 1.2,
-    opacity: 0.32
   }
-}
 ];
+
 const interpretedFiles = [
   {
     path: './data/geojson/interpreted/poudre-recovery-context.geojson',
@@ -64,6 +66,7 @@ let currentModeIndex = 0;
 
 const hydroLayerGroups = {};
 const featuredLayerGroup = L.layerGroup();
+const matchedFeaturedWaterIds = new Set();
 
 const map = L.map('map', {
   zoomControl: true,
@@ -116,7 +119,7 @@ function loadHydroFiles() {
         loadedHydroFileCount += 1;
         updateDataLoadStatus();
 
-        if (file.type !== 'nhd') return;
+        if (!['nhd', 'osm'].includes(file.type)) return;
 
         // Featured clickable trout layer from cleaned NHD named flowlines
         const featuredStreams = {
@@ -139,9 +142,21 @@ function loadHydroFiles() {
 
               const match = matches[0];
 
-              if (!match) return null;
-
-              return {
+                if (!match) return null;
+                
+                // NHD wins by default.
+                // If this is an OSM feature and NHD already matched this water record,
+                // do not duplicate it in the featured layer.
+                if (file.type === 'osm' && matchedFeaturedWaterIds.has(match.id)) {
+                  return null;
+                }
+                
+                // If this is an NHD match, remember it so OSM will not duplicate it later.
+                if (file.type === 'nhd') {
+                  matchedFeaturedWaterIds.add(match.id);
+                }
+                
+                return {
                 ...feature,
                 properties: {
                   ...feature.properties,
