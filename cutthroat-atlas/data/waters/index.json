@@ -261,5 +261,79 @@
       "east": -105.25
     },
     "note": "Elkhorn Creek is included for prototype review. Some lower connector segments may be unnamed in NHD and may not appear in the named-flowline export."
-  }
+  },
+  {
+  "id": "big-thompson-river",
+  "name": "Big Thompson River",
+  "match": "big thompson river",
+  "priority": 82,
+  "basin": "South Platte / Big Thompson",
+  "state": "Colorado",
+  "historic": "greenback",
+  "current": "introduced",
+  "recovery": "recoveryWatch",
+  "confidence": "Prototype / public NHD and OSM geometry with trout metadata pending source review",
+  "geometryStatus": "matched-nhd-review-needed",
+  "geometrySource": "USGS NHD named flowline export with OpenStreetMap supplement where geometry gaps exist",
+  "troutSource": "Prototype metadata pending source review",
+  "useOsmSupplement": true,
+  "note": "Big Thompson River included as a second-watershed prototype record to test the repeatable South Platte workflow."
+},
+{
+  "id": "north-fork-big-thompson-river",
+  "name": "North Fork Big Thompson River",
+  "match": "north fork big thompson",
+  "priority": 88,
+  "basin": "South Platte / Big Thompson",
+  "state": "Colorado",
+  "historic": "greenback",
+  "current": "introduced",
+  "recovery": "recoveryWatch",
+  "confidence": "Prototype / public NHD and OSM geometry with trout metadata pending source review",
+  "geometryStatus": "matched-nhd-review-needed",
+  "geometrySource": "USGS NHD named flowline export with OpenStreetMap supplement where geometry gaps exist",
+  "troutSource": "Prototype metadata pending source review",
+  "useOsmSupplement": true,
+  "note": "North Fork Big Thompson River included for prototype review. Species and recovery context should be verified before final use."
+},
+{
+  "id": "south-fork-big-thompson-river",
+  "name": "South Fork Big Thompson River",
+  "match": "south fork big thompson",
+  "priority": 88,
+  "basin": "South Platte / Big Thompson",
+  "state": "Colorado",
+  "historic": "greenback",
+  "current": "introduced",
+  "recovery": "recoveryWatch",
+  "confidence": "Prototype / public NHD and OSM geometry with trout metadata pending source review",
+  "geometryStatus": "matched-nhd-review-needed",
+  "geometrySource": "USGS NHD named flowline export with OpenStreetMap supplement where geometry gaps exist",
+  "troutSource": "Prototype metadata pending source review",
+  "useOsmSupplement": true,
+  "note": "South Fork Big Thompson River included for prototype review. Species and recovery context should be verified before final use."
+},
+{
+  "id": "glacier-creek",
+  "name": "Glacier Creek",
+  "match": "glacier creek",
+  "priority": 74,
+  "basin": "South Platte / Big Thompson",
+  "state": "Colorado",
+  "historic": "greenback",
+  "current": "introduced",
+  "recovery": "recoveryWatch",
+  "confidence": "Prototype / public NHD and OSM geometry with trout metadata pending source review",
+  "geometryStatus": "matched-nhd-review-needed",
+  "geometrySource": "USGS NHD named flowline export with OpenStreetMap supplement where geometry gaps exist",
+  "troutSource": "Prototype metadata pending source review",
+  "useOsmSupplement": true,
+  "bounds": {
+    "south": 40.28,
+    "west": -105.75,
+    "north": 40.42,
+    "east": -105.45
+  },
+  "note": "Glacier Creek included as a Big Thompson / Rocky Mountain National Park area prototype record. Bounds are used to avoid matching unrelated Glacier Creek features."
+}
 ]
