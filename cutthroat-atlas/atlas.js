@@ -316,7 +316,7 @@ function renderStreamCard(stream) {
       <dt>State</dt><dd>${escapeHtml(stream.state)}</dd>
       <dt>Confidence</dt><dd>${escapeHtml(stream.confidence)}</dd>
       <dt>Geometry status</dt><dd>${escapeHtml(stream.geometryStatus || 'Prototype / review needed')}</dd>
-      <dt>Geometry source</dt><dd>${escapeHtml(stream.geometrySource || 'Unknown')}</dd>
+      <dt>Geometry source</dt><dd>${escapeHtml(stream.sourceLabel || stream.geometrySource || 'Unknown')}</dd>
       <dt>Trout source</dt><dd>${escapeHtml(stream.troutSource || 'Unknown')}</dd>
     </dl>
   `;
