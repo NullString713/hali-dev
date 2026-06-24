@@ -14,12 +14,65 @@
 
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="stylesheet" href="/styles.css" />
+
+  <style>
+    .article-wrap {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .article-body {
+      display: grid;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .article-section {
+      padding: 1.5rem;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.45);
+    }
+
+    .article-section h2 {
+      margin-top: 0;
+    }
+
+    .article-section p,
+    .article-section li {
+      line-height: 1.7;
+    }
+
+    .article-section ul {
+      padding-left: 1.25rem;
+    }
+
+    pre {
+      overflow-x: auto;
+      padding: 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      background: rgba(2, 6, 23, 0.7);
+      line-height: 1.6;
+    }
+
+    code {
+      font-family: Consolas, Monaco, "Courier New", monospace;
+    }
+
+    .back-link {
+      margin: 2rem 0;
+    }
+  </style>
+
 </head>
 
 <body>
- <nav class="site-nav">
-  <a href="/" class="brand">Hali Dev</a>
+  <main class="page article-wrap">
+    <nav class="site-nav">
+      <a href="/" class="brand">Hali Dev</a>
 
+```
   <div class="nav-links">
     <a href="/projects">Projects</a>
     <a href="/articles">Notes</a>
@@ -33,95 +86,92 @@
   <h1>Terraform Azure Lab: First Managed Resource</h1>
 
   <p class="summary">
-    A walkthrough of setting up a local Terraform workflow with
-    VS Code, PowerShell 7, Azure CLI, and the AzureRM provider. This lab creates
-    one Azure Resource Group, updates its tags through Terraform, and demonstrates
-    how Terraform detects portal drift.
+    A walkthrough of setting up a local Terraform workflow with VS Code,
+    PowerShell 7, Azure CLI, and the AzureRM provider. This lab creates
+    one Azure Resource Group, updates its tags through Terraform, and
+    demonstrates how Terraform detects portal drift.
   </p>
 
   <p class="summary">
-    The goal was not to build something expensive or overly complex. The goal was
-    to learn the Terraform workflow safely: write, initialize, validate, plan,
-    apply, verify, update, and reconcile drift.
+    The goal was not to build something expensive or overly complex. The goal
+    was to learn the Terraform workflow safely: write, initialize, validate,
+    plan, apply, verify, update, and reconcile drift.
   </p>
 </section>
 
-<section class="card">
-  <h2>Lab Goal</h2>
+<article class="article-body">
+  <section class="article-section">
+    <h2>Lab Goal</h2>
 
-  <p>
-    This lab creates a single Azure Resource Group named
-    <code>rg-tf-learning-001</code>. Resource groups are management containers in
-    Azure, so this was a safe first target for learning Terraform without creating
-    compute, networking, storage, or database resources.
-  </p>
+    <p>
+      This lab creates a single Azure Resource Group named
+      <code>rg-tf-learning-001</code>. Resource groups are management
+      containers in Azure, so this was a safe first target for learning
+      Terraform without creating compute, networking, storage, or database
+      resources.
+    </p>
 
-  <p>
-    The workflow covered:
-  </p>
+    <p>The workflow covered:</p>
 
-  <ul>
-    <li>Creating a Terraform project folder in VS Code</li>
-    <li>Authenticating to Azure with Azure CLI</li>
-    <li>Writing a minimal Terraform configuration</li>
-    <li>Initializing the Terraform working directory</li>
-    <li>Formatting and validating the configuration</li>
-    <li>Generating and reviewing a Terraform plan</li>
-    <li>Applying the configuration to Azure</li>
-    <li>Confirming Terraform state tracking</li>
-    <li>Updating tags through Terraform</li>
-    <li>Detecting and correcting manual portal drift</li>
-  </ul>
-</section>
+    <ul>
+      <li>Creating a Terraform project folder in VS Code</li>
+      <li>Authenticating to Azure with Azure CLI</li>
+      <li>Writing a minimal Terraform configuration</li>
+      <li>Initializing the Terraform working directory</li>
+      <li>Formatting and validating the configuration</li>
+      <li>Generating and reviewing a Terraform plan</li>
+      <li>Applying the configuration to Azure</li>
+      <li>Confirming Terraform state tracking</li>
+      <li>Updating tags through Terraform</li>
+      <li>Detecting and correcting manual portal drift</li>
+    </ul>
+  </section>
 
-<section class="card">
-  <h2>Tools Used</h2>
+  <section class="article-section">
+    <h2>Tools Used</h2>
 
-  <p>
-    The lab used a modern local workflow instead of portal-only administration:
-  </p>
+    <p>
+      The lab used a modern local workflow instead of portal-only
+      administration:
+    </p>
 
-  <pre><code>PowerShell 7
-
+    <pre><code>PowerShell 7
+```
 
 Azure CLI
 Git
 Terraform
 Visual Studio Code</code></pre>
 
+```
+    <p>I verified the local tooling with:</p>
 
-  <p>
-    I verified the local tooling with:
-  </p>
-
-  <pre><code>terraform -version
-
+    <pre><code>terraform -version
+```
 
 az version
 git --version
 $PSVersionTable.PSVersion</code></pre> </section>
 
+```
+  <section class="article-section">
+    <h2>Project Folder</h2>
 
-<section class="card">
-  <h2>Project Folder</h2>
+    <p>
+      I created a dedicated folder for the lab and opened it in VS Code:
+    </p>
 
-  <p>
-    I created a dedicated folder for the lab and opened it in VS Code:
-  </p>
-
-  <pre><code>mkdir C:\Code\terraform-azure-lab
-
+    <pre><code>mkdir C:\Code\terraform-azure-lab
+```
 
 cd C:\Code\terraform-azure-lab
 code .</code></pre>
 
+```
+    <p>The initial project structure was:</p>
 
-  <p>
-    The initial project structure was:
-  </p>
-
-  <pre><code>terraform-azure-lab
-
+    <pre><code>terraform-azure-lab
+```
 
 main.tf
 variables.tf
@@ -129,48 +179,46 @@ outputs.tf
 .gitignore
 README.md</code></pre> </section>
 
+```
+  <section class="article-section">
+    <h2>Azure CLI Login</h2>
 
-<section class="card">
-  <h2>Azure CLI Login</h2>
+    <p>
+      I authenticated to the correct Azure tenant using Azure CLI:
+    </p>
 
-  <p>
-    I authenticated to the correct Azure tenant using Azure CLI:
-  </p>
+    <pre><code>az login --tenant "&lt;tenant-id&gt;" --use-device-code</code></pre>
 
-  <pre><code>az login --tenant "&lt;tenant-id&gt;" --use-device-code</code></pre>
+    <p>Then I confirmed the active subscription:</p>
 
-  <p>
-    Then I confirmed the active subscription:
-  </p>
+    <pre><code>az account show -o table</code></pre>
 
-  <pre><code>az account show -o table</code></pre>
+    <p>
+      For the local Terraform session, I set the Azure subscription and tenant
+      environment variables:
+    </p>
 
-  <p>
-    For the local Terraform session, I set the Azure subscription and tenant
-    environment variables:
-  </p>
-
-  <pre><code>$env:ARM_SUBSCRIPTION_ID = "&lt;subscription-id&gt;"
-
+    <pre><code>$env:ARM_SUBSCRIPTION_ID = "&lt;subscription-id&gt;"
+```
 
 $env:ARM_TENANT_ID = "<tenant-id>"</code></pre>
 
+```
+    <p>
+      These values should not be committed to Git or published publicly.
+    </p>
+  </section>
 
-  <p>
-    These values should not be committed to Git or published publicly.
-  </p>
-</section>
+  <section class="article-section">
+    <h2>Git Ignore</h2>
 
-<section class="card">
-  <h2>Git Ignore</h2>
+    <p>
+      I added a <code>.gitignore</code> file so local Terraform files and
+      state would not be committed:
+    </p>
 
-  <p>
-    I added a <code>.gitignore</code> file so local Terraform files and state would
-    not be committed:
-  </p>
-
-  <pre><code>.terraform/
-
+    <pre><code>.terraform/
+```
 
 *.tfstate
 *.tfstate.*
@@ -182,23 +230,23 @@ override.tf.json
 *_override.tf
 *_override.tf.json</code></pre>
 
+```
+    <p>
+      For a local learning lab, local state is fine. In a real production
+      workflow, Terraform state should be stored remotely with locking and
+      appropriate access controls.
+    </p>
+  </section>
 
-  <p>
-    For a local learning lab, local state is fine. In a real production workflow,
-    Terraform state should be stored remotely with locking and appropriate access
-    controls.
-  </p>
-</section>
+  <section class="article-section">
+    <h2>First Terraform Configuration</h2>
 
-<section class="card">
-  <h2>First Terraform Configuration</h2>
+    <p>
+      The first <code>main.tf</code> created only one Azure Resource Group:
+    </p>
 
-  <p>
-    The first <code>main.tf</code> created only one Azure Resource Group:
-  </p>
-
-  <pre><code>terraform {
-
+    <pre><code>terraform {
+```
 
 required_version = ">= 1.6.0"
 
@@ -227,155 +275,139 @@ managed_by  = "terraform"
 }
 }</code></pre>
 
+```
+    <p>
+      The <code>resource_provider_registrations = "none"</code> setting kept
+      the lab focused. During the first plan, the AzureRM provider attempted
+      to register many Azure service namespaces that were not needed for a
+      simple resource group lab.
+    </p>
+  </section>
 
-  <p>
-    The <code>resource_provider_registrations = "none"</code> setting kept the lab
-    focused. During the first plan, the AzureRM provider attempted to register many
-    Azure service namespaces that were not needed for a simple resource group lab.
-  </p>
-</section>
+  <section class="article-section">
+    <h2>Initialize Terraform</h2>
 
-<section class="card">
-  <h2>Initialize Terraform</h2>
+    <p>The first Terraform command was:</p>
 
-  <p>
-    The first Terraform command was:
-  </p>
+    <pre><code>terraform init</code></pre>
 
-  <pre><code>terraform init</code></pre>
+    <p>
+      This initialized the working directory and downloaded the AzureRM
+      provider. A successful initialization returns:
+    </p>
 
-  <p>
-    This initialized the working directory and downloaded the AzureRM provider.
-    A successful initialization returns:
-  </p>
+    <pre><code>Terraform has been successfully initialized!</code></pre>
+  </section>
 
-  <pre><code>Terraform has been successfully initialized!</code></pre>
-</section>
+  <section class="article-section">
+    <h2>Format and Validate</h2>
 
-<section class="card">
-  <h2>Format and Validate</h2>
+    <p>
+      Next, I formatted and validated the Terraform configuration:
+    </p>
 
-  <p>
-    Next, I formatted and validated the Terraform configuration:
-  </p>
-
-  <pre><code>terraform fmt
-
+    <pre><code>terraform fmt
+```
 
 terraform validate</code></pre>
 
+```
+    <p>The expected validation result was:</p>
 
-  <p>
-    The expected validation result was:
-  </p>
+    <pre><code>Success! The configuration is valid.</code></pre>
 
-  <pre><code>Success! The configuration is valid.</code></pre>
+    <p>
+      Validation confirms that Terraform understands the configuration. It
+      does not mean Azure has created anything yet.
+    </p>
+  </section>
 
-  <p>
-    Validation confirms that Terraform understands the configuration. It does not
-    mean Azure has created anything yet.
-  </p>
-</section>
+  <section class="article-section">
+    <h2>Terraform Plan</h2>
 
-<section class="card">
-  <h2>Terraform Plan</h2>
+    <p>Next, I generated a plan:</p>
 
-  <p>
-    Next, I generated a plan:
-  </p>
+    <pre><code>terraform plan</code></pre>
 
-  <pre><code>terraform plan</code></pre>
+    <p>The important result was:</p>
 
-  <p>
-    The important result was:
-  </p>
+    <pre><code>Plan: 1 to add, 0 to change, 0 to destroy.</code></pre>
 
-  <pre><code>Plan: 1 to add, 0 to change, 0 to destroy.</code></pre>
+    <p>Terraform showed that it would create only one resource:</p>
 
-  <p>
-    Terraform showed that it would create only one resource:
-  </p>
+    <pre><code>azurerm_resource_group.lab</code></pre>
 
-  <pre><code>azurerm_resource_group.lab</code></pre>
+    <p>
+      This is one of the most important Terraform habits: always read the
+      plan before applying changes.
+    </p>
+  </section>
 
-  <p>
-    This is one of the most important Terraform habits: always read the plan before
-    applying changes.
-  </p>
-</section>
+  <section class="article-section">
+    <h2>Terraform Apply</h2>
 
-<section class="card">
-  <h2>Terraform Apply</h2>
+    <p>After confirming the plan, I applied the configuration:</p>
 
-  <p>
-    After confirming the plan, I applied the configuration:
-  </p>
+    <pre><code>terraform apply</code></pre>
 
-  <pre><code>terraform apply</code></pre>
+    <p>Terraform displayed the plan again and prompted for confirmation:</p>
 
-  <p>
-    Terraform displayed the plan again and prompted for confirmation:
-  </p>
+    <pre><code>Do you want to perform these actions?</code></pre>
 
-  <pre><code>Do you want to perform these actions?</code></pre>
+    <p>
+      After typing <code>yes</code>, Terraform created the Azure Resource
+      Group.
+    </p>
+  </section>
 
-  <p>
-    After typing <code>yes</code>, Terraform created the Azure Resource Group.
-  </p>
-</section>
+  <section class="article-section">
+    <h2>Verifying in Azure</h2>
 
-<section class="card">
-  <h2>Verifying in Azure</h2>
+    <p>
+      After the apply completed, I verified the resource group in the Azure
+      Portal. The resource group existed with the expected tags:
+    </p>
 
-  <p>
-    After the apply completed, I verified the resource group in the Azure Portal.
-    The resource group existed with the expected tags:
-  </p>
-
-  <pre><code>environment = lab
-
+    <pre><code>environment = lab
+```
 
 owner       = me
 managed_by  = terraform</code></pre>
 
+```
+    <p>
+      The resource group contained no resources, which was expected. At this
+      stage, Terraform had created only the management container.
+    </p>
+  </section>
 
-  <p>
-    The resource group contained no resources, which was expected. At this stage,
-    Terraform had created only the management container.
-  </p>
-</section>
+  <section class="article-section">
+    <h2>Terraform State</h2>
 
-<section class="card">
-  <h2>Terraform State</h2>
+    <p>
+      After the first successful apply, Terraform created a local state file
+      and began tracking the resource.
+    </p>
 
-  <p>
-    After the first successful apply, Terraform created a local state file and
-    began tracking the resource.
-  </p>
+    <pre><code>terraform state list</code></pre>
 
-  <pre><code>terraform state list</code></pre>
+    <p>Expected output:</p>
 
-  <p>
-    Expected output:
-  </p>
+    <pre><code>azurerm_resource_group.lab</code></pre>
 
-  <pre><code>azurerm_resource_group.lab</code></pre>
+    <p>
+      This means Terraform understands that the resource block in
+      <code>main.tf</code> maps to the real Azure Resource Group.
+    </p>
+  </section>
 
-  <p>
-    This means Terraform understands that the resource block in <code>main.tf</code>
-    maps to the real Azure Resource Group.
-  </p>
-</section>
+  <section class="article-section">
+    <h2>Updating the Resource</h2>
 
-<section class="card">
-  <h2>Updating the Resource</h2>
+    <p>Next, I added a new tag to the resource group:</p>
 
-  <p>
-    Next, I added a new tag to the resource group:
-  </p>
-
-  <pre><code>tags = {
-
+    <pre><code>tags = {
+```
 
 environment = "lab"
 owner       = "me"
@@ -383,76 +415,66 @@ managed_by  = "terraform"
 purpose     = "first-terraform-lab"
 }</code></pre>
 
+```
+    <p>Then I ran:</p>
 
-  <p>
-    Then I ran:
-  </p>
-
-  <pre><code>terraform fmt
-
+    <pre><code>terraform fmt
+```
 
 terraform plan</code></pre>
 
+```
+    <p>
+      Terraform detected that the resource group already existed and only
+      needed an in-place update:
+    </p>
 
-  <p>
-    Terraform detected that the resource group already existed and only needed an
-    in-place update:
-  </p>
+    <pre><code>Plan: 0 to add, 1 to change, 0 to destroy.</code></pre>
 
-  <pre><code>Plan: 0 to add, 1 to change, 0 to destroy.</code></pre>
+    <p>The plan showed the new tag being added:</p>
 
-  <p>
-    The plan showed the new tag being added:
-  </p>
+    <pre><code>+ "purpose" = "first-terraform-lab"</code></pre>
 
-  <pre><code>+ "purpose" = "first-terraform-lab"</code></pre>
+    <p>
+      After applying the change, the Azure Portal showed the new tag.
+    </p>
+  </section>
 
-  <p>
-    After applying the change, the Azure Portal showed the new tag.
-  </p>
-</section>
+  <section class="article-section">
+    <h2>Portal Drift Test</h2>
 
-<section class="card">
-  <h2>Portal Drift Test</h2>
+    <p>
+      To test Terraform drift detection, I manually changed the
+      <code>purpose</code> tag in the Azure Portal.
+    </p>
 
-  <p>
-    To test Terraform drift detection, I manually changed the
-    <code>purpose</code> tag in the Azure Portal.
-  </p>
+    <p>Then I ran:</p>
 
-  <p>
-    Then I ran:
-  </p>
+    <pre><code>terraform plan</code></pre>
 
-  <pre><code>terraform plan</code></pre>
+    <p>
+      Terraform detected that Azure no longer matched the configuration:
+    </p>
 
-  <p>
-    Terraform detected that Azure no longer matched the configuration:
-  </p>
+    <pre><code>~ "purpose" = "changed it" -&gt; "first-terraform-lab"</code></pre>
 
-  <pre><code>~ "purpose" = "changed it" -&gt; "first-terraform-lab"</code></pre>
+    <p>The plan showed:</p>
 
-  <p>
-    The plan showed:
-  </p>
+    <pre><code>Plan: 0 to add, 1 to change, 0 to destroy.</code></pre>
 
-  <pre><code>Plan: 0 to add, 1 to change, 0 to destroy.</code></pre>
+    <p>
+      Terraform was not going to recreate the resource group. It was only
+      going to correct the tag and bring Azure back in line with the code.
+    </p>
+  </section>
 
-  <p>
-    Terraform was not going to recreate the resource group. It was only going to
-    correct the tag and bring Azure back in line with the code.
-  </p>
-</section>
+  <section class="article-section">
+    <h2>Key Takeaways</h2>
 
-<section class="card">
-  <h2>Key Takeaways</h2>
+    <p>This lab demonstrated the basic Terraform workflow:</p>
 
-  <p>
-    This lab demonstrated the basic Terraform workflow:
-  </p>
-
-  <pre><code>terraform init
-
+    <pre><code>terraform init
+```
 
 terraform fmt
 terraform validate
@@ -460,79 +482,74 @@ terraform plan
 terraform apply
 terraform state list</code></pre>
 
+```
+    <p>It also demonstrated the core Terraform value:</p>
 
-  <p>
-    It also demonstrated the core Terraform value:
-  </p>
-
-  <pre><code>Code defines the desired state.
-
+    <pre><code>Code defines the desired state.
+```
 
 Terraform compares desired state to real infrastructure.
 Terraform shows the difference before making changes.
 Terraform can detect and correct portal drift.</code></pre>
 
+```
+    <p>
+      The safest Terraform habit is to slow down and read the plan.
+    </p>
 
-  <p>
-    The safest Terraform habit is to slow down and read the plan.
-  </p>
+    <p>In this lab, the safe plan patterns were:</p>
 
-  <p>
-    In this lab, the safe plan patterns were:
-  </p>
-
-  <pre><code>Plan: 1 to add, 0 to change, 0 to destroy.
-
+    <pre><code>Plan: 1 to add, 0 to change, 0 to destroy.
+```
 
 Plan: 0 to add, 1 to change, 0 to destroy.
 No changes. Your infrastructure matches the configuration.</code></pre>
 
+```
+    <p>
+      In future labs, the thing to watch for is unexpected destroy or replace
+      behavior.
+    </p>
+  </section>
 
-  <p>
-    In future labs, the thing to watch for is unexpected destroy or replace
-    behavior.
-  </p>
-</section>
+  <section class="article-section">
+    <h2>Cleanup</h2>
 
-<section class="card">
-  <h2>Cleanup</h2>
+    <p>When finished, the lab can be destroyed with:</p>
 
-  <p>
-    When finished, the lab can be destroyed with:
-  </p>
+    <pre><code>terraform destroy</code></pre>
 
-  <pre><code>terraform destroy</code></pre>
+    <p>
+      Terraform will show a destroy plan and ask for confirmation. For this
+      lab, destruction removes only the Terraform-managed resource group.
+    </p>
+  </section>
 
-  <p>
-    Terraform will show a destroy plan and ask for confirmation. For this lab,
-    destruction removes only the Terraform-managed resource group.
-  </p>
-</section>
+  <section class="article-section">
+    <h2>Final Thoughts</h2>
 
-<section class="card">
-  <h2>Final Thoughts</h2>
+    <p>
+      This was a small lab, but it covered the real Terraform loop: write,
+      format, validate, plan, apply, verify, detect drift, and reconcile.
+    </p>
 
-  <p>
-    This was a small lab, but it covered the real Terraform loop: write, format,
-    validate, plan, apply, verify, detect drift, and reconcile.
-  </p>
+    <p>
+      The resource created was intentionally simple. The learning value came
+      from understanding how Terraform thinks, how state works, and how
+      infrastructure changes become reviewable before they are applied.
+    </p>
 
-  <p>
-    The resource created was intentionally simple. The learning value came from
-    understanding how Terraform thinks, how state works, and how infrastructure
-    changes become reviewable before they are applied.
-  </p>
+    <p>
+      That is the foundation for moving from manual Azure administration to
+      infrastructure as code.
+    </p>
+  </section>
+</article>
 
-  <p>
-    That is the foundation for moving from manual Azure administration to
-    infrastructure as code.
-  </p>
-</section>
-
-<p class="summary">
+<p class="summary back-link">
   <a href="/articles">← Back to Technical Notes</a>
 </p>
-
+```
 
   </main>
 </body>
