@@ -501,3 +501,241 @@ input[type="range"] {
     padding: 0 1rem 2rem;
   }
 }
+.species-guide-hero {
+  max-width: 900px;
+  margin: 4rem auto 3rem;
+}
+
+.eyebrow {
+  margin-bottom: 0.75rem;
+  color: var(--accent, #77bfa3);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.species-guide-list {
+  display: grid;
+  gap: 3rem;
+  margin: 3rem 0 5rem;
+}
+
+.species-guide-row {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.1fr);
+  gap: 2rem;
+  align-items: center;
+}
+
+.species-guide-row.reverse {
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+}
+
+.species-guide-row.reverse .species-fish-panel {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.species-guide-row.reverse .species-text-panel {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.species-fish-panel,
+.species-text-panel {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+}
+
+.species-fish-panel {
+  min-height: 260px;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  overflow: hidden;
+}
+
+.species-text-panel {
+  padding: 1.6rem;
+}
+
+.species-text-panel h2 {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
+.scientific-name {
+  margin-top: 0;
+  color: var(--muted, #a8b3ad);
+  font-style: italic;
+}
+
+.species-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1rem 0 1.25rem;
+}
+
+.species-tags span {
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(119, 191, 163, 0.12);
+  color: var(--accent, #77bfa3);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.featured-species .species-text-panel {
+  border-color: rgba(230, 183, 77, 0.45);
+}
+
+/* CSS fish */
+.css-fish {
+  position: relative;
+  width: min(100%, 420px);
+  height: 180px;
+}
+
+.css-fish span {
+  position: absolute;
+  display: block;
+}
+
+.fish-body {
+  left: 40px;
+  top: 58px;
+  width: 270px;
+  height: 92px;
+  border: 3px solid rgba(18, 24, 22, 0.92);
+  border-radius: 65% 45% 45% 65%;
+}
+
+.fish-tail {
+  right: 26px;
+  top: 68px;
+  width: 80px;
+  height: 74px;
+  border: 3px solid rgba(18, 24, 22, 0.92);
+  clip-path: polygon(0 50%, 100% 0, 78% 50%, 100% 100%);
+}
+
+.fish-dorsal {
+  left: 142px;
+  top: 22px;
+  width: 70px;
+  height: 58px;
+  border: 3px solid rgba(18, 24, 22, 0.92);
+  clip-path: polygon(10% 100%, 48% 0, 88% 100%);
+}
+
+.fish-pectoral {
+  left: 168px;
+  top: 123px;
+  width: 66px;
+  height: 44px;
+  border: 3px solid rgba(18, 24, 22, 0.92);
+  clip-path: polygon(0 0, 100% 28%, 42% 100%);
+}
+
+.fish-eye {
+  left: 86px;
+  top: 86px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #111;
+}
+
+.fish-gill {
+  left: 118px;
+  top: 98px;
+  width: 38px;
+  height: 34px;
+  border-left: 4px solid rgba(18, 24, 22, 0.92);
+  transform: rotate(12deg);
+}
+
+/* Different trout colors */
+.yellowfin-fish .fish-body {
+  background: linear-gradient(180deg, #d2a74d 0%, #f2ca5c 48%, #b97837 100%);
+}
+
+.yellowfin-fish .fish-tail,
+.yellowfin-fish .fish-dorsal,
+.yellowfin-fish .fish-pectoral {
+  background: #d9ad4a;
+}
+
+.greenback-fish .fish-body {
+  background: linear-gradient(180deg, #637b58 0%, #b2a35b 50%, #8a633f 100%);
+}
+
+.greenback-fish .fish-tail,
+.greenback-fish .fish-dorsal,
+.greenback-fish .fish-pectoral {
+  background: #8f8a4d;
+}
+
+.colorado-fish .fish-body {
+  background: linear-gradient(180deg, #8b7751 0%, #c29a5a 52%, #9f6641 100%);
+}
+
+.colorado-fish .fish-tail,
+.colorado-fish .fish-dorsal,
+.colorado-fish .fish-pectoral {
+  background: #b98246;
+}
+
+.rio-fish .fish-body {
+  background: linear-gradient(180deg, #b08b55 0%, #d1ad63 48%, #a45f3f 100%);
+}
+
+.rio-fish .fish-tail,
+.rio-fish .fish-dorsal,
+.rio-fish .fish-pectoral {
+  background: #c58b4b;
+}
+
+.lahontan-fish .fish-body {
+  background: linear-gradient(180deg, #8f9a84 0%, #c6b071 48%, #9d7351 100%);
+}
+
+.lahontan-fish .fish-tail,
+.lahontan-fish .fish-dorsal,
+.lahontan-fish .fish-pectoral {
+  background: #a89968;
+}
+
+@media (max-width: 800px) {
+  .species-guide-row,
+  .species-guide-row.reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .species-guide-row.reverse .species-fish-panel,
+  .species-guide-row.reverse .species-text-panel {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .species-guide-row.reverse .species-fish-panel {
+    order: 1;
+  }
+
+  .species-guide-row.reverse .species-text-panel {
+    order: 2;
+  }
+
+  .species-fish-panel {
+    min-height: 220px;
+  }
+
+  .css-fish {
+    transform: scale(0.82);
+  }
+}
