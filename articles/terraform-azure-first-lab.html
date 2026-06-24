@@ -17,11 +17,9 @@
 </head>
 
 <body>
-  <main class="page">
-    <nav class="site-nav">
-      <a href="/" class="brand">Hali Dev</a>
+ <nav class="site-nav">
+  <a href="/" class="brand">Hali Dev</a>
 
-```
   <div class="nav-links">
     <a href="/projects">Projects</a>
     <a href="/articles">Notes</a>
@@ -84,26 +82,26 @@
   </p>
 
   <pre><code>PowerShell 7
-```
+
 
 Azure CLI
 Git
 Terraform
 Visual Studio Code</code></pre>
 
-```
+
   <p>
     I verified the local tooling with:
   </p>
 
   <pre><code>terraform -version
-```
+
 
 az version
 git --version
 $PSVersionTable.PSVersion</code></pre> </section>
 
-```
+
 <section class="card">
   <h2>Project Folder</h2>
 
@@ -112,18 +110,18 @@ $PSVersionTable.PSVersion</code></pre> </section>
   </p>
 
   <pre><code>mkdir C:\Code\terraform-azure-lab
-```
+
 
 cd C:\Code\terraform-azure-lab
 code .</code></pre>
 
-```
+
   <p>
     The initial project structure was:
   </p>
 
   <pre><code>terraform-azure-lab
-```
+
 
 main.tf
 variables.tf
@@ -131,7 +129,7 @@ outputs.tf
 .gitignore
 README.md</code></pre> </section>
 
-```
+
 <section class="card">
   <h2>Azure CLI Login</h2>
 
@@ -153,11 +151,11 @@ README.md</code></pre> </section>
   </p>
 
   <pre><code>$env:ARM_SUBSCRIPTION_ID = "&lt;subscription-id&gt;"
-```
+
 
 $env:ARM_TENANT_ID = "<tenant-id>"</code></pre>
 
-```
+
   <p>
     These values should not be committed to Git or published publicly.
   </p>
@@ -172,7 +170,7 @@ $env:ARM_TENANT_ID = "<tenant-id>"</code></pre>
   </p>
 
   <pre><code>.terraform/
-```
+
 
 *.tfstate
 *.tfstate.*
@@ -184,7 +182,7 @@ override.tf.json
 *_override.tf
 *_override.tf.json</code></pre>
 
-```
+
   <p>
     For a local learning lab, local state is fine. In a real production workflow,
     Terraform state should be stored remotely with locking and appropriate access
@@ -200,7 +198,7 @@ override.tf.json
   </p>
 
   <pre><code>terraform {
-```
+
 
 required_version = ">= 1.6.0"
 
@@ -229,7 +227,7 @@ managed_by  = "terraform"
 }
 }</code></pre>
 
-```
+
   <p>
     The <code>resource_provider_registrations = "none"</code> setting kept the lab
     focused. During the first plan, the AzureRM provider attempted to register many
@@ -262,11 +260,11 @@ managed_by  = "terraform"
   </p>
 
   <pre><code>terraform fmt
-```
+
 
 terraform validate</code></pre>
 
-```
+
   <p>
     The expected validation result was:
   </p>
@@ -335,12 +333,12 @@ terraform validate</code></pre>
   </p>
 
   <pre><code>environment = lab
-```
+
 
 owner       = me
 managed_by  = terraform</code></pre>
 
-```
+
   <p>
     The resource group contained no resources, which was expected. At this stage,
     Terraform had created only the management container.
@@ -377,7 +375,7 @@ managed_by  = terraform</code></pre>
   </p>
 
   <pre><code>tags = {
-```
+
 
 environment = "lab"
 owner       = "me"
@@ -385,17 +383,17 @@ managed_by  = "terraform"
 purpose     = "first-terraform-lab"
 }</code></pre>
 
-```
+
   <p>
     Then I ran:
   </p>
 
   <pre><code>terraform fmt
-```
+
 
 terraform plan</code></pre>
 
-```
+
   <p>
     Terraform detected that the resource group already existed and only needed an
     in-place update:
@@ -454,7 +452,7 @@ terraform plan</code></pre>
   </p>
 
   <pre><code>terraform init
-```
+
 
 terraform fmt
 terraform validate
@@ -462,19 +460,19 @@ terraform plan
 terraform apply
 terraform state list</code></pre>
 
-```
+
   <p>
     It also demonstrated the core Terraform value:
   </p>
 
   <pre><code>Code defines the desired state.
-```
+
 
 Terraform compares desired state to real infrastructure.
 Terraform shows the difference before making changes.
 Terraform can detect and correct portal drift.</code></pre>
 
-```
+
   <p>
     The safest Terraform habit is to slow down and read the plan.
   </p>
@@ -484,12 +482,12 @@ Terraform can detect and correct portal drift.</code></pre>
   </p>
 
   <pre><code>Plan: 1 to add, 0 to change, 0 to destroy.
-```
+
 
 Plan: 0 to add, 1 to change, 0 to destroy.
 No changes. Your infrastructure matches the configuration.</code></pre>
 
-```
+
   <p>
     In future labs, the thing to watch for is unexpected destroy or replace
     behavior.
@@ -534,7 +532,7 @@ No changes. Your infrastructure matches the configuration.</code></pre>
 <p class="summary">
   <a href="/articles">← Back to Technical Notes</a>
 </p>
-```
+
 
   </main>
 </body>
