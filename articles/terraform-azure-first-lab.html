@@ -17,8 +17,10 @@
 
   <style>
     .article-wrap {
-      max-width: 920px;
+      width: min(100%, 920px);
       margin: 0 auto;
+      padding: 0 1rem;
+      box-sizing: border-box;
     }
 
     .article-body {
@@ -32,6 +34,8 @@
       border: 1px solid rgba(148, 163, 184, 0.2);
       border-radius: 16px;
       background: rgba(15, 23, 42, 0.45);
+      min-width: 0;
+      overflow-wrap: break-word;
     }
 
     .article-section h2 {
@@ -41,6 +45,8 @@
     .article-section p,
     .article-section li {
       line-height: 1.7;
+      white-space: normal;
+      overflow-wrap: break-word;
     }
 
     .article-section ul {
@@ -48,6 +54,7 @@
     }
 
     pre {
+      max-width: 100%;
       overflow-x: auto;
       padding: 1rem;
       border-radius: 12px;
