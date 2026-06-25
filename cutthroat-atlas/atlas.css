@@ -760,3 +760,214 @@ input[type="range"] {
 .species-guide-list {
   gap: 2.5rem;
 }
+.deep-time-story {
+  width: min(100% - 2rem, 1400px);
+  margin: 3rem auto 5rem;
+  display: grid;
+  grid-template-columns: minmax(320px, 0.95fr) minmax(0, 1.05fr);
+  gap: 3rem;
+  align-items: start;
+}
+
+.deep-time-stage {
+  position: sticky;
+  top: 1.5rem;
+  min-height: 680px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(119, 191, 163, 0.18), transparent 30%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.deep-time-stage h1 {
+  max-width: 680px;
+  margin: 0 0 1.5rem;
+  font-size: clamp(2.3rem, 5vw, 5.4rem);
+  line-height: 0.95;
+}
+
+.deep-time-visual {
+  position: relative;
+  height: 320px;
+  margin: 2rem 0;
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, rgba(22, 42, 48, 0.9), rgba(17, 31, 28, 0.95)),
+    radial-gradient(circle at 30% 60%, rgba(72, 126, 168, 0.55), transparent 40%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.water-line {
+  position: absolute;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(119, 191, 163, 0.65);
+  transform-origin: left center;
+  transition: all 450ms ease;
+}
+
+.water-line-one {
+  width: 42%;
+  left: 8%;
+  top: 54%;
+  transform: rotate(-8deg);
+}
+
+.water-line-two {
+  width: 34%;
+  left: 38%;
+  top: 42%;
+  transform: rotate(16deg);
+}
+
+.water-line-three {
+  width: 28%;
+  left: 62%;
+  top: 62%;
+  transform: rotate(-18deg);
+}
+
+.basin-dot {
+  position: absolute;
+  padding: 0.38rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(235, 244, 239, 0.72);
+  font-size: 0.75rem;
+  font-weight: 700;
+  transition: all 450ms ease;
+}
+
+.basin-coast {
+  left: 8%;
+  top: 48%;
+}
+
+.basin-columbia {
+  left: 30%;
+  top: 36%;
+}
+
+.basin-snake {
+  left: 47%;
+  top: 55%;
+}
+
+.basin-lahontan {
+  left: 35%;
+  top: 70%;
+}
+
+.basin-bonneville {
+  left: 58%;
+  top: 75%;
+}
+
+.basin-rockies {
+  left: 72%;
+  top: 42%;
+}
+
+.deep-time-visual[data-stage="coast"] .basin-coast,
+.deep-time-visual[data-stage="inland"] .basin-columbia,
+.deep-time-visual[data-stage="inland"] .basin-snake,
+.deep-time-visual[data-stage="ice"] .basin-lahontan,
+.deep-time-visual[data-stage="ice"] .basin-bonneville,
+.deep-time-visual[data-stage="flood"] .water-line,
+.deep-time-visual[data-stage="isolation"] .basin-dot,
+.deep-time-visual[data-stage="modern"] .basin-dot {
+  background: rgba(230, 183, 77, 0.22);
+  color: #f2d27a;
+  box-shadow: 0 0 26px rgba(230, 183, 77, 0.22);
+}
+
+.deep-time-visual[data-stage="flood"] .water-line-one {
+  width: 76%;
+  transform: rotate(3deg);
+}
+
+.deep-time-visual[data-stage="flood"] .water-line-two {
+  width: 62%;
+  left: 20%;
+  transform: rotate(-13deg);
+}
+
+.deep-time-visual[data-stage="flood"] .water-line-three {
+  width: 55%;
+  left: 36%;
+  transform: rotate(21deg);
+}
+
+.deep-time-visual[data-stage="isolation"] .water-line {
+  opacity: 0.25;
+  width: 18%;
+}
+
+.deep-time-visual[data-stage="modern"] .water-line {
+  opacity: 0.45;
+}
+
+.deep-time-caption {
+  max-width: 760px;
+  color: var(--muted, #a8b3ad);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.deep-time-scenes {
+  display: grid;
+  gap: 2rem;
+}
+
+.deep-time-scene {
+  min-height: 360px;
+  padding: 2rem;
+  display: grid;
+  align-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.deep-time-scene span {
+  color: var(--accent, #77bfa3);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.deep-time-scene h2 {
+  margin: 0.5rem 0 1rem;
+  font-size: clamp(1.7rem, 3vw, 3rem);
+}
+
+.deep-time-scene p {
+  max-width: 680px;
+  color: var(--muted, #a8b3ad);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+@media (max-width: 900px) {
+  .deep-time-story {
+    grid-template-columns: 1fr;
+  }
+
+  .deep-time-stage {
+    position: relative;
+    top: auto;
+    min-height: auto;
+  }
+
+  .deep-time-visual {
+    height: 260px;
+  }
+
+  .deep-time-scene {
+    min-height: auto;
+  }
+}
