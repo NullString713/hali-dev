@@ -602,3 +602,43 @@ function escapeHtml(value) {
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#039;');
 }
+const deepTimeVisual = document.querySelector(".deep-time-visual");
+const deepTimeCaption = document.querySelector("#deepTimeCaption");
+const deepTimeScenes = document.querySelectorAll(".deep-time-scene");
+
+const deepTimeCaptions = {
+  coast:
+    "Ancestral cutthroat begin on the Pacific side, moving through cold coastal streams and river corridors.",
+  inland:
+    "Over generations, trout expand inland through connected western rivers before modern basin boundaries fully separate them.",
+  ice:
+    "Glaciers, ice dams, and huge pluvial lakes reshape the West, creating temporary pathways and new barriers.",
+  flood:
+    "Catastrophic floods and shifting headwaters rearrange the map, connecting some waters while tearing others apart.",
+  isolation:
+    "As basins separate, trout become isolated in different watersheds and begin following their own evolutionary paths.",
+  modern:
+    "Modern cutthroat lineages are the living record of those old waters, isolated basins, floods, and headwater connections."
+};
+
+if (deepTimeVisual && deepTimeScenes.length) {
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+
+        const stage = entry.target.dataset.stage;
+        deepTimeVisual.dataset.stage = stage;
+
+        if (deepTimeCaption && deepTimeCaptions[stage]) {
+          deepTimeCaption.textContent = deepTimeCaptions[stage];
+        }
+      });
+    },
+    {
+      threshold: 0.55
+    }
+  );
+
+  deepTimeScenes.forEach(scene => observer.observe(scene));
+}
