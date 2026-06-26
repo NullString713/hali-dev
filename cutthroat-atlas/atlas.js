@@ -257,6 +257,7 @@ const map = L.map('map', {
 
 hydroLayerGroups.nhd.addTo(map);
 hydroLayerGroups.osm.addTo(map);
+hydroLayerGroups.lakes.addTo(map);
 featuredLayerGroup.addTo(map);
 
 hydroLayerGroups.featured = featuredLayerGroup;
@@ -347,6 +348,8 @@ function addReferenceLayer(data, file, sourceType) {
       color: file.style?.color || '#3b9fc6',
       weight: file.style?.weight || 1.6,
       opacity: file.style?.opacity || 0.65,
+      fillColor: file.style?.fillColor || file.style?.color || '#3b9fc6',
+      fillOpacity: file.style?.fillOpacity ?? 0.2,
       lineCap: 'round',
       lineJoin: 'round'
     },
