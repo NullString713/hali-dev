@@ -197,6 +197,7 @@ const hydroFiles = [
       color: '#3b9fc6',
       weight: 1.6,
       opacity: 0.55
+      }
     },
     {
   scope: 'headwaters',
