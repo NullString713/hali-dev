@@ -457,12 +457,12 @@ function addReferenceLayer(data, file, sourceType) {
         };
       }
 
-      // Keep important highlighted/recovery lines stronger
+      // Keep important highlighted/recovery lines visible without overpowering the map
       if (isHighlight) {
         return {
           color: file.style?.color || '#22c55e',
-          weight: zoom <= 8 ? 1.6 : zoom <= 10 ? 2.1 : zoom <= 12 ? 2.6 : 3,
-          opacity: zoom <= 8 ? 0.8 : 0.9,
+          weight: zoom <= 8 ? 1.15 : zoom <= 10 ? 1.6 : zoom <= 12 ? 2.1 : 2.6,
+          opacity: zoom <= 8 ? 0.72 : zoom <= 10 ? 0.82 : 0.9,
           lineCap: 'round',
           lineJoin: 'round'
         };
