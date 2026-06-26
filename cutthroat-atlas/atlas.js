@@ -207,10 +207,10 @@ const hydroFiles = [
   label: 'USGS NHD waterbodies — Arkansas Basin lakes and reservoirs',
   style: {
     color: '#38bdf8',
-    weight: 1.2,
-    opacity: 0.85,
+    weight: 1,
+    opacity: 0.75,
     fillColor: '#38bdf8',
-    fillOpacity: 0.22
+    fillOpacity: 0.18
   }
   }
 ];
