@@ -457,16 +457,16 @@ function addReferenceLayer(data, file, sourceType) {
         };
       }
 
-      // Keep important highlighted/recovery lines visible without overpowering the map
-      if (isHighlight) {
-        return {
-          color: file.style?.color || '#22c55e',
-          weight: zoom <= 8 ? 1.15 : zoom <= 10 ? 1.6 : zoom <= 12 ? 2.1 : 2.6,
-          opacity: zoom <= 8 ? 0.72 : zoom <= 10 ? 0.82 : 0.9,
-          lineCap: 'round',
-          lineJoin: 'round'
-        };
-      }
+      // Keep important highlighted/recovery lines stronger
+        if (isHighlight) {
+          return {
+            color: file.style?.color || '#22c55e',
+            weight: zoom <= 8 ? 1.6 : zoom <= 10 ? 2.1 : zoom <= 12 ? 2.6 : 3,
+            opacity: zoom <= 8 ? 0.8 : 0.9,
+            lineCap: 'round',
+            lineJoin: 'round'
+          };
+        }
 
       // Fade normal stream spaghetti way down when zoomed out
       return {
@@ -501,6 +501,7 @@ function addFeaturedLayer(data, file, sourceType) {
   const layer = L.geoJSON(featuredStreams, {
     style: styleStream,
     onEachFeature: bindFeaturedStreamEvents
+    smoothFactor: 1.5
   }).addTo(featuredLayerGroup);
 
   featuredStreamLayers.push(layer);
@@ -561,6 +562,12 @@ map.on('zoomend', () => {
       }
     });
   });
+
+  featuredStreamLayers.forEach((layer) => {
+    if (layer.setStyle) {
+      layer.setStyle(styleStream);
+    }
+  });
 });
 
 function bindFeaturedStreamEvents(feature, layer) {
@@ -570,8 +577,16 @@ function bindFeaturedStreamEvents(feature, layer) {
     layer.bringToFront();
   });
 
-  layer.on('mouseover', () => layer.setStyle({ weight: 3, opacity: 0.95 }));
-  layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
+  layer.on('mouseover', () => {
+  const zoom = map.getZoom();
+
+  layer.setStyle({
+    weight: zoom <= 8 ? 2.2 : zoom <= 10 ? 2.7 : zoom <= 12 ? 3.2 : 3.8,
+    opacity: 1
+  });
+});
+
+layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
 
   layer.bindTooltip(feature.properties.name || feature.properties.sourceName, {
     permanent: false,
@@ -584,11 +599,12 @@ function bindFeaturedStreamEvents(feature, layer) {
 function styleStream(feature) {
   const mode = modes[currentModeIndex].key;
   const speciesKey = feature.properties[mode];
+  const zoom = map.getZoom();
 
   return {
     color: speciesColors[speciesKey]?.color || speciesColors.unknown.color,
-    weight: 4,
-    opacity: 0.95,
+    weight: zoom <= 8 ? 1.7 : zoom <= 10 ? 2.2 : zoom <= 12 ? 2.8 : 3.4,
+    opacity: zoom <= 8 ? 0.82 : zoom <= 10 ? 0.88 : 0.95,
     lineCap: 'round',
     lineJoin: 'round'
   };
