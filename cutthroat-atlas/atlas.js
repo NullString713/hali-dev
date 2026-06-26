@@ -500,7 +500,7 @@ function addFeaturedLayer(data, file, sourceType) {
 
   const layer = L.geoJSON(featuredStreams, {
     style: styleStream,
-    onEachFeature: bindFeaturedStreamEvents
+    onEachFeature: bindFeaturedStreamEvents,
     smoothFactor: 1.5
   }).addTo(featuredLayerGroup);
 
