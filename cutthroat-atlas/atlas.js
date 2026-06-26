@@ -252,9 +252,89 @@ const featuredLayerGroup = L.layerGroup();
 
 const map = L.map('map', {
   zoomControl: true,
-  scrollWheelZoom: true
+  scrollWheelZoom: true,
+  preferCanvas: true
 }).setView([40.72, -105.72], 10);
 
+function getStreamWeight(feature) {
+  const zoom = map.getZoom();
+  const props = feature.properties || {};
+
+  const hasName = Boolean(
+    props.name ||
+    props.gnis_name ||
+    props.GNIS_Name ||
+    props.GNIS_NAME
+  );
+
+  const isRecovery =
+    props.recovery === 'recoveryHigh' ||
+    props.recovery === 'recovery';
+
+  if (isRecovery) {
+    if (zoom <= 8) return 1.8;
+    if (zoom <= 10) return 2.3;
+    if (zoom <= 12) return 2.8;
+    return 3.2;
+  }
+
+  if (hasName) {
+    if (zoom <= 8) return 0.7;
+    if (zoom <= 10) return 1.0;
+    if (zoom <= 12) return 1.4;
+    return 1.8;
+  }
+
+  if (zoom <= 8) return 0.2;
+  if (zoom <= 10) return 0.35;
+  if (zoom <= 12) return 0.65;
+  return 1.0;
+}
+
+function getStreamOpacity(feature) {
+  const zoom = map.getZoom();
+  const props = feature.properties || {};
+
+  const hasName = Boolean(
+    props.name ||
+    props.gnis_name ||
+    props.GNIS_Name ||
+    props.GNIS_NAME
+  );
+
+  const isRecovery =
+    props.recovery === 'recoveryHigh' ||
+    props.recovery === 'recovery';
+
+  if (isRecovery) return 0.9;
+
+  if (hasName) {
+    if (zoom <= 8) return 0.45;
+    if (zoom <= 10) return 0.55;
+    return 0.7;
+  }
+
+  if (zoom <= 8) return 0.12;
+  if (zoom <= 10) return 0.22;
+  if (zoom <= 12) return 0.38;
+  return 0.55;
+}
+
+function getStreamStyle(feature) {
+  const props = feature.properties || {};
+
+  const isRecovery =
+    props.recovery === 'recoveryHigh' ||
+    props.recovery === 'recovery';
+
+  return {
+    color: isRecovery ? '#22c55e' : '#38bdf8',
+    weight: getStreamWeight(feature),
+    opacity: getStreamOpacity(feature),
+    lineCap: 'round',
+    lineJoin: 'round'
+  };
+}
 hydroLayerGroups.nhd.addTo(map);
 hydroLayerGroups.osm.addTo(map);
 hydroLayerGroups.lakes.addTo(map);
@@ -344,16 +424,65 @@ async function loadHydroFile(file) {
 
 function addReferenceLayer(data, file, sourceType) {
   const hydroLayer = L.geoJSON(data, {
-    style: {
-      color: file.style?.color || '#3b9fc6',
-      weight: file.style?.weight || 1.6,
-      opacity: file.style?.opacity || 0.65,
-      fillColor: file.style?.fillColor || file.style?.color || '#3b9fc6',
-      fillOpacity: file.style?.fillOpacity ?? 0.2,
-      lineCap: 'round',
-      lineJoin: 'round'
+    style: (feature) => {
+      const zoom = map.getZoom();
+      const props = feature.properties || {};
+      const geometryType = feature.geometry?.type || '';
+
+      const isPolygon =
+        geometryType.includes('Polygon');
+
+      const hasName = Boolean(
+        props.name ||
+        props.gnis_name ||
+        props.GNIS_Name ||
+        props.GNIS_NAME
+      );
+
+      const isHighlight =
+        file.style?.color === '#22c55e' ||
+        file.style?.color === '#35d07f' ||
+        file.style?.weight >= 3;
+
+      // Keep lakes / waterbody polygons filled and readable
+      if (isPolygon || sourceType === 'lakes') {
+        return {
+          color: file.style?.color || '#3b9fc6',
+          weight: file.style?.weight || 1.2,
+          opacity: file.style?.opacity || 0.65,
+          fillColor: file.style?.fillColor || file.style?.color || '#3b9fc6',
+          fillOpacity: file.style?.fillOpacity ?? 0.18,
+          lineCap: 'round',
+          lineJoin: 'round'
+        };
+      }
+
+      // Keep important highlighted/recovery lines stronger
+      if (isHighlight) {
+        return {
+          color: file.style?.color || '#22c55e',
+          weight: zoom <= 8 ? 1.6 : zoom <= 10 ? 2.1 : zoom <= 12 ? 2.6 : 3,
+          opacity: zoom <= 8 ? 0.8 : 0.9,
+          lineCap: 'round',
+          lineJoin: 'round'
+        };
+      }
+
+      // Fade normal stream spaghetti way down when zoomed out
+      return {
+        color: file.style?.color || '#38bdf8',
+        weight: zoom <= 8 ? 0.25 : zoom <= 10 ? 0.45 : zoom <= 12 ? 0.75 : 1.1,
+        opacity: hasName
+          ? zoom <= 8 ? 0.35 : zoom <= 10 ? 0.5 : 0.65
+          : zoom <= 8 ? 0.12 : zoom <= 10 ? 0.22 : zoom <= 12 ? 0.4 : 0.55,
+        fillColor: file.style?.fillColor || file.style?.color || '#3b9fc6',
+        fillOpacity: file.style?.fillOpacity ?? 0.2,
+        lineCap: 'round',
+        lineJoin: 'round'
+      };
     },
-    interactive: false
+    interactive: false,
+    smoothFactor: 1.5
   });
 
   hydroLayer.addTo(hydroLayerGroups[sourceType]);
@@ -424,6 +553,16 @@ function buildFeaturedFeature(feature, file, sourceType) {
   };
 }
 
+map.on('zoomend', () => {
+  Object.values(hydroLayerGroups).forEach((layerGroup) => {
+    layerGroup.eachLayer((layer) => {
+      if (layer.setStyle && layer.options?.style) {
+        layer.setStyle(layer.options.style);
+      }
+    });
+  });
+});
+
 function bindFeaturedStreamEvents(feature, layer) {
   layer.on('click', () => {
     selectedStream = feature.properties;
@@ -431,7 +570,7 @@ function bindFeaturedStreamEvents(feature, layer) {
     layer.bringToFront();
   });
 
-  layer.on('mouseover', () => layer.setStyle({ weight: 5, opacity: 0.95 }));
+  layer.on('mouseover', () => layer.setStyle({ weight: 3, opacity: 0.95 }));
   layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
 
   layer.bindTooltip(feature.properties.name || feature.properties.sourceName, {
