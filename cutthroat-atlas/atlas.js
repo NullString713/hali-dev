@@ -197,7 +197,20 @@ const hydroFiles = [
       color: '#3b9fc6',
       weight: 1.6,
       opacity: 0.55
-    }
+    },
+    {
+  scope: 'headwaters',
+  path: './data/geojson/nhd/Arkansas_basin_lakes.geojson',
+  type: 'nhd-arkansas-basin-lakes',
+  sourceType: 'lakes',
+  label: 'USGS NHD waterbodies — Arkansas Basin lakes and reservoirs',
+  style: {
+    color: '#38bdf8',
+    weight: 1.2,
+    opacity: 0.85,
+    fillColor: '#38bdf8',
+    fillOpacity: 0.22
+  }
   }
 ];
 
@@ -229,8 +242,9 @@ const matchedFeaturedWaterIds = new Set();
 const featuredStreamLayers = [];
 
 const hydroLayerGroups = {
-  nhd: L.layerGroup(),
-  osm: L.layerGroup()
+  nhd: L.layerGroup(),      // NHD flowlines
+  osm: L.layerGroup(),      // OSM streams
+  lakes: L.layerGroup()     // NHD waterbody polygons
 };
 
 const featuredLayerGroup = L.layerGroup();
