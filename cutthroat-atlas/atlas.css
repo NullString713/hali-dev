@@ -974,5 +974,7 @@ input[type="range"] {
 .leaflet-control-attribution {
   font-size: 10px;
   opacity: 0.65;
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 6px 0 0 0;
+  padding: 2px 5px;
 }
