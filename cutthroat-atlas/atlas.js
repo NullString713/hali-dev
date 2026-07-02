@@ -128,6 +128,7 @@ const hydroFiles = [
       color: '#60a5fa',
       weight: 1.1,
       opacity: 0.42
+    }
     },
     {
     scope: 'colorado',
