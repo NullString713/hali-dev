@@ -367,9 +367,15 @@ async function loadHydroFile(file) {
     console.error(`Could not load ${file.label}:`, error);
   }
 }
+function isPointGeometry(feature) {
+  const type = feature.geometry?.type || '';
+  return type === 'Point' || type === 'MultiPoint';
+}
 
 function addReferenceLayer(data, file, sourceType) {
   const hydroLayer = L.geoJSON(data, {
+    filter: (feature) => !isPointGeometry(feature),
+    pointToLayer: () => null,
     style: (feature) => {
       const zoom = map.getZoom();
       const props = feature.properties || {};
@@ -438,17 +444,20 @@ function addFeaturedLayer(data, file, sourceType) {
   const featuredStreams = {
     type: 'FeatureCollection',
     features: data.features
-      .map(feature => buildFeaturedFeature(feature, file, sourceType))
-      .filter(Boolean)
+    .filter(feature => !isPointGeometry(feature))
+    .map(feature => buildFeaturedFeature(feature, file, sourceType))
+    .filter(Boolean)
   };
 
   if (featuredStreams.features.length === 0) return;
 
   const layer = L.geoJSON(featuredStreams, {
-    style: styleStream,
-    onEachFeature: bindFeaturedStreamEvents,
-    smoothFactor: 1.5
-  }).addTo(featuredLayerGroup);
+  filter: (feature) => !isPointGeometry(feature),
+  pointToLayer: () => null,
+  style: styleStream,
+  onEachFeature: bindFeaturedStreamEvents,
+  smoothFactor: 1.5
+}).addTo(featuredLayerGroup);
 
   featuredStreamLayers.push(layer);
 }
