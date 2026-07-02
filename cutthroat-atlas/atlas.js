@@ -128,6 +128,13 @@ const hydroFiles = [
       color: '#60a5fa',
       weight: 1.1,
       opacity: 0.42
+    },
+    {
+    scope: 'colorado',
+    path: './data/geojson/interpreted/colorado_cutthroat_featured_v0.geojson',
+    type: 'colorado-cutthroat-featured',
+    sourceType: 'interpreted',
+    label: 'Colorado cutthroat interpreted waters — prototype'
     }
 }
   // Optional later toggle layer.
@@ -358,11 +365,21 @@ async function loadHydroFile(file) {
     const data = await response.json();
     const sourceType = file.sourceType || file.type;
 
+    // Prebuilt interpreted Colorado cutthroat layer.
+    // This becomes the clickable species-colored layer.
+    if (sourceType === 'interpreted') {
+      addInterpretedFeaturedLayer(data, file);
+      return;
+    }
+
+    // Normal blue/reference hydro.
     addReferenceLayer(data, file, sourceType);
 
-    if (!['nhd', 'osm'].includes(sourceType)) return;
-
-    addFeaturedLayer(data, file, sourceType);
+    // Do not build featured layers from statewide NHD anymore.
+    // That was causing the broken fragmented green overlays.
+    if (sourceType === 'osm') {
+      addFeaturedLayer(data, file, sourceType);
+    }
   } catch (error) {
     console.error(`Could not load ${file.label}:`, error);
   }
@@ -370,6 +387,11 @@ async function loadHydroFile(file) {
 function isPointGeometry(feature) {
   const type = feature.geometry?.type || '';
   return type === 'Point' || type === 'MultiPoint';
+}
+
+function isLineGeometry(feature) {
+  const type = feature.geometry?.type || '';
+  return type === 'LineString' || type === 'MultiLineString';
 }
 
 function addReferenceLayer(data, file, sourceType) {
@@ -440,6 +462,24 @@ function addReferenceLayer(data, file, sourceType) {
   hydroLayer.addTo(hydroLayerGroups[sourceType]);
 }
 
+function addInterpretedFeaturedLayer(data, file) {
+  const layer = L.geoJSON(data, {
+    filter: (feature) => isLineGeometry(feature) && !isPointGeometry(feature),
+    style: styleStream,
+    onEachFeature: (feature, layer) => {
+      feature.properties = {
+        ...feature.properties,
+        sourceLayer: 'interpreted',
+        sourceLabel: file.label
+      };
+
+      bindFeaturedStreamEvents(feature, layer);
+    },
+    smoothFactor: 1.5
+  }).addTo(featuredLayerGroup);
+
+  featuredStreamLayers.push(layer);
+}
 function addFeaturedLayer(data, file, sourceType) {
   const featuredStreams = {
     type: 'FeatureCollection',
