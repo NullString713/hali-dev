@@ -180,15 +180,10 @@ path.leaflet-interactive:focus {
   backdrop-filter: blur(18px);
 }
 
-/* View jump card */
+/* View jump card - hidden for statewide Colorado view */
 
 .view-toggle-card {
-  top: 1rem;
-  left: 50%;
-  width: min(560px, calc(100% - 42rem));
-  padding: 0.85rem 1rem;
-  transform: translateX(-50%);
-  z-index: 560;
+  display: none;
 }
 
 .view-buttons {
@@ -221,9 +216,10 @@ path.leaflet-interactive:focus {
   top: 1rem;
   right: 1.25rem;
   left: auto;
+  bottom: auto;
   width: 260px;
   padding: 1rem;
-  z-index: 550;
+  z-index: 1000;
 }
 
 .layer-toggle-card .eyebrow {
@@ -453,8 +449,7 @@ input[type="range"] {
   }
 
   .view-toggle-card {
-    order: 2;
-    padding: 1rem;
+  display: none;
   }
 
   .layer-toggle-card {
