@@ -9,6 +9,7 @@ const speciesColors = {
   westslope: { label: 'Westslope CT', color: '#fb7185' },
   paiute: { label: 'Paiute CT', color: '#fb923c' },
   coastal: { label: 'Coastal CT', color: '#06b6d4' },
+  sanJuan: { label: 'San Juan CT', color: '#0f766e' },
 
   gila: { label: 'Gila Trout', color: '#84cc16' },
   apache: { label: 'Apache Trout', color: '#fde047' },
@@ -31,6 +32,7 @@ const legendByMode = {
   historic: [
     'greenback',
     'coloradoRiver',
+    'sanJuan',
     'rioGrande',
     'yellowfin',
     'bonneville',
@@ -47,6 +49,7 @@ const legendByMode = {
   current: [
     'greenback',
     'coloradoRiver',
+    'sanJuan',
     'rioGrande',
     'yellowfin',
     'bonneville',
