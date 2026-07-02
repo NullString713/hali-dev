@@ -120,7 +120,7 @@ const hydroFiles = [
   },
   {
     scope: 'colorado',
-    path: './data/geojson/nhd/colorado_v0_web/streams_colorado_web_v0.geojson',
+    path: './data/geojson/nhd/colorado_v0_web/streams_colorado_web_v1_upload_min.geojson',
     type: 'nhd-colorado-streams',
     sourceType: 'nhd',
     label: 'USGS NHD named streams — Colorado',
@@ -129,7 +129,7 @@ const hydroFiles = [
       weight: 1.1,
       opacity: 0.42
     }
-  }
+}
   // Optional later toggle layer.
   // Do not enable by default unless your loader supports defaultVisible: false.
   /*
