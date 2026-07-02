@@ -87,135 +87,73 @@ const modes = [
   }
 ];
 
-const DEFAULT_SCOPE = 'poudre';
+const DEFAULT_SCOPE = 'colorado';
 
 const hydroFiles = [
   {
-    scope: 'poudre',
-    path: './data/geojson/nhd/cache-la-poudre-named-flowlines.geojson',
-    type: 'nhd-cache-la-poudre',
+    scope: 'colorado',
+    path: './data/geojson/nhd/colorado_v0_web/waterbodies_colorado_web_v0.geojson',
+    type: 'nhd-colorado-waterbodies',
+    sourceType: 'lakes',
+    label: 'USGS NHD waterbodies — Colorado lakes and reservoirs',
+    style: {
+      color: '#38bdf8',
+      weight: 0.8,
+      opacity: 0.75,
+      fillColor: '#38bdf8',
+      fillOpacity: 0.22
+    }
+  },
+  {
+    scope: 'colorado',
+    path: './data/geojson/nhd/colorado_v0_web/waterareas_stream_polygons_colorado_web_v0.geojson',
+    type: 'nhd-colorado-stream-polygons',
+    sourceType: 'lakes',
+    label: 'USGS NHD stream polygons — Colorado',
+    style: {
+      color: '#38bdf8',
+      weight: 0.6,
+      opacity: 0.55,
+      fillColor: '#38bdf8',
+      fillOpacity: 0.18
+    }
+  },
+  {
+    scope: 'colorado',
+    path: './data/geojson/nhd/colorado_v0_web/streams_colorado_web_v0.geojson',
+    type: 'nhd-colorado-streams',
     sourceType: 'nhd',
-    label: 'USGS NHD named flowlines — Cache la Poudre',
+    label: 'USGS NHD named streams — Colorado',
     style: {
-      color: '#8b9cff',
-      weight: 1.2,
-      opacity: 0.32
+      color: '#60a5fa',
+      weight: 1.1,
+      opacity: 0.42
     }
-  },
-  {
-    scope: 'bigThompson',
-    path: './data/geojson/nhd/big-thompson-named-flowlines.geojson',
-    type: 'nhd-big-thompson',
-    sourceType: 'nhd',
-    label: 'USGS NHD named flowlines — Big Thompson',
-    style: {
-      color: '#8b9cff',
-      weight: 1.2,
-      opacity: 0.32
-    }
-  },
-  {
-    scope: 'southPlatte',
-    path: './data/geojson/nhd/south-platte-named-flowlines.geojson',
-    type: 'nhd-south-platte',
-    sourceType: 'nhd',
-    label: 'USGS NHD named flowlines — South Platte',
-    style: {
-      color: '#8b9cff',
-      weight: 1.2,
-      opacity: 0.32
-    }
-  },
-  {
-    scope: 'headwaters',
-    path: './data/geojson/nhd/south-platte-headwaters-south-named-flowlines.geojson',
-    type: 'nhd-south-platte-headwaters-south',
-    sourceType: 'nhd',
-    label: 'USGS NHD named flowlines — South Platte headwaters south',
-    style: {
-      color: '#8b9cff',
-      weight: 1.2,
-      opacity: 0.32
-    }
-  },
-
-  {
-    scope: 'poudre',
-    path: './data/geojson/osm/cache-la-poudre-natural-streams.geojson',
-    type: 'osm-cache-la-poudre',
-    sourceType: 'osm',
-    label: 'OpenStreetMap natural streams — Cache la Poudre',
-    style: {
-      color: '#3b9fc6',
-      weight: 1.6,
-      opacity: 0.55
-    }
-  },
-  {
-    scope: 'bigThompson',
-    path: './data/geojson/osm/big-thompson-natural-streams.geojson',
-    type: 'osm-big-thompson',
-    sourceType: 'osm',
-    label: 'OpenStreetMap natural streams — Big Thompson',
-    style: {
-      color: '#3b9fc6',
-      weight: 1.6,
-      opacity: 0.55
-    }
-  },
-  {
-    scope: 'southPlatte',
-    path: './data/geojson/osm/south-platte-natural-streams.geojson',
-    type: 'osm-south-platte',
-    sourceType: 'osm',
-    label: 'OpenStreetMap natural streams — South Platte',
-    style: {
-      color: '#3b9fc6',
-      weight: 1.6,
-      opacity: 0.55
-    }
-  },
-  {
-    scope: 'headwaters',
-    path: './data/geojson/osm/south-platte-headwaters-natural-streams.geojson',
-    type: 'osm-south-platte-headwaters',
-    sourceType: 'osm',
-    label: 'OpenStreetMap natural streams — South Platte headwaters',
-    style: {
-      color: '#3b9fc6',
-      weight: 1.6,
-      opacity: 0.55
-    }
-  },
-  {
-    scope: 'headwaters',
-    path: './data/geojson/osm/south-platte-headwaters-south-natural-streams.geojson',
-    type: 'osm-south-platte-headwaters-south',
-    sourceType: 'osm',
-    label: 'OpenStreetMap natural streams — South Platte headwaters south',
-    style: {
-      color: '#3b9fc6',
-      weight: 1.6,
-      opacity: 0.55
-      }
-    },
-    {
-  scope: 'headwaters',
-  path: './data/geojson/nhd/Arkansas_basin_lakes.geojson',
-  type: 'nhd-arkansas-basin-lakes',
-  sourceType: 'lakes',
-  label: 'USGS NHD waterbodies — Arkansas Basin lakes and reservoirs',
-  style: {
-    color: '#38bdf8',
-    weight: 1,
-    opacity: 0.75,
-    fillColor: '#38bdf8',
-    fillOpacity: 0.18
   }
+  // Optional later toggle layer.
+  // Do not enable by default unless your loader supports defaultVisible: false.
+  /*
+  {
+    scope: 'colorado',
+    path: './data/geojson/nhd/colorado_v0_web/human_altered_hydrology_colorado_web_v0.geojson',
+    type: 'nhd-colorado-human-altered-hydrology',
+    sourceType: 'nhd-human',
+    label: 'USGS NHD human-altered hydrology — Colorado canals, ditches, pipelines',
+    style: {
+      color: '#f59e0b',
+      weight: 1,
+      opacity: 0.55,
+      dashArray: '4 4'
+    }
   }
+  */
 ];
 
 const watershedViews = {
+  colorado: [
+    [36.99, -109.06],
+    [41.01, -102.04]
+  ],
   poudre: [
     [40.42, -106.20],
     [41.08, -105.10]
@@ -254,7 +192,7 @@ const map = L.map('map', {
   zoomControl: true,
   scrollWheelZoom: true,
   preferCanvas: true
-}).setView([40.72, -105.72], 10);
+}).setView([39.0, -105.55], 7);
 
 function getStreamWeight(feature) {
   const zoom = map.getZoom();
@@ -360,12 +298,20 @@ fetch('./data/waters/index.json')
 
     return response.json();
   })
-  .then(async data => {
+  .then(data => {
     featuredWaters = data;
-    await loadHydroFilesForScope(DEFAULT_SCOPE);
   })
   .catch(error => {
     console.error('Could not load featured waters:', error);
+  })
+  .finally(async () => {
+    await loadHydroFilesForScope(DEFAULT_SCOPE);
+
+    if (DEFAULT_SCOPE === 'colorado') {
+      map.fitBounds(watershedViews.colorado, {
+        padding: [24, 24]
+      });
+    }
   });
 
 async function loadHydroFilesForScope(scope) {
@@ -710,9 +656,10 @@ function updateDataLoadStatus() {
 }
 
 function sourceSortOrder(sourceType) {
-  if (sourceType === 'nhd') return 1;
-  if (sourceType === 'osm') return 2;
-  return 3;
+  if (sourceType === 'lakes') return 1;
+  if (sourceType === 'nhd') return 2;
+  if (sourceType === 'osm') return 3;
+  return 4;
 }
 
 const slider = document.getElementById('mode-slider');
