@@ -217,8 +217,10 @@ path.leaflet-interactive:focus {
 /* Layer toggle card */
 
 .layer-toggle-card {
+  position: absolute;
   top: 1rem;
-  left: 1.25rem;
+  right: 1.25rem;
+  left: auto;
   width: 260px;
   padding: 1rem;
   z-index: 550;
@@ -456,9 +458,16 @@ input[type="range"] {
   }
 
   .layer-toggle-card {
-    order: 3;
-    padding: 1rem;
-  }
+  order: 3;
+  position: absolute;
+  top: auto;
+  right: 0.75rem;
+  bottom: 1rem;
+  left: 0.75rem;
+  width: auto;
+  max-width: none;
+  padding: 1rem;
+}
 
   .legend-card {
     order: 4;
