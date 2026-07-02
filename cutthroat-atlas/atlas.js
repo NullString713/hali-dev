@@ -558,8 +558,8 @@ function styleStream(feature) {
 
   return {
     color: speciesColors[speciesKey]?.color || speciesColors.unknown.color,
-    weight: zoom <= 8 ? 1.7 : zoom <= 10 ? 2.2 : zoom <= 12 ? 2.8 : 3.4,
-    opacity: zoom <= 8 ? 0.82 : zoom <= 10 ? 0.88 : 0.95,
+    weight: zoom <= 8 ? 1.2 : zoom <= 10 ? 1.7 : zoom <= 12 ? 2.2 : 2.8,
+    opacity: zoom <= 8 ? 0.65 : zoom <= 10 ? 0.75 : 0.85,
     lineCap: 'round',
     lineJoin: 'round'
   };
