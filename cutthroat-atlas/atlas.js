@@ -137,7 +137,6 @@ const hydroFiles = [
     sourceType: 'interpreted',
     label: 'Colorado cutthroat interpreted waters — prototype'
     }
-}
   // Optional later toggle layer.
   // Do not enable by default unless your loader supports defaultVisible: false.
   /*
