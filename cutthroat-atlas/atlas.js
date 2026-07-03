@@ -1,6 +1,8 @@
 const speciesColors = {
   greenback: { label: 'Greenback CT', color: '#22c55e' },
   coloradoRiver: { label: 'Colorado River CT', color: '#e85d3f' },
+  greenRiverBlue: { label: 'Green River / Blue-lineage CT', color: '#2563eb' },
+  sanJuan: { label: 'San Juan CT', color: '#0f766e' },
   rioGrande: { label: 'Rio Grande CT', color: '#a855f7' },
   yellowfin: { label: 'Yellowfin CT', color: '#facc15' },
   bonneville: { label: 'Bonneville CT', color: '#d97706' },
@@ -9,8 +11,7 @@ const speciesColors = {
   westslope: { label: 'Westslope CT', color: '#fb7185' },
   paiute: { label: 'Paiute CT', color: '#fb923c' },
   coastal: { label: 'Coastal CT', color: '#06b6d4' },
-  sanJuan: { label: 'San Juan CT', color: '#0f766e' },
-
+  
   gila: { label: 'Gila Trout', color: '#84cc16' },
   apache: { label: 'Apache Trout', color: '#fde047' },
   bull: { label: 'Bull Trout', color: '#14b8a6' },
@@ -32,6 +33,7 @@ const legendByMode = {
   historic: [
     'greenback',
     'coloradoRiver',
+    'greenRiverBlue',
     'sanJuan',
     'rioGrande',
     'yellowfin',
@@ -49,6 +51,7 @@ const legendByMode = {
   current: [
     'greenback',
     'coloradoRiver',
+    'greenRiverBlue',
     'sanJuan',
     'rioGrande',
     'yellowfin',
