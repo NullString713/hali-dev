@@ -135,6 +135,22 @@ h1 {
   font-size: 1.02rem;
 }
 
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card .text-link {
+  display: inline-block;
+  margin-top: auto;
+  padding-top: 14px;
+}
+
+.about .text-link {
+  display: inline-block;
+  margin-top: 10px;
+}
+
 .text-link {
   color: var(--accent);
   font-weight: 800;
