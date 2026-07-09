@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Endpoint Deployment Rings | Hali Dev</title>
+
+  <meta
+    name="description"
+    content="A practical case study on phased endpoint deployment rings, pilot groups, validation checks, and reducing broad-impact IT change risk."
+  />
+
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+  <main class="page article">
+    <nav class="site-nav">
+      <a href="/" class="brand">Hali Dev</a>
+
+      <div class="nav-links">
+        <a href="/projects">Projects</a>
+        <a href="/articles">Notes</a>
+        <a href="https://github.com/NullString713">GitHub</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <p class="eyebrow">Endpoint Engineering</p>
+      <h1>Endpoint Deployment Rings</h1>
+
+      <p class="summary">
+        A practical case study on using pilot groups, phased rollout rings, validation checks,
+        and rollback planning to reduce broad-impact endpoint change risk.
+      </p>
+    </section>
+
+    <section class="about">
+      <h2>Problem</h2>
+      <p>
+        Endpoint changes can create real operational risk when they are deployed too broadly or too quickly.
+        A failed application update, configuration profile, compliance policy, operating system change, or
+        security control can affect users across many locations if there is no controlled rollout process.
+      </p>
+
+      <h2>Approach</h2>
+      <p>
+        I used phased deployment patterns built around pilot groups, validation checks, randomized rollout rings,
+        issue investigation, and rollback planning. The goal was to catch problems early, limit the blast radius,
+        and avoid pushing unvalidated changes to the entire environment at once.
+      </p>
+
+      <h2>Operational Pattern</h2>
+      <p>
+        The deployment model started with small pilot groups, expanded into larger validation groups, and then
+        moved into broader rings after issues were reviewed. Rings could be organized around device groups,
+        user populations, locations, or randomized batches depending on the risk and type of change.
+      </p>
+
+      <h2>Tools and Concepts</h2>
+      <p>
+        This work connects endpoint management, Intune policy operations, PowerShell automation,
+        Azure Automation, device targeting, validation reporting, documentation, and Tier III escalation support.
+      </p>
+
+      <h2>Why It Matters</h2>
+      <p>
+        Deployment rings make endpoint changes safer and easier to support. They give IT teams time to identify
+        failures, investigate root causes, communicate with stakeholders, and pause or roll back changes before
+        a problem becomes widespread.
+      </p>
+
+      <p>
+        This approach is especially useful in distributed environments where endpoint changes affect users across
+        many sites, device types, support conditions, and business-critical workflows.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
