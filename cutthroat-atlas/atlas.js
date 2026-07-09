@@ -645,9 +645,9 @@ function styleLineagePolygon(feature) {
   return {
     color,
     weight: 1,
-    opacity: 0.35,
+    opacity: 0.25,
     fillColor: color,
-    fillOpacity: 0.08,
+    fillOpacity: 0.04,
     interactive: false
   };
 }
