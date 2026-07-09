@@ -692,10 +692,6 @@ function addLineageStreamContextLayer(data, file) {
   });
 }
 
-function addReferenceLayer(data, file, sourceType) {
-  ...
-}
-
 function renderLegend() {
   const mode = modes[currentModeIndex].key;
   const legendItems = legendByMode[mode] || legendByMode.current;
