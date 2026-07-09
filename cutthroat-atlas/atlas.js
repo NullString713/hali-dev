@@ -387,6 +387,16 @@ async function loadHydroFile(file) {
 
     // Prebuilt interpreted Colorado cutthroat layer.
     // This becomes the clickable species-colored layer.
+    if (sourceType === 'lineage-polygons') {
+  addLineagePolygonLayer(data, file);
+  return;
+    }
+    
+    if (sourceType === 'lineage-stream-context') {
+      addLineageStreamContextLayer(data, file);
+      return;
+    }
+    
     if (sourceType === 'interpreted') {
       addInterpretedFeaturedLayer(data, file);
       return;
@@ -624,6 +634,67 @@ function styleStream(feature) {
     lineJoin: 'round'
   };
 }
+function getLineageColor(feature) {
+  const key = feature.properties?.lineageKey || feature.properties?.historic;
+  return speciesColors[key]?.color || '#64748b';
+}
+
+function styleLineagePolygon(feature) {
+  const color = getLineageColor(feature);
+
+  return {
+    color,
+    weight: 1,
+    opacity: 0.35,
+    fillColor: color,
+    fillOpacity: 0.08,
+    interactive: false
+  };
+}
+
+function styleLineageStreamContext(feature) {
+  const color = getLineageColor(feature);
+
+  return {
+    color,
+    weight: 1.15,
+    opacity: 0.45,
+    interactive: false
+  };
+}
+
+function addLineagePolygonLayer(data, file) {
+  const layer = L.geoJSON(data, {
+    filter: (feature) => {
+      const type = feature.geometry?.type || '';
+      return type === 'Polygon' || type === 'MultiPolygon';
+    },
+    style: styleLineagePolygon,
+    interactive: false,
+    smoothFactor: 1.5
+  }).addTo(hydroLayerGroup);
+
+  layer.eachLayer((l) => {
+    if (l.bringToBack) l.bringToBack();
+  });
+}
+
+function addLineageStreamContextLayer(data, file) {
+  const layer = L.geoJSON(data, {
+    filter: (feature) => isLineGeometry(feature) && !isPointGeometry(feature),
+    style: styleLineageStreamContext,
+    interactive: false,
+    smoothFactor: 1.5
+  }).addTo(hydroLayerGroup);
+
+  layer.eachLayer((l) => {
+    if (l.bringToBack) l.bringToBack();
+  });
+}
+
+function addReferenceLayer(data, file, sourceType) {
+  ...
+}
 
 function renderLegend() {
   const mode = modes[currentModeIndex].key;
@@ -726,9 +797,12 @@ function updateDataLoadStatus() {
 
 function sourceSortOrder(sourceType) {
   if (sourceType === 'lakes') return 1;
-  if (sourceType === 'nhd') return 2;
-  if (sourceType === 'osm') return 3;
-  return 4;
+  if (sourceType === 'lineage-polygons') return 2;
+  if (sourceType === 'nhd') return 3;
+  if (sourceType === 'lineage-stream-context') return 4;
+  if (sourceType === 'interpreted') return 5;
+  if (sourceType === 'osm') return 6;
+  return 7;
 }
 
 const slider = document.getElementById('mode-slider');
