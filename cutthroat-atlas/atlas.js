@@ -142,6 +142,20 @@ const hydroFiles = [
     type: 'colorado-cutthroat-featured',
     sourceType: 'interpreted',
     label: 'Colorado cutthroat interpreted waters — prototype'
+    },
+    {
+    scope: 'colorado',
+    path: './data/geojson/interpreted/colorado_cutthroat_huc8_lineage_v1.geojson',
+    type: 'colorado-cutthroat-huc8-lineage',
+    sourceType: 'lineage-polygons',
+    label: 'Colorado cutthroat HUC8 lineage context — prototype'
+    },
+    {
+    scope: 'colorado',
+    path: './data/geojson/interpreted/colorado_cutthroat_huc8_stream_context_named_web_1km_v1.geojson',
+    type: 'colorado-cutthroat-huc8-stream-context',
+    sourceType: 'lineage-stream-context',
+    label: 'Colorado cutthroat HUC8 stream context — 1 km prototype'
     }
   // Optional later toggle layer.
   // Do not enable by default unless your loader supports defaultVisible: false.
