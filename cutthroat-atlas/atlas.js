@@ -672,7 +672,7 @@ function addLineagePolygonLayer(data, file) {
     style: styleLineagePolygon,
     interactive: false,
     smoothFactor: 1.5
-  }).addTo(hydroLayerGroup);
+  }).addTo(map);
 
   layer.eachLayer((l) => {
     if (l.bringToBack) l.bringToBack();
@@ -685,7 +685,7 @@ function addLineageStreamContextLayer(data, file) {
     style: styleLineageStreamContext,
     interactive: false,
     smoothFactor: 1.5
-  }).addTo(hydroLayerGroup);
+  }).addTo(map);
 
   layer.eachLayer((l) => {
     if (l.bringToBack) l.bringToBack();
