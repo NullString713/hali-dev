@@ -209,6 +209,14 @@ h1 {
   margin-top: 2rem;
 }
 
+.work-cards {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.work-cards .card {
+  min-height: 190px;
+}
+
 @media (max-width: 800px) {
   .page {
     padding: 42px 0;
