@@ -475,12 +475,12 @@ function addReferenceLayer(data, file, sourceType) {
       // Fade normal stream spaghetti way down when zoomed out
       return {
         color: file.style?.color || '#38bdf8',
-        weight: zoom <= 8 ? 0.25 : zoom <= 10 ? 0.45 : zoom <= 12 ? 0.75 : 1.1,
+        weight: zoom <= 8 ? 0.18 : zoom <= 10 ? 0.35 : zoom <= 12 ? 0.6 : 0.9,
         opacity: hasName
-          ? zoom <= 8 ? 0.35 : zoom <= 10 ? 0.5 : 0.65
-          : zoom <= 8 ? 0.12 : zoom <= 10 ? 0.22 : zoom <= 12 ? 0.4 : 0.55,
+          ? zoom <= 8 ? 0.22 : zoom <= 10 ? 0.38 : 0.55
+          : zoom <= 8 ? 0.08 : zoom <= 10 ? 0.16 : zoom <= 12 ? 0.28 : 0.42,
         fillColor: file.style?.fillColor || file.style?.color || '#3b9fc6',
-        fillOpacity: file.style?.fillOpacity ?? 0.2,
+        fillOpacity: file.style?.fillOpacity ?? 0.16,
         lineCap: 'round',
         lineJoin: 'round'
       };
