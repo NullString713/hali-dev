@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Lenovo Secure Boot Remediation | Hali Dev</title>
+
+  <meta
+    name="description"
+    content="A practical endpoint compliance case study on detecting and remediating Lenovo Secure Boot settings using PowerShell, Lenovo WMI, logging, and restart notification."
+  />
+
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+  <main class="page article">
+    <nav class="site-nav">
+      <a href="/" class="brand">Hali Dev</a>
+
+      <div class="nav-links">
+        <a href="/projects">Projects</a>
+        <a href="/articles">Notes</a>
+        <a href="https://github.com/NullString713">GitHub</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <p class="eyebrow">Endpoint Compliance</p>
+      <h1>Lenovo Secure Boot Remediation</h1>
+
+      <p class="summary">
+        A practical endpoint remediation workflow for detecting disabled Secure Boot on Lenovo devices,
+        applying the BIOS setting through Lenovo WMI, logging results, and prompting for restart.
+      </p>
+    </section>
+
+    <section class="about">
+      <h2>Problem</h2>
+      <p>
+        Endpoint compliance depends on hardware security settings being configured consistently.
+        When Secure Boot is disabled, devices may fail compliance checks or require manual follow-up
+        before they can meet expected security baselines.
+      </p>
+
+      <p>
+        The operational challenge is that BIOS-level settings are harder to remediate remotely than
+        normal operating system settings, especially across distributed devices and remote users.
+      </p>
+
+      <h2>Approach</h2>
+      <p>
+        I built a PowerShell remediation workflow for Lenovo endpoints that queried the current Secure Boot
+        state through Lenovo WMI BIOS classes. If Secure Boot was already enabled, the script logged the result
+        and exited without making changes.
+      </p>
+
+      <p>
+        If Secure Boot was disabled, the script attempted to set the Lenovo BIOS value, save the BIOS settings,
+        and notify the user that a restart was required before the change could fully apply.
+      </p>
+
+      <h2>Operational Pattern</h2>
+      <p>
+        The script followed a simple remediation pattern: detect current state, change only when needed,
+        save the configuration, log the result, and notify the user. This helped avoid unnecessary changes
+        while giving support teams a repeatable way to bring devices back toward compliance.
+      </p>
+
+      <h2>Related Script</h2>
+      <p>
+        I published a generalized public-safe version of this workflow as a PowerShell example. The public
+        version removes organization-specific details and includes cleaner logging, detection mode, optional
+        restart messaging, and safer parameter handling.
+      </p>
+
+      <p>
+        <a
+          class="text-link"
+          href="https://github.com/NullString713/m365-admin-toolkit/blob/main/intune/Enable-LenovoSecureBoot.ps1"
+          target="_blank"
+          rel="noopener"
+        >
+          View Enable-LenovoSecureBoot.ps1 on GitHub →
+        </a>
+      </p>
+
+      <h2>Why It Mattered</h2>
+      <p>
+        This reduced the need for hands-on field support and gave endpoint teams a consistent remediation
+        path for a hardware-backed compliance issue. It also helped move affected devices toward the expected
+        security posture without relying on one-off manual troubleshooting.
+      </p>
+
+      <h2>Tools and Concepts</h2>
+      <p>
+        This work connected PowerShell, Lenovo WMI BIOS classes, Secure Boot, endpoint compliance,
+        Intune-style remediation patterns, logging, user restart notification, and Tier III endpoint support.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
