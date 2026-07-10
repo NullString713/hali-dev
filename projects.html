@@ -11,7 +11,7 @@
     content="Projects and technical work focused on Microsoft 365, Entra ID, Intune, PowerShell automation, endpoint engineering, and identity lifecycle operations."
   />
   <link rel="icon" type="image/png" href="/favicon.png" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 
 <body>
@@ -39,75 +39,96 @@
         <a href="/articles" class="button">Read Notes</a>
       </div>
     </section>
-  <section class="cards">
+  <section class="cards work-cards">
   <article class="card">
-    <h2>Cutthroat Atlas</h2>
+    <h2>Microsoft 365 Admin Toolkit</h2>
     <p>
-      An interactive map prototype exploring historic native trout ranges,
-      modern stream species, and conservation status across western watersheds.
+      Public PowerShell examples for Microsoft 365, Entra ID, Intune, reporting,
+      remediation, and repeatable cloud administration.
     </p>
     <p>
-      <a href="/cutthroat-atlas/" class="text-link">
-        View Prototype
+      <a
+        href="https://github.com/NullString713/m365-admin-toolkit"
+        class="text-link"
+        target="_blank"
+        rel="noopener"
+      >
+        View GitHub Repo →
       </a>
     </p>
-    <p>
-      <span class="text-muted">
-        Early prototype using generalized placeholder data while real stream and species sources are evaluated.
-      </span>
-    </p>
   </article>
+
   <article class="card">
-    <h2>PowerShell Library</h2>
-  <p>
-    A growing collection of PowerShell scripts, examples, and notes for Microsoft 365,
-    Entra ID, Intune, reporting, remediation, and repeatable IT operations.
-  </p>
-  <p>
-    <a href="/articles/microsoft-graph-powershell-automation" class="text-link">
-      Read Graph PowerShell Writeup
-    </a>
-  </p>
-  <p>
-    <span class="text-muted">
-      Repository currently private while scripts are reviewed and cleaned up for public release.
-    </span>
-  </p>
-</article>
-
-      <article class="card">
-        <h2>Intune Compliance Remediation</h2>
-        <p>
-          Notes and examples around device compliance, endpoint signals, BitLocker,
-          TPM readiness, remediation logic, and operational endpoint follow-up.
-        </p>
-        <p>
-          <a href="/articles/intune-compliance-remediation" class="text-link">
-            Read Writeup
-          </a>
-        </p>
-      </article>
-
-      <article class="card">
-  <h2>Identity Lifecycle Automation</h2>
-  <p>
-    Concepts and practical patterns for onboarding, offboarding, group-based licensing,
-    Conditional Access support, access reviews, and identity workflow cleanup.
-  </p>
-  <p>
-    <a href="/articles/identity-lifecycle-automation" class="text-link">
-      Read Writeup
-    </a>
-  </p>
-</article>
-    </section>
-
-    <section class="about">
-      <h2>More Coming Soon</h2>
+      <h2>Endpoint Deployment Rings</h2>
       <p>
-        This page will grow as more scripts, notes, and technical writeups are added.
+        Location-aware Intune deployment ring automation designed to spread devices from each
+        site, region, or business unit across phased rollout groups to reduce broad-impact change risk.
       </p>
-    </section>
+      <p>
+        <a href="/articles/endpoint-deployment-rings" class="text-link">
+          Read Case Study →
+        </a>
+      </p>
+      <p>
+        <a
+          href="https://github.com/NullString713/m365-admin-toolkit/blob/main/intune/Update-IntuneDeploymentRings.ps1"
+          class="text-link"
+          target="_blank"
+          rel="noopener"
+        >
+          View Script →
+        </a>
+      </p>
+    </article>
+  
+    <article class="card">
+      <h2>Intune Compliance Remediation</h2>
+      <p>
+        Notes and examples around device compliance, endpoint signals, BitLocker,
+        TPM readiness, remediation logic, and operational endpoint follow-up.
+      </p>
+      <p>
+        <a href="/articles/intune-compliance-remediation" class="text-link">
+          Read Case Study →
+        </a>
+      </p>
+    </article>
+  
+    <article class="card">
+      <h2>Identity Lifecycle Automation</h2>
+      <p>
+        Practical patterns for onboarding, offboarding, group-based licensing,
+        Conditional Access support, access reviews, and identity workflow cleanup.
+      </p>
+      <p>
+        <a href="/articles/identity-lifecycle-automation" class="text-link">
+          Read Case Study →
+        </a>
+      </p>
+    </article>
+  
+    <article class="card">
+      <h2>Cutthroat Atlas</h2>
+      <p>
+        A personal mapping and data project using Leaflet, GeoJSON, JavaScript,
+        and custom map layers to explore native trout range, watershed context,
+        and conservation history.
+      </p>
+      <p>
+        <a href="/cutthroat-atlas/" class="text-link">
+          View Prototype →
+        </a>
+      </p>
+    </article>
+  </section>
+    <section class="about">
+        <h2>Practical Technical Work</h2>
+        <p>
+          These projects are focused on real operational problems: reducing endpoint rollout risk,
+          improving Microsoft 365 visibility, documenting identity lifecycle patterns, and turning
+          repeatable IT work into supportable automation.
+        </p>
+      </section>
   </main>
 </body>
 </html>
