@@ -605,9 +605,9 @@ function bindFeaturedStreamEvents(feature, layer) {
   layer.on('mouseover', () => {
   const zoom = map.getZoom();
 
-  layer.setStyle({
-    weight: zoom <= 8 ? 2.2 : zoom <= 10 ? 2.7 : zoom <= 12 ? 3.2 : 3.8,
-    opacity: 1
+   layer.setStyle({
+    weight: zoom <= 8 ? 1.5 : zoom <= 10 ? 2.0 : zoom <= 12 ? 2.5 : 3.0,
+    opacity: 0.95
   });
 });
 
@@ -628,8 +628,8 @@ function styleStream(feature) {
 
   return {
     color: speciesColors[speciesKey]?.color || speciesColors.unknown.color,
-    weight: zoom <= 8 ? 1.2 : zoom <= 10 ? 1.7 : zoom <= 12 ? 2.2 : 2.8,
-    opacity: zoom <= 8 ? 0.65 : zoom <= 10 ? 0.75 : 0.85,
+    weight: zoom <= 8 ? 0.9 : zoom <= 10 ? 1.2 : zoom <= 12 ? 1.6 : 2.1,
+    opacity: zoom <= 8 ? 0.48 : zoom <= 10 ? 0.6 : 0.75,
     lineCap: 'round',
     lineJoin: 'round'
   };
