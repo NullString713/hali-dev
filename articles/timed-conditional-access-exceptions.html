@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Timed Conditional Access Exceptions | Hali Dev</title>
+
+  <meta
+    name="description"
+    content="A practical identity workflow case study for time-bound Conditional Access exceptions using nested groups and BetterCloud workflow automation."
+  />
+
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+  <main class="page article">
+    <nav class="site-nav">
+      <a href="/" class="brand">Hali Dev</a>
+
+      <div class="nav-links">
+        <a href="/projects">Projects</a>
+        <a href="/articles">Notes</a>
+        <a href="https://github.com/NullString713">GitHub</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <p class="eyebrow">Identity & Access</p>
+      <h1>Timed Conditional Access Exceptions</h1>
+
+      <p class="summary">
+        A practical workflow pattern for granting temporary Conditional Access exceptions
+        without relying on manual follow-up or memory-based cleanup.
+      </p>
+    </section>
+
+    <section class="about">
+      <h2>Problem</h2>
+      <p>
+        Temporary access exceptions are easy to create and easy to forget. In a Conditional Access model
+        that restricts sign-ins by geography, users occasionally need short-term access while traveling
+        outside the normal allowed regions.
+      </p>
+
+      <p>
+        The risk is that a temporary exception can become standing access if cleanup depends on an IAM
+        administrator remembering to remove the user later.
+      </p>
+
+      <h2>Approach</h2>
+      <p>
+        I created a time-bound exception workflow using dedicated Entra ID groups and BetterCloud automation.
+        The exception groups were nested into the Conditional Access exclusion structure, allowing IAM to
+        grant a temporary exception by adding a user to the appropriate duration-based group.
+      </p>
+
+      <p>
+        Each group triggered a BetterCloud workflow. Once a user was added, the workflow started a countdown
+        and automatically removed the user from the exception group after the selected window expired.
+      </p>
+
+      <h2>Workflow Pattern</h2>
+      <p>
+        The IAM team did not need to build a one-off reminder or manually track the expiration date. Their
+        operational action was simple: add the user to the correct temporary exception group.
+      </p>
+
+      <p>
+        Example duration groups included short-term travel windows such as 7-day, 14-day, and 30-day exceptions.
+        Each group mapped to its own BetterCloud workflow and cleanup timer.
+      </p>
+
+      <h2>Why It Mattered</h2>
+      <p>
+        This reduced operational risk by making temporary access self-expiring. It also reduced manual follow-up,
+        lowered the chance of stale Conditional Access exclusions, and gave IAM a repeatable one-and-done process
+        for approved travel exceptions.
+      </p>
+
+      <p>
+        The design kept the workflow simple for administrators while improving security hygiene around
+        exception handling.
+      </p>
+
+      <h2>Tools and Concepts</h2>
+      <p>
+        This work connected Entra ID groups, Conditional Access exclusions, BetterCloud workflows,
+        temporary access operations, IAM handoff design, and least-privilege cleanup.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
