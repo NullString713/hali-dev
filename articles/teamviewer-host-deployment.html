@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>TeamViewer Host Deployment | Hali Dev</title>
+
+  <meta
+    name="description"
+    content="A practical endpoint software deployment case study on downloading, extracting, installing, and configuring TeamViewer Host through PowerShell automation."
+  />
+
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+  <main class="page article">
+    <nav class="site-nav">
+      <a href="/" class="brand">Hali Dev</a>
+
+      <div class="nav-links">
+        <a href="/projects">Projects</a>
+        <a href="/articles">Notes</a>
+        <a href="https://github.com/NullString713">GitHub</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <p class="eyebrow">Endpoint Software Deployment</p>
+      <h1>TeamViewer Host Deployment</h1>
+
+      <p class="summary">
+        A practical software deployment workflow for downloading the current TeamViewer Host package,
+        extracting the installer, running a silent install, applying assignment parameters, and cleaning up
+        temporary files.
+      </p>
+    </section>
+
+    <section class="about">
+      <h2>Problem</h2>
+      <p>
+        Third-party endpoint tools often require more than a simple MSI install. In this case, TeamViewer Host
+        needed to be deployed consistently with the correct host configuration and assignment settings so devices
+        could be managed after installation.
+      </p>
+
+      <p>
+        The installer source also needed to stay current, which made a static local installer less useful over time.
+      </p>
+
+      <h2>Approach</h2>
+      <p>
+        I built a PowerShell deployment workflow that downloaded the TeamViewer Host package from a vendor-provided
+        download source, extracted the installer, located the Host MSI, ran a silent installation, passed the required
+        deployment parameters, and removed temporary installer files afterward.
+      </p>
+
+      <h2>Operational Pattern</h2>
+      <p>
+        The script turned a multi-step vendor deployment process into a repeatable endpoint installation workflow.
+        Instead of manually downloading, unpacking, installing, and configuring the host, the process could be run
+        consistently through endpoint management tooling.
+      </p>
+
+      <h2>Related Script</h2>
+      <p>
+        I published a generalized public-safe version of this workflow as a PowerShell example. The public version
+        removes organization-specific values and uses parameters for the download URL, configuration ID, assignment
+        values, and sensitive deployment details.
+      </p>
+
+      <p>
+        <a
+          class="text-link"
+          href="https://github.com/NullString713/m365-admin-toolkit/blob/main/intune/Install-TeamViewerHost.ps1"
+          target="_blank"
+          rel="noopener"
+        >
+          View Install-TeamViewerHost.ps1 on GitHub →
+        </a>
+      </p>
+
+      <h2>Why It Mattered</h2>
+      <p>
+        This made remote support tooling easier to deploy and standardize across endpoints. It reduced manual setup,
+        helped ensure devices received the correct configuration, and gave the team a reusable deployment pattern for
+        vendor-provided endpoint software.
+      </p>
+
+      <h2>Tools and Concepts</h2>
+      <p>
+        This work connected PowerShell, endpoint software deployment, silent MSI installation, vendor installer
+        packaging, TeamViewer Host configuration, assignment parameters, temporary file handling, logging, and
+        Intune-style deployment patterns.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
