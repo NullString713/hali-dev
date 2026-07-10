@@ -975,10 +975,21 @@ input[type="range"] {
     min-height: auto;
   }
 }
-.leaflet-control-attribution {
+/* Keep Leaflet/OpenStreetMap attribution visible inside rounded map corners */
+#map .leaflet-bottom.leaflet-right {
+  bottom: 12px;
+  right: 12px;
+}
+
+#map .leaflet-control-attribution {
+  margin: 0 !important;
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.82);
+  color: #1f2a24;
   font-size: 10px;
-  opacity: 0.65;
-  background: rgba(255, 255, 255, 0.55);
-  border-radius: 6px 0 0 0;
-  padding: 2px 5px;
+  line-height: 1.3;
+  opacity: 0.95;
+  max-width: calc(100% - 32px);
+  white-space: normal;
 }
