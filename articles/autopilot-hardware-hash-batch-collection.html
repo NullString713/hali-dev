@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Autopilot Hardware Hash Batch Collection | Hali Dev</title>
+
+  <meta
+    name="description"
+    content="A practical endpoint engineering case study on USB-based Windows Autopilot hardware hash collection and combined CSV generation for technician device staging."
+  />
+
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+  <main class="page article">
+    <nav class="site-nav">
+      <a href="/" class="brand">Hali Dev</a>
+
+      <div class="nav-links">
+        <a href="/projects">Projects</a>
+        <a href="/articles">Notes</a>
+        <a href="https://github.com/NullString713">GitHub</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <p class="eyebrow">Endpoint Engineering</p>
+      <h1>Autopilot Hardware Hash Batch Collection</h1>
+
+      <p class="summary">
+        A practical technician workflow for collecting Windows Autopilot hardware hashes,
+        writing individual device CSVs, and automatically rebuilding a combined import-ready file.
+      </p>
+    </section>
+
+    <section class="about">
+      <h2>Problem</h2>
+      <p>
+        Autopilot registration often starts with collecting hardware hash data from physical devices.
+        When technicians are working through a stack of machines, manually exporting, naming, organizing,
+        and merging CSV files can slow down staging and introduce avoidable mistakes.
+      </p>
+
+      <h2>Approach</h2>
+      <p>
+        I built a USB-based PowerShell workflow that could be run locally on each device during staging.
+        The script collected the device serial number and Autopilot hardware hash, applied a group tag,
+        wrote an individual CSV for that machine, and then rebuilt a combined CSV from all collected device files.
+      </p>
+
+      <h2>Operational Pattern</h2>
+      <p>
+        The key design point was the combined CSV. Technicians could move from device to device with the same USB
+        workflow, and each run would preserve the individual device file while also updating a single import-ready
+        list for Autopilot registration.
+      </p>
+
+      <p>
+        That made the process easier for batch staging because the team did not have to manually append rows,
+        merge exports, or rebuild the import file after each machine.
+      </p>
+
+      <h2>Related Script</h2>
+      <p>
+        I published a generalized version of this workflow as a public PowerShell example. The public version
+        removes organization-specific values and keeps the batch collection pattern reusable.
+      </p>
+
+      <p>
+        <a
+          class="text-link"
+          href="https://github.com/NullString713/m365-admin-toolkit/blob/main/intune/Export-AutopilotHardwareHash.ps1"
+          target="_blank"
+          rel="noopener"
+        >
+          View Export-AutopilotHardwareHash.ps1 on GitHub →
+        </a>
+      </p>
+
+      <h2>Why It Mattered</h2>
+      <p>
+        This was a small automation with a practical operational payoff. It made device staging faster,
+        reduced manual CSV handling, and gave technicians a repeatable process they could keep using
+        without needing deeper Autopilot or PowerShell knowledge.
+      </p>
+
+      <h2>Tools and Concepts</h2>
+      <p>
+        This work connected Windows Autopilot, Intune enrollment preparation, PowerShell, CIM hardware inventory,
+        USB-based technician workflows, group tags, CSV generation, and repeatable endpoint staging.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
