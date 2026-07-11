@@ -94,6 +94,8 @@ const modes = [
 ];
 
 const DEFAULT_SCOPE = 'colorado';
+const DETAIL_PATCH_INDEX_PATH =
+  './data/geojson/interpreted/detail_patch_index_v1.json';
 
 const watershedViews = {
   colorado: [
@@ -216,19 +218,6 @@ const layerCatalog = [
     order: 46
   },
   {
-    key: 'colorado:detail:north-poudre-streams',
-    scope: 'colorado',
-    group: 'lineage',
-    path: './data/geojson/interpreted/colorado_north_poudre_detail_streams_v1.geojson',
-    type: 'colorado-north-poudre-detail-streams',
-    sourceType: 'lineage-stream-context',
-    label: 'North Poudre natural stream detail patch — v1',
-    minZoom: 12,
-    maxZoom: 18,
-    pane: 'lineageStreams',
-    order: 47
-  },
-  {
     key: 'colorado:featured:prototype-waters',
     scope: 'colorado',
     group: 'featured',
@@ -286,6 +275,7 @@ const layerCatalog = [
 
 let map = null;
 let featuredWaters = [];
+let detailPatchCatalog = [];
 let selectedStream = null;
 let currentModeIndex = 0;
 let activeDesiredCount = 0;
@@ -323,29 +313,18 @@ function initAtlasMap() {
   renderMode();
   updateDataLoadStatus();
 
-  fetch('./data/waters/index.json')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`${response.status} ${response.statusText} for data/waters/index.json`);
-      }
+  Promise.allSettled([
+    loadFeaturedWatersIndex(),
+    loadDetailPatchIndex()
+  ]).finally(async () => {
+    if (DEFAULT_SCOPE === 'colorado') {
+      map.fitBounds(watershedViews.colorado, {
+        padding: [24, 24]
+      });
+    }
 
-      return response.json();
-    })
-    .then(data => {
-      featuredWaters = data;
-    })
-    .catch(error => {
-      console.error('Could not load featured waters:', error);
-    })
-    .finally(async () => {
-      if (DEFAULT_SCOPE === 'colorado') {
-        map.fitBounds(watershedViews.colorado, {
-          padding: [24, 24]
-        });
-      }
-
-      await updateActiveLayers();
-    });
+    await updateActiveLayers();
+  });
 
   map.on(
     'moveend zoomend',
@@ -392,6 +371,55 @@ function initAtlasMap() {
       await updateActiveLayers();
     });
   });
+}
+
+async function loadFeaturedWatersIndex() {
+  try {
+    const response = await fetch('./data/waters/index.json');
+
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText} for data/waters/index.json`);
+    }
+
+    featuredWaters = await response.json();
+  } catch (error) {
+    console.error('Could not load featured waters:', error);
+    featuredWaters = [];
+  }
+}
+
+async function loadDetailPatchIndex() {
+  try {
+    const response = await fetch(DETAIL_PATCH_INDEX_PATH);
+
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText} for ${DETAIL_PATCH_INDEX_PATH}`);
+    }
+
+    const patches = await response.json();
+
+    detailPatchCatalog = patches.map((patch, index) => normalizeDetailPatchDef(patch, index));
+  } catch (error) {
+    console.error('Could not load detail patch index:', error);
+    detailPatchCatalog = [];
+  }
+}
+
+function normalizeDetailPatchDef(patch, index) {
+  return {
+    key: patch.key || `detail-patch-${index}`,
+    scope: patch.scope || 'colorado',
+    group: patch.group || 'lineage',
+    path: patch.path,
+    type: patch.type || 'detail-patch',
+    sourceType: patch.sourceType || 'lineage-stream-context',
+    label: patch.label || patch.key || `Detail patch ${index + 1}`,
+    minZoom: Number(patch.minZoom ?? 12),
+    maxZoom: Number(patch.maxZoom ?? 18),
+    pane: patch.pane || 'lineageStreams',
+    order: Number(patch.order ?? 90),
+    bounds: patch.bounds || null
+  };
 }
 
 function createMapPanes() {
@@ -444,17 +472,31 @@ function getDesiredLayerDefs() {
 
   const zoom = map.getZoom();
   const bounds = map.getBounds();
+  const fullCatalog = [...layerCatalog, ...detailPatchCatalog];
 
-  return layerCatalog
+  return fullCatalog
     .filter(layerDef => {
       if (layerVisibility[layerDef.group] === false) return false;
       if (zoom < layerDef.minZoom) return false;
       if (zoom > layerDef.maxZoom) return false;
-      if (!scopeIntersectsBounds(layerDef.scope, bounds)) return false;
+      if (!layerDefIntersectsBounds(layerDef, bounds)) return false;
 
       return true;
     })
     .sort((a, b) => a.order - b.order);
+}
+
+function layerDefIntersectsBounds(layerDef, bounds) {
+  if (layerDef.bounds) {
+    const patchBounds = L.latLngBounds(
+      [layerDef.bounds.south, layerDef.bounds.west],
+      [layerDef.bounds.north, layerDef.bounds.east]
+    );
+
+    return bounds.intersects(patchBounds);
+  }
+
+  return scopeIntersectsBounds(layerDef.scope, bounds);
 }
 
 function scopeIntersectsBounds(scope, bounds) {
