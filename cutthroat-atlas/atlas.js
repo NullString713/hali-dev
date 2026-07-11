@@ -11,7 +11,7 @@ const speciesColors = {
   westslope: { label: 'Westslope CT', color: '#fb7185' },
   paiute: { label: 'Paiute CT', color: '#fb923c' },
   coastal: { label: 'Coastal CT', color: '#06b6d4' },
-  
+
   gila: { label: 'Gila Trout', color: '#84cc16' },
   apache: { label: 'Apache Trout', color: '#fde047' },
   bull: { label: 'Bull Trout', color: '#14b8a6' },
@@ -95,87 +95,6 @@ const modes = [
 
 const DEFAULT_SCOPE = 'colorado';
 
-const hydroFiles = [
-  {
-    scope: 'colorado',
-    path: './data/geojson/nhd/colorado_v0_web/waterbodies_colorado_web_v0.geojson',
-    type: 'nhd-colorado-waterbodies',
-    sourceType: 'lakes',
-    label: 'USGS NHD waterbodies — Colorado lakes and reservoirs',
-    style: {
-      color: '#38bdf8',
-      weight: 0.8,
-      opacity: 0.75,
-      fillColor: '#38bdf8',
-      fillOpacity: 0.22
-    }
-  },
-  {
-    scope: 'colorado',
-    path: './data/geojson/nhd/colorado_v0_web/waterareas_stream_polygons_colorado_web_v0.geojson',
-    type: 'nhd-colorado-stream-polygons',
-    sourceType: 'lakes',
-    label: 'USGS NHD stream polygons — Colorado',
-    style: {
-      color: '#38bdf8',
-      weight: 0.6,
-      opacity: 0.55,
-      fillColor: '#38bdf8',
-      fillOpacity: 0.18
-    }
-  },
-  {
-    scope: 'colorado',
-    path: './data/geojson/nhd/colorado_v0_web/streams_colorado_web_v1_upload_min.geojson',
-    type: 'nhd-colorado-streams',
-    sourceType: 'nhd',
-    label: 'USGS NHD named streams — Colorado',
-    style: {
-      color: '#60a5fa',
-      weight: 1.1,
-      opacity: 0.42
-    }
-    },
-    {
-    scope: 'colorado',
-    path: './data/geojson/interpreted/colorado_cutthroat_featured_v0.geojson',
-    type: 'colorado-cutthroat-featured',
-    sourceType: 'interpreted',
-    label: 'Colorado cutthroat interpreted waters — prototype'
-    },
-    {
-    scope: 'colorado',
-    path: './data/geojson/interpreted/colorado_cutthroat_huc8_lineage_v1.geojson',
-    type: 'colorado-cutthroat-huc8-lineage',
-    sourceType: 'lineage-polygons',
-    label: 'Colorado cutthroat HUC8 lineage context — prototype'
-    },
-    {
-    scope: 'colorado',
-    path: './data/geojson/interpreted/colorado_cutthroat_huc8_stream_context_named_web_1km_v1.geojson',
-    type: 'colorado-cutthroat-huc8-stream-context',
-    sourceType: 'lineage-stream-context',
-    label: 'Colorado cutthroat HUC8 stream context — 1 km prototype'
-    }
-  // Optional later toggle layer.
-  // Do not enable by default unless your loader supports defaultVisible: false.
-  /*
-  {
-    scope: 'colorado',
-    path: './data/geojson/nhd/colorado_v0_web/human_altered_hydrology_colorado_web_v0.geojson',
-    type: 'nhd-colorado-human-altered-hydrology',
-    sourceType: 'nhd-human',
-    label: 'USGS NHD human-altered hydrology — Colorado canals, ditches, pipelines',
-    style: {
-      color: '#f59e0b',
-      weight: 1,
-      opacity: 0.55,
-      dashArray: '4 4'
-    }
-  }
-  */
-];
-
 const watershedViews = {
   colorado: [
     [36.99, -109.06],
@@ -199,431 +118,566 @@ const watershedViews = {
   ]
 };
 
+/*
+  LOD model v0
+
+  Goal:
+  - Zoomed out: no dense stream spaghetti.
+  - Zoomed in: load stream context and clickable waters.
+  - Zoom back out: remove dense layers and drop references.
+
+  Current Colorado-only breakpoints:
+  - HUC8 lineage polygons: zoom 5+
+  - Lakes/waterbodies: zoom 6+
+  - Stream polygons: zoom 8+
+  - 1km lineage stream context: zoom 8+
+  - Curated/clickable prototype waters: zoom 9+
+  - Full NHD reference named streams: zoom 10+
+*/
+
+const layerCatalog = [
+  {
+    key: 'colorado:lineage:huc8-polygons',
+    scope: 'colorado',
+    group: 'lineage',
+    path: './data/geojson/interpreted/colorado_cutthroat_huc8_lineage_v1.geojson',
+    type: 'colorado-cutthroat-huc8-lineage',
+    sourceType: 'lineage-polygons',
+    label: 'Colorado cutthroat HUC8 lineage context — prototype',
+    minZoom: 5,
+    maxZoom: 18,
+    pane: 'lineagePolygons',
+    order: 20
+  },
+  {
+    key: 'colorado:lakes:waterbodies',
+    scope: 'colorado',
+    group: 'lakes',
+    path: './data/geojson/nhd/colorado_v0_web/waterbodies_colorado_web_v0.geojson',
+    type: 'nhd-colorado-waterbodies',
+    sourceType: 'lakes',
+    label: 'USGS NHD waterbodies — Colorado lakes and reservoirs',
+    minZoom: 6,
+    maxZoom: 18,
+    pane: 'referenceHydro',
+    order: 30,
+    style: {
+      color: '#38bdf8',
+      weight: 0.8,
+      opacity: 0.75,
+      fillColor: '#38bdf8',
+      fillOpacity: 0.22
+    }
+  },
+  {
+    key: 'colorado:lakes:stream-polygons',
+    scope: 'colorado',
+    group: 'lakes',
+    path: './data/geojson/nhd/colorado_v0_web/waterareas_stream_polygons_colorado_web_v0.geojson',
+    type: 'nhd-colorado-stream-polygons',
+    sourceType: 'lakes',
+    label: 'USGS NHD stream polygons — Colorado',
+    minZoom: 8,
+    maxZoom: 18,
+    pane: 'referenceHydro',
+    order: 35,
+    style: {
+      color: '#38bdf8',
+      weight: 0.6,
+      opacity: 0.55,
+      fillColor: '#38bdf8',
+      fillOpacity: 0.18
+    }
+  },
+  {
+    key: 'colorado:lineage:stream-context-1km',
+    scope: 'colorado',
+    group: 'lineage',
+    path: './data/geojson/interpreted/colorado_cutthroat_huc8_stream_context_named_web_1km_v1.geojson',
+    type: 'colorado-cutthroat-huc8-stream-context',
+    sourceType: 'lineage-stream-context',
+    label: 'Colorado cutthroat HUC8 stream context — 1 km prototype',
+    minZoom: 8,
+    maxZoom: 18,
+    pane: 'lineageStreams',
+    order: 45
+  },
+  {
+    key: 'colorado:featured:prototype-waters',
+    scope: 'colorado',
+    group: 'featured',
+    path: './data/geojson/interpreted/colorado_cutthroat_featured_v0.geojson',
+    type: 'colorado-cutthroat-featured',
+    sourceType: 'interpreted',
+    label: 'Colorado cutthroat interpreted waters — prototype',
+    minZoom: 9,
+    maxZoom: 18,
+    pane: 'featuredWaters',
+    order: 60
+  },
+  {
+    key: 'colorado:nhd:named-streams',
+    scope: 'colorado',
+    group: 'nhd',
+    path: './data/geojson/nhd/colorado_v0_web/streams_colorado_web_v1_upload_min.geojson',
+    type: 'nhd-colorado-streams',
+    sourceType: 'nhd',
+    label: 'USGS NHD named streams — Colorado',
+    minZoom: 10,
+    maxZoom: 18,
+    pane: 'referenceHydro',
+    order: 70,
+    style: {
+      color: '#60a5fa',
+      weight: 1.1,
+      opacity: 0.42
+    }
+  }
+
+  /*
+  Later optional layer:
+  {
+    key: 'colorado:human-altered-hydrology',
+    scope: 'colorado',
+    group: 'nhd',
+    path: './data/geojson/nhd/colorado_v0_web/human_altered_hydrology_colorado_web_v0.geojson',
+    type: 'nhd-colorado-human-altered-hydrology',
+    sourceType: 'nhd-human',
+    label: 'USGS NHD human-altered hydrology — Colorado canals, ditches, pipelines',
+    minZoom: 9,
+    maxZoom: 18,
+    pane: 'referenceHydro',
+    order: 80,
+    style: {
+      color: '#f59e0b',
+      weight: 1,
+      opacity: 0.55,
+      dashArray: '4 4'
+    }
+  }
+  */
+];
+
+let map = null;
 let featuredWaters = [];
 let selectedStream = null;
 let currentModeIndex = 0;
+let activeDesiredCount = 0;
 
-const loadedHydroFiles = new Set();
-const matchedFeaturedWaterIds = new Set();
-const featuredStreamLayers = [];
+const activeLayers = new Map();
+const loadingLayers = new Map();
 
-const hydroLayerGroups = {
-  nhd: L.layerGroup(),      // NHD flowlines
-  osm: L.layerGroup(),      // OSM streams
-  lakes: L.layerGroup()     // NHD waterbody polygons
+const layerVisibility = {
+  lakes: true,
+  nhd: true,
+  lineage: true,
+  featured: true
 };
 
-const featuredLayerGroup = L.layerGroup();
+const mapElement = document.getElementById('map');
 
-const map = L.map('map', {
-  zoomControl: true,
-  scrollWheelZoom: true,
-  preferCanvas: true
-}).setView([39.0, -105.55], 7);
+if (mapElement && window.L) {
+  initAtlasMap();
+}
 
-function getStreamWeight(feature) {
-  const zoom = map.getZoom();
-  const props = feature.properties || {};
+initDeepTimeStory();
 
-  const hasName = Boolean(
-    props.name ||
-    props.gnis_name ||
-    props.GNIS_Name ||
-    props.GNIS_NAME
+function initAtlasMap() {
+  map = L.map('map', {
+    zoomControl: true,
+    scrollWheelZoom: true,
+    preferCanvas: true
+  }).setView([39.0, -105.55], 7);
+
+  createMapPanes();
+  addBaseTiles();
+  hydrateLayerVisibilityFromControls();
+
+  renderLegend();
+  renderMode();
+  updateDataLoadStatus();
+
+  fetch('./data/waters/index.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText} for data/waters/index.json`);
+      }
+
+      return response.json();
+    })
+    .then(data => {
+      featuredWaters = data;
+    })
+    .catch(error => {
+      console.error('Could not load featured waters:', error);
+    })
+    .finally(async () => {
+      if (DEFAULT_SCOPE === 'colorado') {
+        map.fitBounds(watershedViews.colorado, {
+          padding: [24, 24]
+        });
+      }
+
+      await updateActiveLayers();
+    });
+
+  map.on(
+    'moveend zoomend',
+    debounce(() => {
+      updateActiveLayers();
+    }, 150)
   );
 
-  const isRecovery =
-    props.recovery === 'recoveryHigh' ||
-    props.recovery === 'recovery';
+  const slider = document.getElementById('mode-slider');
 
-  if (isRecovery) {
-    if (zoom <= 8) return 1.8;
-    if (zoom <= 10) return 2.3;
-    if (zoom <= 12) return 2.8;
-    return 3.2;
+  if (slider) {
+    slider.addEventListener('input', event => {
+      currentModeIndex = Number(event.target.value);
+      renderMode();
+      renderLegend();
+      refreshActiveLayerStyles();
+
+      if (selectedStream) {
+        renderStreamCard(selectedStream);
+      }
+    });
   }
 
-  if (hasName) {
-    if (zoom <= 8) return 0.7;
-    if (zoom <= 10) return 1.0;
-    if (zoom <= 12) return 1.4;
-    return 1.8;
-  }
+  document.querySelectorAll('[data-layer-toggle]').forEach(toggle => {
+    toggle.addEventListener('change', event => {
+      const layerGroup = event.target.dataset.layerToggle;
 
-  if (zoom <= 8) return 0.2;
-  if (zoom <= 10) return 0.35;
-  if (zoom <= 12) return 0.65;
-  return 1.0;
-}
-
-function getStreamOpacity(feature) {
-  const zoom = map.getZoom();
-  const props = feature.properties || {};
-
-  const hasName = Boolean(
-    props.name ||
-    props.gnis_name ||
-    props.GNIS_Name ||
-    props.GNIS_NAME
-  );
-
-  const isRecovery =
-    props.recovery === 'recoveryHigh' ||
-    props.recovery === 'recovery';
-
-  if (isRecovery) return 0.9;
-
-  if (hasName) {
-    if (zoom <= 8) return 0.45;
-    if (zoom <= 10) return 0.55;
-    return 0.7;
-  }
-
-  if (zoom <= 8) return 0.12;
-  if (zoom <= 10) return 0.22;
-  if (zoom <= 12) return 0.38;
-  return 0.55;
-}
-
-function getStreamStyle(feature) {
-  const props = feature.properties || {};
-
-  const isRecovery =
-    props.recovery === 'recoveryHigh' ||
-    props.recovery === 'recovery';
-
-  return {
-    color: isRecovery ? '#22c55e' : '#38bdf8',
-    weight: getStreamWeight(feature),
-    opacity: getStreamOpacity(feature),
-    lineCap: 'round',
-    lineJoin: 'round'
-  };
-}
-hydroLayerGroups.nhd.addTo(map);
-hydroLayerGroups.osm.addTo(map);
-hydroLayerGroups.lakes.addTo(map);
-featuredLayerGroup.addTo(map);
-
-hydroLayerGroups.featured = featuredLayerGroup;
-
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
-  maxZoom: 18,
-  attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-  subdomains: 'abcd'
-}).addTo(map);
-
-renderLegend();
-renderMode();
-updateDataLoadStatus();
-
-fetch('./data/waters/index.json')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`${response.status} ${response.statusText} for data/waters/index.json`);
-    }
-
-    return response.json();
-  })
-  .then(data => {
-    featuredWaters = data;
-  })
-  .catch(error => {
-    console.error('Could not load featured waters:', error);
-  })
-  .finally(async () => {
-    await loadHydroFilesForScope(DEFAULT_SCOPE);
-
-    if (DEFAULT_SCOPE === 'colorado') {
-      map.fitBounds(watershedViews.colorado, {
-        padding: [24, 24]
-      });
-    }
+      layerVisibility[layerGroup] = event.target.checked;
+      updateActiveLayers();
+    });
   });
 
-async function loadHydroFilesForScope(scope) {
-  const filesForScope = hydroFiles
-    .filter(file => file.scope === scope)
-    .sort((a, b) => sourceSortOrder(a.sourceType) - sourceSortOrder(b.sourceType));
+  document.querySelectorAll('[data-view-jump]').forEach(button => {
+    button.addEventListener('click', async event => {
+      const viewKey = event.currentTarget.dataset.viewJump;
+      const bounds = watershedViews[viewKey];
 
-  for (const file of filesForScope) {
-    if (loadedHydroFiles.has(file.path)) continue;
+      if (!bounds) return;
 
-    await loadHydroFile(file);
-    loadedHydroFiles.add(file.path);
+      map.fitBounds(bounds, {
+        padding: [40, 40]
+      });
+
+      await updateActiveLayers();
+    });
+  });
+}
+
+function createMapPanes() {
+  map.createPane('lineagePolygons');
+  map.getPane('lineagePolygons').style.zIndex = 350;
+
+  map.createPane('referenceHydro');
+  map.getPane('referenceHydro').style.zIndex = 410;
+
+  map.createPane('lineageStreams');
+  map.getPane('lineageStreams').style.zIndex = 440;
+
+  map.createPane('featuredWaters');
+  map.getPane('featuredWaters').style.zIndex = 520;
+
+  map.createPane('mapLabels');
+  map.getPane('mapLabels').style.zIndex = 650;
+  map.getPane('mapLabels').style.pointerEvents = 'none';
+}
+
+function addBaseTiles() {
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+    maxZoom: 18,
+    attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+    subdomains: 'abcd'
+  }).addTo(map);
+
+  // Label overlay: labels stay visual-only while Atlas GeoJSON handles clicking/cards.
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png', {
+    maxZoom: 18,
+    attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+    subdomains: 'abcd',
+    pane: 'mapLabels',
+    opacity: 0.82
+  }).addTo(map);
+}
+
+function hydrateLayerVisibilityFromControls() {
+  document.querySelectorAll('[data-layer-toggle]').forEach(toggle => {
+    const layerGroup = toggle.dataset.layerToggle;
+
+    if (!layerGroup) return;
+
+    layerVisibility[layerGroup] = toggle.checked;
+  });
+}
+
+function getDesiredLayerDefs() {
+  if (!map) return [];
+
+  const zoom = map.getZoom();
+  const bounds = map.getBounds();
+
+  return layerCatalog
+    .filter(layerDef => {
+      if (layerVisibility[layerDef.group] === false) return false;
+      if (zoom < layerDef.minZoom) return false;
+      if (zoom > layerDef.maxZoom) return false;
+      if (!scopeIntersectsBounds(layerDef.scope, bounds)) return false;
+
+      return true;
+    })
+    .sort((a, b) => a.order - b.order);
+}
+
+function scopeIntersectsBounds(scope, bounds) {
+  const scopeBoundsArray = watershedViews[scope];
+
+  if (!scopeBoundsArray) return true;
+
+  const scopeBounds = L.latLngBounds(scopeBoundsArray);
+
+  return bounds.intersects(scopeBounds);
+}
+
+function shouldLayerBeActive(layerDef) {
+  return getDesiredLayerDefs().some(desiredLayer => desiredLayer.key === layerDef.key);
+}
+
+async function updateActiveLayers() {
+  if (!map) return;
+
+  const desiredLayerDefs = getDesiredLayerDefs();
+  const desiredKeys = new Set(desiredLayerDefs.map(layerDef => layerDef.key));
+  activeDesiredCount = desiredLayerDefs.length;
+
+  // Abort in-flight loads that are no longer useful.
+  for (const [key, loadingRecord] of loadingLayers.entries()) {
+    if (!desiredKeys.has(key)) {
+      loadingRecord.abortController.abort();
+      loadingLayers.delete(key);
+    }
+  }
+
+  // Remove active layers that are no longer useful.
+  for (const [key, activeRecord] of activeLayers.entries()) {
+    if (!desiredKeys.has(key)) {
+      unloadLayer(key, activeRecord);
+    }
+  }
+
+  refreshActiveLayerStyles();
+
+  // Load missing desired layers.
+  for (const layerDef of desiredLayerDefs) {
+    if (activeLayers.has(layerDef.key)) continue;
+    if (loadingLayers.has(layerDef.key)) continue;
+
+    loadLayer(layerDef);
+  }
+
+  updateDataLoadStatus();
+}
+
+async function loadLayer(layerDef) {
+  const abortController = new AbortController();
+
+  loadingLayers.set(layerDef.key, {
+    layerDef,
+    abortController
+  });
+
+  updateDataLoadStatus();
+
+  try {
+    const response = await fetch(layerDef.path, {
+      signal: abortController.signal
+    });
+
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText} for ${layerDef.path}`);
+    }
+
+    const data = await response.json();
+
+    if (!shouldLayerBeActive(layerDef)) {
+      return;
+    }
+
+    const layer = createLayerFromGeoJson(data, layerDef);
+
+    if (!layer) return;
+
+    layer.addTo(map);
+
+    activeLayers.set(layerDef.key, {
+      layerDef,
+      layer
+    });
+  } catch (error) {
+    if (error.name !== 'AbortError') {
+      console.error(`Could not load ${layerDef.label}:`, error);
+    }
+  } finally {
+    loadingLayers.delete(layerDef.key);
     updateDataLoadStatus();
   }
 }
 
-async function loadVisibleScopes() {
-  const currentBounds = map.getBounds();
+function unloadLayer(key, activeRecord) {
+  const { layer } = activeRecord;
 
-  for (const [scope, boundsArray] of Object.entries(watershedViews)) {
-    const scopeBounds = L.latLngBounds(boundsArray);
-
-    if (currentBounds.intersects(scopeBounds)) {
-      await loadHydroFilesForScope(scope);
-    }
+  if (map.hasLayer(layer)) {
+    map.removeLayer(layer);
   }
-}
 
-async function loadHydroFile(file) {
-  try {
-    const response = await fetch(file.path);
-
-    if (!response.ok) {
-      throw new Error(`${response.status} ${response.statusText} for ${file.path}`);
-    }
-
-    const contentType = response.headers.get('content-type') || '';
-
-    if (!contentType.includes('json')) {
-      const text = await response.text();
-      throw new Error(`Expected JSON for ${file.path}, got: ${text.slice(0, 80)}`);
-    }
-
-    const data = await response.json();
-    const sourceType = file.sourceType || file.type;
-
-    // Prebuilt interpreted Colorado cutthroat layer.
-    // This becomes the clickable species-colored layer.
-    if (sourceType === 'lineage-polygons') {
-  addLineagePolygonLayer(data, file);
-  return;
-    }
-    
-    if (sourceType === 'lineage-stream-context') {
-      addLineageStreamContextLayer(data, file);
-      return;
-    }
-    
-    if (sourceType === 'interpreted') {
-      addInterpretedFeaturedLayer(data, file);
-      return;
-    }
-
-    // Normal blue/reference hydro.
-    addReferenceLayer(data, file, sourceType);
-
-    // Do not build featured layers from statewide NHD anymore.
-    // That was causing the broken fragmented green overlays.
-    if (sourceType === 'osm') {
-      addFeaturedLayer(data, file, sourceType);
-    }
-  } catch (error) {
-    console.error(`Could not load ${file.label}:`, error);
+  if (layer.clearLayers) {
+    layer.clearLayers();
   }
-}
-function isPointGeometry(feature) {
-  const type = feature.geometry?.type || '';
-  return type === 'Point' || type === 'MultiPoint';
+
+  activeLayers.delete(key);
+  updateDataLoadStatus();
 }
 
-function isLineGeometry(feature) {
-  const type = feature.geometry?.type || '';
-  return type === 'LineString' || type === 'MultiLineString';
+function createLayerFromGeoJson(data, layerDef) {
+  const sourceType = layerDef.sourceType || layerDef.type;
+
+  if (sourceType === 'lineage-polygons') {
+    return createLineagePolygonLayer(data, layerDef);
+  }
+
+  if (sourceType === 'lineage-stream-context') {
+    return createLineageStreamContextLayer(data, layerDef);
+  }
+
+  if (sourceType === 'interpreted') {
+    return createInterpretedFeaturedLayer(data, layerDef);
+  }
+
+  return createReferenceLayer(data, layerDef, sourceType);
 }
 
-function addReferenceLayer(data, file, sourceType) {
-  const hydroLayer = L.geoJSON(data, {
-    filter: (feature) => !isPointGeometry(feature),
+function createReferenceLayer(data, layerDef, sourceType) {
+  return L.geoJSON(data, {
+    pane: layerDef.pane || 'referenceHydro',
+    filter: feature => !isPointGeometry(feature),
     pointToLayer: () => null,
-    style: (feature) => {
-      const zoom = map.getZoom();
-      const props = feature.properties || {};
-      const geometryType = feature.geometry?.type || '';
-
-      const isPolygon =
-        geometryType.includes('Polygon');
-
-      const hasName = Boolean(
-        props.name ||
-        props.gnis_name ||
-        props.GNIS_Name ||
-        props.GNIS_NAME
-      );
-
-      const isHighlight =
-        file.style?.color === '#22c55e' ||
-        file.style?.color === '#35d07f' ||
-        file.style?.weight >= 3;
-
-      // Keep lakes / waterbody polygons filled and readable
-      if (isPolygon || sourceType === 'lakes') {
-        return {
-          color: file.style?.color || '#3b9fc6',
-          weight: file.style?.weight || 1.2,
-          opacity: file.style?.opacity || 0.65,
-          fillColor: file.style?.fillColor || file.style?.color || '#3b9fc6',
-          fillOpacity: file.style?.fillOpacity ?? 0.18,
-          lineCap: 'round',
-          lineJoin: 'round'
-        };
-      }
-
-      // Keep important highlighted/recovery lines stronger
-        if (isHighlight) {
-          return {
-            color: file.style?.color || '#22c55e',
-            weight: zoom <= 8 ? 1.6 : zoom <= 10 ? 2.1 : zoom <= 12 ? 2.6 : 3,
-            opacity: zoom <= 8 ? 0.8 : 0.9,
-            lineCap: 'round',
-            lineJoin: 'round'
-          };
-        }
-
-      // Fade normal stream spaghetti way down when zoomed out
-      return {
-        color: file.style?.color || '#38bdf8',
-        weight: zoom <= 8 ? 0.18 : zoom <= 10 ? 0.35 : zoom <= 12 ? 0.6 : 0.9,
-        opacity: hasName
-          ? zoom <= 8 ? 0.22 : zoom <= 10 ? 0.38 : 0.55
-          : zoom <= 8 ? 0.08 : zoom <= 10 ? 0.16 : zoom <= 12 ? 0.28 : 0.42,
-        fillColor: file.style?.fillColor || file.style?.color || '#3b9fc6',
-        fillOpacity: file.style?.fillOpacity ?? 0.16,
-        lineCap: 'round',
-        lineJoin: 'round'
-      };
-    },
+    style: feature => styleReferenceFeature(feature, layerDef, sourceType),
     interactive: false,
     smoothFactor: 1.5
   });
-
-  hydroLayer.addTo(hydroLayerGroups[sourceType]);
 }
 
-function addInterpretedFeaturedLayer(data, file) {
-  const layer = L.geoJSON(data, {
-    filter: (feature) => isLineGeometry(feature) && !isPointGeometry(feature),
+function createInterpretedFeaturedLayer(data, layerDef) {
+  return L.geoJSON(data, {
+    pane: layerDef.pane || 'featuredWaters',
+    filter: feature => isLineGeometry(feature) && !isPointGeometry(feature),
     style: styleStream,
     onEachFeature: (feature, layer) => {
       feature.properties = {
         ...feature.properties,
         sourceLayer: 'interpreted',
-        sourceLabel: file.label
+        sourceLabel: layerDef.label
       };
 
       bindFeaturedStreamEvents(feature, layer);
     },
     smoothFactor: 1.5
-  }).addTo(featuredLayerGroup);
-
-  featuredStreamLayers.push(layer);
-}
-function addFeaturedLayer(data, file, sourceType) {
-  const featuredStreams = {
-    type: 'FeatureCollection',
-    features: data.features
-    .filter(feature => !isPointGeometry(feature))
-    .map(feature => buildFeaturedFeature(feature, file, sourceType))
-    .filter(Boolean)
-  };
-
-  if (featuredStreams.features.length === 0) return;
-
-  const layer = L.geoJSON(featuredStreams, {
-  filter: (feature) => !isPointGeometry(feature),
-  pointToLayer: () => null,
-  style: styleStream,
-  onEachFeature: bindFeaturedStreamEvents,
-  smoothFactor: 1.5
-}).addTo(featuredLayerGroup);
-
-  featuredStreamLayers.push(layer);
+  });
 }
 
-function buildFeaturedFeature(feature, file, sourceType) {
-  const sourceName =
-    feature.properties?.name ||
-    feature.properties?.GNIS_Name ||
-    feature.properties?.gnis_name ||
-    feature.properties?.GNIS_NAME ||
-    '';
+function createLineagePolygonLayer(data, layerDef) {
+  return L.geoJSON(data, {
+    pane: layerDef.pane || 'lineagePolygons',
+    filter: feature => {
+      const type = feature.geometry?.type || '';
+      return type === 'Polygon' || type === 'MultiPolygon';
+    },
+    style: styleLineagePolygon,
+    interactive: false,
+    smoothFactor: 1.5
+  });
+}
 
-  if (!sourceName) return null;
+function createLineageStreamContextLayer(data, layerDef) {
+  return L.geoJSON(data, {
+    pane: layerDef.pane || 'lineageStreams',
+    filter: feature => isLineGeometry(feature) && !isPointGeometry(feature),
+    style: styleLineageStreamContext,
+    interactive: false,
+    smoothFactor: 1.5
+  });
+}
 
-  const matches = featuredWaters
-    .filter(water =>
-      sourceName.toLowerCase().includes(String(water.match || '').toLowerCase()) &&
-      featureMatchesBounds(feature, water.bounds)
-    )
-    .sort((a, b) => (b.priority || 0) - (a.priority || 0));
+function refreshActiveLayerStyles() {
+  for (const activeRecord of activeLayers.values()) {
+    const { layerDef, layer } = activeRecord;
 
-  const match = matches[0];
+    if (!layer.setStyle) continue;
 
-  if (!match) return null;
+    if (layerDef.sourceType === 'interpreted') {
+      layer.setStyle(styleStream);
+      continue;
+    }
 
-  const useOsmSupplement = match.useOsmSupplement === true;
+    if (layerDef.sourceType === 'lineage-polygons') {
+      layer.setStyle(styleLineagePolygon);
+      continue;
+    }
 
-  if (
-    sourceType === 'osm' &&
-    matchedFeaturedWaterIds.has(match.id) &&
-    !useOsmSupplement
-  ) {
-    return null;
+    if (layerDef.sourceType === 'lineage-stream-context') {
+      layer.setStyle(styleLineageStreamContext);
+      continue;
+    }
+
+    layer.setStyle(feature => styleReferenceFeature(feature, layerDef, layerDef.sourceType));
   }
+}
 
-  if (sourceType === 'nhd') {
-    matchedFeaturedWaterIds.add(match.id);
+function styleReferenceFeature(feature, layerDef, sourceType) {
+  const zoom = map.getZoom();
+  const props = feature.properties || {};
+  const geometryType = feature.geometry?.type || '';
+
+  const isPolygon = geometryType.includes('Polygon');
+
+  const hasName = Boolean(
+    props.name ||
+    props.gnis_name ||
+    props.GNIS_Name ||
+    props.GNIS_NAME
+  );
+
+  if (isPolygon || sourceType === 'lakes') {
+    return {
+      color: layerDef.style?.color || '#3b9fc6',
+      weight: layerDef.style?.weight || 1.2,
+      opacity: layerDef.style?.opacity || 0.65,
+      fillColor: layerDef.style?.fillColor || layerDef.style?.color || '#3b9fc6',
+      fillOpacity: layerDef.style?.fillOpacity ?? 0.18,
+      lineCap: 'round',
+      lineJoin: 'round'
+    };
   }
 
   return {
-    ...feature,
-    properties: {
-      ...feature.properties,
-      ...match,
-      sourceName,
-      sourceLayer: sourceType,
-      sourceLabel: file.label
-    }
+    color: layerDef.style?.color || '#38bdf8',
+    weight: zoom <= 8 ? 0.18 : zoom <= 10 ? 0.35 : zoom <= 12 ? 0.6 : 0.9,
+    opacity: hasName
+      ? zoom <= 8 ? 0.22 : zoom <= 10 ? 0.38 : 0.55
+      : zoom <= 8 ? 0.08 : zoom <= 10 ? 0.16 : zoom <= 12 ? 0.28 : 0.42,
+    fillColor: layerDef.style?.fillColor || layerDef.style?.color || '#3b9fc6',
+    fillOpacity: layerDef.style?.fillOpacity ?? 0.16,
+    dashArray: layerDef.style?.dashArray,
+    lineCap: 'round',
+    lineJoin: 'round'
   };
-}
-
-map.on('zoomend', () => {
-  Object.values(hydroLayerGroups).forEach((layerGroup) => {
-    layerGroup.eachLayer((layer) => {
-      if (layer.setStyle && layer.options?.style) {
-        layer.setStyle(layer.options.style);
-      }
-    });
-  });
-
-  featuredStreamLayers.forEach((layer) => {
-    if (layer.setStyle) {
-      layer.setStyle(styleStream);
-    }
-  });
-});
-
-function bindFeaturedStreamEvents(feature, layer) {
-  layer.on('click', () => {
-    selectedStream = feature.properties;
-    renderStreamCard(selectedStream);
-    layer.bringToFront();
-  });
-
-  layer.on('mouseover', () => {
-  const zoom = map.getZoom();
-
-   layer.setStyle({
-    weight: zoom <= 8 ? 1.5 : zoom <= 10 ? 2.0 : zoom <= 12 ? 2.5 : 3.0,
-    opacity: 0.95
-  });
-});
-
-layer.on('mouseout', () => layer.setStyle(styleStream(feature)));
-
-  layer.bindTooltip(feature.properties.name || feature.properties.sourceName, {
-    permanent: false,
-    direction: 'top',
-    sticky: true,
-    className: 'stream-tooltip'
-  });
 }
 
 function styleStream(feature) {
   const mode = modes[currentModeIndex].key;
-  const speciesKey = feature.properties[mode];
+  const speciesKey = feature.properties?.[mode];
   const zoom = map.getZoom();
 
   return {
@@ -633,10 +687,6 @@ function styleStream(feature) {
     lineCap: 'round',
     lineJoin: 'round'
   };
-}
-function getLineageColor(feature) {
-  const key = feature.properties?.lineageKey || feature.properties?.historic;
-  return speciesColors[key]?.color || '#64748b';
 }
 
 function styleLineagePolygon(feature) {
@@ -654,42 +704,63 @@ function styleLineagePolygon(feature) {
 
 function styleLineageStreamContext(feature) {
   const color = getLineageColor(feature);
+  const zoom = map.getZoom();
 
   return {
     color,
-    weight: 1.15,
-    opacity: 0.45,
-    interactive: false
+    weight: zoom <= 8 ? 0.85 : zoom <= 10 ? 1.05 : 1.2,
+    opacity: zoom <= 8 ? 0.34 : zoom <= 10 ? 0.42 : 0.5,
+    interactive: false,
+    lineCap: 'round',
+    lineJoin: 'round'
   };
 }
 
-function addLineagePolygonLayer(data, file) {
-  const layer = L.geoJSON(data, {
-    filter: (feature) => {
-      const type = feature.geometry?.type || '';
-      return type === 'Polygon' || type === 'MultiPolygon';
-    },
-    style: styleLineagePolygon,
-    interactive: false,
-    smoothFactor: 1.5
-  }).addTo(map);
+function getLineageColor(feature) {
+  const key =
+    feature.properties?.lineageKey ||
+    feature.properties?.lineage ||
+    feature.properties?.historic;
 
-  layer.eachLayer((l) => {
-    if (l.bringToBack) l.bringToBack();
+  return speciesColors[key]?.color || '#64748b';
+}
+
+function bindFeaturedStreamEvents(feature, layer) {
+  layer.on('click', () => {
+    selectedStream = feature.properties;
+    renderStreamCard(selectedStream);
+    layer.bringToFront();
+  });
+
+  layer.on('mouseover', () => {
+    const zoom = map.getZoom();
+
+    layer.setStyle({
+      weight: zoom <= 8 ? 1.5 : zoom <= 10 ? 2.0 : zoom <= 12 ? 2.5 : 3.0,
+      opacity: 0.95
+    });
+  });
+
+  layer.on('mouseout', () => {
+    layer.setStyle(styleStream(feature));
+  });
+
+  layer.bindTooltip(getWaterName(feature.properties), {
+    permanent: false,
+    direction: 'top',
+    sticky: true,
+    className: 'stream-tooltip'
   });
 }
 
-function addLineageStreamContextLayer(data, file) {
-  const layer = L.geoJSON(data, {
-    filter: (feature) => isLineGeometry(feature) && !isPointGeometry(feature),
-    style: styleLineageStreamContext,
-    interactive: false,
-    smoothFactor: 1.5
-  }).addTo(map);
+function isPointGeometry(feature) {
+  const type = feature.geometry?.type || '';
+  return type === 'Point' || type === 'MultiPoint';
+}
 
-  layer.eachLayer((l) => {
-    if (l.bringToBack) l.bringToBack();
-  });
+function isLineGeometry(feature) {
+  const type = feature.geometry?.type || '';
+  return type === 'LineString' || type === 'MultiLineString';
 }
 
 function renderLegend() {
@@ -730,12 +801,12 @@ function renderStreamCard(stream) {
 
   card.innerHTML = `
     <p class="eyebrow">Selected water</p>
-    <h2>${escapeHtml(stream.name)}</h2>
+    <h2>${escapeHtml(getWaterName(stream))}</h2>
     <p>${escapeHtml(stream.note || '')}</p>
     <dl>
       <dt>Layer</dt><dd>${escapeHtml(modeLabel(mode))}</dd>
       <dt>Shown as</dt><dd>${escapeHtml(activeLabel)}</dd>
-      <dt>Mapped name</dt><dd>${escapeHtml(stream.sourceName || stream.name)}</dd>
+      <dt>Mapped name</dt><dd>${escapeHtml(stream.sourceName || stream.name || 'Unknown')}</dd>
       <dt>Basin</dt><dd>${escapeHtml(stream.basin || 'Unknown')}</dd>
       <dt>State</dt><dd>${escapeHtml(stream.state || 'Unknown')}</dd>
       <dt>Confidence</dt><dd>${escapeHtml(stream.confidence || 'Prototype / needs review')}</dd>
@@ -744,6 +815,19 @@ function renderStreamCard(stream) {
       <dt>Trout source</dt><dd>${escapeHtml(stream.troutSource || 'Unknown')}</dd>
     </dl>
   `;
+}
+
+function getWaterName(stream) {
+  return (
+    stream?.display_name ||
+    stream?.displayName ||
+    stream?.name ||
+    stream?.sourceName ||
+    stream?.GNIS_Name ||
+    stream?.gnis_name ||
+    stream?.GNIS_NAME ||
+    'Unnamed water'
+  );
 }
 
 function geometryStatusLabel(stream) {
@@ -788,99 +872,63 @@ function updateDataLoadStatus() {
   const status = document.getElementById('data-load-status');
   if (!status) return;
 
-  status.textContent = `Loaded ${loadedHydroFiles.size} of ${hydroFiles.length} reference layers`;
+  if (!map) {
+    status.textContent = 'Map not initialized';
+    return;
+  }
+
+  const zoom = map.getZoom();
+  const loadingCount = loadingLayers.size;
+  const activeCount = activeLayers.size;
+
+  status.textContent =
+    `Zoom ${zoom} · Active ${activeCount} of ${activeDesiredCount} LOD layers` +
+    (loadingCount ? ` · Loading ${loadingCount}` : '');
 }
 
-function sourceSortOrder(sourceType) {
-  if (sourceType === 'lakes') return 1;
-  if (sourceType === 'lineage-polygons') return 2;
-  if (sourceType === 'nhd') return 3;
-  if (sourceType === 'lineage-stream-context') return 4;
-  if (sourceType === 'interpreted') return 5;
-  if (sourceType === 'osm') return 6;
-  return 7;
+function debounce(fn, wait = 150) {
+  let timeoutId;
+
+  return (...args) => {
+    window.clearTimeout(timeoutId);
+
+    timeoutId = window.setTimeout(() => {
+      fn(...args);
+    }, wait);
+  };
 }
-
-const slider = document.getElementById('mode-slider');
-
-if (slider) {
-  slider.addEventListener('input', event => {
-    currentModeIndex = Number(event.target.value);
-    renderMode();
-    renderLegend();
-
-    featuredStreamLayers.forEach(layer => layer.setStyle(styleStream));
-
-    if (selectedStream) {
-      renderStreamCard(selectedStream);
-    }
-  });
-}
-
-document.querySelectorAll('[data-layer-toggle]').forEach(toggle => {
-  toggle.addEventListener('change', event => {
-    const layerType = event.target.dataset.layerToggle;
-    const layer = hydroLayerGroups[layerType];
-
-    if (!layer) return;
-
-    if (event.target.checked) {
-      layer.addTo(map);
-    } else {
-      map.removeLayer(layer);
-    }
-  });
-});
-
-map.on('moveend zoomend', () => {
-  loadVisibleScopes();
-});
-
-document.querySelectorAll('[data-view-jump]').forEach(button => {
-  button.addEventListener('click', async event => {
-    const viewKey = event.currentTarget.dataset.viewJump;
-    const bounds = watershedViews[viewKey];
-
-    await loadHydroFilesForScope(viewKey);
-
-    if (!bounds) return;
-
-    map.fitBounds(bounds, {
-      padding: [40, 40]
-    });
-
-    await loadVisibleScopes();
-  });
-});
 
 function escapeHtml(value) {
-  return String(value)
+  return String(value ?? '')
     .replaceAll('&', '&amp;')
     .replaceAll('<', '&lt;')
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#039;');
 }
-const deepTimeVisual = document.querySelector(".deep-time-visual");
-const deepTimeCaption = document.querySelector("#deepTimeCaption");
-const deepTimeScenes = document.querySelectorAll(".deep-time-scene");
 
-const deepTimeCaptions = {
-  coast:
-    "Ancestral cutthroat begin on the Pacific side, moving through cold coastal streams and river corridors.",
-  inland:
-    "Over generations, trout expand inland through connected western rivers before modern basin boundaries fully separate them.",
-  ice:
-    "Glaciers, ice dams, and huge pluvial lakes reshape the West, creating temporary pathways and new barriers.",
-  flood:
-    "Catastrophic floods and shifting headwaters rearrange the map, connecting some waters while tearing others apart.",
-  isolation:
-    "As basins separate, trout become isolated in different watersheds and begin following their own evolutionary paths.",
-  modern:
-    "Modern cutthroat lineages are the living record of those old waters, isolated basins, floods, and headwater connections."
-};
+function initDeepTimeStory() {
+  const deepTimeVisual = document.querySelector('.deep-time-visual');
+  const deepTimeCaption = document.querySelector('#deepTimeCaption');
+  const deepTimeScenes = document.querySelectorAll('.deep-time-scene');
 
-if (deepTimeVisual && deepTimeScenes.length) {
+  const deepTimeCaptions = {
+    coast:
+      'Ancestral cutthroat begin on the Pacific side, moving through cold coastal streams and river corridors.',
+    inland:
+      'Over generations, trout expand inland through connected western rivers before modern basin boundaries fully separate them.',
+    ice:
+      'Glaciers, ice dams, and huge pluvial lakes reshape the West, creating temporary pathways and new barriers.',
+    flood:
+      'Catastrophic floods and shifting headwaters rearrange the map, connecting some waters while tearing others apart.',
+    isolation:
+      'As basins separate, trout become isolated in different watersheds and begin following their own evolutionary paths.',
+    modern:
+      'Modern cutthroat lineages are the living record of those old waters, isolated basins, floods, and headwater connections.'
+  };
+
+  if (!deepTimeVisual || !deepTimeScenes.length) return;
+
   const observer = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
