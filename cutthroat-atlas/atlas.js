@@ -216,6 +216,19 @@ const layerCatalog = [
     order: 46
   },
   {
+    key: 'colorado:detail:north-poudre-streams',
+    scope: 'colorado',
+    group: 'lineage',
+    path: './data/geojson/interpreted/colorado_north_poudre_detail_streams_v1.geojson',
+    type: 'colorado-north-poudre-detail-streams',
+    sourceType: 'lineage-stream-context',
+    label: 'North Poudre natural stream detail patch — v1',
+    minZoom: 12,
+    maxZoom: 18,
+    pane: 'lineageStreams',
+    order: 47
+  },
+  {
     key: 'colorado:featured:prototype-waters',
     scope: 'colorado',
     group: 'featured',
