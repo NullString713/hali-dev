@@ -1,0 +1,21 @@
+[
+  {
+    "key": "colorado:detail:north-poudre-streams",
+    "label": "North Poudre natural stream detail patch — v1",
+    "path": "./data/geojson/interpreted/colorado_north_poudre_detail_streams_v1.geojson",
+    "scope": "colorado",
+    "group": "lineage",
+    "sourceType": "lineage-stream-context",
+    "type": "colorado-north-poudre-detail-streams",
+    "minZoom": 12,
+    "maxZoom": 18,
+    "pane": "lineageStreams",
+    "order": 47,
+    "bounds": {
+      "south": 40.70,
+      "west": -105.82,
+      "north": 40.94,
+      "east": -105.20
+    }
+  }
+]
