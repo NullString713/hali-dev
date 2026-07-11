@@ -189,7 +189,7 @@ const layerCatalog = [
       fillOpacity: 0.18
     }
   },
-  {
+   {
     key: 'colorado:lineage:stream-context-1km',
     scope: 'colorado',
     group: 'lineage',
@@ -198,9 +198,22 @@ const layerCatalog = [
     sourceType: 'lineage-stream-context',
     label: 'Colorado cutthroat HUC8 stream context — 1 km prototype',
     minZoom: 8,
-    maxZoom: 18,
+    maxZoom: 9,
     pane: 'lineageStreams',
     order: 45
+  },
+  {
+    key: 'colorado:lineage:stream-context-05km',
+    scope: 'colorado',
+    group: 'lineage',
+    path: './data/geojson/interpreted/colorado_cutthroat_huc8_stream_context_named_web_05km_v1.geojson',
+    type: 'colorado-cutthroat-huc8-stream-context',
+    sourceType: 'lineage-stream-context',
+    label: 'Colorado cutthroat HUC8 stream context — 0.5 km prototype',
+    minZoom: 10,
+    maxZoom: 18,
+    pane: 'lineageStreams',
+    order: 46
   },
   {
     key: 'colorado:featured:prototype-waters',
