@@ -224,7 +224,7 @@ const layerCatalog = [
     key: 'colorado:featured:prototype-waters',
     scope: 'colorado',
     group: 'featured',
-    path: './data/geojson/interpreted/colorado_cutthroat_featured_v0.geojson',
+    path: './data/geojson/interpreted/colorado_curated_named_waters_v1.geojson',
     type: 'colorado-cutthroat-featured',
     sourceType: 'interpreted',
     label: 'Colorado cutthroat interpreted waters — prototype',
