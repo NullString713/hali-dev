@@ -235,24 +235,6 @@ const layerCatalog = [
     maxZoom: 9.99,
     pane: 'featuredWaters',
     order: 60
-  },
-  {
-    key: 'colorado:nhd:named-streams',
-    scope: 'colorado',
-    group: 'nhd',
-    path: './data/geojson/nhd/colorado_v0_web/streams_colorado_web_v1_upload_min.geojson',
-    type: 'nhd-colorado-streams',
-    sourceType: 'nhd',
-    label: 'USGS NHD named streams — Colorado',
-    minZoom: 10,
-    maxZoom: 12.99,
-    pane: 'referenceHydro',
-    order: 70,
-    style: {
-      color: '#60a5fa',
-      weight: 1.1,
-      opacity: 0.42
-    }
   }
 
   /*
