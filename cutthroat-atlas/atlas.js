@@ -693,7 +693,7 @@ function createLineageStreamContextLayer(data, layerDef) {
   return L.geoJSON(data, {
     pane: layerDef.pane || 'lineageStreams',
     filter: feature => isLineGeometry(feature) && !isPointGeometry(feature),
-    style: styleLineageStreamContext,
+    style: feature => styleLineageStreamContext(feature, layerDef),
     interactive: false,
     smoothFactor: 1.5
   });
@@ -791,14 +791,28 @@ function styleLineagePolygon(feature) {
   };
 }
 
-function styleLineageStreamContext(feature) {
+function styleLineageStreamContext(feature, file = {}) {
   const color = getLineageColor(feature);
-  const zoom = map.getZoom();
+
+  const isNaturalDetailTile =
+    file.type === 'colorado-natural-stream-detail-tile-v1' ||
+    file.path?.includes('colorado_natural_stream_detail_tiles_v1');
+
+  if (isNaturalDetailTile) {
+    return {
+      color,
+      weight: 0.85,
+      opacity: 0.38,
+      interactive: false,
+      lineCap: 'round',
+      lineJoin: 'round'
+    };
+  }
 
   return {
     color,
-    weight: zoom <= 8 ? 0.85 : zoom <= 10 ? 1.05 : 1.2,
-    opacity: zoom <= 8 ? 0.34 : zoom <= 10 ? 0.42 : 0.5,
+    weight: 0.8,
+    opacity: 0.28,
     interactive: false,
     lineCap: 'round',
     lineJoin: 'round'
