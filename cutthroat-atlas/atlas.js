@@ -227,7 +227,7 @@ const layerCatalog = [
     path: './data/geojson/interpreted/colorado_curated_named_waters_v1.geojson',
     type: 'colorado-cutthroat-featured',
     sourceType: 'interpreted',
-    label: 'Colorado cutthroat interpreted waters — prototype',
+    label: 'Colorado curated named waters — v1',
     minZoom: 9,
     maxZoom: 18,
     pane: 'featuredWaters',
