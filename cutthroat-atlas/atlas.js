@@ -222,19 +222,6 @@ const layerCatalog = [
     maxZoom: 12.99,
     pane: 'lineageStreams',
     order: 46
-  },
-  {
-    key: 'colorado:featured:prototype-waters',
-    scope: 'colorado',
-    group: 'featured',
-    path: './data/geojson/interpreted/colorado_curated_named_waters_v1.geojson',
-    type: 'colorado-cutthroat-featured',
-    sourceType: 'interpreted',
-    label: 'Colorado curated named waters — v1',
-    minZoom: 9,
-    maxZoom: 9.99,
-    pane: 'featuredWaters',
-    order: 60
   }
 
   /*
