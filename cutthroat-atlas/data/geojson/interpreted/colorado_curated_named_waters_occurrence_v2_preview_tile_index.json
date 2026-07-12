@@ -1,0 +1,4144 @@
+[
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m103p75:37p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m103p75_37p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -103.75,
+      "east": -103.5,
+      "south": 37,
+      "north": 37.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m103p75:37p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m103p75_37p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -103.75,
+      "east": -103.5,
+      "south": 37.25,
+      "north": 37.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m103p75:37p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m103p75_37p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -103.75,
+      "east": -103.5,
+      "south": 37.5,
+      "north": 37.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m104p00:36p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m104p00_36p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -104,
+      "east": -103.75,
+      "south": 36.75,
+      "north": 37
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m104p00:37p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m104p00_37p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -104,
+      "east": -103.75,
+      "south": 37,
+      "north": 37.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m104p00:37p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m104p00_37p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -104,
+      "east": -103.75,
+      "south": 37.25,
+      "north": 37.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m104p50:37p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m104p50_37p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -104.5,
+      "east": -104.25,
+      "south": 37.75,
+      "north": 38
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m104p50:38p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m104p50_38p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -104.5,
+      "east": -104.25,
+      "south": 38,
+      "north": 38.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m104p50:38p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m104p50_38p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -104.5,
+      "east": -104.25,
+      "south": 38.25,
+      "north": 38.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m104p75:37p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m104p75_37p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -104.75,
+      "east": -104.5,
+      "south": 37.5,
+      "north": 37.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m104p75:37p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m104p75_37p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -104.75,
+      "east": -104.5,
+      "south": 37.75,
+      "north": 38
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m104p75:38p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m104p75_38p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -104.75,
+      "east": -104.5,
+      "south": 38,
+      "north": 38.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m104p75:38p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m104p75_38p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -104.75,
+      "east": -104.5,
+      "south": 38.5,
+      "north": 38.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p00:37p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p00_37p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105,
+      "east": -104.75,
+      "south": 37.5,
+      "north": 37.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p00:37p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p00_37p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105,
+      "east": -104.75,
+      "south": 37.75,
+      "north": 38
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p00:38p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p00_38p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105,
+      "east": -104.75,
+      "south": 38,
+      "north": 38.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p00:38p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p00_38p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105,
+      "east": -104.75,
+      "south": 38.25,
+      "north": 38.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p00:38p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p00_38p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105,
+      "east": -104.75,
+      "south": 38.5,
+      "north": 38.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p00:38p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p00_38p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105,
+      "east": -104.75,
+      "south": 38.75,
+      "north": 39
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p00:39p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p00_39p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105,
+      "east": -104.75,
+      "south": 39,
+      "north": 39.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p00:39p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p00_39p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105,
+      "east": -104.75,
+      "south": 39.25,
+      "north": 39.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p00:40p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p00_40p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105,
+      "east": -104.75,
+      "south": 40.25,
+      "north": 40.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p25:37p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p25_37p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.25,
+      "east": -105,
+      "south": 37.25,
+      "north": 37.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p25:37p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p25_37p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.25,
+      "east": -105,
+      "south": 37.5,
+      "north": 37.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p25:37p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p25_37p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.25,
+      "east": -105,
+      "south": 37.75,
+      "north": 38
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p25:38p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p25_38p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.25,
+      "east": -105,
+      "south": 38,
+      "north": 38.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p25:38p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p25_38p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.25,
+      "east": -105,
+      "south": 38.25,
+      "north": 38.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p25:38p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p25_38p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.25,
+      "east": -105,
+      "south": 38.5,
+      "north": 38.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p25:38p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p25_38p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.25,
+      "east": -105,
+      "south": 38.75,
+      "north": 39
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p25:39p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p25_39p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.25,
+      "east": -105,
+      "south": 39,
+      "north": 39.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p25:39p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p25_39p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.25,
+      "east": -105,
+      "south": 39.25,
+      "north": 39.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p25:39p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p25_39p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.25,
+      "east": -105,
+      "south": 39.5,
+      "north": 39.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p25:40p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p25_40p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.25,
+      "east": -105,
+      "south": 40,
+      "north": 40.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p25:40p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p25_40p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.25,
+      "east": -105,
+      "south": 40.25,
+      "north": 40.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p25:40p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p25_40p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.25,
+      "east": -105,
+      "south": 40.5,
+      "north": 40.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p25:40p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p25_40p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.25,
+      "east": -105,
+      "south": 40.75,
+      "north": 41
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p50:37p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p50_37p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.5,
+      "east": -105.25,
+      "south": 37.5,
+      "north": 37.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p50:37p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p50_37p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.5,
+      "east": -105.25,
+      "south": 37.75,
+      "north": 38
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p50:38p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p50_38p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.5,
+      "east": -105.25,
+      "south": 38,
+      "north": 38.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p50:38p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p50_38p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.5,
+      "east": -105.25,
+      "south": 38.25,
+      "north": 38.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p50:38p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p50_38p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.5,
+      "east": -105.25,
+      "south": 38.5,
+      "north": 38.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p50:38p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p50_38p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.5,
+      "east": -105.25,
+      "south": 38.75,
+      "north": 39
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p50:39p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p50_39p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.5,
+      "east": -105.25,
+      "south": 39,
+      "north": 39.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p50:39p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p50_39p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.5,
+      "east": -105.25,
+      "south": 39.25,
+      "north": 39.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p50:39p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p50_39p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.5,
+      "east": -105.25,
+      "south": 39.5,
+      "north": 39.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p50:39p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p50_39p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.5,
+      "east": -105.25,
+      "south": 39.75,
+      "north": 40
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p50:40p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p50_40p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.5,
+      "east": -105.25,
+      "south": 40,
+      "north": 40.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p50:40p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p50_40p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.5,
+      "east": -105.25,
+      "south": 40.25,
+      "north": 40.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p50:40p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p50_40p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.5,
+      "east": -105.25,
+      "south": 40.5,
+      "north": 40.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p50:40p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p50_40p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.5,
+      "east": -105.25,
+      "south": 40.75,
+      "north": 41
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p75:37p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p75_37p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.75,
+      "east": -105.5,
+      "south": 37.5,
+      "north": 37.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p75:37p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p75_37p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.75,
+      "east": -105.5,
+      "south": 37.75,
+      "north": 38
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p75:38p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p75_38p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.75,
+      "east": -105.5,
+      "south": 38,
+      "north": 38.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p75:38p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p75_38p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.75,
+      "east": -105.5,
+      "south": 38.25,
+      "north": 38.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p75:38p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p75_38p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.75,
+      "east": -105.5,
+      "south": 38.5,
+      "north": 38.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p75:38p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p75_38p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.75,
+      "east": -105.5,
+      "south": 38.75,
+      "north": 39
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p75:39p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p75_39p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.75,
+      "east": -105.5,
+      "south": 39,
+      "north": 39.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p75:39p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p75_39p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.75,
+      "east": -105.5,
+      "south": 39.25,
+      "north": 39.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p75:39p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p75_39p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.75,
+      "east": -105.5,
+      "south": 39.5,
+      "north": 39.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p75:39p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p75_39p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.75,
+      "east": -105.5,
+      "south": 39.75,
+      "north": 40
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p75:40p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p75_40p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.75,
+      "east": -105.5,
+      "south": 40,
+      "north": 40.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p75:40p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p75_40p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.75,
+      "east": -105.5,
+      "south": 40.25,
+      "north": 40.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p75:40p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p75_40p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.75,
+      "east": -105.5,
+      "south": 40.5,
+      "north": 40.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m105p75:40p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m105p75_40p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -105.75,
+      "east": -105.5,
+      "south": 40.75,
+      "north": 41
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p00:37p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p00_37p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106,
+      "east": -105.75,
+      "south": 37.25,
+      "north": 37.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p00:37p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p00_37p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106,
+      "east": -105.75,
+      "south": 37.5,
+      "north": 37.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p00:37p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p00_37p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106,
+      "east": -105.75,
+      "south": 37.75,
+      "north": 38
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p00:38p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p00_38p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106,
+      "east": -105.75,
+      "south": 38,
+      "north": 38.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p00:38p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p00_38p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106,
+      "east": -105.75,
+      "south": 38.25,
+      "north": 38.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p00:38p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p00_38p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106,
+      "east": -105.75,
+      "south": 38.5,
+      "north": 38.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p00:38p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p00_38p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106,
+      "east": -105.75,
+      "south": 38.75,
+      "north": 39
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p00:39p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p00_39p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106,
+      "east": -105.75,
+      "south": 39,
+      "north": 39.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p00:39p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p00_39p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106,
+      "east": -105.75,
+      "south": 39.25,
+      "north": 39.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p00:39p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p00_39p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106,
+      "east": -105.75,
+      "south": 39.75,
+      "north": 40
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p00:40p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p00_40p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106,
+      "east": -105.75,
+      "south": 40,
+      "north": 40.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p00:40p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p00_40p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106,
+      "east": -105.75,
+      "south": 40.25,
+      "north": 40.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p00:40p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p00_40p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106,
+      "east": -105.75,
+      "south": 40.75,
+      "north": 41
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p25:37p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p25_37p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.25,
+      "east": -106,
+      "south": 37,
+      "north": 37.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p25:37p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p25_37p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.25,
+      "east": -106,
+      "south": 37.25,
+      "north": 37.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p25:37p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p25_37p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.25,
+      "east": -106,
+      "south": 37.75,
+      "north": 38
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p25:38p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p25_38p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.25,
+      "east": -106,
+      "south": 38,
+      "north": 38.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p25:38p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p25_38p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.25,
+      "east": -106,
+      "south": 38.25,
+      "north": 38.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p25:38p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p25_38p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.25,
+      "east": -106,
+      "south": 38.5,
+      "north": 38.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p25:38p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p25_38p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.25,
+      "east": -106,
+      "south": 38.75,
+      "north": 39
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p25:39p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p25_39p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.25,
+      "east": -106,
+      "south": 39,
+      "north": 39.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p25:39p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p25_39p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.25,
+      "east": -106,
+      "south": 39.25,
+      "north": 39.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p25:40p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p25_40p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.25,
+      "east": -106,
+      "south": 40,
+      "north": 40.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p25:40p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p25_40p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.25,
+      "east": -106,
+      "south": 40.25,
+      "north": 40.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p50:37p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p50_37p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.5,
+      "east": -106.25,
+      "south": 37,
+      "north": 37.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p50:37p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p50_37p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.5,
+      "east": -106.25,
+      "south": 37.25,
+      "north": 37.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p50:37p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p50_37p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.5,
+      "east": -106.25,
+      "south": 37.5,
+      "north": 37.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p50:37p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p50_37p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.5,
+      "east": -106.25,
+      "south": 37.75,
+      "north": 38
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p50:38p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p50_38p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.5,
+      "east": -106.25,
+      "south": 38,
+      "north": 38.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p50:38p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p50_38p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.5,
+      "east": -106.25,
+      "south": 38.25,
+      "north": 38.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p50:38p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p50_38p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.5,
+      "east": -106.25,
+      "south": 38.5,
+      "north": 38.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p50:39p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p50_39p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.5,
+      "east": -106.25,
+      "south": 39.25,
+      "north": 39.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p50:39p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p50_39p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.5,
+      "east": -106.25,
+      "south": 39.5,
+      "north": 39.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p50:39p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p50_39p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.5,
+      "east": -106.25,
+      "south": 39.75,
+      "north": 40
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p50:40p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p50_40p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.5,
+      "east": -106.25,
+      "south": 40,
+      "north": 40.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p50:40p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p50_40p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.5,
+      "east": -106.25,
+      "south": 40.25,
+      "north": 40.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p75:37p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p75_37p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.75,
+      "east": -106.5,
+      "south": 37.25,
+      "north": 37.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p75:37p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p75_37p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.75,
+      "east": -106.5,
+      "south": 37.5,
+      "north": 37.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p75:37p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p75_37p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.75,
+      "east": -106.5,
+      "south": 37.75,
+      "north": 38
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p75:38p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p75_38p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.75,
+      "east": -106.5,
+      "south": 38,
+      "north": 38.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p75:38p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p75_38p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.75,
+      "east": -106.5,
+      "south": 38.25,
+      "north": 38.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p75:38p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p75_38p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.75,
+      "east": -106.5,
+      "south": 38.5,
+      "north": 38.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p75:39p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p75_39p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.75,
+      "east": -106.5,
+      "south": 39,
+      "north": 39.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p75:39p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p75_39p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.75,
+      "east": -106.5,
+      "south": 39.25,
+      "north": 39.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p75:39p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p75_39p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.75,
+      "east": -106.5,
+      "south": 39.5,
+      "north": 39.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p75:39p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p75_39p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.75,
+      "east": -106.5,
+      "south": 39.75,
+      "north": 40
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p75:40p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p75_40p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.75,
+      "east": -106.5,
+      "south": 40,
+      "north": 40.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p75:40p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p75_40p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.75,
+      "east": -106.5,
+      "south": 40.25,
+      "north": 40.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m106p75:40p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m106p75_40p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -106.75,
+      "east": -106.5,
+      "south": 40.5,
+      "north": 40.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p00:37p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p00_37p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107,
+      "east": -106.75,
+      "south": 37,
+      "north": 37.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p00:37p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p00_37p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107,
+      "east": -106.75,
+      "south": 37.25,
+      "north": 37.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p00:37p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p00_37p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107,
+      "east": -106.75,
+      "south": 37.5,
+      "north": 37.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p00:37p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p00_37p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107,
+      "east": -106.75,
+      "south": 37.75,
+      "north": 38
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p00:38p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p00_38p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107,
+      "east": -106.75,
+      "south": 38,
+      "north": 38.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p00:38p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p00_38p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107,
+      "east": -106.75,
+      "south": 38.25,
+      "north": 38.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p00:38p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p00_38p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107,
+      "east": -106.75,
+      "south": 38.5,
+      "north": 38.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p00:39p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p00_39p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107,
+      "east": -106.75,
+      "south": 39,
+      "north": 39.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p00:39p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p00_39p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107,
+      "east": -106.75,
+      "south": 39.25,
+      "north": 39.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p00:39p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p00_39p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107,
+      "east": -106.75,
+      "south": 39.5,
+      "north": 39.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p00:40p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p00_40p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107,
+      "east": -106.75,
+      "south": 40,
+      "north": 40.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p00:40p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p00_40p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107,
+      "east": -106.75,
+      "south": 40.25,
+      "north": 40.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p00:40p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p00_40p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107,
+      "east": -106.75,
+      "south": 40.5,
+      "north": 40.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p25:37p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p25_37p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.25,
+      "east": -107,
+      "south": 37,
+      "north": 37.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p25:37p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p25_37p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.25,
+      "east": -107,
+      "south": 37.25,
+      "north": 37.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p25:37p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p25_37p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.25,
+      "east": -107,
+      "south": 37.5,
+      "north": 37.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p25:37p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p25_37p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.25,
+      "east": -107,
+      "south": 37.75,
+      "north": 38
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p25:38p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p25_38p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.25,
+      "east": -107,
+      "south": 38,
+      "north": 38.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p25:38p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p25_38p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.25,
+      "east": -107,
+      "south": 38.25,
+      "north": 38.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p25:38p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p25_38p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.25,
+      "east": -107,
+      "south": 38.5,
+      "north": 38.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p25:39p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p25_39p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.25,
+      "east": -107,
+      "south": 39,
+      "north": 39.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p25:39p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p25_39p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.25,
+      "east": -107,
+      "south": 39.25,
+      "north": 39.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p25:39p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p25_39p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.25,
+      "east": -107,
+      "south": 39.5,
+      "north": 39.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p25:39p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p25_39p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.25,
+      "east": -107,
+      "south": 39.75,
+      "north": 40
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p25:40p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p25_40p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.25,
+      "east": -107,
+      "south": 40,
+      "north": 40.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p25:40p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p25_40p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.25,
+      "east": -107,
+      "south": 40.25,
+      "north": 40.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p25:40p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p25_40p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.25,
+      "east": -107,
+      "south": 40.5,
+      "north": 40.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p25:40p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p25_40p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.25,
+      "east": -107,
+      "south": 40.75,
+      "north": 41
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p50:37p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p50_37p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.5,
+      "east": -107.25,
+      "south": 37,
+      "north": 37.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p50:37p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p50_37p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.5,
+      "east": -107.25,
+      "south": 37.25,
+      "north": 37.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p50:38p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p50_38p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.5,
+      "east": -107.25,
+      "south": 38,
+      "north": 38.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p50:38p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p50_38p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.5,
+      "east": -107.25,
+      "south": 38.25,
+      "north": 38.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p50:38p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p50_38p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.5,
+      "east": -107.25,
+      "south": 38.5,
+      "north": 38.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p50:38p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p50_38p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.5,
+      "east": -107.25,
+      "south": 38.75,
+      "north": 39
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p50:39p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p50_39p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.5,
+      "east": -107.25,
+      "south": 39,
+      "north": 39.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p50:39p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p50_39p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.5,
+      "east": -107.25,
+      "south": 39.25,
+      "north": 39.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p50:39p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p50_39p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.5,
+      "east": -107.25,
+      "south": 39.5,
+      "north": 39.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p50:39p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p50_39p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.5,
+      "east": -107.25,
+      "south": 39.75,
+      "north": 40
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p50:40p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p50_40p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.5,
+      "east": -107.25,
+      "south": 40,
+      "north": 40.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p50:40p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p50_40p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.5,
+      "east": -107.25,
+      "south": 40.5,
+      "north": 40.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p50:40p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p50_40p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.5,
+      "east": -107.25,
+      "south": 40.75,
+      "north": 41
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p75:37p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p75_37p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.75,
+      "east": -107.5,
+      "south": 37,
+      "north": 37.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p75:37p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p75_37p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.75,
+      "east": -107.5,
+      "south": 37.25,
+      "north": 37.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p75:37p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p75_37p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.75,
+      "east": -107.5,
+      "south": 37.5,
+      "north": 37.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p75:38p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p75_38p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.75,
+      "east": -107.5,
+      "south": 38,
+      "north": 38.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p75:39p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p75_39p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.75,
+      "east": -107.5,
+      "south": 39,
+      "north": 39.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p75:40p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p75_40p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.75,
+      "east": -107.5,
+      "south": 40,
+      "north": 40.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p75:40p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p75_40p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.75,
+      "east": -107.5,
+      "south": 40.25,
+      "north": 40.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p75:40p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p75_40p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.75,
+      "east": -107.5,
+      "south": 40.5,
+      "north": 40.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m107p75:40p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m107p75_40p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -107.75,
+      "east": -107.5,
+      "south": 40.75,
+      "north": 41
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p00:37p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p00_37p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108,
+      "east": -107.75,
+      "south": 37,
+      "north": 37.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p00:37p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p00_37p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108,
+      "east": -107.75,
+      "south": 37.25,
+      "north": 37.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p00:37p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p00_37p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108,
+      "east": -107.75,
+      "south": 37.5,
+      "north": 37.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p00:37p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p00_37p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108,
+      "east": -107.75,
+      "south": 37.75,
+      "north": 38
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p00:38p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p00_38p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108,
+      "east": -107.75,
+      "south": 38,
+      "north": 38.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p00:38p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p00_38p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108,
+      "east": -107.75,
+      "south": 38.25,
+      "north": 38.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p00:39p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p00_39p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108,
+      "east": -107.75,
+      "south": 39.5,
+      "north": 39.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p00:39p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p00_39p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108,
+      "east": -107.75,
+      "south": 39.75,
+      "north": 40
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p00:40p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p00_40p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108,
+      "east": -107.75,
+      "south": 40,
+      "north": 40.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p00:40p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p00_40p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108,
+      "east": -107.75,
+      "south": 40.25,
+      "north": 40.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p00:40p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p00_40p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108,
+      "east": -107.75,
+      "south": 40.5,
+      "north": 40.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p00:40p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p00_40p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108,
+      "east": -107.75,
+      "south": 40.75,
+      "north": 41
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p25:36p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p25_36p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.25,
+      "east": -108,
+      "south": 36.75,
+      "north": 37
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p25:37p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p25_37p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.25,
+      "east": -108,
+      "south": 37,
+      "north": 37.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p25:37p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p25_37p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.25,
+      "east": -108,
+      "south": 37.25,
+      "north": 37.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p25:37p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p25_37p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.25,
+      "east": -108,
+      "south": 37.5,
+      "north": 37.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p25:37p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p25_37p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.25,
+      "east": -108,
+      "south": 37.75,
+      "north": 38
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p25:38p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p25_38p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.25,
+      "east": -108,
+      "south": 38,
+      "north": 38.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p25:38p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p25_38p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.25,
+      "east": -108,
+      "south": 38.25,
+      "north": 38.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p25:38p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p25_38p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.25,
+      "east": -108,
+      "south": 38.5,
+      "north": 38.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p25:39p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p25_39p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.25,
+      "east": -108,
+      "south": 39.5,
+      "north": 39.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p25:39p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p25_39p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.25,
+      "east": -108,
+      "south": 39.75,
+      "north": 40
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p25:40p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p25_40p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.25,
+      "east": -108,
+      "south": 40,
+      "north": 40.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p25:40p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p25_40p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.25,
+      "east": -108,
+      "south": 40.25,
+      "north": 40.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p25:40p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p25_40p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.25,
+      "east": -108,
+      "south": 40.5,
+      "north": 40.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p50:37p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p50_37p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.5,
+      "east": -108.25,
+      "south": 37,
+      "north": 37.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p50:37p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p50_37p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.5,
+      "east": -108.25,
+      "south": 37.25,
+      "north": 37.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p50:37p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p50_37p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.5,
+      "east": -108.25,
+      "south": 37.5,
+      "north": 37.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p50:37p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p50_37p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.5,
+      "east": -108.25,
+      "south": 37.75,
+      "north": 38
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p50:38p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p50_38p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.5,
+      "east": -108.25,
+      "south": 38,
+      "north": 38.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p50:38p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p50_38p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.5,
+      "east": -108.25,
+      "south": 38.25,
+      "north": 38.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p50:39p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p50_39p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.5,
+      "east": -108.25,
+      "south": 39.75,
+      "north": 40
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p50:40p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p50_40p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.5,
+      "east": -108.25,
+      "south": 40,
+      "north": 40.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p75:37p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p75_37p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.75,
+      "east": -108.5,
+      "south": 37,
+      "north": 37.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p75:37p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p75_37p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.75,
+      "east": -108.5,
+      "south": 37.25,
+      "north": 37.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p75:37p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p75_37p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.75,
+      "east": -108.5,
+      "south": 37.75,
+      "north": 38
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p75:38p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p75_38p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.75,
+      "east": -108.5,
+      "south": 38,
+      "north": 38.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p75:38p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p75_38p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.75,
+      "east": -108.5,
+      "south": 38.25,
+      "north": 38.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p75:38p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p75_38p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.75,
+      "east": -108.5,
+      "south": 38.75,
+      "north": 39
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p75:40p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p75_40p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.75,
+      "east": -108.5,
+      "south": 40,
+      "north": 40.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p75:40p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p75_40p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.75,
+      "east": -108.5,
+      "south": 40.25,
+      "north": 40.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p75:40p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p75_40p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.75,
+      "east": -108.5,
+      "south": 40.5,
+      "north": 40.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p75:40p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p75_40p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.75,
+      "east": -108.5,
+      "south": 40.75,
+      "north": 41
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m108p75:41p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m108p75_41p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -108.75,
+      "east": -108.5,
+      "south": 41,
+      "north": 41.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m109p00:36p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m109p00_36p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -109,
+      "east": -108.75,
+      "south": 36.75,
+      "north": 37
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m109p00:37p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m109p00_37p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -109,
+      "east": -108.75,
+      "south": 37,
+      "north": 37.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m109p00:37p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m109p00_37p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -109,
+      "east": -108.75,
+      "south": 37.25,
+      "north": 37.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m109p00:37p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m109p00_37p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -109,
+      "east": -108.75,
+      "south": 37.75,
+      "north": 38
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m109p00:38p00",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m109p00_38p00.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -109,
+      "east": -108.75,
+      "south": 38,
+      "north": 38.25
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m109p00:38p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m109p00_38p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -109,
+      "east": -108.75,
+      "south": 38.5,
+      "north": 38.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m109p00:38p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m109p00_38p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -109,
+      "east": -108.75,
+      "south": 38.75,
+      "north": 39
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m109p00:40p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m109p00_40p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -109,
+      "east": -108.75,
+      "south": 40.25,
+      "north": 40.5
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m109p00:40p50",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m109p00_40p50.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -109,
+      "east": -108.75,
+      "south": 40.5,
+      "north": 40.75
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m109p00:40p75",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m109p00_40p75.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -109,
+      "east": -108.75,
+      "south": 40.75,
+      "north": 41
+    }
+  },
+  {
+    "key": "colorado:featured:occurrence-v2-preview:m109p25:37p25",
+    "label": "Colorado curated named waters occurrence v2 preview tile",
+    "path": "./data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tiles/colorado_curated_named_waters_occurrence_v2_preview_tile_m109p25_37p25.geojson",
+    "scope": "colorado",
+    "group": "featured",
+    "sourceType": "interpreted",
+    "type": "colorado-curated-named-waters-occurrence-v2-preview-tile",
+    "minZoom": 10,
+    "maxZoom": 18,
+    "pane": "featuredWaters",
+    "order": 60,
+    "bounds": {
+      "west": -109.25,
+      "east": -109,
+      "south": 37.25,
+      "north": 37.5
+    }
+  }
+]
