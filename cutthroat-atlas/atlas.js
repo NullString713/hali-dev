@@ -222,6 +222,19 @@ const layerCatalog = [
     maxZoom: 12.99,
     pane: 'lineageStreams',
     order: 46
+  },
+  {
+  key: 'colorado:featured:anchor-named-waters-v1',
+  scope: 'colorado',
+  group: 'featured',
+  path: './data/geojson/interpreted/colorado_anchor_named_waters_v1.geojson',
+  type: 'colorado-anchor-named-waters-v1',
+  sourceType: 'interpreted',
+  label: 'Colorado anchor named waters — v1',
+  minZoom: 9,
+  maxZoom: 18,
+  pane: 'featuredWaters',
+  order: 55
   }
 
   /*
@@ -940,6 +953,10 @@ function getPublicWaterCardFields(stream = {}) {
 }
 
 function getOccurrenceLabel(stream = {}) {
+  if (stream.atlas_layer === 'anchor_named_water') {
+    return stream.disambiguator || `${stream.basin || 'Colorado'} · anchor river corridor`;
+  }
+
   const parts = [
     stream.basin,
     stream.historic_label || stream.disambiguator?.split(' · ')[0],
