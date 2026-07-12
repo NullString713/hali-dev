@@ -924,7 +924,7 @@ function renderStreamCard(stream) {
       <dt>Layer</dt><dd>${escapeHtml(modeLabel(mode))}</dd>
       <dt>Shown as</dt><dd>${escapeHtml(activeLabel)}</dd>
       <dt>Mapped name</dt><dd>${escapeHtml(card.mappedName)}</dd>
-      <dt>Occurrence</dt><dd>${escapeHtml(stream.disambiguator || 'Named-water occurrence')}</dd>
+      <dt>Local context</dt><dd>${escapeHtml(getOccurrenceLabel(stream))}</dd>
       <dt>Basin</dt><dd>${escapeHtml(card.basin)}</dd>
       <dt>State</dt><dd>${escapeHtml(card.state)}</dd>
       <dt>Confidence</dt><dd>${escapeHtml(card.confidence)}</dd>
@@ -986,6 +986,17 @@ function getPublicWaterCardFields(stream = {}) {
       'Compiled public recovery and lineage context; expert review recommended'
   };
 }
+
+function getOccurrenceLabel(stream = {}) {
+  const parts = [
+    stream.basin,
+    stream.historic_label || stream.disambiguator?.split(' · ')[0],
+    stream.occurrence_number ? `occurrence ${stream.occurrence_number}` : null
+  ].filter(Boolean);
+
+  return parts.join(' · ') || stream.disambiguator || 'Named-water occurrence';
+}
+
 function getWaterName(stream) {
   return (
     stream?.display_name ||
