@@ -1040,11 +1040,13 @@ function updateDataLoadStatus() {
   }
 
   const zoom = map.getZoom();
+  const center = map.getCenter();
   const loadingCount = loadingLayers.size;
   const activeCount = activeLayers.size;
-
+  
   status.textContent =
-    `Zoom ${zoom} · Active ${activeCount} of ${activeDesiredCount} LOD layers` +
+    `Zoom ${zoom} · ${center.lat.toFixed(2)}, ${center.lng.toFixed(2)} · ` +
+    `Active ${activeCount} of ${activeDesiredCount} LOD layers` +
     (loadingCount ? ` · Loading ${loadingCount}` : '');
 }
 
