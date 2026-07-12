@@ -229,7 +229,7 @@ const layerCatalog = [
     sourceType: 'interpreted',
     label: 'Colorado curated named waters — v1',
     minZoom: 9,
-    maxZoom: 18,
+    maxZoom: 9.99,
     pane: 'featuredWaters',
     order: 60
   },
@@ -396,9 +396,10 @@ async function loadFeaturedWatersIndex() {
 
 async function loadDetailPatchIndex() {
   const indexPaths = [
-    DETAIL_PATCH_INDEX_PATH,
-    NATURAL_STREAM_TILE_INDEX_PATH
-  ];
+  DETAIL_PATCH_INDEX_PATH,
+  NATURAL_STREAM_TILE_INDEX_PATH,
+  FEATURED_OCCURRENCE_TILE_INDEX_PATH
+];
 
   const patches = [];
 
