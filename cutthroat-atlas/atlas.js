@@ -304,7 +304,10 @@ function initAtlasMap() {
     scrollWheelZoom: true,
     preferCanvas: true
   }).setView([39.0, -105.55], 7);
-
+  
+  if (map.attributionControl) {
+    map.attributionControl.setPrefix(false);
+  }
   createMapPanes();
   addBaseTiles();
   hydrateLayerVisibilityFromControls();
