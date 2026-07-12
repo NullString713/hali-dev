@@ -97,6 +97,9 @@ const DEFAULT_SCOPE = 'colorado';
 const DETAIL_PATCH_INDEX_PATH =
   './data/geojson/interpreted/detail_patch_index_v1.json';
 
+const NATURAL_STREAM_TILE_INDEX_PATH =
+  './data/geojson/interpreted/colorado_natural_stream_detail_tile_index_v1.json';
+
 const watershedViews = {
   colorado: [
     [36.99, -109.06],
@@ -213,7 +216,7 @@ const layerCatalog = [
     sourceType: 'lineage-stream-context',
     label: 'Colorado cutthroat HUC8 stream context — 0.5 km prototype',
     minZoom: 10,
-    maxZoom: 18,
+    maxZoom: 12.99,
     pane: 'lineageStreams',
     order: 46
   },
@@ -392,20 +395,35 @@ async function loadFeaturedWatersIndex() {
 }
 
 async function loadDetailPatchIndex() {
-  try {
-    const response = await fetch(DETAIL_PATCH_INDEX_PATH);
+  const indexPaths = [
+    DETAIL_PATCH_INDEX_PATH,
+    NATURAL_STREAM_TILE_INDEX_PATH
+  ];
 
-    if (!response.ok) {
-      throw new Error(`${response.status} ${response.statusText} for ${DETAIL_PATCH_INDEX_PATH}`);
+  const patches = [];
+
+  for (const indexPath of indexPaths) {
+    try {
+      const response = await fetch(indexPath);
+
+      if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText} for ${indexPath}`);
+      }
+
+      const indexPatches = await response.json();
+
+      if (!Array.isArray(indexPatches)) {
+        console.warn(`Detail patch index was not an array: ${indexPath}`);
+        continue;
+      }
+
+      patches.push(...indexPatches);
+    } catch (error) {
+      console.error(`Could not load detail patch index: ${indexPath}`, error);
     }
-
-    const patches = await response.json();
-
-    detailPatchCatalog = patches.map((patch, index) => normalizeDetailPatchDef(patch, index));
-  } catch (error) {
-    console.error('Could not load detail patch index:', error);
-    detailPatchCatalog = [];
   }
+
+  detailPatchCatalog = patches.map((patch, index) => normalizeDetailPatchDef(patch, index));
 }
 
 function normalizeDetailPatchDef(patch, index) {
