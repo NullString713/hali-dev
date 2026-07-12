@@ -249,7 +249,6 @@ const layerCatalog = [
 ];
 
 let map = null;
-let featuredWaters = [];
 let detailPatchCatalog = [];
 let selectedStream = null;
 let currentModeIndex = 0;
@@ -292,8 +291,7 @@ function initAtlasMap() {
   updateDataLoadStatus();
 
   Promise.allSettled([
-    loadFeaturedWatersIndex(),
-    loadDetailPatchIndex()
+  loadDetailPatchIndex()
   ]).finally(async () => {
     if (DEFAULT_SCOPE === 'colorado') {
       map.fitBounds(watershedViews.colorado, {
@@ -349,21 +347,6 @@ function initAtlasMap() {
       await updateActiveLayers();
     });
   });
-}
-
-async function loadFeaturedWatersIndex() {
-  try {
-    const response = await fetch('./data/waters/index.json');
-
-    if (!response.ok) {
-      throw new Error(`${response.status} ${response.statusText} for data/waters/index.json`);
-    }
-
-    featuredWaters = await response.json();
-  } catch (error) {
-    console.error('Could not load featured waters:', error);
-    featuredWaters = [];
-  }
 }
 
 async function loadDetailPatchIndex() {
