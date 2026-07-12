@@ -242,7 +242,7 @@ const layerCatalog = [
     sourceType: 'nhd',
     label: 'USGS NHD named streams — Colorado',
     minZoom: 10,
-    maxZoom: 18,
+    maxZoom: 12.99,
     pane: 'referenceHydro',
     order: 70,
     style: {
@@ -716,7 +716,7 @@ function refreshActiveLayerStyles() {
     }
 
     if (layerDef.sourceType === 'lineage-stream-context') {
-      layer.setStyle(styleLineageStreamContext);
+      layer.setStyle(feature => styleLineageStreamContext(feature, layerDef));
       continue;
     }
 
@@ -897,29 +897,90 @@ function renderMode() {
 function renderStreamCard(stream) {
   const mode = modes[currentModeIndex].key;
   const activeKey = stream[mode];
-  const activeLabel = speciesColors[activeKey]?.label || 'Unknown';
-  const card = document.getElementById('stream-card');
+  const activeLabel =
+    stream[`${mode}_label`] ||
+    speciesColors[activeKey]?.label ||
+    activeKey ||
+    'Unknown';
 
-  if (!card) return;
+  const card = getPublicWaterCardFields(stream);
+  const cardDescription = card.description
+    ? `<p>${escapeHtml(card.description)}</p>`
+    : '';
 
-  card.innerHTML = `
+  const cardElement = document.getElementById('stream-card');
+
+  if (!cardElement) return;
+
+  cardElement.innerHTML = `
     <p class="eyebrow">Selected water</p>
-    <h2>${escapeHtml(getWaterName(stream))}</h2>
-    <p>${escapeHtml(stream.note || '')}</p>
+    <h2>${escapeHtml(card.displayName)}</h2>
+    ${cardDescription}
     <dl>
       <dt>Layer</dt><dd>${escapeHtml(modeLabel(mode))}</dd>
       <dt>Shown as</dt><dd>${escapeHtml(activeLabel)}</dd>
-      <dt>Mapped name</dt><dd>${escapeHtml(stream.sourceName || stream.name || 'Unknown')}</dd>
-      <dt>Basin</dt><dd>${escapeHtml(stream.basin || 'Unknown')}</dd>
-      <dt>State</dt><dd>${escapeHtml(stream.state || 'Unknown')}</dd>
-      <dt>Confidence</dt><dd>${escapeHtml(stream.confidence || 'Prototype / needs review')}</dd>
-      <dt>Geometry status</dt><dd>${escapeHtml(geometryStatusLabel(stream))}</dd>
-      <dt>Geometry source</dt><dd>${escapeHtml(stream.sourceLabel || stream.geometrySource || 'Unknown')}</dd>
-      <dt>Trout source</dt><dd>${escapeHtml(stream.troutSource || 'Unknown')}</dd>
+      <dt>Mapped name</dt><dd>${escapeHtml(card.mappedName)}</dd>
+      <dt>Basin</dt><dd>${escapeHtml(card.basin)}</dd>
+      <dt>State</dt><dd>${escapeHtml(card.state)}</dd>
+      <dt>Confidence</dt><dd>${escapeHtml(card.confidence)}</dd>
+      <dt>Geometry status</dt><dd>${escapeHtml(card.geometryStatus)}</dd>
+      <dt>Geometry source</dt><dd>${escapeHtml(card.geometrySource)}</dd>
+      <dt>Trout source</dt><dd>${escapeHtml(card.troutSource)}</dd>
     </dl>
   `;
 }
 
+function getPublicWaterCardFields(stream = {}) {
+  return {
+    displayName:
+      stream.display_name ||
+      stream.displayName ||
+      stream.name ||
+      'Selected water',
+
+    description:
+      stream.public_notes ||
+      stream.note ||
+      '',
+
+    mappedName:
+      stream.mapped_name ||
+      stream.mappedName ||
+      stream.source_name ||
+      stream.sourceName ||
+      stream.name ||
+      'Unknown',
+
+    basin:
+      stream.basin ||
+      'Unknown',
+
+    state:
+      stream.state ||
+      'Unknown',
+
+    confidence:
+      stream.confidence_public ||
+      stream.confidence ||
+      'Generalized public map',
+
+    geometryStatus:
+      stream.geometry_status_public ||
+      stream.geometryStatus ||
+      'Generalized named-water reach',
+
+    geometrySource:
+      stream.geometry_source_public ||
+      stream.sourceLabel ||
+      stream.geometrySource ||
+      'Grouped public hydrography segments',
+
+    troutSource:
+      stream.trout_source_public ||
+      stream.troutSource ||
+      'Compiled public recovery and lineage context; expert review recommended'
+  };
+}
 function getWaterName(stream) {
   return (
     stream?.display_name ||
