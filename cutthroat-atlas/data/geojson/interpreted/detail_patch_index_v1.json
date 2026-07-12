@@ -8,7 +8,7 @@
     "sourceType": "lineage-stream-context",
     "type": "colorado-north-poudre-detail-streams",
     "minZoom": 12,
-    "maxZoom": 18,
+    "maxZoom": 12.99,
     "pane": "lineageStreams",
     "order": 47,
     "bounds": {
