@@ -100,6 +100,9 @@ const DETAIL_PATCH_INDEX_PATH =
 const NATURAL_STREAM_TILE_INDEX_PATH =
   './data/geojson/interpreted/colorado_natural_stream_detail_tile_index_v1.json';
 
+const FEATURED_OCCURRENCE_TILE_INDEX_PATH =
+  './data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tile_index.json';
+
 const watershedViews = {
   colorado: [
     [36.99, -109.06],
