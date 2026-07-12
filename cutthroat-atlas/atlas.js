@@ -224,18 +224,6 @@ const layerCatalog = [
     order: 46
   },
   {
-  key: 'colorado:featured:anchor-named-waters-v1',
-  scope: 'colorado',
-  group: 'featured',
-  path: './data/geojson/interpreted/colorado_anchor_named_waters_v1.geojson',
-  type: 'colorado-anchor-named-waters-v1',
-  sourceType: 'interpreted',
-  label: 'Colorado anchor named waters — v1',
-  minZoom: 9,
-  maxZoom: 18,
-  pane: 'featuredWaters',
-  order: 55
-  }
 
   /*
   Later optional layer:
