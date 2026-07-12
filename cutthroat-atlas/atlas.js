@@ -924,6 +924,7 @@ function renderStreamCard(stream) {
       <dt>Layer</dt><dd>${escapeHtml(modeLabel(mode))}</dd>
       <dt>Shown as</dt><dd>${escapeHtml(activeLabel)}</dd>
       <dt>Mapped name</dt><dd>${escapeHtml(card.mappedName)}</dd>
+      <dt>Occurrence</dt><dd>${escapeHtml(stream.disambiguator || 'Named-water occurrence')}</dd>
       <dt>Basin</dt><dd>${escapeHtml(card.basin)}</dd>
       <dt>State</dt><dd>${escapeHtml(card.state)}</dd>
       <dt>Confidence</dt><dd>${escapeHtml(card.confidence)}</dd>
