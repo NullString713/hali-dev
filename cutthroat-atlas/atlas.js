@@ -786,26 +786,56 @@ function styleLineageStreamContext(feature, file = {}) {
   const color = getLineageColor(feature);
 
   const isNaturalDetailTile =
-  file.type === 'colorado-natural-stream-detail-tile-v1' ||
-  file.type === 'colorado-natural-stream-detail-tile-v2' ||
-  file.path?.includes('colorado_natural_stream_detail_tiles_v1') ||
-  file.path?.includes('colorado_natural_stream_detail_tiles_v2');
+    file.type === 'colorado-natural-stream-detail-tile-v1' ||
+    file.type === 'colorado-natural-stream-detail-tile-v2' ||
+    file.path?.includes('colorado_natural_stream_detail_tiles_v1') ||
+    file.path?.includes('colorado_natural_stream_detail_tiles_v2');
+
+  const isMediumGeneralizedContext =
+    file.path?.includes('stream_context_named_web_05km') ||
+    file.path?.includes('_05km_');
+
+  const isBroadGeneralizedContext =
+    file.path?.includes('stream_context_named_web_1km') ||
+    file.path?.includes('_1km_');
 
   if (isNaturalDetailTile) {
-  return {
-    color,
-    weight: 1.05,
-    opacity: 0.52,
-    interactive: false,
-    lineCap: 'round',
-    lineJoin: 'round'
-  };
-}
+    return {
+      color,
+      weight: 0.95,
+      opacity: 0.44,
+      interactive: false,
+      lineCap: 'round',
+      lineJoin: 'round'
+    };
+  }
+
+  if (isMediumGeneralizedContext) {
+    return {
+      color,
+      weight: 0.45,
+      opacity: 0.12,
+      interactive: false,
+      lineCap: 'round',
+      lineJoin: 'round'
+    };
+  }
+
+  if (isBroadGeneralizedContext) {
+    return {
+      color,
+      weight: 0.55,
+      opacity: 0.14,
+      interactive: false,
+      lineCap: 'round',
+      lineJoin: 'round'
+    };
+  }
 
   return {
     color,
-    weight: 0.8,
-    opacity: 0.28,
+    weight: 0.6,
+    opacity: 0.16,
     interactive: false,
     lineCap: 'round',
     lineJoin: 'round'
