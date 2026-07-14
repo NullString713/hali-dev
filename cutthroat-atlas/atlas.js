@@ -727,10 +727,41 @@ function styleReferenceFeature(feature, layerDef, sourceType) {
 function styleStream(feature) {
   const mode = modes[currentModeIndex].key;
   const speciesKey = feature.properties?.[mode];
+  const color = speciesColors[speciesKey]?.color || speciesColors.unknown.color;
+  const props = feature.properties || {};
   const zoom = map.getZoom();
 
+  const isOccurrence =
+    props.atlas_layer === 'named_water_occurrence' ||
+    props.object_role === 'named_water_occurrence';
+
+  const isSelected =
+    selectedStream?.occurrence_id &&
+    props.occurrence_id &&
+    selectedStream.occurrence_id === props.occurrence_id;
+
+  if (isOccurrence && isSelected) {
+    return {
+      color,
+      weight: zoom <= 12 ? 4 : 5,
+      opacity: 0.95,
+      lineCap: 'round',
+      lineJoin: 'round'
+    };
+  }
+
+  if (isOccurrence) {
+    return {
+      color,
+      weight: zoom <= 12 ? 18 : 24,
+      opacity: 0.04,
+      lineCap: 'round',
+      lineJoin: 'round'
+    };
+  }
+
   return {
-    color: speciesColors[speciesKey]?.color || speciesColors.unknown.color,
+    color,
     weight: zoom <= 8 ? 0.9 : zoom <= 10 ? 1.2 : zoom <= 12 ? 1.6 : 2.1,
     opacity: zoom <= 8 ? 0.48 : zoom <= 10 ? 0.6 : 0.75,
     lineCap: 'round',
@@ -755,8 +786,10 @@ function styleLineageStreamContext(feature, file = {}) {
   const color = getLineageColor(feature);
 
   const isNaturalDetailTile =
-    file.type === 'colorado-natural-stream-detail-tile-v1' ||
-    file.path?.includes('colorado_natural_stream_detail_tiles_v1');
+  file.type === 'colorado-natural-stream-detail-tile-v1' ||
+  file.type === 'colorado-natural-stream-detail-tile-v2' ||
+  file.path?.includes('colorado_natural_stream_detail_tiles_v1') ||
+  file.path?.includes('colorado_natural_stream_detail_tiles_v2');
 
   if (isNaturalDetailTile) {
     return {
@@ -790,10 +823,11 @@ function getLineageColor(feature) {
 
 function bindFeaturedStreamEvents(feature, layer) {
   layer.on('click', () => {
-    selectedStream = feature.properties;
-    renderStreamCard(selectedStream);
-    layer.bringToFront();
-  });
+  selectedStream = feature.properties;
+  renderStreamCard(selectedStream);
+  refreshActiveLayerStyles();
+  layer.bringToFront();
+});
 
   layer.on('mouseover', () => {
     const zoom = map.getZoom();
@@ -805,8 +839,16 @@ function bindFeaturedStreamEvents(feature, layer) {
   });
 
   layer.on('mouseout', () => {
+  const props = feature.properties || {};
+  const isSelected =
+    selectedStream?.occurrence_id &&
+    props.occurrence_id &&
+    selectedStream.occurrence_id === props.occurrence_id;
+
+  if (!isSelected) {
     layer.setStyle(styleStream(feature));
-  });
+  }
+});
 
   layer.bindTooltip(getWaterName(feature.properties), {
     permanent: false,
