@@ -1370,13 +1370,13 @@ function styleStream(feature) {
   }
 
   if (isOccurrence) {
-  return {
-    color,
-    weight: zoom <= 12 ? 18 : 24,
-    opacity: 0.003,
-    lineCap: 'round',
-    lineJoin: 'round'
-  };
+    return {
+      color,
+      weight: zoom <= 12 ? 18 : 24,
+      opacity: 0,
+      lineCap: 'round',
+      lineJoin: 'round'
+    };
 }
 
   return {
