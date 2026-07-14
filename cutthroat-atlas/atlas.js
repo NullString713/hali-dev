@@ -792,15 +792,15 @@ function styleLineageStreamContext(feature, file = {}) {
   file.path?.includes('colorado_natural_stream_detail_tiles_v2');
 
   if (isNaturalDetailTile) {
-    return {
-      color,
-      weight: 0.85,
-      opacity: 0.38,
-      interactive: false,
-      lineCap: 'round',
-      lineJoin: 'round'
-    };
-  }
+  return {
+    color,
+    weight: 1.05,
+    opacity: 0.52,
+    interactive: false,
+    lineCap: 'round',
+    lineJoin: 'round'
+  };
+}
 
   return {
     color,
@@ -836,12 +836,12 @@ function bindFeaturedStreamEvents(feature, layer) {
     props.object_role === 'named_water_occurrence';
 
   if (isOccurrence) {
-    layer.setStyle({
-      weight: 3,
-      opacity: 0.55
-    });
-    return;
-  }
+  layer.setStyle({
+    weight: 4,
+    opacity: 0.75
+  });
+  return;
+}
 
   const zoom = map.getZoom();
 
