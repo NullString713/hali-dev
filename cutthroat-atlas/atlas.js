@@ -1037,7 +1037,7 @@ function buildSelectedPropsFromSearchEntry(entry) {
     lineageLabel: entry.lineageLabel || '',
     occurrence_number: entry.occurrence_number || '',
 
-    disambiguator: entry.local_context || '',
+    disambiguator: entry.local_context || entry.basin || entry.huc8Name || '',
     public_notes: entry.local_context || '',
 
     confidence_public: 'Search result from Atlas object index',
@@ -1666,9 +1666,22 @@ function getOccurrenceLabel(stream = {}) {
     return stream.disambiguator || `${stream.basin || 'Colorado'} · anchor river corridor`;
   }
 
+  const rawContext = stream.disambiguator || '';
+  const contextParts = rawContext
+    .split(' · ')
+    .map(part => part.trim())
+    .filter(Boolean);
+
+  const uniqueContextParts = [...new Set(contextParts)];
+
   const parts = [
     stream.basin,
-    stream.historic_label || stream.disambiguator?.split(' · ')[0],
+    stream.historic_label,
+    ...uniqueContextParts.filter(part =>
+      part !== stream.basin &&
+      part !== stream.historic_label &&
+      !part.toLowerCase().startsWith('occurrence ')
+    ),
     stream.occurrence_number ? `occurrence ${stream.occurrence_number}` : null
   ].filter(Boolean);
 
