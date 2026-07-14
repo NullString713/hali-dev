@@ -225,8 +225,8 @@ const layerCatalog = [
     maxZoom: 12.99,
     pane: 'lineageStreams',
     order: 46
-  },
-  {
+  }
+  
 
   /*
   Later optional layer:
