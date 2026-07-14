@@ -106,6 +106,10 @@ const NAMED_WATER_OCCURRENCE_TILE_INDEX_PATHS = [
   './data/geojson/interpreted/colorado_named_water_occurrences_v1_tier3_tile_index.json',
   './data/geojson/interpreted/colorado_named_water_occurrences_v1_tier4_tile_index.json'
 ];
+
+const WATERBODY_OBJECT_TILE_INDEX_PATH =
+  './data/geojson/interpreted/colorado_waterbody_objects_v1_tile_index.json';
+
 const watershedViews = {
   colorado: [
     [36.99, -109.06],
@@ -357,7 +361,8 @@ async function loadDetailPatchIndex() {
   const indexPaths = [
   DETAIL_PATCH_INDEX_PATH,
   NATURAL_STREAM_TILE_INDEX_PATH,
-  ...NAMED_WATER_OCCURRENCE_TILE_INDEX_PATHS
+  ...NAMED_WATER_OCCURRENCE_TILE_INDEX_PATHS,
+  WATERBODY_OBJECT_TILE_INDEX_PATH
 ];
 
   const patches = [];
@@ -604,6 +609,10 @@ function createLayerFromGeoJson(data, layerDef) {
     return createInterpretedFeaturedLayer(data, layerDef);
   }
 
+  if (sourceType === 'waterbody-objects') {
+    return createWaterbodyObjectLayer(data, layerDef);
+  }
+
   return createReferenceLayer(data, layerDef, sourceType);
 }
 
@@ -672,6 +681,11 @@ function refreshActiveLayerStyles() {
 
     if (layerDef.sourceType === 'lineage-polygons') {
       layer.setStyle(styleLineagePolygon);
+      continue;
+    }
+
+    if (layerDef.sourceType === 'waterbody-objects') {
+      layer.setStyle(styleWaterbodyObject);
       continue;
     }
 
