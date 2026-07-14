@@ -870,20 +870,20 @@ function initAtlasSearchControl() {
   });
 
   results.addEventListener('click', event => {
-    const button = event.target.closest('.atlas-search-result');
-    if (!button) return;
+  const button = event.target.closest('.atlas-search-result');
+  if (!button) return;
 
-    const entry = atlasSearchEntries.find(item => item.id === button.dataset.searchId);
-    if (!entry) return;
+  const entry = atlasSearchEntries.find(item => item.id === button.dataset.searchId);
+  if (!entry) return;
 
-    selectAtlasSearchResult(entry);
+  selectAtlasSearchResult(entry);
 
-    input.value = entry.display_name;
-    results.innerHTML = '';
-    status.textContent = `${entry.display_name}`;
+  input.value = entry.display_name;
+  results.innerHTML = '';
+  status.textContent = `${entry.display_name}`;
 
-    closeSearch();
-  });
+  closeSearch();
+});
 
   mapContainer.appendChild(shell);
 }
