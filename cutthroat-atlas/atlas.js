@@ -1078,6 +1078,34 @@ function getLatLngBoundsFromSearchEntry(entry) {
   );
 }
 
+function getTargetZoomForSearchEntry(entry) {
+  const bounds = entry.bounds;
+
+  if (!bounds) {
+    return entry.atlas_layer === 'waterbody_object'
+      ? 15
+      : Math.max(Number(entry.minZoom || 13), 13);
+  }
+
+  const latSpan = Math.abs(bounds.north - bounds.south);
+  const lngSpan = Math.abs(bounds.east - bounds.west);
+  const maxSpan = Math.max(latSpan, lngSpan);
+
+  if (entry.atlas_layer === 'waterbody_object') {
+    if (maxSpan >= 0.12) return 11;  // very large lakes/reservoirs
+    if (maxSpan >= 0.06) return 12;
+    if (maxSpan >= 0.025) return 13;
+    if (maxSpan >= 0.01) return 14;
+    return 15;                       // small lakes/ponds/reservoirs
+  }
+
+  if (entry.object_type === 'stream') {
+    return Math.max(Number(entry.minZoom || 13), 13);
+  }
+
+  return 14;
+}
+
 function selectAtlasSearchResult(entry) {
   selectedStream = buildSelectedPropsFromSearchEntry(entry);
   renderStreamCard(selectedStream);
@@ -1087,9 +1115,7 @@ function selectAtlasSearchResult(entry) {
     ? [entry.center.lat, entry.center.lng]
     : bounds?.getCenter();
 
-  const targetZoom = entry.atlas_layer === 'waterbody_object'
-    ? 11
-    : Math.max(Number(entry.minZoom || 10), 13);
+  const targetZoom = getTargetZoomForSearchEntry(entry);
 
   if (bounds) {
     map.once('moveend', () => {
