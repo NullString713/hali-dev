@@ -1098,6 +1098,9 @@ function getPublicWaterCardFields(stream = {}) {
 
     basin:
       stream.basin ||
+      stream.lineageBasin ||
+      stream.huc8Name ||
+      stream.huc8 ||
       'Unknown',
 
     state:
@@ -1128,6 +1131,17 @@ function getPublicWaterCardFields(stream = {}) {
 }
 
 function getOccurrenceLabel(stream = {}) {
+  if (
+    stream.atlas_layer === 'waterbody_object' ||
+    stream.object_role === 'waterbody_object'
+  ) {
+    return [
+      stream.huc8Name || stream.huc8,
+      stream.waterbody_type,
+      stream.occurrence_number ? `occurrence ${stream.occurrence_number}` : null
+    ].filter(Boolean).join(' · ') || 'Named waterbody';
+  }
+
   if (stream.atlas_layer === 'anchor_named_water') {
     return stream.disambiguator || `${stream.basin || 'Colorado'} · anchor river corridor`;
   }
