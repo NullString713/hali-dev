@@ -611,6 +611,7 @@ function injectAtlasSearchStyles() {
       position: absolute;
       top: 14px;
       left: 50%;
+      width: min(360px, calc(100% - 28px));
       transform: translateX(-50%);
       z-index: 1000;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -647,7 +648,8 @@ function injectAtlasSearchStyles() {
 
     .atlas-search-control {
       display: none;
-      width: min(360px, calc(100vw - 28px));
+      box-sizing: border-box;
+      width: 100%;
       margin-top: 8px;
       padding: 10px;
       border-radius: 14px;
@@ -664,6 +666,7 @@ function injectAtlasSearchStyles() {
       display: flex;
       align-items: center;
       gap: 6px;
+      min-width: 0;
     }
 
     .atlas-search-control input {
@@ -746,6 +749,7 @@ function injectAtlasSearchStyles() {
     @media (max-width: 600px) {
       .atlas-search-shell {
         top: 10px;
+        width: calc(100% - 20px);
       }
 
       .atlas-search-toggle {
@@ -755,7 +759,6 @@ function injectAtlasSearchStyles() {
       }
 
       .atlas-search-control {
-        width: calc(100vw - 20px);
         padding: 9px;
       }
 
