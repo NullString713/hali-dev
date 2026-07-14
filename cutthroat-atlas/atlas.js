@@ -645,6 +645,84 @@ function createInterpretedFeaturedLayer(data, layerDef) {
   });
 }
 
+function createWaterbodyObjectLayer(data, layerDef) {
+  return L.geoJSON(data, {
+    pane: layerDef.pane || 'featuredWaters',
+    style: feature => styleWaterbodyObject(feature),
+    interactive: true,
+    onEachFeature: bindWaterbodyObjectEvents
+  });
+}
+
+function styleWaterbodyObject(feature) {
+  const props = feature.properties || {};
+  const color = getLineageColor(feature);
+
+  const isSelected =
+    selectedStream?.waterbody_id &&
+    props.waterbody_id &&
+    selectedStream.waterbody_id === props.waterbody_id;
+
+  if (isSelected) {
+    return {
+      color,
+      weight: 2.4,
+      opacity: 0.9,
+      fillColor: color,
+      fillOpacity: 0.24,
+      lineCap: 'round',
+      lineJoin: 'round'
+    };
+  }
+
+  return {
+    color,
+    weight: 1.2,
+    opacity: 0.08,
+    fillColor: color,
+    fillOpacity: 0.015,
+    lineCap: 'round',
+    lineJoin: 'round'
+  };
+}
+
+function bindWaterbodyObjectEvents(feature, layer) {
+  layer.on('click', () => {
+    selectedStream = feature.properties;
+    renderStreamCard(selectedStream);
+    refreshActiveLayerStyles();
+    layer.bringToFront();
+  });
+
+  layer.on('mouseover', () => {
+    layer.setStyle({
+      weight: 2,
+      opacity: 0.65,
+      fillOpacity: 0.18
+    });
+  });
+
+  layer.on('mouseout', () => {
+    const props = feature.properties || {};
+
+    const isSelected =
+      selectedStream?.waterbody_id &&
+      props.waterbody_id &&
+      selectedStream.waterbody_id === props.waterbody_id;
+
+    if (!isSelected) {
+      layer.setStyle(styleWaterbodyObject(feature));
+    }
+  });
+
+  layer.bindTooltip(getWaterName(feature.properties), {
+    permanent: false,
+    direction: 'top',
+    sticky: true,
+    className: 'stream-tooltip'
+  });
+}
+
 function createLineagePolygonLayer(data, layerDef) {
   return L.geoJSON(data, {
     pane: layerDef.pane || 'lineagePolygons',
