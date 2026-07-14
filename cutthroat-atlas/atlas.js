@@ -751,14 +751,14 @@ function styleStream(feature) {
   }
 
   if (isOccurrence) {
-    return {
-      color,
-      weight: zoom <= 12 ? 18 : 24,
-      opacity: 0.04,
-      lineCap: 'round',
-      lineJoin: 'round'
-    };
-  }
+  return {
+    color,
+    weight: zoom <= 12 ? 18 : 24,
+    opacity: 0.003,
+    lineCap: 'round',
+    lineJoin: 'round'
+  };
+}
 
   return {
     color,
@@ -830,13 +830,26 @@ function bindFeaturedStreamEvents(feature, layer) {
 });
 
   layer.on('mouseover', () => {
-    const zoom = map.getZoom();
+  const props = feature.properties || {};
+  const isOccurrence =
+    props.atlas_layer === 'named_water_occurrence' ||
+    props.object_role === 'named_water_occurrence';
 
+  if (isOccurrence) {
     layer.setStyle({
-      weight: zoom <= 8 ? 1.5 : zoom <= 10 ? 2.0 : zoom <= 12 ? 2.5 : 3.0,
-      opacity: 0.95
+      weight: 3,
+      opacity: 0.55
     });
+    return;
+  }
+
+  const zoom = map.getZoom();
+
+  layer.setStyle({
+    weight: zoom <= 8 ? 1.5 : zoom <= 10 ? 2.0 : zoom <= 12 ? 2.5 : 3.0,
+    opacity: 0.95
   });
+});
 
   layer.on('mouseout', () => {
   const props = feature.properties || {};
