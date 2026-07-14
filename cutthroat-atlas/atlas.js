@@ -1430,15 +1430,15 @@ function styleLineageStreamContext(feature, file = {}) {
   }
 
   if (isMediumGeneralizedContext) {
-    return {
-      color,
-      weight: 0.45,
-      opacity: 0.12,
-      interactive: false,
-      lineCap: 'round',
-      lineJoin: 'round'
-    };
-  }
+  return {
+    color,
+    weight: 0.28,
+    opacity: 0.055,
+    interactive: false,
+    lineCap: 'round',
+    lineJoin: 'round'
+  };
+}
 
   if (isBroadGeneralizedContext) {
     return {
