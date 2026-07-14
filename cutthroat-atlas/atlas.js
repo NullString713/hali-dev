@@ -98,11 +98,14 @@ const DETAIL_PATCH_INDEX_PATH =
   './data/geojson/interpreted/detail_patch_index_v1.json';
 
 const NATURAL_STREAM_TILE_INDEX_PATH =
-  './data/geojson/interpreted/colorado_natural_stream_detail_tile_index_v1.json';
+  './data/geojson/interpreted/colorado_natural_stream_detail_tile_index_v2.json';
 
-const FEATURED_OCCURRENCE_TILE_INDEX_PATH =
-  './data/geojson/interpreted/colorado_curated_named_waters_occurrence_v2_preview_tile_index.json';
-
+const NAMED_WATER_OCCURRENCE_TILE_INDEX_PATHS = [
+  './data/geojson/interpreted/colorado_named_water_occurrences_v1_tier1_tile_index.json',
+  './data/geojson/interpreted/colorado_named_water_occurrences_v1_tier2_tile_index.json',
+  './data/geojson/interpreted/colorado_named_water_occurrences_v1_tier3_tile_index.json',
+  './data/geojson/interpreted/colorado_named_water_occurrences_v1_tier4_tile_index.json'
+];
 const watershedViews = {
   colorado: [
     [36.99, -109.06],
@@ -354,7 +357,7 @@ async function loadDetailPatchIndex() {
   const indexPaths = [
   DETAIL_PATCH_INDEX_PATH,
   NATURAL_STREAM_TILE_INDEX_PATH,
-  FEATURED_OCCURRENCE_TILE_INDEX_PATH
+  ...NAMED_WATER_OCCURRENCE_TILE_INDEX_PATHS
 ];
 
   const patches = [];
