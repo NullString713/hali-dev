@@ -222,7 +222,7 @@ const layerCatalog = [
     sourceType: 'lineage-stream-context',
     label: 'Colorado cutthroat HUC8 stream context — 0.5 km prototype',
     minZoom: 10,
-    maxZoom: 12.99,
+    maxZoom: 10.99,
     pane: 'lineageStreams',
     order: 46
   }
