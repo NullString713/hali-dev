@@ -669,9 +669,10 @@ function injectAtlasSearchStyles() {
       min-width: 0;
     }
 
-    .atlas-search-control input {
+   .atlas-search-control input {
       box-sizing: border-box;
-      width: 100%;
+      flex: 1 1 auto;
+      width: auto;
       min-width: 0;
       padding: 10px 11px;
       border: 1px solid rgba(31, 41, 55, 0.24);
@@ -749,7 +750,7 @@ function injectAtlasSearchStyles() {
     @media (max-width: 600px) {
       .atlas-search-shell {
         top: 10px;
-        width: calc(100% - 20px);
+        width: min(360px, calc(100% - 20px));
       }
 
       .atlas-search-toggle {
