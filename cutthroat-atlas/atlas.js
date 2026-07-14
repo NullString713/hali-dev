@@ -110,6 +110,12 @@ const NAMED_WATER_OCCURRENCE_TILE_INDEX_PATHS = [
 const WATERBODY_OBJECT_TILE_INDEX_PATH =
   './data/geojson/interpreted/colorado_waterbody_objects_v1_tile_index.json';
 
+const ATLAS_OBJECT_SEARCH_INDEX_PATH =
+  './data/geojson/interpreted/colorado_atlas_object_search_index_v1.json';
+
+let atlasSearchEntries = [];
+let atlasSearchReady = false;
+
 const watershedViews = {
   colorado: [
     [36.99, -109.06],
@@ -293,7 +299,8 @@ function initAtlasMap() {
   createMapPanes();
   addBaseTiles();
   hydrateLayerVisibilityFromControls();
-
+  initAtlasSearchControl();
+  loadAtlasObjectSearchIndex();
   renderLegend();
   renderMode();
   updateDataLoadStatus();
@@ -592,6 +599,382 @@ function unloadLayer(key, activeRecord) {
 
   activeLayers.delete(key);
   updateDataLoadStatus();
+}
+
+function injectAtlasSearchStyles() {
+  if (document.getElementById('atlas-search-styles')) return;
+
+  const style = document.createElement('style');
+  style.id = 'atlas-search-styles';
+  style.textContent = `
+    .atlas-search-control {
+      width: min(340px, calc(100vw - 32px));
+      padding: 10px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.22);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #1f2933;
+    }
+
+    .atlas-search-control input {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 9px 10px;
+      border: 1px solid rgba(31, 41, 55, 0.24);
+      border-radius: 9px;
+      font-size: 14px;
+      outline: none;
+      background: #ffffff;
+      color: #111827;
+    }
+
+    .atlas-search-control input:focus {
+      border-color: rgba(22, 101, 52, 0.65);
+      box-shadow: 0 0 0 3px rgba(22, 101, 52, 0.12);
+    }
+
+    .atlas-search-status {
+      margin-top: 6px;
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    .atlas-search-results {
+      margin-top: 8px;
+      display: grid;
+      gap: 6px;
+      max-height: 280px;
+      overflow: auto;
+    }
+
+    .atlas-search-result {
+      display: block;
+      width: 100%;
+      padding: 8px 9px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      border-radius: 9px;
+      background: rgba(248, 250, 252, 0.96);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .atlas-search-result:hover,
+    .atlas-search-result:focus {
+      border-color: rgba(22, 101, 52, 0.55);
+      background: rgba(240, 253, 244, 0.96);
+    }
+
+    .atlas-search-result-name {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .atlas-search-result-meta {
+      display: block;
+      margin-top: 2px;
+      font-size: 11px;
+      color: #64748b;
+      line-height: 1.3;
+    }
+
+    @media (max-width: 600px) {
+      .atlas-search-control {
+        width: min(300px, calc(100vw - 24px));
+        padding: 8px;
+      }
+
+      .atlas-search-results {
+        max-height: 220px;
+      }
+    }
+  `;
+
+  document.head.appendChild(style);
+}
+
+function initAtlasSearchControl() {
+  injectAtlasSearchStyles();
+
+  const searchControl = L.control({ position: 'topright' });
+
+  searchControl.onAdd = () => {
+    const container = L.DomUtil.create('div', 'atlas-search-control leaflet-control');
+
+    container.innerHTML = `
+      <input
+        type="search"
+        class="atlas-search-input"
+        placeholder="Search waters, lakes, reservoirs..."
+        autocomplete="off"
+        spellcheck="false"
+        aria-label="Search Atlas waters"
+      />
+      <div class="atlas-search-status">Loading search index...</div>
+      <div class="atlas-search-results" aria-live="polite"></div>
+    `;
+
+    L.DomEvent.disableClickPropagation(container);
+    L.DomEvent.disableScrollPropagation(container);
+
+    const input = container.querySelector('.atlas-search-input');
+    const status = container.querySelector('.atlas-search-status');
+    const results = container.querySelector('.atlas-search-results');
+
+    let debounceId = null;
+
+    input.addEventListener('input', () => {
+      clearTimeout(debounceId);
+
+      debounceId = setTimeout(() => {
+        renderAtlasSearchResults(input.value, status, results);
+      }, 120);
+    });
+
+    results.addEventListener('click', event => {
+      const button = event.target.closest('.atlas-search-result');
+      if (!button) return;
+
+      const entry = atlasSearchEntries.find(item => item.id === button.dataset.searchId);
+      if (!entry) return;
+
+      selectAtlasSearchResult(entry);
+      results.innerHTML = '';
+      status.textContent = `${entry.display_name}`;
+    });
+
+    return container;
+  };
+
+  searchControl.addTo(map);
+}
+
+async function loadAtlasObjectSearchIndex() {
+  try {
+    const response = await fetch(ATLAS_OBJECT_SEARCH_INDEX_PATH);
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    atlasSearchEntries = Array.isArray(data.entries) ? data.entries : [];
+    atlasSearchReady = true;
+
+    const status = document.querySelector('.atlas-search-status');
+    if (status) {
+      status.textContent = `${atlasSearchEntries.length.toLocaleString()} searchable waters`;
+    }
+  } catch (error) {
+    console.error('Could not load Atlas object search index:', error);
+
+    const status = document.querySelector('.atlas-search-status');
+    if (status) {
+      status.textContent = 'Search unavailable';
+    }
+  }
+}
+
+function normalizeAtlasSearchQuery(value) {
+  return String(value || '')
+    .trim()
+    .toLowerCase()
+    .replace(/[_-]+/g, ' ')
+    .replace(/\s+/g, ' ');
+}
+
+function scoreAtlasSearchEntry(entry, query, tokens) {
+  let score = 0;
+  const name = entry.normalized_name || normalizeAtlasSearchQuery(entry.display_name);
+  const searchText = entry.search_text || '';
+
+  if (name === query) score += 1000;
+  if (name.startsWith(query)) score += 600;
+  if (name.includes(query)) score += 300;
+
+  for (const token of tokens) {
+    if (name === token) score += 120;
+    if (name.startsWith(token)) score += 80;
+    if (name.includes(token)) score += 50;
+    if (searchText.includes(token)) score += 20;
+  }
+
+  if (entry.atlas_layer === 'waterbody_object') score += 8;
+  if (entry.object_type === 'stream') score += 4;
+
+  return score;
+}
+
+function getAtlasSearchMatches(query, limit = 8) {
+  const normalizedQuery = normalizeAtlasSearchQuery(query);
+
+  if (!atlasSearchReady || normalizedQuery.length < 2) {
+    return [];
+  }
+
+  const tokens = normalizedQuery.split(' ').filter(Boolean);
+
+  return atlasSearchEntries
+    .filter(entry => {
+      const searchText = entry.search_text || '';
+      const name = entry.normalized_name || '';
+
+      return tokens.every(token =>
+        name.includes(token) ||
+        searchText.includes(token)
+      );
+    })
+    .map(entry => ({
+      entry,
+      score: scoreAtlasSearchEntry(entry, normalizedQuery, tokens)
+    }))
+    .sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      return a.entry.display_name.localeCompare(b.entry.display_name);
+    })
+    .slice(0, limit)
+    .map(result => result.entry);
+}
+
+function escapeAtlasSearchHtml(value) {
+  return String(value ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+}
+
+function renderAtlasSearchResults(query, statusEl, resultsEl) {
+  const normalizedQuery = normalizeAtlasSearchQuery(query);
+
+  if (!atlasSearchReady) {
+    statusEl.textContent = 'Loading search index...';
+    resultsEl.innerHTML = '';
+    return;
+  }
+
+  if (normalizedQuery.length < 2) {
+    statusEl.textContent = `${atlasSearchEntries.length.toLocaleString()} searchable waters`;
+    resultsEl.innerHTML = '';
+    return;
+  }
+
+  const matches = getAtlasSearchMatches(normalizedQuery);
+
+  statusEl.textContent = matches.length
+    ? `${matches.length} best matches`
+    : 'No matches';
+
+  resultsEl.innerHTML = matches.map(entry => {
+    const typeLabel = entry.object_type || 'water';
+    const context = entry.local_context || entry.basin || entry.huc8Name || '';
+
+    return `
+      <button class="atlas-search-result" type="button" data-search-id="${escapeAtlasSearchHtml(entry.id)}">
+        <span class="atlas-search-result-name">${escapeAtlasSearchHtml(entry.display_name)}</span>
+        <span class="atlas-search-result-meta">${escapeAtlasSearchHtml(typeLabel)} · ${escapeAtlasSearchHtml(context)}</span>
+      </button>
+    `;
+  }).join('');
+}
+
+function buildSelectedPropsFromSearchEntry(entry) {
+  const baseProps = {
+    display_name: entry.display_name,
+    mapped_name: entry.display_name,
+    source_name: entry.display_name,
+    name: entry.display_name,
+
+    basin: entry.basin || entry.huc8Name || entry.huc8 || '',
+    huc8: entry.huc8 || '',
+    huc8Name: entry.huc8Name || '',
+    lineageKey: entry.lineageKey,
+    lineage: entry.lineageKey,
+    historic: entry.lineageKey,
+    current: entry.lineageKey,
+    recovery: entry.lineageKey,
+    lineageLabel: entry.lineageLabel || '',
+    occurrence_number: entry.occurrence_number || '',
+
+    disambiguator: entry.local_context || '',
+    public_notes: entry.local_context || '',
+
+    confidence_public: 'Search result from Atlas object index',
+    geometry_status_public: 'Selected Atlas object',
+    geometry_source_public: 'Compiled Atlas object index',
+    trout_source_public: 'Compiled public recovery and lineage context; expert review recommended'
+  };
+
+  if (entry.atlas_layer === 'waterbody_object') {
+    return {
+      ...baseProps,
+      waterbody_id: entry.id,
+      water_id: entry.id,
+      occurrence_id: entry.id,
+      atlas_layer: 'waterbody_object',
+      object_role: 'waterbody_object',
+      waterbody_type: entry.waterbody_type || entry.object_type || 'waterbody'
+    };
+  }
+
+  return {
+    ...baseProps,
+    occurrence_id: entry.id,
+    water_id: entry.id,
+    atlas_layer: 'named_water_occurrence',
+    object_role: 'named_water_occurrence'
+  };
+}
+
+function getLatLngBoundsFromSearchEntry(entry) {
+  const bounds = entry.bounds;
+
+  if (!bounds) return null;
+
+  return L.latLngBounds(
+    [bounds.south, bounds.west],
+    [bounds.north, bounds.east]
+  );
+}
+
+function selectAtlasSearchResult(entry) {
+  selectedStream = buildSelectedPropsFromSearchEntry(entry);
+  renderStreamCard(selectedStream);
+
+  const bounds = getLatLngBoundsFromSearchEntry(entry);
+  const center = entry.center
+    ? [entry.center.lat, entry.center.lng]
+    : bounds?.getCenter();
+
+  const targetZoom = entry.atlas_layer === 'waterbody_object'
+    ? 11
+    : Math.max(Number(entry.minZoom || 10), 13);
+
+  if (bounds) {
+    map.once('moveend', () => {
+      if (map.getZoom() < targetZoom && center) {
+        map.setView(center, targetZoom);
+      }
+
+      updateActiveLayers();
+      setTimeout(refreshActiveLayerStyles, 500);
+    });
+
+    map.fitBounds(bounds, {
+      padding: [42, 42],
+      maxZoom: targetZoom
+    });
+  } else if (center) {
+    map.setView(center, targetZoom);
+    updateActiveLayers();
+    setTimeout(refreshActiveLayerStyles, 500);
+  }
+
+  refreshActiveLayerStyles();
 }
 
 function createLayerFromGeoJson(data, layerDef) {
