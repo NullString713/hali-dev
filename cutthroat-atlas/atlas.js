@@ -607,23 +607,73 @@ function injectAtlasSearchStyles() {
   const style = document.createElement('style');
   style.id = 'atlas-search-styles';
   style.textContent = `
-    .atlas-search-control {
-      width: min(340px, calc(100vw - 32px));
-      padding: 10px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.94);
-      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.22);
+    .atlas-search-shell {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .atlas-search-toggle {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto;
+      border: 1px solid rgba(31, 41, 55, 0.18);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.94);
+      color: #13231d;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.22);
+      cursor: pointer;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .atlas-search-toggle:hover,
+    .atlas-search-toggle:focus {
+      background: #ffffff;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.28);
+      outline: none;
+    }
+
+    .atlas-search-shell.is-open .atlas-search-toggle {
+      background: #243a34;
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .atlas-search-control {
+      display: none;
+      width: min(360px, calc(100vw - 28px));
+      margin-top: 8px;
+      padding: 10px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.28);
       color: #1f2933;
+    }
+
+    .atlas-search-shell.is-open .atlas-search-control {
+      display: block;
+    }
+
+    .atlas-search-input-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .atlas-search-control input {
       box-sizing: border-box;
       width: 100%;
-      padding: 9px 10px;
+      min-width: 0;
+      padding: 10px 11px;
       border: 1px solid rgba(31, 41, 55, 0.24);
-      border-radius: 9px;
-      font-size: 14px;
+      border-radius: 10px;
+      font-size: 15px;
       outline: none;
       background: #ffffff;
       color: #111827;
@@ -634,8 +684,21 @@ function injectAtlasSearchStyles() {
       box-shadow: 0 0 0 3px rgba(22, 101, 52, 0.12);
     }
 
+    .atlas-search-close {
+      width: 36px;
+      height: 36px;
+      flex: 0 0 auto;
+      border: 1px solid rgba(31, 41, 55, 0.18);
+      border-radius: 999px;
+      background: rgba(248, 250, 252, 0.96);
+      color: #334155;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+    }
+
     .atlas-search-status {
-      margin-top: 6px;
+      margin-top: 7px;
       font-size: 11px;
       color: #64748b;
     }
@@ -644,16 +707,16 @@ function injectAtlasSearchStyles() {
       margin-top: 8px;
       display: grid;
       gap: 6px;
-      max-height: 280px;
+      max-height: min(280px, calc(100vh - 220px));
       overflow: auto;
     }
 
     .atlas-search-result {
       display: block;
       width: 100%;
-      padding: 8px 9px;
+      padding: 9px 10px;
       border: 1px solid rgba(148, 163, 184, 0.45);
-      border-radius: 9px;
+      border-radius: 10px;
       background: rgba(248, 250, 252, 0.96);
       text-align: left;
       cursor: pointer;
@@ -681,13 +744,23 @@ function injectAtlasSearchStyles() {
     }
 
     @media (max-width: 600px) {
+      .atlas-search-shell {
+        top: 10px;
+      }
+
+      .atlas-search-toggle {
+        width: 42px;
+        height: 42px;
+        font-size: 19px;
+      }
+
       .atlas-search-control {
-        width: min(300px, calc(100vw - 24px));
-        padding: 8px;
+        width: calc(100vw - 20px);
+        padding: 9px;
       }
 
       .atlas-search-results {
-        max-height: 220px;
+        max-height: min(260px, calc(100vh - 210px));
       }
     }
   `;
@@ -698,57 +771,117 @@ function injectAtlasSearchStyles() {
 function initAtlasSearchControl() {
   injectAtlasSearchStyles();
 
-  const searchControl = L.control({ position: 'topright' });
+  const mapContainer = map.getContainer();
 
-  searchControl.onAdd = () => {
-    const container = L.DomUtil.create('div', 'atlas-search-control leaflet-control');
+  if (document.getElementById('atlas-search-shell')) return;
 
-    container.innerHTML = `
-      <input
-        type="search"
-        class="atlas-search-input"
-        placeholder="Search waters, lakes, reservoirs..."
-        autocomplete="off"
-        spellcheck="false"
-        aria-label="Search Atlas waters"
-      />
+  const shell = L.DomUtil.create('div', 'atlas-search-shell');
+  shell.id = 'atlas-search-shell';
+
+  shell.innerHTML = `
+    <button
+      class="atlas-search-toggle"
+      type="button"
+      aria-label="Open Atlas search"
+      aria-expanded="false"
+      title="Search waters"
+    >
+      🔍
+    </button>
+
+    <div class="atlas-search-control" role="search">
+      <div class="atlas-search-input-row">
+        <input
+          type="search"
+          class="atlas-search-input"
+          placeholder="Search waters, lakes, reservoirs..."
+          autocomplete="off"
+          spellcheck="false"
+          aria-label="Search Atlas waters"
+        />
+        <button
+          class="atlas-search-close"
+          type="button"
+          aria-label="Close search"
+          title="Close search"
+        >
+          ×
+        </button>
+      </div>
+
       <div class="atlas-search-status">Loading search index...</div>
       <div class="atlas-search-results" aria-live="polite"></div>
-    `;
+    </div>
+  `;
 
-    L.DomEvent.disableClickPropagation(container);
-    L.DomEvent.disableScrollPropagation(container);
+  L.DomEvent.disableClickPropagation(shell);
+  L.DomEvent.disableScrollPropagation(shell);
 
-    const input = container.querySelector('.atlas-search-input');
-    const status = container.querySelector('.atlas-search-status');
-    const results = container.querySelector('.atlas-search-results');
+  const toggle = shell.querySelector('.atlas-search-toggle');
+  const closeButton = shell.querySelector('.atlas-search-close');
+  const input = shell.querySelector('.atlas-search-input');
+  const status = shell.querySelector('.atlas-search-status');
+  const results = shell.querySelector('.atlas-search-results');
 
-    let debounceId = null;
+  function openSearch() {
+    shell.classList.add('is-open');
+    toggle.setAttribute('aria-expanded', 'true');
 
-    input.addEventListener('input', () => {
-      clearTimeout(debounceId);
+    setTimeout(() => {
+      input.focus();
+      input.select();
+    }, 50);
+  }
 
-      debounceId = setTimeout(() => {
-        renderAtlasSearchResults(input.value, status, results);
-      }, 120);
-    });
+  function closeSearch() {
+    shell.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    input.blur();
+  }
 
-    results.addEventListener('click', event => {
-      const button = event.target.closest('.atlas-search-result');
-      if (!button) return;
+  toggle.addEventListener('click', () => {
+    if (shell.classList.contains('is-open')) {
+      closeSearch();
+    } else {
+      openSearch();
+    }
+  });
 
-      const entry = atlasSearchEntries.find(item => item.id === button.dataset.searchId);
-      if (!entry) return;
+  closeButton.addEventListener('click', closeSearch);
 
-      selectAtlasSearchResult(entry);
-      results.innerHTML = '';
-      status.textContent = `${entry.display_name}`;
-    });
+  input.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      closeSearch();
+    }
+  });
 
-    return container;
-  };
+  let debounceId = null;
 
-  searchControl.addTo(map);
+  input.addEventListener('input', () => {
+    clearTimeout(debounceId);
+
+    debounceId = setTimeout(() => {
+      renderAtlasSearchResults(input.value, status, results);
+    }, 120);
+  });
+
+  results.addEventListener('click', event => {
+    const button = event.target.closest('.atlas-search-result');
+    if (!button) return;
+
+    const entry = atlasSearchEntries.find(item => item.id === button.dataset.searchId);
+    if (!entry) return;
+
+    selectAtlasSearchResult(entry);
+
+    input.value = entry.display_name;
+    results.innerHTML = '';
+    status.textContent = `${entry.display_name}`;
+
+    closeSearch();
+  });
+
+  mapContainer.appendChild(shell);
 }
 
 async function loadAtlasObjectSearchIndex() {
