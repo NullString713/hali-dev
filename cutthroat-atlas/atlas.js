@@ -666,10 +666,10 @@ function styleWaterbodyObject(feature) {
   if (isSelected) {
     return {
       color,
-      weight: 2.4,
-      opacity: 0.9,
+      weight: 1.8,
+      opacity: 0.78,
       fillColor: color,
-      fillOpacity: 0.24,
+      fillOpacity: 0.12,
       lineCap: 'round',
       lineJoin: 'round'
     };
@@ -677,10 +677,10 @@ function styleWaterbodyObject(feature) {
 
   return {
     color,
-    weight: 1.2,
-    opacity: 0.08,
+    weight: 0.9,
+    opacity: 0.035,
     fillColor: color,
-    fillOpacity: 0.015,
+    fillOpacity: 0.006,
     lineCap: 'round',
     lineJoin: 'round'
   };
@@ -695,12 +695,19 @@ function bindWaterbodyObjectEvents(feature, layer) {
   });
 
   layer.on('mouseover', () => {
-    layer.setStyle({
-      weight: 2,
-      opacity: 0.65,
-      fillOpacity: 0.18
-    });
+  const props = feature.properties || {};
+
+  const isSelected =
+    selectedStream?.waterbody_id &&
+    props.waterbody_id &&
+    selectedStream.waterbody_id === props.waterbody_id;
+
+  layer.setStyle({
+    weight: isSelected ? 1.9 : 1.4,
+    opacity: isSelected ? 0.82 : 0.45,
+    fillOpacity: isSelected ? 0.14 : 0.08
   });
+});
 
   layer.on('mouseout', () => {
     const props = feature.properties || {};
