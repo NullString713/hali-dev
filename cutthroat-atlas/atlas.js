@@ -666,10 +666,10 @@ function styleWaterbodyObject(feature) {
   if (isSelected) {
     return {
       color,
-      weight: 1.8,
-      opacity: 0.78,
+      weight: 1.5,
+      opacity: 0.68,
       fillColor: color,
-      fillOpacity: 0.12,
+      fillOpacity: 0.055,
       lineCap: 'round',
       lineJoin: 'round'
     };
@@ -703,9 +703,9 @@ function bindWaterbodyObjectEvents(feature, layer) {
     selectedStream.waterbody_id === props.waterbody_id;
 
   layer.setStyle({
-    weight: isSelected ? 1.9 : 1.4,
-    opacity: isSelected ? 0.82 : 0.45,
-    fillOpacity: isSelected ? 0.14 : 0.08
+    weight: isSelected ? 1.6 : 1.3,
+    opacity: isSelected ? 0.72 : 0.38,
+    fillOpacity: isSelected ? 0.07 : 0.045
   });
 });
 
