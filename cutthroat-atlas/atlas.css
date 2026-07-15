@@ -126,11 +126,46 @@ p {
 
 /* Map shell */
 
+.map-ambient-shell {
+  position: relative;
+  isolation: isolate;
+  margin: 0 clamp(1rem, 3vw, 2rem) 1.5rem;
+  padding: 6px;
+}
+
+.map-ambient-shell::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -4px;
+  border-radius: 34px;
+  pointer-events: none;
+  opacity: 0.28;
+  background:
+    radial-gradient(ellipse at 18% 30%, rgba(74, 168, 184, 0.3), transparent 42%),
+    radial-gradient(ellipse at 82% 68%, rgba(42, 126, 145, 0.28), transparent 46%),
+    linear-gradient(125deg, rgba(12, 53, 76, 0.72), rgba(24, 91, 91, 0.48) 52%, rgba(41, 139, 158, 0.38));
+  background-size: 115% 115%, 120% 120%, 110% 110%;
+  will-change: transform;
+  animation: atlas-water-drift 30s ease-in-out infinite alternate;
+}
+
+@keyframes atlas-water-drift {
+  from {
+    transform: translate3d(-2px, -1px, 0);
+  }
+
+  to {
+    transform: translate3d(3px, 2px, 0);
+  }
+}
+
 .map-stage {
   position: relative;
+  z-index: 1;
   height: calc(100vh - 205px);
   min-height: 620px;
-  margin: 0 clamp(1rem, 3vw, 2rem) 1.5rem;
+  margin: 0;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 28px;
@@ -396,13 +431,18 @@ input[type="range"] {
     line-height: 1.4;
   }
 
+  .map-ambient-shell {
+    margin: 0 0.75rem 1.5rem;
+    padding: 5px;
+  }
+
   .map-stage {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
     height: auto;
     min-height: 0;
-    margin: 0 0.75rem 1.5rem;
+    margin: 0;
     padding: 0.75rem;
     overflow: visible;
     border-radius: 22px;
@@ -488,6 +528,12 @@ input[type="range"] {
     margin-left: 0.75rem !important;
   }
 
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-ambient-shell::before {
+    animation: none;
+  }
 }
 .species-guide-hero {
   max-width: 900px;
