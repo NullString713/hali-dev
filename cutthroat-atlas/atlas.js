@@ -1824,10 +1824,14 @@ function renderStreamCard(stream) {
   `;
 }
 
-function isCorridorObject(stream = {}) {
-  return (
-    stream.atlas_layer === 'named_water_corridor' ||
-    stream.object_role === 'named_water_corridor'
+function isCorridorObject(value) {
+  return Boolean(
+    value &&
+      typeof value === 'object' &&
+      (
+        value.atlas_layer === 'named_water_corridor' ||
+        value.object_role === 'named_water_corridor'
+      )
   );
 }
 
