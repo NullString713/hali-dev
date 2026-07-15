@@ -32,15 +32,15 @@ body::before {
   z-index: 0;
   inset: -24px;
   pointer-events: none;
-  opacity: 0.46;
+  opacity: 0.54;
   background:
-    radial-gradient(ellipse 22% 10% at 14% 24%, rgba(109, 211, 222, 0.12), transparent 72%),
-    radial-gradient(ellipse 18% 8% at 72% 18%, rgba(92, 193, 205, 0.1), transparent 74%),
-    radial-gradient(ellipse 26% 11% at 84% 72%, rgba(76, 177, 191, 0.1), transparent 76%),
-    radial-gradient(ellipse 20% 9% at 34% 82%, rgba(113, 203, 207, 0.08), transparent 74%),
-    radial-gradient(circle at 24% 38%, rgba(24, 103, 126, 0.22), transparent 42%),
-    radial-gradient(circle at 78% 62%, rgba(25, 92, 105, 0.2), transparent 46%),
-    linear-gradient(132deg, rgba(7, 38, 64, 0.38), rgba(15, 73, 78, 0.2) 54%, rgba(20, 83, 105, 0.26));
+    radial-gradient(ellipse 22% 10% at 14% 24%, rgba(126, 226, 232, 0.2), transparent 72%),
+    radial-gradient(ellipse 18% 8% at 72% 18%, rgba(105, 211, 219, 0.15), transparent 74%),
+    radial-gradient(ellipse 26% 11% at 84% 72%, rgba(88, 195, 205, 0.14), transparent 76%),
+    radial-gradient(ellipse 20% 9% at 34% 82%, rgba(123, 216, 218, 0.12), transparent 74%),
+    radial-gradient(circle at 24% 38%, rgba(31, 123, 143, 0.24), transparent 42%),
+    radial-gradient(circle at 78% 62%, rgba(31, 109, 121, 0.22), transparent 46%),
+    linear-gradient(132deg, rgba(7, 38, 64, 0.26), rgba(15, 73, 78, 0.16) 54%, rgba(20, 83, 105, 0.2));
   transform: translate3d(-8px, -5px, 0) scale(1.01);
   will-change: transform;
   animation: atlas-water-drift 28s ease-in-out infinite alternate;
