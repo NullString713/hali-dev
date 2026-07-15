@@ -110,6 +110,9 @@ const NAMED_WATER_OCCURRENCE_TILE_INDEX_PATHS = [
 const WATERBODY_OBJECT_TILE_INDEX_PATH =
   './data/geojson/interpreted/colorado_waterbody_objects_v1_tile_index.json';
 
+const NAMED_WATER_CORRIDOR_TILE_INDEX_PATH =
+  './data/geojson/interpreted/colorado_named_water_corridors_v1_tile_index.json';
+
 const ATLAS_OBJECT_SEARCH_INDEX_PATH =
   './data/geojson/interpreted/colorado_atlas_object_search_index_v1.json';
 
@@ -369,6 +372,7 @@ async function loadDetailPatchIndex() {
   DETAIL_PATCH_INDEX_PATH,
   NATURAL_STREAM_TILE_INDEX_PATH,
   ...NAMED_WATER_OCCURRENCE_TILE_INDEX_PATHS,
+  NAMED_WATER_CORRIDOR_TILE_INDEX_PATH,
   WATERBODY_OBJECT_TILE_INDEX_PATH
 ];
 
@@ -940,6 +944,7 @@ function scoreAtlasSearchEntry(entry, query, tokens) {
   }
 
   if (entry.atlas_layer === 'waterbody_object') score += 8;
+  if (entry.atlas_layer === 'named_water_corridor' && name === query) score += 200;
   if (entry.object_type === 'stream') score += 4;
 
   return score;
@@ -1046,6 +1051,18 @@ function buildSelectedPropsFromSearchEntry(entry) {
     trout_source_public: 'Compiled public recovery and lineage context; expert review recommended'
   };
 
+  if (entry.atlas_layer === 'named_water_corridor') {
+    return {
+      ...baseProps,
+      corridor_id: entry.id,
+      water_id: entry.id,
+      atlas_layer: 'named_water_corridor',
+      object_role: 'named_water_corridor',
+      geometry_status_public: 'Aggregate named-water corridor',
+      geometry_source_public: 'Grouped Atlas named-water occurrence geometry'
+    };
+  }
+
   if (entry.atlas_layer === 'waterbody_object') {
     return {
       ...baseProps,
@@ -1080,6 +1097,10 @@ function getLatLngBoundsFromSearchEntry(entry) {
 
 function getTargetZoomForSearchEntry(entry) {
   const bounds = entry.bounds;
+
+  if (entry.atlas_layer === 'named_water_corridor') {
+    return Number(entry.minZoom || 6);
+  }
 
   if (!bounds) {
     return entry.atlas_layer === 'waterbody_object'
@@ -1116,10 +1137,11 @@ function selectAtlasSearchResult(entry) {
     : bounds?.getCenter();
 
   const targetZoom = getTargetZoomForSearchEntry(entry);
+  const isCorridor = entry.atlas_layer === 'named_water_corridor';
 
   if (bounds) {
     map.once('moveend', () => {
-      if (map.getZoom() < targetZoom && center) {
+      if (!isCorridor && map.getZoom() < targetZoom && center) {
         map.setView(center, targetZoom);
       }
 
@@ -1127,10 +1149,12 @@ function selectAtlasSearchResult(entry) {
       setTimeout(refreshActiveLayerStyles, 500);
     });
 
-    map.fitBounds(bounds, {
-      padding: [42, 42],
-      maxZoom: targetZoom
-    });
+    map.fitBounds(bounds, isCorridor
+      ? { padding: [42, 42] }
+      : {
+          padding: [42, 42],
+          maxZoom: targetZoom
+        });
   } else if (center) {
     map.setView(center, targetZoom);
     updateActiveLayers();
@@ -1177,7 +1201,7 @@ function createInterpretedFeaturedLayer(data, layerDef) {
   return L.geoJSON(data, {
     pane: layerDef.pane || 'featuredWaters',
     filter: feature => isLineGeometry(feature) && !isPointGeometry(feature),
-    style: styleStream,
+    style: styleInterpretedFeature,
     onEachFeature: (feature, layer) => {
       feature.properties = {
         ...feature.properties,
@@ -1185,7 +1209,11 @@ function createInterpretedFeaturedLayer(data, layerDef) {
         sourceLabel: layerDef.label
       };
 
-      bindFeaturedStreamEvents(feature, layer);
+      if (isNamedWaterCorridor(feature)) {
+        bindNamedWaterCorridorEvents(feature, layer);
+      } else {
+        bindFeaturedStreamEvents(feature, layer);
+      }
     },
     smoothFactor: 1.5
   });
@@ -1306,7 +1334,7 @@ function refreshActiveLayerStyles() {
     if (!layer.setStyle) continue;
 
     if (layerDef.sourceType === 'interpreted') {
-      layer.setStyle(styleStream);
+      layer.setStyle(styleInterpretedFeature);
       continue;
     }
 
@@ -1327,6 +1355,49 @@ function refreshActiveLayerStyles() {
 
     layer.setStyle(feature => styleReferenceFeature(feature, layerDef, layerDef.sourceType));
   }
+}
+
+function isNamedWaterCorridor(feature) {
+  const props = feature?.properties || {};
+
+  return (
+    props.atlas_layer === 'named_water_corridor' ||
+    props.object_role === 'named_water_corridor'
+  );
+}
+
+function styleInterpretedFeature(feature) {
+  return isNamedWaterCorridor(feature)
+    ? styleNamedWaterCorridor(feature)
+    : styleStream(feature);
+}
+
+function styleNamedWaterCorridor(feature) {
+  const props = feature.properties || {};
+  const color = getLineageColor(feature);
+  const zoom = map.getZoom();
+  const isSelected =
+    selectedStream?.corridor_id &&
+    props.corridor_id &&
+    selectedStream.corridor_id === props.corridor_id;
+
+  if (isSelected) {
+    return {
+      color,
+      weight: zoom <= 10 ? 3.5 : 4.5,
+      opacity: 0.92,
+      lineCap: 'round',
+      lineJoin: 'round'
+    };
+  }
+
+  return {
+    color,
+    weight: zoom <= 10 ? 14 : 18,
+    opacity: 0,
+    lineCap: 'round',
+    lineJoin: 'round'
+  };
 }
 
 function styleReferenceFeature(feature, layerDef, sourceType) {
@@ -1546,6 +1617,40 @@ function bindFeaturedStreamEvents(feature, layer) {
   });
 }
 
+function bindNamedWaterCorridorEvents(feature, layer) {
+  layer.on('click', () => {
+    selectedStream = feature.properties;
+    renderStreamCard(selectedStream);
+    refreshActiveLayerStyles();
+  });
+
+  layer.on('mouseover', () => {
+    const props = feature.properties || {};
+    const isSelected =
+      selectedStream?.corridor_id &&
+      props.corridor_id &&
+      selectedStream.corridor_id === props.corridor_id;
+
+    if (!isSelected) {
+      layer.setStyle({
+        weight: map.getZoom() <= 10 ? 3.5 : 4.5,
+        opacity: 0.72
+      });
+    }
+  });
+
+  layer.on('mouseout', () => {
+    layer.setStyle(styleNamedWaterCorridor(feature));
+  });
+
+  layer.bindTooltip(getWaterName(feature.properties), {
+    permanent: false,
+    direction: 'top',
+    sticky: true,
+    className: 'stream-tooltip'
+  });
+}
+
 function isPointGeometry(feature) {
   const type = feature.geometry?.type || '';
   return type === 'Point' || type === 'MultiPoint';
@@ -1622,6 +1727,10 @@ function renderStreamCard(stream) {
 }
 
 function getPublicWaterCardFields(stream = {}) {
+  const isCorridor =
+    stream.atlas_layer === 'named_water_corridor' ||
+    stream.object_role === 'named_water_corridor';
+
   return {
     displayName:
       stream.display_name ||
@@ -1640,6 +1749,7 @@ function getPublicWaterCardFields(stream = {}) {
       stream.source_name ||
       stream.sourceName ||
       stream.name ||
+      (isCorridor ? stream.display_name : '') ||
       'Unknown',
 
     basin:
@@ -1647,6 +1757,7 @@ function getPublicWaterCardFields(stream = {}) {
       stream.lineageBasin ||
       stream.huc8Name ||
       stream.huc8 ||
+      (isCorridor && Array.isArray(stream.huc8Names) ? stream.huc8Names.join(' / ') : '') ||
       'Unknown',
 
     state:
@@ -1677,6 +1788,13 @@ function getPublicWaterCardFields(stream = {}) {
 }
 
 function getOccurrenceLabel(stream = {}) {
+  if (
+    stream.atlas_layer === 'named_water_corridor' ||
+    stream.object_role === 'named_water_corridor'
+  ) {
+    return 'River corridor';
+  }
+
   if (
     stream.atlas_layer === 'waterbody_object' ||
     stream.object_role === 'waterbody_object'

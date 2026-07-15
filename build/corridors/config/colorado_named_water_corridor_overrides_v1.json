@@ -1,0 +1,51 @@
+{
+  "state": "CO",
+  "state_slug": "colorado",
+  "version": "v1",
+  "corridors": [
+    {
+      "corridor_id": "co_corridor_cache_la_poudre_river",
+      "display_name": "Cache la Poudre River",
+      "normalized_name": "cache la poudre river",
+      "member_occurrence_ids": [
+        "co_cache_la_poudre_river_10190007_greenback_001",
+        "co_cache_la_poudre_river_10190007_greenback_002",
+        "co_cache_la_poudre_river_10190007_greenback_003",
+        "co_cache_la_poudre_river_10190007_greenback_004",
+        "co_cache_la_poudre_river_10190007_greenback_005",
+        "co_cache_la_poudre_river_10190007_greenback_006",
+        "co_cache_la_poudre_river_10190007_greenback_007"
+      ]
+    },
+    {
+      "corridor_id": "co_corridor_colorado_river",
+      "display_name": "Colorado River",
+      "normalized_name": "colorado river",
+      "member_occurrence_ids": [
+        "co_colorado_river_14010001_coloradoRiver_001",
+        "co_colorado_river_14010001_coloradoRiver_002"
+      ]
+    },
+    {
+      "corridor_id": "co_corridor_rio_grande",
+      "display_name": "Rio Grande",
+      "normalized_name": "rio grande",
+      "member_occurrence_ids": [
+        "co_rio_grande_13010001_rioGrande_001",
+        "co_rio_grande_13010001_rioGrande_002",
+        "co_rio_grande_13010001_rioGrande_003",
+        "co_rio_grande_13010002_rioGrande_001",
+        "co_rio_grande_13010002_rioGrande_002",
+        "co_rio_grande_13010002_rioGrande_003"
+      ]
+    },
+    {
+      "corridor_id": "co_corridor_arkansas_river",
+      "display_name": "Arkansas River",
+      "normalized_name": "arkansas river",
+      "member_occurrence_ids": [
+        "co_arkansas_river_11020001_yellowfin_001"
+      ]
+    }
+  ]
+}
