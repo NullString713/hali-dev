@@ -26,6 +26,36 @@ body {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  z-index: 0;
+  inset: -24px;
+  pointer-events: none;
+  opacity: 0.46;
+  background:
+    radial-gradient(ellipse 22% 10% at 14% 24%, rgba(109, 211, 222, 0.12), transparent 72%),
+    radial-gradient(ellipse 18% 8% at 72% 18%, rgba(92, 193, 205, 0.1), transparent 74%),
+    radial-gradient(ellipse 26% 11% at 84% 72%, rgba(76, 177, 191, 0.1), transparent 76%),
+    radial-gradient(ellipse 20% 9% at 34% 82%, rgba(113, 203, 207, 0.08), transparent 74%),
+    radial-gradient(circle at 24% 38%, rgba(24, 103, 126, 0.22), transparent 42%),
+    radial-gradient(circle at 78% 62%, rgba(25, 92, 105, 0.2), transparent 46%),
+    linear-gradient(132deg, rgba(7, 38, 64, 0.38), rgba(15, 73, 78, 0.2) 54%, rgba(20, 83, 105, 0.26));
+  transform: translate3d(-8px, -5px, 0) scale(1.01);
+  will-change: transform;
+  animation: atlas-water-drift 28s ease-in-out infinite alternate;
+}
+
+@keyframes atlas-water-drift {
+  from {
+    transform: translate3d(-8px, -5px, 0) scale(1.01);
+  }
+
+  to {
+    transform: translate3d(8px, 7px, 0) scale(1.01);
+  }
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -38,6 +68,8 @@ p {
 }
 
 .atlas-shell {
+  position: relative;
+  z-index: 1;
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto auto 1fr auto;
@@ -126,46 +158,11 @@ p {
 
 /* Map shell */
 
-.map-ambient-shell {
-  position: relative;
-  isolation: isolate;
-  margin: 0 clamp(1rem, 3vw, 2rem) 1.5rem;
-  padding: 6px;
-}
-
-.map-ambient-shell::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: -4px;
-  border-radius: 34px;
-  pointer-events: none;
-  opacity: 0.28;
-  background:
-    radial-gradient(ellipse at 18% 30%, rgba(74, 168, 184, 0.3), transparent 42%),
-    radial-gradient(ellipse at 82% 68%, rgba(42, 126, 145, 0.28), transparent 46%),
-    linear-gradient(125deg, rgba(12, 53, 76, 0.72), rgba(24, 91, 91, 0.48) 52%, rgba(41, 139, 158, 0.38));
-  background-size: 115% 115%, 120% 120%, 110% 110%;
-  will-change: transform;
-  animation: atlas-water-drift 30s ease-in-out infinite alternate;
-}
-
-@keyframes atlas-water-drift {
-  from {
-    transform: translate3d(-2px, -1px, 0);
-  }
-
-  to {
-    transform: translate3d(3px, 2px, 0);
-  }
-}
-
 .map-stage {
   position: relative;
-  z-index: 1;
   height: calc(100vh - 205px);
   min-height: 620px;
-  margin: 0;
+  margin: 0 clamp(1rem, 3vw, 2rem) 1.5rem;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 28px;
@@ -431,18 +428,13 @@ input[type="range"] {
     line-height: 1.4;
   }
 
-  .map-ambient-shell {
-    margin: 0 0.75rem 1.5rem;
-    padding: 5px;
-  }
-
   .map-stage {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
     height: auto;
     min-height: 0;
-    margin: 0;
+    margin: 0 0.75rem 1.5rem;
     padding: 0.75rem;
     overflow: visible;
     border-radius: 22px;
@@ -531,7 +523,7 @@ input[type="range"] {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .map-ambient-shell::before {
+  body::before {
     animation: none;
   }
 }
