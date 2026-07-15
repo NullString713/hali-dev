@@ -114,7 +114,7 @@ const NAMED_WATER_CORRIDOR_TILE_INDEX_PATH =
   './data/geojson/interpreted/colorado_named_water_corridors_v1_tile_index.json';
 
 const ATLAS_OBJECT_SEARCH_INDEX_PATH =
-  './data/geojson/interpreted/colorado_atlas_object_search_index_v1.json?v=3';
+  './data/geojson/interpreted/colorado_atlas_object_search_index_v1.json?v=4';
 
 let atlasSearchEntries = [];
 let atlasSearchReady = false;
@@ -472,7 +472,11 @@ function getDesiredLayerDefs() {
   return fullCatalog
     .filter(layerDef => {
       if (layerVisibility[layerDef.group] === false) return false;
-      if (zoom < layerDef.minZoom) return false;
+      const showSelectedCorridorBelowMinZoom =
+        isCorridorObject(selectedStream) &&
+        layerDef.type === 'colorado-named-water-corridor-v1-tile';
+
+      if (zoom < layerDef.minZoom && !showSelectedCorridorBelowMinZoom) return false;
       if (zoom > layerDef.maxZoom) return false;
       if (!layerDefIntersectsBounds(layerDef, bounds)) return false;
 
@@ -578,6 +582,7 @@ async function loadLayer(layerDef) {
       layerDef,
       layer
     });
+    bringSelectedOccurrenceToFront();
   } catch (error) {
     if (error.name !== 'AbortError') {
       console.error(`Could not load ${layerDef.label}:`, error);
@@ -1411,6 +1416,23 @@ function refreshActiveLayerStyles() {
 
     layer.setStyle(feature => styleReferenceFeature(feature, layerDef, layerDef.sourceType));
   }
+
+  bringSelectedOccurrenceToFront();
+}
+
+function bringSelectedOccurrenceToFront() {
+  const occurrenceId = selectedStream?.occurrence_id;
+  if (!occurrenceId || isCorridorObject(selectedStream)) return;
+
+  for (const activeRecord of activeLayers.values()) {
+    if (activeRecord.layerDef?.sourceType !== 'interpreted') continue;
+
+    activeRecord.layer?.eachLayer?.(featureLayer => {
+      if (featureLayer.feature?.properties?.occurrence_id === occurrenceId) {
+        featureLayer.bringToFront?.();
+      }
+    });
+  }
 }
 
 function isNamedWaterCorridor(feature) {
@@ -1436,12 +1458,27 @@ function styleNamedWaterCorridor(feature) {
     selectedStream?.corridor_id &&
     props.corridor_id &&
     selectedStream.corridor_id === props.corridor_id;
+  const isSelectedOccurrenceMember =
+    !isCorridorObject(selectedStream) &&
+    selectedStream?.occurrence_id &&
+    Array.isArray(props.member_occurrence_ids) &&
+    props.member_occurrence_ids.includes(selectedStream.occurrence_id);
 
   if (isSelected) {
     return {
       color,
       weight: zoom <= 10 ? 4.5 : 5.5,
       opacity: 0.94,
+      lineCap: 'round',
+      lineJoin: 'round'
+    };
+  }
+
+  if (isSourceBackedCorridorProperties(props) && isSelectedOccurrenceMember) {
+    return {
+      color,
+      weight: zoom <= 10 ? 2 : 2.75,
+      opacity: 0.3,
       lineCap: 'round',
       lineJoin: 'round'
     };
@@ -1869,19 +1906,25 @@ function getLineageDisplayLabel(stream = {}) {
 
 function getFriendlyCorridorGeometry(stream = {}) {
   const source = String(stream.geometry_source_public || stream.geometrySource || '').toLowerCase();
-  const isSourceBacked =
-    stream.source_backed_geometry === true ||
-    stream.geometry_source_type === 'source-backed-nhd-mainstem' ||
-    source.includes('source-backed') ||
-    source.includes('nhd named mainstem');
 
-  if (isSourceBacked) return 'Source-backed NHD mainstem';
+  if (isSourceBackedCorridorProperties(stream)) return 'Source-backed NHD mainstem';
 
   if (source.includes('grouped atlas named-water occurrence geometry')) {
     return 'Occurrence-derived corridor';
   }
 
   return 'Named-water corridor';
+}
+
+function isSourceBackedCorridorProperties(stream = {}) {
+  const source = String(stream.geometry_source_public || stream.geometrySource || '').toLowerCase();
+
+  return (
+    stream.source_backed_geometry === true ||
+    stream.geometry_source_type === 'source-backed-nhd-mainstem' ||
+    source.includes('source-backed') ||
+    source.includes('nhd named mainstem')
+  );
 }
 
 function firstValue(value) {

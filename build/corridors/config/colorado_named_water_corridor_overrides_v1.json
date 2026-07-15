@@ -10,10 +10,38 @@
       "source_backed_geometry": {
         "gnis_id": "00205018",
         "normalized_source_name": "cache la poudre river",
+        "source_layers": [
+          "flowlines_colorado_streamriver",
+          "flowlines_colorado_connectors"
+        ],
         "allowed_ftypes": [460, 558],
         "require_in_network": true,
         "anchor_required": true,
-        "expected_source_feature_count": 445
+        "anchor_occurrence_ids": [
+          "co_cache_la_poudre_river_10190007_greenback_001",
+          "co_cache_la_poudre_river_10190007_greenback_002",
+          "co_cache_la_poudre_river_10190007_greenback_003",
+          "co_cache_la_poudre_river_10190007_greenback_004",
+          "co_cache_la_poudre_river_10190007_greenback_005",
+          "co_cache_la_poudre_river_10190007_greenback_006",
+          "co_cache_la_poudre_river_10190007_greenback_007"
+        ],
+        "maximum_anchor_tolerance_meters": 1.0,
+        "expected_statistics": {
+          "source_feature_count": 445,
+          "component_count": 1,
+          "endpoint_node_count": 446,
+          "degree_one_endpoint_count": 2,
+          "maximum_endpoint_degree": 2,
+          "loop_count": 0,
+          "branch_node_count": 0,
+          "permanent_identifier_count": 445,
+          "nhdplus_id_count": 445,
+          "vertex_count": 12457,
+          "source_length_km": 204.615,
+          "source_length_tolerance_km": 0.001
+        },
+        "geometry_source_description": "Source-backed NHD named mainstem from flowlines_colorado_streamriver and flowlines_colorado_connectors; GNIS_ID 00205018; FType 460/558; exact endpoint-connected component touched by approved occurrence anchors"
       },
       "member_occurrence_ids": [
         "co_cache_la_poudre_river_10190007_greenback_001",
@@ -29,6 +57,37 @@
       "corridor_id": "co_corridor_colorado_river",
       "display_name": "Colorado River",
       "normalized_name": "colorado river",
+      "source_backed_geometry": {
+        "gnis_id": "00045730",
+        "normalized_source_name": "colorado river",
+        "source_layers": [
+          "flowlines_colorado_streamriver",
+          "flowlines_colorado_connectors"
+        ],
+        "allowed_ftypes": [460, 558],
+        "require_in_network": true,
+        "anchor_required": true,
+        "anchor_occurrence_ids": [
+          "co_colorado_river_14010001_coloradoRiver_001",
+          "co_colorado_river_14010001_coloradoRiver_002"
+        ],
+        "maximum_anchor_tolerance_meters": 1.1,
+        "expected_statistics": {
+          "source_feature_count": 1263,
+          "component_count": 1,
+          "endpoint_node_count": 1264,
+          "degree_one_endpoint_count": 2,
+          "maximum_endpoint_degree": 2,
+          "loop_count": 0,
+          "branch_node_count": 0,
+          "permanent_identifier_count": 1263,
+          "nhdplus_id_count": 1263,
+          "vertex_count": 11117,
+          "source_length_km": 491.584264,
+          "source_length_tolerance_km": 0.001
+        },
+        "geometry_source_description": "Source-backed NHD named mainstem from flowlines_colorado_streamriver and flowlines_colorado_connectors; GNIS_ID 00045730; FType 460/558; exact endpoint-connected component touched by approved occurrence anchors; Colorado River anchor tolerance 1.1 meters"
+      },
       "member_occurrence_ids": [
         "co_colorado_river_14010001_coloradoRiver_001",
         "co_colorado_river_14010001_coloradoRiver_002"

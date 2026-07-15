@@ -336,22 +336,44 @@ function Build-SourceBackedCorridor {
     [int[]]$allowedFTypes = @($sourceDefinition.allowed_ftypes | ForEach-Object { [int]$_ } | Sort-Object -Unique)
     $requireInNetwork = [bool]$sourceDefinition.require_in_network
     $anchorRequired = [bool]$sourceDefinition.anchor_required
-    $expectedFeatureCount = [int]$sourceDefinition.expected_source_feature_count
+    [string[]]$sourceLayers = @($sourceDefinition.source_layers | ForEach-Object { [string]$_ })
+    [string[]]$anchorOccurrenceIds = @($sourceDefinition.anchor_occurrence_ids | ForEach-Object { [string]$_ })
+    $anchorToleranceMeters = if ($sourceDefinition.PSObject.Properties.Name -contains 'maximum_anchor_tolerance_meters') {
+        [double]$sourceDefinition.maximum_anchor_tolerance_meters
+    }
+    else {
+        1.0
+    }
+    $expected = $sourceDefinition.expected_statistics
+    $expectedFeatureCount = [int]$expected.source_feature_count
+    $geometrySourceDescription = [string]$sourceDefinition.geometry_source_description
 
-    if ($corridorId -ne 'co_corridor_cache_la_poudre_river') {
-        throw "Source-backed geometry is currently limited to the Cache la Poudre pilot, found: $corridorId"
+    if ([string]::IsNullOrWhiteSpace($gnisId) -or [string]::IsNullOrWhiteSpace($normalizedSourceName)) {
+        throw "Source-backed corridor $corridorId requires a GNIS ID and normalized source name."
     }
-    if ($gnisId -ne '00205018' -or $normalizedSourceName -ne 'cache la poudre river') {
-        throw "Unexpected Cache la Poudre source identity in overrides for $corridorId."
+    $supportedSourceLayers = @('flowlines_colorado_streamriver', 'flowlines_colorado_connectors')
+    if ($sourceLayers.Count -eq 0 -or @($sourceLayers | Where-Object { $supportedSourceLayers -notcontains $_ }).Count -gt 0) {
+        throw "Source-backed corridor $corridorId contains an empty or unsupported source layer list: $($sourceLayers -join ', ')"
     }
-    if (($allowedFTypes -join ',') -ne '460,558') {
-        throw "Cache la Poudre allowed FTypes must be exactly 460 and 558, found: $($allowedFTypes -join ', ')"
+    if ($allowedFTypes.Count -eq 0) {
+        throw "Source-backed corridor $corridorId requires at least one allowed FType."
     }
     if (-not $requireInNetwork -or -not $anchorRequired) {
-        throw 'Cache la Poudre source-backed geometry requires both InNetwork and occurrence anchors.'
+        throw "Source-backed corridor $corridorId requires both InNetwork and occurrence anchors."
     }
-    if ($expectedFeatureCount -le 0) {
-        throw 'Cache la Poudre source-backed geometry requires a positive expected source feature count.'
+    if ($anchorToleranceMeters -le 0.0) {
+        throw "Source-backed corridor $corridorId requires a positive maximum anchor tolerance."
+    }
+    if ($anchorOccurrenceIds.Count -eq 0) {
+        throw "Source-backed corridor $corridorId requires configured anchor occurrence IDs."
+    }
+    $configuredAnchorIds = @($anchorOccurrenceIds | Sort-Object -Unique)
+    $memberOccurrenceIds = @($Corridor.member_occurrence_ids | ForEach-Object { [string]$_ } | Sort-Object -Unique)
+    if (($configuredAnchorIds -join "`n") -ne ($memberOccurrenceIds -join "`n")) {
+        throw "Source-backed corridor $corridorId anchor occurrence IDs must exactly match its registry members."
+    }
+    if ($expectedFeatureCount -le 0 -or [string]::IsNullOrWhiteSpace($geometrySourceDescription)) {
+        throw "Source-backed corridor $corridorId requires positive expected statistics and a geometry source description."
     }
 
     $escapedGnisId = $gnisId.Replace("'", "''")
@@ -360,8 +382,6 @@ function Build-SourceBackedCorridor {
     $inNetworkSql = if ($requireInNetwork) { ' AND InNetwork = 1' } else { '' }
     $whereClause = "GNIS_ID = '$escapedGnisId' AND lower(trim(GNIS_Name)) = '$escapedName' AND FType IN ($allowedFTypeSql)$inNetworkSql"
     $selectFields = 'Shape, Permanent_Identifier, GNIS_ID, GNIS_Name, LengthKM, ReachCode, FlowDir, FType, FCode, InNetwork, NHDPlusID, VPUID'
-    $sourceLayers = @('flowlines_colorado_streamriver', 'flowlines_colorado_connectors')
-
     $candidateFeatures = [System.Collections.Generic.List[object]]::new()
     foreach ($sourceLayer in $sourceLayers) {
         $sql = "SELECT $selectFields FROM $sourceLayer WHERE $whereClause"
@@ -375,7 +395,7 @@ function Build-SourceBackedCorridor {
     }
 
     if ($candidateFeatures.Count -ne $expectedFeatureCount) {
-        throw "Cache la Poudre source feature count changed: expected $expectedFeatureCount, found $($candidateFeatures.Count). Inspect and explicitly update the pilot expectation before proceeding."
+        throw "Source-backed corridor $corridorId source feature count changed: expected $expectedFeatureCount, found $($candidateFeatures.Count)."
     }
 
     $permanentIds = [System.Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
@@ -442,13 +462,13 @@ function Build-SourceBackedCorridor {
     }
 
     if ($sourceRecordsByPermanentId.Count -ne $candidateFeatures.Count) {
-        throw 'Source records were not keyed one-to-one by Permanent_Identifier.'
+        throw "Source records for $corridorId were not keyed one-to-one by Permanent_Identifier."
     }
 
     if (@($candidateFeatures | Where-Object {
         (Normalize-WaterName $_.properties.GNIS_Name) -match '^(north|south) fork '
     }).Count -ne 0) {
-        throw 'Fork geometry was admitted to the Cache la Poudre candidate set.'
+        throw "Fork geometry was admitted to the source candidate set for $corridorId."
     }
 
     $nodeFeatures = @{}
@@ -496,8 +516,9 @@ function Build-SourceBackedCorridor {
     }
 
     $anchorMatchCounts = [ordered]@{}
+    $anchorMinimumDistances = [ordered]@{}
     $anchoredFeatureIndexes = [System.Collections.Generic.HashSet[int]]::new()
-    foreach ($occurrenceIdValue in @($Corridor.member_occurrence_ids)) {
+    foreach ($occurrenceIdValue in $anchorOccurrenceIds) {
         $occurrenceId = [string]$occurrenceIdValue
         if (-not $AnchorPartsByOccurrence.ContainsKey($occurrenceId)) {
             throw "No occurrence geometry was loaded for required source-backed anchor: $occurrenceId"
@@ -509,38 +530,41 @@ function Build-SourceBackedCorridor {
         }
 
         $matches = [System.Collections.Generic.HashSet[int]]::new()
+        $minimumAnchorDistance = [double]::PositiveInfinity
         for ($featureIndex = 0; $featureIndex -lt $sourceRecords.Count; $featureIndex++) {
             $record = $sourceRecords[$featureIndex]
-            $matched = $false
             foreach ($anchorPoint in $anchorPoints) {
-                if ((Get-PointToLinePartDistanceMeters `
+                $distanceMeters = Get-PointToLinePartDistanceMeters `
                     -Point $anchorPoint `
-                    -LinePart ([object[]]$record.coordinates)) -le 1.0) {
-                        $null = $matches.Add($featureIndex)
-                        $matched = $true
-                        break
+                    -LinePart ([object[]]$record.coordinates)
+                if ($distanceMeters -lt $minimumAnchorDistance) {
+                    $minimumAnchorDistance = $distanceMeters
+                }
+                if ($distanceMeters -le $anchorToleranceMeters) {
+                    $null = $matches.Add($featureIndex)
                 }
             }
         }
 
         if ($anchorRequired -and $matches.Count -eq 0) {
-            throw "Approved occurrence anchor did not touch an allowed exact-identity source line within 1 meter: $occurrenceId"
+            throw "Approved occurrence anchor did not touch an allowed exact-identity source line within $anchorToleranceMeters meters: $occurrenceId (nearest $minimumAnchorDistance meters)"
         }
         foreach ($match in $matches) { $null = $anchoredFeatureIndexes.Add($match) }
         $anchorMatchCounts[$occurrenceId] = $matches.Count
+        $anchorMinimumDistances[$occurrenceId] = [Math]::Round($minimumAnchorDistance, 6)
     }
 
     if ($anchorRequired -and $anchoredFeatureIndexes.Count -eq 0) {
-        throw 'No source features were touched by the approved Cache la Poudre occurrence anchors.'
+        throw "No source features were touched by the approved anchors for $corridorId."
     }
 
     $anchoredComponentIds = @($anchoredFeatureIndexes | ForEach-Object { $componentByFeature[$_] } | Sort-Object -Unique)
     if ($anchoredComponentIds.Count -ne 1) {
-        throw "Cache la Poudre anchors touch $($anchoredComponentIds.Count) candidate components; exactly one is required."
+        throw "Source-backed corridor $corridorId anchors touch $($anchoredComponentIds.Count) candidate components; exactly one is required."
     }
     $selectedIndexes = $components[$anchoredComponentIds[0]]
     if ($selectedIndexes.Count -ne $expectedFeatureCount) {
-        throw "Anchored Cache la Poudre component selected $($selectedIndexes.Count) of $expectedFeatureCount expected source features."
+        throw "Anchored component for $corridorId selected $($selectedIndexes.Count) of $expectedFeatureCount expected source features."
     }
 
     $selectedNodeDegrees = @{}
@@ -553,11 +577,27 @@ function Build-SourceBackedCorridor {
     }
     $degreeOneCount = @($selectedNodeDegrees.Values | Where-Object { $_ -eq 1 }).Count
     $maxDegree = [int](($selectedNodeDegrees.Values | Measure-Object -Maximum).Maximum)
-    if ($degreeOneCount -ne 2) {
-        throw "Cache la Poudre source graph must have exactly two degree-1 nodes, found $degreeOneCount."
+    $branchNodeCount = @($selectedNodeDegrees.Values | Where-Object { $_ -gt 2 }).Count
+    $loopCount = @($selectedIndexes | Where-Object {
+        $sourceRecords[$_].start_key -eq $sourceRecords[$_].end_key
+    }).Count
+    if ($components.Count -ne [int]$expected.component_count) {
+        throw "Source-backed corridor $corridorId expected $($expected.component_count) candidate components, found $($components.Count)."
     }
-    if ($maxDegree -gt 2) {
-        throw "Cache la Poudre source graph must not branch; maximum endpoint degree is $maxDegree."
+    if ($selectedNodeDegrees.Count -ne [int]$expected.endpoint_node_count) {
+        throw "Source-backed corridor $corridorId expected $($expected.endpoint_node_count) endpoint nodes, found $($selectedNodeDegrees.Count)."
+    }
+    if ($degreeOneCount -ne [int]$expected.degree_one_endpoint_count) {
+        throw "Source-backed corridor $corridorId expected $($expected.degree_one_endpoint_count) degree-1 nodes, found $degreeOneCount."
+    }
+    if ($maxDegree -ne [int]$expected.maximum_endpoint_degree) {
+        throw "Source-backed corridor $corridorId expected maximum endpoint degree $($expected.maximum_endpoint_degree), found $maxDegree."
+    }
+    if ($loopCount -ne [int]$expected.loop_count -or $branchNodeCount -ne [int]$expected.branch_node_count) {
+        throw "Source-backed corridor $corridorId topology changed: loops $loopCount, branch nodes $branchNodeCount."
+    }
+    if ($permanentIds.Count -ne [int]$expected.permanent_identifier_count -or $nhdPlusIds.Count -ne [int]$expected.nhdplus_id_count) {
+        throw "Source-backed corridor $corridorId source identifier counts changed."
     }
 
     $partsByKey = @{}
@@ -581,7 +621,12 @@ function Build-SourceBackedCorridor {
 
     [object[]]$selectedParts = @($partsByKey.Values)
     $lineStats = Get-LineCollectionStats -LineParts $selectedParts -SourceLengthKm $sourceLengthKm
-    $geometrySourceDescription = "Source-backed NHD named mainstem from flowlines_colorado_streamriver and flowlines_colorado_connectors; GNIS_ID $gnisId; FType 460/558; exact endpoint-connected component touched by approved occurrence anchors"
+    if ($lineStats.vertex_count -ne [int]$expected.vertex_count) {
+        throw "Source-backed corridor $corridorId expected $($expected.vertex_count) vertices, found $($lineStats.vertex_count)."
+    }
+    if ([Math]::Abs($sourceLengthKm - [double]$expected.source_length_km) -gt [double]$expected.source_length_tolerance_km) {
+        throw "Source-backed corridor $corridorId source length changed: expected $($expected.source_length_km) km, found $sourceLengthKm km."
+    }
 
     return [pscustomobject]@{
         parts_by_key                 = $partsByKey
@@ -595,10 +640,14 @@ function Build-SourceBackedCorridor {
         endpoint_node_count          = $selectedNodeDegrees.Count
         degree_one_endpoint_count    = $degreeOneCount
         maximum_endpoint_degree      = $maxDegree
+        loop_count                   = $loopCount
+        branch_node_count            = $branchNodeCount
         permanent_identifier_count   = $permanentIds.Count
         nhdplus_id_count             = $nhdPlusIds.Count
         anchor_matched_feature_count = $anchoredFeatureIndexes.Count
         anchor_match_counts          = $anchorMatchCounts
+        anchor_minimum_distances_m   = $anchorMinimumDistances
+        maximum_anchor_tolerance_m   = $anchorToleranceMeters
         ftype_460_count              = [int]$fTypeCounts[460]
         ftype_558_count              = [int]$fTypeCounts[558]
         geometry_source_description  = $geometrySourceDescription
@@ -795,10 +844,14 @@ foreach ($corridor in $registry.corridors) {
         $properties.endpoint_node_count = [int]$stats.endpoint_node_count
         $properties.degree_one_endpoint_count = [int]$stats.degree_one_endpoint_count
         $properties.maximum_endpoint_degree = [int]$stats.maximum_endpoint_degree
+        $properties.loop_count = [int]$stats.loop_count
+        $properties.branch_node_count = [int]$stats.branch_node_count
         $properties.anchor_matched_feature_count = [int]$stats.anchor_matched_feature_count
         $properties.ftype_460_count = [int]$stats.ftype_460_count
         $properties.ftype_558_count = [int]$stats.ftype_558_count
         $properties.anchor_match_counts = $stats.anchor_match_counts
+        $properties.anchor_minimum_distances_m = $stats.anchor_minimum_distances_m
+        $properties.maximum_anchor_tolerance_m = [double]$stats.maximum_anchor_tolerance_m
     }
 
     $feature = [ordered]@{
