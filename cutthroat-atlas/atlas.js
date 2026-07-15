@@ -1057,7 +1057,9 @@ function buildSelectedPropsFromSearchEntry(entry) {
       atlas_layer: 'named_water_corridor',
       object_role: 'named_water_corridor',
       geometry_status_public: 'Aggregate named-water corridor',
-      geometry_source_public: 'Grouped Atlas named-water occurrence geometry'
+      geometry_source_public: entry.geometry_source_public || '',
+      source_backed_geometry: entry.source_backed_geometry,
+      geometry_source_type: entry.geometry_source_type
     };
   }
 
@@ -1127,7 +1129,9 @@ function getTargetZoomForSearchEntry(entry) {
 
 function selectAtlasSearchResult(entry) {
   selectedStream = buildSelectedPropsFromSearchEntry(entry);
-  renderStreamCard(selectedStream);
+  if (!hydrateSelectedCorridorFromActiveLayers()) {
+    renderStreamCard(selectedStream);
+  }
 
   const bounds = getLatLngBoundsFromSearchEntry(entry);
   const center = entry.center
@@ -1144,7 +1148,11 @@ function selectAtlasSearchResult(entry) {
       }
 
       updateActiveLayers();
-      setTimeout(refreshActiveLayerStyles, 500);
+      hydrateSelectedCorridorFromActiveLayers();
+      setTimeout(() => {
+        hydrateSelectedCorridorFromActiveLayers();
+        refreshActiveLayerStyles();
+      }, 500);
     });
 
     map.fitBounds(bounds, isCorridor
@@ -1156,10 +1164,58 @@ function selectAtlasSearchResult(entry) {
   } else if (center) {
     map.setView(center, targetZoom);
     updateActiveLayers();
-    setTimeout(refreshActiveLayerStyles, 500);
+    hydrateSelectedCorridorFromActiveLayers();
+    setTimeout(() => {
+      hydrateSelectedCorridorFromActiveLayers();
+      refreshActiveLayerStyles();
+    }, 500);
   }
 
   refreshActiveLayerStyles();
+}
+
+function hydrateSelectedCorridorFromActiveLayers() {
+  if (!isCorridorObject(selectedStream) || !selectedStream.corridor_id) return false;
+
+  const selectedCorridorId = selectedStream.corridor_id;
+  let matchingProperties = null;
+
+  for (const activeRecord of activeLayers.values()) {
+    if (activeRecord.layerDef?.sourceType !== 'interpreted') continue;
+
+    activeRecord.layer?.eachLayer?.(featureLayer => {
+      const properties = featureLayer.feature?.properties;
+
+      if (
+        !matchingProperties &&
+        properties?.corridor_id === selectedCorridorId &&
+        isCorridorObject(properties)
+      ) {
+        matchingProperties = properties;
+      }
+    });
+
+    if (matchingProperties) break;
+  }
+
+  return mergeSelectedCorridorProperties(matchingProperties);
+}
+
+function mergeSelectedCorridorProperties(properties) {
+  if (!properties || !isCorridorObject(selectedStream)) return false;
+  if (selectedStream.corridor_id !== properties.corridor_id) return false;
+
+  const alreadyHydrated =
+    selectedStream.source_feature_count === properties.source_feature_count &&
+    selectedStream.occurrence_count === properties.occurrence_count &&
+    selectedStream.source_length_km === properties.source_length_km &&
+    selectedStream.geometry_source_public === properties.geometry_source_public;
+
+  if (alreadyHydrated) return false;
+
+  selectedStream = { ...selectedStream, ...properties };
+  renderStreamCard(selectedStream);
+  return true;
 }
 
 function createLayerFromGeoJson(data, layerDef) {
@@ -1208,6 +1264,8 @@ function createInterpretedFeaturedLayer(data, layerDef) {
       };
 
       if (isNamedWaterCorridor(feature)) {
+        mergeSelectedCorridorProperties(feature.properties);
+
         bindNamedWaterCorridorEvents(feature, layer);
       } else {
         bindFeaturedStreamEvents(feature, layer);
@@ -1382,8 +1440,8 @@ function styleNamedWaterCorridor(feature) {
   if (isSelected) {
     return {
       color,
-      weight: zoom <= 10 ? 3.5 : 4.5,
-      opacity: 0.92,
+      weight: zoom <= 10 ? 4.5 : 5.5,
+      opacity: 0.94,
       lineCap: 'round',
       lineJoin: 'round'
     };
@@ -1631,8 +1689,8 @@ function bindNamedWaterCorridorEvents(feature, layer) {
 
     if (!isSelected) {
       layer.setStyle({
-        weight: map.getZoom() <= 10 ? 3.5 : 4.5,
-        opacity: 0.72
+        weight: map.getZoom() <= 10 ? 3.75 : 4.75,
+        opacity: 0.78
       });
     }
   });
@@ -1688,6 +1746,11 @@ function renderMode() {
 }
 
 function renderStreamCard(stream) {
+  if (isCorridorObject(stream)) {
+    renderCorridorCard(stream);
+    return;
+  }
+
   const mode = modes[currentModeIndex].key;
   const activeKey = stream[mode];
   const activeLabel =
@@ -1724,10 +1787,113 @@ function renderStreamCard(stream) {
   `;
 }
 
-function getPublicWaterCardFields(stream = {}) {
-  const isCorridor =
+function isCorridorObject(stream = {}) {
+  return (
     stream.atlas_layer === 'named_water_corridor' ||
-    stream.object_role === 'named_water_corridor';
+    stream.object_role === 'named_water_corridor'
+  );
+}
+
+function renderCorridorCard(stream) {
+  const cardElement = document.getElementById('stream-card');
+  if (!cardElement) return;
+
+  const summaryFields = [
+    ['Length', formatRoundedKilometers(stream.source_length_km)],
+    ['Mapped occurrences', stream.occurrence_count],
+    ['Historic lineage', getLineageDisplayLabel(stream)],
+    ['Watershed', stream.basin || stream.huc8Name || firstValue(stream.huc8Names)],
+    ['State', stream.state],
+    ['Geometry', getFriendlyCorridorGeometry(stream)]
+  ];
+
+  const technicalFields = [
+    ['Corridor ID', stream.corridor_id],
+    ['GNIS ID', stream.GNIS_ID || stream.gnis_id || stream.gnisId],
+    ['Source feature count', stream.source_feature_count],
+    ['Line-part count', stream.unique_line_part_count ?? stream.line_part_count],
+    ['Vertex count', stream.vertex_count],
+    ['Source length', formatDetailedKilometers(stream.source_length_km)],
+    ['Geometry source', stream.geometry_source_public || stream.geometrySource],
+    ['Geometry status', stream.geometry_status_public || stream.geometryStatus],
+    ['HUC8', stream.huc8 || joinValues(stream.huc8s)],
+    ['Build version', stream.build_version || stream.buildVersion],
+    ['Schema version', stream.schema_version || stream.schemaVersion],
+    ['Geometry version', stream.geometry_version || stream.geometryVersion],
+    ['Source version', stream.source_version || stream.sourceVersion],
+    ['Version', stream.version]
+  ];
+  const technicalRows = renderDefinitionRows(technicalFields);
+
+  cardElement.innerHTML = `
+    <p class="eyebrow">Selected river</p>
+    <h2>${escapeHtml(getWaterName(stream))}</h2>
+    <p class="stream-card-subtitle">River corridor</p>
+    <dl class="corridor-summary">
+      ${renderDefinitionRows(summaryFields)}
+    </dl>
+    ${technicalRows ? `
+      <details class="corridor-technical">
+        <summary>Technical details</summary>
+        <div class="corridor-technical-content">
+          <dl>${technicalRows}</dl>
+        </div>
+      </details>
+    ` : ''}
+  `;
+}
+
+function renderDefinitionRows(fields) {
+  return fields
+    .filter(([, value]) => value !== undefined && value !== null && value !== '')
+    .map(([label, value]) => `<dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd>`)
+    .join('');
+}
+
+function formatRoundedKilometers(value) {
+  const length = Number(value);
+  return Number.isFinite(length) ? `${Math.round(length)} km` : '';
+}
+
+function formatDetailedKilometers(value) {
+  const length = Number(value);
+  return Number.isFinite(length)
+    ? `${length.toLocaleString(undefined, { maximumFractionDigits: 3 })} km`
+    : '';
+}
+
+function getLineageDisplayLabel(stream = {}) {
+  const key = stream.lineageKey || stream.lineage || stream.historic;
+  return speciesColors[key]?.label || stream.lineageLabel || stream.historic_label || key || '';
+}
+
+function getFriendlyCorridorGeometry(stream = {}) {
+  const source = String(stream.geometry_source_public || stream.geometrySource || '').toLowerCase();
+  const isSourceBacked =
+    stream.source_backed_geometry === true ||
+    stream.geometry_source_type === 'source-backed-nhd-mainstem' ||
+    source.includes('source-backed') ||
+    source.includes('nhd named mainstem');
+
+  if (isSourceBacked) return 'Source-backed NHD mainstem';
+
+  if (source.includes('grouped atlas named-water occurrence geometry')) {
+    return 'Occurrence-derived corridor';
+  }
+
+  return 'Named-water corridor';
+}
+
+function firstValue(value) {
+  return Array.isArray(value) ? value[0] : value;
+}
+
+function joinValues(value) {
+  return Array.isArray(value) ? value.join(', ') : value;
+}
+
+function getPublicWaterCardFields(stream = {}) {
+  const isCorridor = isCorridorObject(stream);
 
   return {
     displayName:
