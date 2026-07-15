@@ -7,6 +7,14 @@
       "corridor_id": "co_corridor_cache_la_poudre_river",
       "display_name": "Cache la Poudre River",
       "normalized_name": "cache la poudre river",
+      "source_backed_geometry": {
+        "gnis_id": "00205018",
+        "normalized_source_name": "cache la poudre river",
+        "allowed_ftypes": [460, 558],
+        "require_in_network": true,
+        "anchor_required": true,
+        "expected_source_feature_count": 445
+      },
       "member_occurrence_ids": [
         "co_cache_la_poudre_river_10190007_greenback_001",
         "co_cache_la_poudre_river_10190007_greenback_002",

@@ -4,7 +4,11 @@
 param(
     [string] $ProcessedInterpretedRoot = 'C:\ct-atlas-data\processed\geojson\interpreted',
 
-    [string] $OutputRoot = 'C:\ct-atlas-data\processed\geojson\interpreted\corridor-pilot-v1'
+    [string] $OutputRoot = 'C:\ct-atlas-data\processed\geojson\interpreted\corridor-pilot-v1',
+
+    [string] $HydrographyGeoPackagePath = 'C:\ct-atlas-data\processed\gpkg\ct_atlas_colorado_hydro_clean.gpkg',
+
+    [string] $Ogr2OgrPath = 'C:\OSGeo4W\bin\ogr2ogr.exe'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -46,6 +50,9 @@ $occurrenceIndexes = @(
 & (Join-Path $PSScriptRoot 'Build-CorridorGeoJson.ps1') `
     -CorridorRegistryPath $registryOutput `
     -OccurrenceTileIndexPaths $occurrenceIndexes `
+    -OverridePath (Join-Path $PSScriptRoot 'config\colorado_named_water_corridor_overrides_v1.json') `
+    -HydrographyGeoPackagePath $HydrographyGeoPackagePath `
+    -Ogr2OgrPath $Ogr2OgrPath `
     -OutputPath $geoJsonOutput
 
 & (Join-Path $PSScriptRoot 'Build-CorridorTiles.ps1') `
