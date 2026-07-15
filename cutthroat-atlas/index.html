@@ -22,91 +22,13 @@
       </nav>
     </header>
     
-     <section class="deep-time-story" aria-label="Deep-time cutthroat trout story">
-  <div class="deep-time-stage">
-    <p class="eyebrow">Deep Time Atlas</p>
-    <h1>Every cutthroat trout is a map of old water.</h1>
-
-    <div class="deep-time-visual" data-stage="coast">
-      <div class="water-line water-line-one"></div>
-      <div class="water-line water-line-two"></div>
-      <div class="water-line water-line-three"></div>
-
-      <div class="basin-dot basin-coast">Coast</div>
-      <div class="basin-dot basin-columbia">Columbia</div>
-      <div class="basin-dot basin-snake">Snake</div>
-      <div class="basin-dot basin-lahontan">Lahontan</div>
-      <div class="basin-dot basin-bonneville">Bonneville</div>
-      <div class="basin-dot basin-rockies">Rockies</div>
-    </div>
-
-    <p class="deep-time-caption" id="deepTimeCaption">
-      Ancestral cutthroat begin on the Pacific side, moving through cold coastal streams and river corridors.
-    </p>
-  </div>
-
-  <div class="deep-time-scenes">
-    <article class="deep-time-scene" data-stage="coast">
-      <span>01</span>
-      <h2>Coastal Origins</h2>
-      <p>
-        The story starts with trout tied to the Pacific edge: cold streams, estuaries, and connected river systems.
-      </p>
-    </article>
-
-    <article class="deep-time-scene" data-stage="inland">
-      <span>02</span>
-      <h2>Moving Inland</h2>
-      <p>
-        Over generations, ancestral cutthroat move inland through connected river corridors, spreading farther into the West.
-      </p>
-    </article>
-
-    <article class="deep-time-scene" data-stage="ice">
-      <span>03</span>
-      <h2>Ice Age Water</h2>
-      <p>
-        Glaciers reshape the map. Ice dams, pluvial lakes, and temporary drainage connections create new routes and barriers.
-      </p>
-    </article>
-
-    <article class="deep-time-scene" data-stage="flood">
-      <span>04</span>
-      <h2>Floods and Broken Basins</h2>
-      <p>
-        Catastrophic floods and changing headwaters rearrange the landscape, opening some pathways and closing others.
-      </p>
-    </article>
-
-    <article class="deep-time-scene" data-stage="isolation">
-      <span>05</span>
-      <h2>Isolation</h2>
-      <p>
-        As water recedes and basins separate, trout become isolated in the Columbia, Snake, Lahontan, Bonneville, Colorado,
-        Rio Grande, Arkansas, and other systems.
-      </p>
-    </article>
-
-    <article class="deep-time-scene" data-stage="modern">
-      <span>06</span>
-      <h2>Modern Lineages</h2>
-      <p>
-        Those isolated waters become the modern cutthroat story: Westslope, Yellowstone, Lahontan, Bonneville, Greenback,
-        Yellowfin, Rio Grande, and many more.
-      </p>
-    </article>
-  </div>
-</section> 
-    
     <section class="intro-panel" aria-labelledby="atlas-title">
-      <p class="eyebrow">Prototype</p>
-    
       <h1 id="atlas-title">Cutthroat Atlas</h1>
-    
+
       <p class="summary">
-        Explore Colorado native trout history, public hydrography, and recovery context through curated watershed layers.
+        Explore Colorado native trout history, public hydrography, and recovery context through an interactive watershed atlas.
       </p>
-    
+
       <p id="data-load-status" class="data-load-status data-badge">
         Loading reference layers...
       </p>
@@ -155,47 +77,6 @@
       </div>
     </section>
 
-    <section class="atlas-notes">
-      <h2>Data Philosophy</h2>
-      <p>
-        Cutthroat Atlas separates stream geometry, trout metadata, and watershed history
-        into distinct layers. A stream or lake may appear in the public water network without
-        automatically being treated as native trout habitat. Human-modified features such as
-        canals, tunnels, reservoirs, and transbasin diversions will be handled separately from
-        natural watershed layers when the data supports that distinction.
-      </p>
-    
-      <h2>Data Status</h2>
-      <p>
-        This prototype uses USGS NHD named flowlines as the primary reference geometry,
-        with OpenStreetMap used as a supplemental reference where public NHD geometry is
-        incomplete, unnamed, or visually discontinuous. Trout history, species presence,
-        and recovery status are prototype-level metadata and will be refined with public
-        agency, academic, museum, and conservation sources.
-      </p>
-      
-      <h2>Data Sources</h2>
-      <p>
-        Cutthroat Atlas separates public reference geometry from interpreted trout metadata.
-        The current prototype combines USGS NHD named flowlines, OpenStreetMap supplemental
-        geometry, and project metadata records that document source confidence, geometry status,
-        recovery context, and areas needing verification.
-      </p>
-    
-      <h2>Prototype Scope</h2>
-      <p>
-        The current map focuses on the Cache la Poudre / Sheep Creek recovery context area.
-        It is intended to demonstrate the workflow for combining public hydrography, watershed context,
-        and cautious trout metadata before expanding to additional Colorado basins.
-      </p>
-    
-      <h2>Planned Layers</h2>
-      <p>
-        Future layers may include USGS hydrography comparisons, interpreted watershed-review
-        geometry, historic native range, current likely species, recovery and restoration status,
-        public access context, and landowner-managed access opportunities where appropriate.
-      </p>
-    </section>
   </main>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
