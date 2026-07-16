@@ -135,6 +135,60 @@
       "corridor_id": "co_corridor_rio_grande",
       "display_name": "Rio Grande",
       "normalized_name": "rio grande",
+      "source_backed_geometry": {
+        "schema_version": 1,
+        "identity": {
+          "gnis_id": "01385432",
+          "normalized_name": "rio grande"
+        },
+        "source": {
+          "layers": ["flowlines_colorado_streamriver", "flowlines_colorado_connectors"],
+          "allowed_ftypes": [460, 558],
+          "require_in_network": true
+        },
+        "anchors": {
+          "mode": "occurrence_component",
+          "occurrence_ids": [
+            "co_rio_grande_13010001_rioGrande_001",
+            "co_rio_grande_13010001_rioGrande_002",
+            "co_rio_grande_13010001_rioGrande_003",
+            "co_rio_grande_13010002_rioGrande_001",
+            "co_rio_grande_13010002_rioGrande_002",
+            "co_rio_grande_13010002_rioGrande_003"
+          ],
+          "require_every_anchor_match": true,
+          "maximum_tolerance_meters": 3.0
+        },
+        "selection": {
+          "component_policy": "single_anchor_touched_component",
+          "require_all_candidates_selected": true
+        },
+        "boundary_policy": {
+          "extent": "source_dataset",
+          "terminal_policy": "topology_only"
+        },
+        "validation": {
+          "candidate_feature_count": 669,
+          "selected_feature_count": 669,
+          "candidate_component_count": 1,
+          "selected_component_count": 1,
+          "endpoint_node_count": 670,
+          "degree_one_node_count": 2,
+          "maximum_node_degree": 2,
+          "loop_count": 0,
+          "branch_node_count": 0,
+          "unique_permanent_identifier_count": 669,
+          "unique_nhdplus_id_count": 669,
+          "line_part_count": 669,
+          "vertex_count": 17455,
+          "source_length_km": 319.747591,
+          "source_length_tolerance_km": 0.001,
+          "feature_counts_by_ftype": {"460": 104, "558": 565}
+        },
+        "output": {
+          "geometry_source_description": "Source-backed NHD named mainstem from flowlines_colorado_streamriver and flowlines_colorado_connectors; GNIS_ID 01385432; FType 460/558; exact endpoint-connected component touched by approved occurrence anchors; Rio Grande anchor tolerance 3.0 meters"
+        }
+      },
       "member_occurrence_ids": [
         "co_rio_grande_13010001_rioGrande_001",
         "co_rio_grande_13010001_rioGrande_002",

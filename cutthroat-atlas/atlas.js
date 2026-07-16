@@ -116,7 +116,7 @@ const NAMED_WATER_CORRIDOR_TILE_INDEX_PATH =
   './data/geojson/interpreted/colorado_named_water_corridors_v1_tile_index.json';
 
 const ATLAS_OBJECT_SEARCH_INDEX_PATH =
-  './data/geojson/interpreted/colorado_atlas_object_search_index_v1.json?v=4';
+  './data/geojson/interpreted/colorado_atlas_object_search_index_v1.json?v=5';
 
 let atlasSearchEntries = [];
 let atlasSearchReady = false;
