@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Cutthroat Atlas | Hali Dev</title>
   <meta name="description" content="A prototype historical stream atlas for native trout watersheds in the American West." />
 
@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="./atlas.css" />
 </head>
-<body>
+<body class="atlas-map-page">
   <main class="atlas-shell">
     <header class="atlas-topbar">
       <a class="brand" href="/">Hali Dev</a>
@@ -66,14 +66,24 @@
         <p>Search for a river, zoom into a watershed, or select a highlighted stream or waterbody.</p>
       </aside>
 
-      <div class="mode-control" aria-label="Map layer selector">
-        <div class="mode-labels">
-          <span>Historic Native</span>
-          <span>Current Likely</span>
-          <span>Recovery Status</span>
+      <div class="mode-control" aria-label="Map timeline selector">
+        <button class="mode-control-toggle" type="button" aria-expanded="false">
+          <span>Timeline</span>
+          <span class="mode-control-current">Historic Native</span>
+        </button>
+        <div class="mode-control-panel">
+          <div class="mode-control-heading">
+            <strong>Timeline</strong>
+            <button class="mode-control-collapse" type="button" aria-label="Collapse timeline">×</button>
+          </div>
+          <div class="mode-labels">
+            <span>Historic Native</span>
+            <span>Current Likely</span>
+            <span>Recovery Status</span>
+          </div>
+          <input id="mode-slider" type="range" min="0" max="2" value="0" step="1" aria-label="Change map layer" />
+          <p id="mode-description">Showing the species most likely associated with each stream historically.</p>
         </div>
-        <input id="mode-slider" type="range" min="0" max="2" value="0" step="1" aria-label="Change map layer" />
-        <p id="mode-description">Showing the species most likely associated with each stream historically.</p>
       </div>
     </section>
 

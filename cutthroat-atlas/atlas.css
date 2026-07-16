@@ -196,6 +196,13 @@ path.leaflet-interactive:focus {
   outline: none;
 }
 
+/* Noninteractive Canvas renderers span the full map. Let pointer input pass
+   through them to the pane-specific SVG paths used by clickable Atlas layers. */
+.leaflet-referenceHydro-pane canvas,
+.leaflet-lineageStreams-pane canvas {
+  pointer-events: none;
+}
+
 /* Shared map cards */
 
 .legend-card,
@@ -558,6 +565,220 @@ input[type="range"] {
 
 }
 
+.mode-control-toggle,
+.mode-control-heading {
+  display: none;
+}
+
+.stream-sheet-header {
+  display: none;
+}
+
+/* Product-first mobile map shell. These overrides intentionally follow the
+   older stacked-layout rules so desktop behavior remains untouched. */
+@media (max-width: 1050px) {
+  body.atlas-map-page {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  body.atlas-map-page::before,
+  body.atlas-map-page .intro-panel {
+    display: none;
+  }
+
+  body.atlas-map-page .atlas-shell {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+    grid-template-rows: auto minmax(0, 1fr);
+    overflow: hidden;
+  }
+
+  body.atlas-map-page .atlas-topbar {
+    min-width: 0;
+    padding: max(0.55rem, env(safe-area-inset-top)) max(0.75rem, env(safe-area-inset-right)) 0.55rem max(0.75rem, env(safe-area-inset-left));
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  body.atlas-map-page .atlas-nav {
+    min-width: 0;
+    gap: 0.8rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    white-space: nowrap;
+    font-size: 0.78rem;
+  }
+
+  body.atlas-map-page .atlas-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  body.atlas-map-page .map-stage {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+  }
+
+  body.atlas-map-page #map {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  body.atlas-map-page .view-toggle-card,
+  body.atlas-map-page .layer-toggle-card,
+  body.atlas-map-page .legend-card {
+    display: none;
+  }
+
+  body.atlas-map-page .stream-card {
+    display: none;
+    position: absolute;
+    top: auto;
+    right: max(0.5rem, env(safe-area-inset-right));
+    bottom: calc(30px + env(safe-area-inset-bottom));
+    left: max(0.5rem, env(safe-area-inset-left));
+    width: auto;
+    max-width: none;
+    max-height: min(68%, 34rem);
+    padding: 0;
+    overflow: hidden;
+    border-radius: 18px;
+    transform: none;
+    z-index: 900;
+  }
+
+  body.atlas-map-page .stream-card.has-selection {
+    display: flex;
+    flex-direction: column;
+  }
+
+  body.atlas-map-page .stream-sheet-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 58px;
+    padding: 0.65rem 0.75rem;
+  }
+
+  body.atlas-map-page .stream-sheet-title {
+    min-width: 0;
+  }
+
+  body.atlas-map-page .stream-sheet-title strong,
+  body.atlas-map-page .stream-sheet-title span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  body.atlas-map-page .stream-sheet-title span {
+    margin-top: 0.12rem;
+    color: var(--muted);
+    font-size: 0.75rem;
+  }
+
+  body.atlas-map-page .stream-sheet-toggle,
+  body.atlas-map-page .stream-sheet-close,
+  body.atlas-map-page .mode-control-toggle,
+  body.atlas-map-page .mode-control-collapse {
+    min-width: 40px;
+    min-height: 40px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+  }
+
+  body.atlas-map-page .stream-sheet-body {
+    display: none;
+    min-height: 0;
+    padding: 0 1rem 1rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  body.atlas-map-page .stream-card.is-expanded .stream-sheet-body {
+    display: block;
+  }
+
+  body.atlas-map-page .mode-control {
+    position: absolute;
+    top: auto;
+    right: auto;
+    bottom: calc(32px + env(safe-area-inset-bottom));
+    left: max(0.75rem, env(safe-area-inset-left));
+    width: auto;
+    max-width: calc(100% - 1.5rem);
+    max-height: none;
+    padding: 0;
+    overflow: visible;
+    transform: none;
+    z-index: 880;
+  }
+
+  body.atlas-map-page .stream-card.has-selection:not(.is-expanded) ~ .mode-control {
+    bottom: calc(100px + env(safe-area-inset-bottom));
+  }
+
+  body.atlas-map-page .mode-control-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 0.8rem;
+    font-weight: 800;
+  }
+
+  body.atlas-map-page .mode-control-current {
+    color: var(--muted);
+    font-size: 0.72rem;
+  }
+
+  body.atlas-map-page .mode-control-panel {
+    display: none;
+    width: min(31rem, calc(100vw - 1.5rem));
+    padding: 0.75rem;
+  }
+
+  body.atlas-map-page .mode-control.is-expanded .mode-control-toggle {
+    display: none;
+  }
+
+  body.atlas-map-page .mode-control.is-expanded .mode-control-panel {
+    display: block;
+  }
+
+  body.atlas-map-page .mode-control-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  body.atlas-map-page .leaflet-control-zoom {
+    margin-top: max(0.75rem, env(safe-area-inset-top)) !important;
+    margin-left: max(0.75rem, env(safe-area-inset-left)) !important;
+  }
+
+}
+
 @media (prefers-reduced-motion: reduce) {
   body::before {
     animation: none;
@@ -839,4 +1060,11 @@ input[type="range"] {
   opacity: 0.95;
   max-width: calc(100% - 32px);
   white-space: normal;
+}
+
+@media (max-width: 1050px) {
+  body.atlas-map-page #map .leaflet-bottom.leaflet-right {
+    right: max(6px, env(safe-area-inset-right));
+    bottom: max(5px, env(safe-area-inset-bottom));
+  }
 }

@@ -93,6 +93,8 @@ const modes = [
   }
 ];
 
+const modeShortLabels = ['Historic Native', 'Current Likely', 'Recovery Status'];
+
 const DEFAULT_SCOPE = 'colorado';
 const DETAIL_PATCH_INDEX_PATH =
   './data/geojson/interpreted/detail_patch_index_v1.json';
@@ -266,6 +268,7 @@ const layerCatalog = [
 ];
 
 let map = null;
+let interactiveRenderers = null;
 let detailPatchCatalog = [];
 let selectedStream = null;
 let currentModeIndex = 0;
@@ -304,6 +307,8 @@ function initAtlasMap() {
   loadAtlasObjectSearchIndex();
   renderLegend();
   renderMode();
+  initOverlayControls();
+  initMapResizeInvalidation();
   updateDataLoadStatus();
 
   Promise.allSettled([
@@ -363,6 +368,18 @@ function initAtlasMap() {
       await updateActiveLayers();
     });
   });
+}
+
+function initMapResizeInvalidation() {
+  const invalidateMapSize = debounce(() => {
+    if (map) map.invalidateSize({ pan: false });
+  }, 150);
+
+  window.addEventListener('resize', invalidateMapSize, { passive: true });
+  window.addEventListener('orientationchange', invalidateMapSize, { passive: true });
+  window.visualViewport?.addEventListener('resize', invalidateMapSize, { passive: true });
+
+  requestAnimationFrame(invalidateMapSize);
 }
 
 async function loadDetailPatchIndex() {
@@ -430,9 +447,25 @@ function createMapPanes() {
   map.createPane('featuredWaters');
   map.getPane('featuredWaters').style.zIndex = 520;
 
+  map.createPane('corridors');
+  map.getPane('corridors').style.zIndex = 530;
+
+  map.createPane('occurrences');
+  map.getPane('occurrences').style.zIndex = 540;
+
+  map.createPane('waterbodyObjects');
+  map.getPane('waterbodyObjects').style.zIndex = 550;
+
   map.createPane('mapLabels');
   map.getPane('mapLabels').style.zIndex = 650;
   map.getPane('mapLabels').style.pointerEvents = 'none';
+
+  interactiveRenderers = {
+    watershed: L.svg({ pane: 'lineagePolygons' }),
+    corridor: L.svg({ pane: 'corridors' }),
+    occurrence: L.svg({ pane: 'occurrences' }),
+    waterbody: L.svg({ pane: 'waterbodyObjects' })
+  };
 }
 
 function addBaseTiles() {
@@ -926,6 +959,7 @@ function normalizeAtlasSearchQuery(value) {
   return String(value || '')
     .trim()
     .toLowerCase()
+    .replace(/#(?=\d)/g, 'occurrence ')
     .replace(/[_-]+/g, ' ')
     .replace(/\s+/g, ' ');
 }
@@ -962,7 +996,7 @@ function getAtlasSearchMatches(query, limit = 8) {
 
   const tokens = normalizedQuery.split(' ').filter(Boolean);
 
-  return atlasSearchEntries
+  const rankedMatches = atlasSearchEntries
     .filter(entry => {
       const searchText = entry.search_text || '';
       const name = entry.normalized_name || '';
@@ -980,8 +1014,23 @@ function getAtlasSearchMatches(query, limit = 8) {
       if (b.score !== a.score) return b.score - a.score;
       return a.entry.display_name.localeCompare(b.entry.display_name);
     })
-    .slice(0, limit)
     .map(result => result.entry);
+
+  const occurrenceSpecificQuery =
+    /(?:^|\s)(?:occurrence|occ\.?|#)\s*\d*\b/i.test(normalizedQuery) ||
+    /\b\d+\b/.test(normalizedQuery);
+
+  if (occurrenceSpecificQuery) return rankedMatches.slice(0, limit);
+
+  const exactCorridor = rankedMatches.find(entry => {
+    if (entry.atlas_layer !== 'named_water_corridor') return false;
+    const name = entry.normalized_name || normalizeAtlasSearchQuery(entry.display_name);
+    return name === normalizedQuery;
+  });
+
+  if (exactCorridor) return [exactCorridor];
+
+  return rankedMatches.slice(0, limit);
 }
 
 function escapeAtlasSearchHtml(value) {
@@ -1257,8 +1306,14 @@ function createReferenceLayer(data, layerDef, sourceType) {
 }
 
 function createInterpretedFeaturedLayer(data, layerDef) {
+  const isCorridorLayer = layerDef.type?.includes('corridor');
+  const pane = isCorridorLayer ? 'corridors' : 'occurrences';
+
   return L.geoJSON(data, {
-    pane: layerDef.pane || 'featuredWaters',
+    pane,
+    renderer: isCorridorLayer
+      ? interactiveRenderers.corridor
+      : interactiveRenderers.occurrence,
     filter: feature => isLineGeometry(feature) && !isPointGeometry(feature),
     style: styleInterpretedFeature,
     onEachFeature: (feature, layer) => {
@@ -1282,7 +1337,8 @@ function createInterpretedFeaturedLayer(data, layerDef) {
 
 function createWaterbodyObjectLayer(data, layerDef) {
   return L.geoJSON(data, {
-    pane: layerDef.pane || 'featuredWaters',
+    pane: 'waterbodyObjects',
+    renderer: interactiveRenderers.waterbody,
     style: feature => styleWaterbodyObject(feature),
     interactive: true,
     onEachFeature: bindWaterbodyObjectEvents
@@ -1368,12 +1424,24 @@ function bindWaterbodyObjectEvents(feature, layer) {
 function createLineagePolygonLayer(data, layerDef) {
   return L.geoJSON(data, {
     pane: layerDef.pane || 'lineagePolygons',
+    renderer: interactiveRenderers.watershed,
     filter: feature => {
       const type = feature.geometry?.type || '';
       return type === 'Polygon' || type === 'MultiPolygon';
     },
     style: styleLineagePolygon,
-    interactive: false,
+    interactive: true,
+    onEachFeature: (feature, layer) => {
+      const props = feature.properties || {};
+      const lineage = props.lineageLabel || speciesColors[props.lineageKey]?.label || 'Native trout lineage';
+      const watershed = props.lineageBasin || props.name || props.huc8 || 'Watershed';
+
+      layer.bindPopup(`
+        <strong>${escapeHtml(lineage)}</strong><br>
+        ${escapeHtml(watershed)}<br>
+        <span>Historic range</span>
+      `, { className: 'watershed-popup', maxWidth: 240 });
+    },
     smoothFactor: 1.5
   });
 }
@@ -1586,8 +1654,7 @@ function styleLineagePolygon(feature) {
     weight: 1,
     opacity: 0.25,
     fillColor: color,
-    fillOpacity: 0.04,
-    interactive: false
+    fillOpacity: 0.04
   };
 }
 
@@ -1780,6 +1847,63 @@ function renderMode() {
   if (!description) return;
 
   description.textContent = modes[currentModeIndex].description;
+
+  const current = document.querySelector('.mode-control-current');
+  if (current) current.textContent = modeShortLabels[currentModeIndex];
+}
+
+function initOverlayControls() {
+  const modeControl = document.querySelector('.mode-control');
+  const modeToggle = modeControl?.querySelector('.mode-control-toggle');
+  const modeCollapse = modeControl?.querySelector('.mode-control-collapse');
+  const streamCard = document.getElementById('stream-card');
+
+  modeToggle?.addEventListener('click', () => {
+    modeControl.classList.add('is-expanded');
+    modeToggle.setAttribute('aria-expanded', 'true');
+  });
+
+  modeCollapse?.addEventListener('click', () => {
+    modeControl.classList.remove('is-expanded');
+    modeToggle?.setAttribute('aria-expanded', 'false');
+  });
+
+  streamCard?.addEventListener('click', event => {
+    if (event.target.closest('.stream-sheet-toggle')) {
+      const expanded = streamCard.classList.toggle('is-expanded');
+      const toggle = streamCard.querySelector('.stream-sheet-toggle');
+      toggle?.setAttribute('aria-expanded', String(expanded));
+      toggle?.setAttribute('aria-label', expanded ? 'Collapse selected water' : 'Expand selected water');
+      if (toggle) toggle.textContent = expanded ? '⌄' : '⌃';
+    }
+
+    if (event.target.closest('.stream-sheet-close')) {
+      selectedStream = null;
+      streamCard.classList.remove('has-selection', 'is-expanded');
+      streamCard.innerHTML = '';
+      refreshActiveLayerStyles();
+    }
+  });
+}
+
+function renderSelectedWaterSheet(stream, objectType, bodyHtml) {
+  const cardElement = document.getElementById('stream-card');
+  if (!cardElement) return;
+
+  cardElement.classList.add('has-selection');
+  const expanded = cardElement.classList.contains('is-expanded');
+
+  cardElement.innerHTML = `
+    <div class="stream-sheet-header">
+      <div class="stream-sheet-title">
+        <strong>${escapeHtml(getWaterName(stream))}</strong>
+        <span>${escapeHtml(objectType)}</span>
+      </div>
+      <button class="stream-sheet-toggle" type="button" aria-expanded="${expanded}" aria-label="${expanded ? 'Collapse' : 'Expand'} selected water">${expanded ? '⌄' : '⌃'}</button>
+      <button class="stream-sheet-close" type="button" aria-label="Close selected water">×</button>
+    </div>
+    <div class="stream-sheet-body">${bodyHtml}</div>
+  `;
 }
 
 function renderStreamCard(stream) {
@@ -1805,7 +1929,7 @@ function renderStreamCard(stream) {
 
   if (!cardElement) return;
 
-  cardElement.innerHTML = `
+  renderSelectedWaterSheet(stream, getOccurrenceLabel(stream), `
     <p class="eyebrow">Selected water</p>
     <h2>${escapeHtml(card.displayName)}</h2>
     ${cardDescription}
@@ -1821,7 +1945,7 @@ function renderStreamCard(stream) {
       <dt>Geometry source</dt><dd>${escapeHtml(card.geometrySource)}</dd>
       <dt>Trout source</dt><dd>${escapeHtml(card.troutSource)}</dd>
     </dl>
-  `;
+  `);
 }
 
 function isCorridorObject(value) {
@@ -1866,7 +1990,7 @@ function renderCorridorCard(stream) {
   ];
   const technicalRows = renderDefinitionRows(technicalFields);
 
-  cardElement.innerHTML = `
+  renderSelectedWaterSheet(stream, 'River corridor', `
     <p class="eyebrow">Selected river</p>
     <h2>${escapeHtml(getWaterName(stream))}</h2>
     <p class="stream-card-subtitle">River corridor</p>
@@ -1881,7 +2005,7 @@ function renderCorridorCard(stream) {
         </div>
       </details>
     ` : ''}
-  `;
+  `);
 }
 
 function renderDefinitionRows(fields) {
